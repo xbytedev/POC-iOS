@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct MyTravel2App: App {
+	// register app delegate
+	@UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
