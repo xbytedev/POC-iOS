@@ -10,10 +10,10 @@ import SwiftUI
 
 enum AppColor {
 	static let theme = Color(R.color.theme)
-	static let white = Color(R.color.white)
 
 	struct Text {
-		static let textPrimary = Color(R.color.textPrimary)
-		static let textSecondary = Color(R.color.textSecondary)
+		static let primary = Color(R.color.textPrimary)
+		static let secondary = Color(R.color.textSecondary)
+		static let tertiary = Color(R.color.textTertiary)
 	}
 }
