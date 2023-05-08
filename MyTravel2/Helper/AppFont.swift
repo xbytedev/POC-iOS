@@ -10,20 +10,7 @@ import SwiftUI
 
 
 enum AppFont {
-	static func getRegular(forStyle style: UIFont.TextStyle) -> Font? {
-		return Font.system(size: UIFont.preferredFont(forTextStyle: style).pointSize, weight: .regular)
+	static func getFont(forStyle style: UIFont.TextStyle, forWeight weight: Font.Weight = .regular) -> Font? {
+		return Font.system(size: UIFont.preferredFont(forTextStyle: style).pointSize).weight(weight)
 	}
-
-	static func getMedium(forStyle style: UIFont.TextStyle) -> Font? {
-		return Font.system(size: UIFont.preferredFont(forTextStyle: style).pointSize, weight: .medium)
-	}
-
-	static func getBold(forStyle style: UIFont.TextStyle) -> Font? {
-		return Font.system(size: UIFont.preferredFont(forTextStyle: style).pointSize, weight: .bold)
-	}
-
-	static func getSemiBold(forStyle style: UIFont.TextStyle) -> Font? {
-		return Font.system(size: UIFont.preferredFont(forTextStyle: style).pointSize, weight: .semibold)
-	}
-
 }
