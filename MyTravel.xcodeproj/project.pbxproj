@@ -99,7 +99,6 @@
 		897EDC202A050E22001B652E = {
 			isa = PBXGroup;
 			children = (
-				CEDC13B72A08FD1E00B1AF6E /* MyTravel-Info.plist */,
 				897EDC2B2A050E22001B652E /* MyTravel2 */,
 				897EDC412A050E25001B652E /* MyTravel2Tests */,
 				897EDC4B2A050E25001B652E /* MyTravel2UITests */,
@@ -162,6 +161,7 @@
 			children = (
 				896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */,
 				897EDC302A050E24001B652E /* Assets.xcassets */,
+				CEDC13B72A08FD1E00B1AF6E /* MyTravel-Info.plist */,
 				CEDC13B42A08FC6000B1AF6E /* Font */,
 			);
 			path = Resources;
@@ -203,6 +203,7 @@
 				897EDC252A050E22001B652E /* Sources */,
 				897EDC262A050E22001B652E /* Frameworks */,
 				897EDC272A050E22001B652E /* Resources */,
+				CE6641362A0A0AC30028CFC5 /* Swift Lint Run Script */,
 			);
 			buildRules = (
 			);
@@ -332,6 +333,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CE6641362A0A0AC30028CFC5 /* Swift Lint Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		897EDC252A050E22001B652E /* Sources */ = {
@@ -511,7 +534,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MyTravel-Info.plist";
+				INFOPLIST_FILE = "MyTravel2/Resources/MyTravel-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "Montserrat-VariableFont_wght.ttf";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -544,7 +567,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MyTravel-Info.plist";
+				INFOPLIST_FILE = "MyTravel2/Resources/MyTravel-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "Montserrat-VariableFont_wght.ttf";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
