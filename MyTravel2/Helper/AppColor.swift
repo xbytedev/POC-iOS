@@ -17,7 +17,7 @@ enum AppColor {
 		static let tertiary = Color(R.color.textTertiary)
 	}
 
-	struct Background {
+	enum Background {
 		static let white = Color(.white)
 	}
 }
