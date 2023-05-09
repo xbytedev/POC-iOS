@@ -14,7 +14,13 @@ struct LoginView: View {
 				.resizable()
 				.aspectRatio(contentMode: .fill)
 				.clipped()
+				.frame(minWidth: 0, maxWidth: .infinity)
 				.ignoresSafeArea()
+			VStack {
+				TextField("Username", text: .constant("Hello"))
+				TextField("Password", text: .constant("Hello"))
+			}
+			.modifier(FormModifier())
 		}
     }
 }
