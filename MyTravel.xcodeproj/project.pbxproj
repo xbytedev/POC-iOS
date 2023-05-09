@@ -24,6 +24,7 @@
 		897EDC6E2A05272F001B652E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC6D2A05272F001B652E /* LoginView.swift */; };
 		CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E42A08CD1100C4AE43 /* AppFont.swift */; };
 		CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */; };
+		CE66413F2A0A4D2B0028CFC5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE66413E2A0A4D2B0028CFC5 /* Localizable.strings */; };
 		CEBAEA552A08CF1800F73FA8 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = CEBAEA542A08CF1800F73FA8 /* RswiftLibrary */; };
 		CEDC13BE2A09018700B1AF6E /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC13BD2A09018700B1AF6E /* Montserrat-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		897EDC6D2A05272F001B652E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CE3E83E42A08CD1100C4AE43 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		CE66413E2A0A4D2B0028CFC5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		CEDC13B72A08FD1E00B1AF6E /* MyTravel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyTravel-Info.plist"; sourceTree = "<group>"; };
 		CEDC13BD2A09018700B1AF6E /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +165,7 @@
 				897EDC302A050E24001B652E /* Assets.xcassets */,
 				CEDC13B72A08FD1E00B1AF6E /* MyTravel-Info.plist */,
 				CEDC13B42A08FC6000B1AF6E /* Font */,
+				CE66413E2A0A4D2B0028CFC5 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE66413F2A0A4D2B0028CFC5 /* Localizable.strings in Resources */,
 				897EDC342A050E24001B652E /* Preview Assets.xcassets in Resources */,
 				897EDC312A050E24001B652E /* Assets.xcassets in Resources */,
 				896E8FC82A08BAA6002AA4D3 /* GoogleService-Info.plist in Resources */,
