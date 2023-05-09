@@ -16,22 +16,25 @@ struct MTButton: View {
 		Button {
 			action()
 		} label: {
-			HStack {
+			HStack(spacing: 16) {
 				if isLoading {
 					ProgressView()
 						.transition(.move(edge: .trailing))
+						.tint(AppColor.Text.tertiary)
 				}
 				Text(isLoading ? loadingTitle : title)
+					.transition(.opacity)
+					.foregroundColor(AppColor.Text.tertiary)
 			}
-			.foregroundColor(AppColor.Text.tertiary)
-			// TODO: update font
+			.frame(minWidth: 0, maxWidth: .infinity)
+			.font(AppFont.getFont(forStyle: .headline, forWeight: .bold))
 		}
 		.padding()
-		.frame(minWidth: 0, maxWidth: .infinity)
 		.background(AppColor.theme)
 		.cornerRadius(18)
 		.shadow(radius: 7)
 		.padding(7)
+		.disabled(isLoading)
     }
 }
 

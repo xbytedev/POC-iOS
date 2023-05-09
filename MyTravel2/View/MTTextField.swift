@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct MTTextFieldStyle: TextFieldStyle {
-	public func _body(configuration: TextField<Self._Label>) -> some View {
+	public func _body(configuration: TextField<Self._Label>) -> some View { // swiftlint:disable:this identifier_name
 		configuration
 			.frame(height: 30)
 			.padding(10)
@@ -21,7 +21,7 @@ public struct MTTextFieldStyle: TextFieldStyle {
 }
 
 public struct MTSecureFieldStyle: TextFieldStyle {
-	public func _body(configuration: TextField<Self._Label>) -> some View {
+	public func _body(configuration: TextField<Self._Label>) -> some View { // swiftlint:disable:this identifier_name
 		configuration
 			.frame(height: 30)
 			.padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 48))
