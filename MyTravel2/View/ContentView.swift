@@ -22,7 +22,7 @@ struct ContentView: View {
                 ForEach(items) { item in
                     NavigationLink {
                         Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-							.font(AppFont.getFont(forStyle: .body, forWeight: .bold))
+							.font(AppFont.getFont(forStyle: .title3, forWeight: .bold))
                     } label: {
                         Text(item.timestamp!, formatter: itemFormatter)
                     }
