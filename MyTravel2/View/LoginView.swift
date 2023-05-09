@@ -18,7 +18,9 @@ struct LoginView: View {
 			VStack {
 				VStack(spacing: 0) {
 					MTTextField(label: "Username", valueStr: $usernameStr)
+						.textContentType(.username)
 					MTTextField(label: "Password", valueStr: $passwordStr, isPassword: true)
+						.textContentType(.password)
 				}
 				VStack(spacing: 16) {
 					HStack {
