@@ -27,7 +27,14 @@ struct LoginView: View {
 						Spacer()
 						forgotPasswordView
 					}
-					Text(getAttrStr())
+					if #available(iOS 15.0, *) {
+						Text(getAttrStr())
+					} else {
+						Text("Don't have an account? Register")
+							.onTapGesture {
+								// TODO: handle tap on register
+							}
+					}
 				}
 			}
 			.padding(.init(top: 48, leading: 0, bottom: 24, trailing: 0))
@@ -63,13 +70,20 @@ struct LoginView: View {
 		}
     }
 
-	private var backgroundImage: some View {
+	private var bgImage: some View {
 		Image(uiImage: UIImage(named: "img_background")!)
 			.resizable()
 			.aspectRatio(contentMode: .fill)
 			.clipped()
 			.frame(minWidth: 0, maxWidth: .infinity)
-			.ignoresSafeArea()
+	}
+
+	private var backgroundImage: some View {
+		if #available(iOS 14.0, *) {
+			return bgImage.ignoresSafeArea()
+		} else {
+			return bgImage.edgesIgnoringSafeArea(.all)
+		}
 	}
 
 	private var forgotPasswordView: some View {
@@ -82,6 +96,7 @@ struct LoginView: View {
 		}
 	}
 
+	@available(iOS 15, *)
 	private func getAttrStr() -> AttributedString {
 		var str1 = AttributedString("Don't have an account? ")
 		str1.font = AppFont.getFont(forStyle: .subheadline, forWeight: .medium)

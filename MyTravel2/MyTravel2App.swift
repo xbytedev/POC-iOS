@@ -15,8 +15,21 @@ struct MyTravel2App: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+			if #available(iOS 16.0, *) {
+				NavigationStack {
+					rootView
+				}
+			} else {
+				NavigationView {
+					rootView
+				}
+				.navigationViewStyle(.stack)
+			}
         }
     }
+
+	private var rootView: some View {
+		ContentView()
+			.environment(\.managedObjectContext, persistenceController.container.viewContext)
+	}
 }
