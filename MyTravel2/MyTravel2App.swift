@@ -15,8 +15,10 @@ struct MyTravel2App: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//            ContentView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+			let viewModel = AuthViewModel(provider: AuthAPIProvider())
+			LoginView(viewModel: viewModel)
         }
     }
 }

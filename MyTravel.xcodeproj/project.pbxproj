@@ -35,6 +35,11 @@
 		CEC19B812A0B83D0006E3192 /* AppURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B802A0B83D0006E3192 /* AppURL.swift */; };
 		CEC19B872A0B84F7006E3192 /* MTConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B862A0B84F7006E3192 /* MTConfiguration.swift */; };
 		CEC19B892A0B8543006E3192 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B882A0B8543006E3192 /* Keys.swift */; };
+		CEC19B932A0B97F6006E3192 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B922A0B97F6006E3192 /* AuthViewModel.swift */; };
+		CEC19B962A0B982D006E3192 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B952A0B982D006E3192 /* AuthProvider.swift */; };
+		CEC19B982A0B991A006E3192 /* MTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B972A0B991A006E3192 /* MTResponse.swift */; };
+		CEC19B9B2A0B9FBC006E3192 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B9A2A0B9FBC006E3192 /* CustomError.swift */; };
+		CEC19B9E2A0BA423006E3192 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B9D2A0BA423006E3192 /* Validator.swift */; };
 		CEDC13BE2A09018700B1AF6E /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC13BD2A09018700B1AF6E /* Montserrat-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +90,11 @@
 		CEC19B852A0B8449006E3192 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		CEC19B862A0B84F7006E3192 /* MTConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTConfiguration.swift; sourceTree = "<group>"; };
 		CEC19B882A0B8543006E3192 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		CEC19B922A0B97F6006E3192 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		CEC19B952A0B982D006E3192 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		CEC19B972A0B991A006E3192 /* MTResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTResponse.swift; sourceTree = "<group>"; };
+		CEC19B9A2A0B9FBC006E3192 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		CEC19B9D2A0BA423006E3192 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		CEDC13B72A08FD1E00B1AF6E /* MyTravel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyTravel-Info.plist"; sourceTree = "<group>"; };
 		CEDC13BD2A09018700B1AF6E /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +153,8 @@
 			children = (
 				896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */,
 				897EDC2C2A050E22001B652E /* MyTravel2App.swift */,
+				CEC19B912A0B97E1006E3192 /* Model */,
+				CEC19B902A0B97D8006E3192 /* ViewModel */,
 				897EDC6A2A0526FE001B652E /* View */,
 				897EDC682A0526EF001B652E /* Resources */,
 				CE3E83E32A08CCFA00C4AE43 /* Helper */,
@@ -214,6 +226,8 @@
 				CEC19B792A0B7FBD006E3192 /* WebRequester.swift */,
 				CEC19B7B2A0B80D8006E3192 /* MTNetworkLogger.swift */,
 				CEC19B862A0B84F7006E3192 /* MTConfiguration.swift */,
+				CEC19B9A2A0B9FBC006E3192 /* CustomError.swift */,
+				CEC19B9D2A0BA423006E3192 /* Validator.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -225,6 +239,31 @@
 				CEC19B842A0B8416006E3192 /* Release.xcconfig */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		CEC19B902A0B97D8006E3192 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEC19B942A0B9815006E3192 /* Provider */,
+				CEC19B922A0B97F6006E3192 /* AuthViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CEC19B912A0B97E1006E3192 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEC19B972A0B991A006E3192 /* MTResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CEC19B942A0B9815006E3192 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				CEC19B952A0B982D006E3192 /* AuthProvider.swift */,
+			);
+			path = Provider;
 			sourceTree = "<group>";
 		};
 		CEDC13B42A08FC6000B1AF6E /* Font */ = {
@@ -412,15 +451,20 @@
 				894471F62A08FE9F0011DDD2 /* MTContainerView.swift in Sources */,
 				897EDC392A050E24001B652E /* MyTravel2.xcdatamodeld in Sources */,
 				CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */,
+				CEC19B932A0B97F6006E3192 /* AuthViewModel.swift in Sources */,
 				CEC19B7E2A0B8108006E3192 /* Constant.swift in Sources */,
 				897EDC362A050E24001B652E /* Persistence.swift in Sources */,
 				CEC19B872A0B84F7006E3192 /* MTConfiguration.swift in Sources */,
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
+				CEC19B962A0B982D006E3192 /* AuthProvider.swift in Sources */,
+				CEC19B9B2A0B9FBC006E3192 /* CustomError.swift in Sources */,
 				897EDC6E2A05272F001B652E /* LoginView.swift in Sources */,
+				CEC19B9E2A0BA423006E3192 /* Validator.swift in Sources */,
 				8904787E2A0A00A7005CC921 /* MTTextField.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
 				CEC19B7A2A0B7FBD006E3192 /* WebRequester.swift in Sources */,
 				CEC19B812A0B83D0006E3192 /* AppURL.swift in Sources */,
+				CEC19B982A0B991A006E3192 /* MTResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
