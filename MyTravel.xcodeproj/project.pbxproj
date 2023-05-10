@@ -29,6 +29,12 @@
 		CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */; };
 		CE66413F2A0A4D2B0028CFC5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE66413E2A0A4D2B0028CFC5 /* Localizable.strings */; };
 		CEBAEA552A08CF1800F73FA8 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = CEBAEA542A08CF1800F73FA8 /* RswiftLibrary */; };
+		CEC19B7A2A0B7FBD006E3192 /* WebRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B792A0B7FBD006E3192 /* WebRequester.swift */; };
+		CEC19B7C2A0B80D8006E3192 /* MTNetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B7B2A0B80D8006E3192 /* MTNetworkLogger.swift */; };
+		CEC19B7E2A0B8108006E3192 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B7D2A0B8108006E3192 /* Constant.swift */; };
+		CEC19B812A0B83D0006E3192 /* AppURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B802A0B83D0006E3192 /* AppURL.swift */; };
+		CEC19B872A0B84F7006E3192 /* MTConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B862A0B84F7006E3192 /* MTConfiguration.swift */; };
+		CEC19B892A0B8543006E3192 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B882A0B8543006E3192 /* Keys.swift */; };
 		CEDC13BE2A09018700B1AF6E /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC13BD2A09018700B1AF6E /* Montserrat-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +77,14 @@
 		CE3E83E42A08CD1100C4AE43 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		CE66413E2A0A4D2B0028CFC5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		CEC19B792A0B7FBD006E3192 /* WebRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequester.swift; sourceTree = "<group>"; };
+		CEC19B7B2A0B80D8006E3192 /* MTNetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTNetworkLogger.swift; sourceTree = "<group>"; };
+		CEC19B7D2A0B8108006E3192 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		CEC19B802A0B83D0006E3192 /* AppURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppURL.swift; sourceTree = "<group>"; };
+		CEC19B842A0B8416006E3192 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		CEC19B852A0B8449006E3192 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		CEC19B862A0B84F7006E3192 /* MTConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTConfiguration.swift; sourceTree = "<group>"; };
+		CEC19B882A0B8543006E3192 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		CEDC13B72A08FD1E00B1AF6E /* MyTravel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyTravel-Info.plist"; sourceTree = "<group>"; };
 		CEDC13BD2A09018700B1AF6E /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,8 +181,9 @@
 		897EDC682A0526EF001B652E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */,
 				897EDC302A050E24001B652E /* Assets.xcassets */,
+				CEC19B832A0B83F0006E3192 /* Config */,
+				896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */,
 				CEDC13B72A08FD1E00B1AF6E /* MyTravel-Info.plist */,
 				CEDC13B42A08FC6000B1AF6E /* Font */,
 				CE66413E2A0A4D2B0028CFC5 /* Localizable.strings */,
@@ -193,8 +208,23 @@
 			children = (
 				CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */,
 				CE3E83E42A08CD1100C4AE43 /* AppFont.swift */,
+				CEC19B802A0B83D0006E3192 /* AppURL.swift */,
+				CEC19B7D2A0B8108006E3192 /* Constant.swift */,
+				CEC19B882A0B8543006E3192 /* Keys.swift */,
+				CEC19B792A0B7FBD006E3192 /* WebRequester.swift */,
+				CEC19B7B2A0B80D8006E3192 /* MTNetworkLogger.swift */,
+				CEC19B862A0B84F7006E3192 /* MTConfiguration.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		CEC19B832A0B83F0006E3192 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				CEC19B852A0B8449006E3192 /* Debug.xcconfig */,
+				CEC19B842A0B8416006E3192 /* Release.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		CEDC13B42A08FC6000B1AF6E /* Font */ = {
@@ -275,7 +305,7 @@
 		897EDC212A050E22001B652E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
@@ -375,16 +405,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */,
+				CEC19B892A0B8543006E3192 /* Keys.swift in Sources */,
 				CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */,
 				894471EE2A08F8400011DDD2 /* MTButton.swift in Sources */,
+				CEC19B7C2A0B80D8006E3192 /* MTNetworkLogger.swift in Sources */,
 				894471F62A08FE9F0011DDD2 /* MTContainerView.swift in Sources */,
 				897EDC392A050E24001B652E /* MyTravel2.xcdatamodeld in Sources */,
 				CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */,
+				CEC19B7E2A0B8108006E3192 /* Constant.swift in Sources */,
 				897EDC362A050E24001B652E /* Persistence.swift in Sources */,
+				CEC19B872A0B84F7006E3192 /* MTConfiguration.swift in Sources */,
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
 				897EDC6E2A05272F001B652E /* LoginView.swift in Sources */,
 				8904787E2A0A00A7005CC921 /* MTTextField.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
+				CEC19B7A2A0B7FBD006E3192 /* WebRequester.swift in Sources */,
+				CEC19B812A0B83D0006E3192 /* AppURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +463,7 @@
 /* Begin XCBuildConfiguration section */
 		897EDC502A050E25001B652E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC19B852A0B8449006E3192 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -487,6 +524,7 @@
 		};
 		897EDC512A050E25001B652E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC19B842A0B8416006E3192 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -541,6 +579,7 @@
 		};
 		897EDC532A050E25001B652E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC19B852A0B8449006E3192 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -551,6 +590,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MyTravel2/Resources/MyTravel-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "Montserrat-VariableFont_wght.ttf";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -574,6 +614,7 @@
 		};
 		897EDC542A050E25001B652E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC19B842A0B8416006E3192 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -584,6 +625,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MyTravel2/Resources/MyTravel-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "Montserrat-VariableFont_wght.ttf";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -607,6 +649,7 @@
 		};
 		897EDC562A050E25001B652E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC19B852A0B8449006E3192 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -631,6 +674,7 @@
 		};
 		897EDC572A050E25001B652E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC19B842A0B8416006E3192 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -655,6 +699,7 @@
 		};
 		897EDC592A050E25001B652E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC19B852A0B8449006E3192 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -672,6 +717,7 @@
 		};
 		897EDC5A2A050E25001B652E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC19B842A0B8416006E3192 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,0 +1,13 @@
+//
+//  Debug.xcconfig
+//  MyTravel
+//
+//  Created by Xuser on 10/05/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_BASE_SCHEME = https
+API_BASE_URL = 192.168.100.217:8000
+API_PATH = /api
