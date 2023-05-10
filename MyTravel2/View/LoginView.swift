@@ -27,12 +27,19 @@ struct LoginView: View {
 						Spacer()
 						forgotPasswordView
 					}
-					Text(getAttrStr())
+					if #available(iOS 15.0, *) {
+						Text(getAttrStr())
+					} else {
+						Text("Don't have an account? Register")
+							.onTapGesture {
+								// TODO: handle tap on register
+							}
+					}
 				}
 			}
 			.padding(.init(top: 48, leading: 0, bottom: 24, trailing: 0))
 			.modifier(FormModifier())
-			.overlay(alignment: .bottom) {
+			.myOverlay(alignment: .bottom) {
 				MTButton(isLoading: $isRequesting, title: "Login", loadingTitle: "Loggin in") {
 					withAnimation {
 						isRequesting.toggle()
@@ -42,19 +49,19 @@ struct LoginView: View {
 				.padding(.horizontal, 64)
 				.offset(x: 0, y: 20)
 			}
-			.overlay(alignment: .top) {
+			.myOverlay(alignment: .top) {
 				Image(R.image.ic_avatar)
 					.frame(height: 48)
 					.aspectRatio(contentMode: .fit)
 					.padding(24)
-					.background {
+					.myBackground {
 						Circle()
 							.foregroundColor(AppColor.theme.opacity(0.9))
 					}
 					.offset(x: 0, y: -36)
 			}
 		}
-		.overlay(alignment: .top) {
+		.myOverlay(alignment: .top) {
 			Image(R.image.img_myTravelLogo)
 				.resizable()
 				.scaledToFit()
@@ -63,13 +70,20 @@ struct LoginView: View {
 		}
     }
 
-	private var backgroundImage: some View {
+	private var bgImage: some View {
 		Image(uiImage: UIImage(named: "img_background")!)
 			.resizable()
 			.aspectRatio(contentMode: .fill)
 			.clipped()
 			.frame(minWidth: 0, maxWidth: .infinity)
-			.ignoresSafeArea()
+	}
+
+	private var backgroundImage: some View {
+		if #available(iOS 14.0, *) {
+			return bgImage.ignoresSafeArea()
+		} else {
+			return bgImage.edgesIgnoringSafeArea(.all)
+		}
 	}
 
 	private var forgotPasswordView: some View {
@@ -82,6 +96,7 @@ struct LoginView: View {
 		}
 	}
 
+	@available(iOS 15, *)
 	private func getAttrStr() -> AttributedString {
 		var str1 = AttributedString("Don't have an account? ")
 		str1.font = AppFont.getFont(forStyle: .subheadline, forWeight: .medium)

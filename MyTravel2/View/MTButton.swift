@@ -20,7 +20,7 @@ struct MTButton: View {
 				if isLoading {
 					ProgressView()
 						.transition(.move(edge: .trailing))
-						.tint(AppColor.Text.tertiary)
+						.modifier(ProgressViewModifier(color: AppColor.Text.tertiary))
 				}
 				Text(isLoading ? loadingTitle : title)
 					.transition(.opacity)

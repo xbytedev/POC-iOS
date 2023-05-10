@@ -49,10 +49,10 @@ struct MTTextField: View {
 		if isPasswordField {
 			getField()
 				.textFieldStyle(MTSecureFieldStyle())
-				.overlay(alignment: .topLeading) {
+				.myOverlay(alignment: .topLeading, overlayView: {
 					label
-				}
-				.overlay(alignment: .trailing, content: {
+				})
+				.myOverlay(alignment: .trailing, overlayView: {
 					btnEye
 						.padding(.horizontal)
 				})
@@ -60,9 +60,9 @@ struct MTTextField: View {
 		} else {
 			TextField("", text: $valueStr)
 				.textFieldStyle(MTTextFieldStyle())
-				.overlay(alignment: .topLeading) {
+				.myOverlay(alignment: .topLeading, overlayView: {
 					label
-				}
+				})
 				.padding(.vertical)
 		}
     }

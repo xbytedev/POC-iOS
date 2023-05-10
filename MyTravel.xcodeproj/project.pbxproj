@@ -13,6 +13,10 @@
 		896E8FC42A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 896E8FC32A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */; };
 		896E8FC82A08BAA6002AA4D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */; };
+		897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CA2A0BA7FA008D1687 /* ProgressViewModifier.swift */; };
+		897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CD2A0BA821008D1687 /* BackgroundModifier.swift */; };
+		897E61D02A0BA846008D1687 /* OverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CF2A0BA846008D1687 /* OverlayModifier.swift */; };
+		897E61D22A0BA910008D1687 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61D12A0BA910008D1687 /* VerificationView.swift */; };
 		897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC2C2A050E22001B652E /* MyTravel2App.swift */; };
 		897EDC2F2A050E22001B652E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC2E2A050E22001B652E /* ContentView.swift */; };
 		897EDC312A050E24001B652E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 897EDC302A050E24001B652E /* Assets.xcassets */; };
@@ -61,6 +65,10 @@
 		894471F52A08FE9F0011DDD2 /* MTContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTContainerView.swift; sourceTree = "<group>"; };
 		896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		897E61CA2A0BA7FA008D1687 /* ProgressViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModifier.swift; sourceTree = "<group>"; };
+		897E61CD2A0BA821008D1687 /* BackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundModifier.swift; sourceTree = "<group>"; };
+		897E61CF2A0BA846008D1687 /* OverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayModifier.swift; sourceTree = "<group>"; };
+		897E61D12A0BA910008D1687 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		897EDC292A050E22001B652E /* MyTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		897EDC2C2A050E22001B652E /* MyTravel2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravel2App.swift; sourceTree = "<group>"; };
 		897EDC2E2A050E22001B652E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +126,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		897E61C92A0BA7E7008D1687 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				897E61CD2A0BA821008D1687 /* BackgroundModifier.swift */,
+				897E61CA2A0BA7FA008D1687 /* ProgressViewModifier.swift */,
+				897E61CF2A0BA846008D1687 /* OverlayModifier.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 		897EDC202A050E22001B652E = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +217,7 @@
 				8904787D2A0A00A7005CC921 /* MTTextField.swift */,
 				894471F52A08FE9F0011DDD2 /* MTContainerView.swift */,
 				897EDC6D2A05272F001B652E /* LoginView.swift */,
+				897E61D12A0BA910008D1687 /* VerificationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,6 +227,7 @@
 			children = (
 				CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */,
 				CE3E83E42A08CD1100C4AE43 /* AppFont.swift */,
+				897E61C92A0BA7E7008D1687 /* ViewModifiers */,
 				CEC19B802A0B83D0006E3192 /* AppURL.swift */,
 				CEC19B7D2A0B8108006E3192 /* Constant.swift */,
 				CEC19B882A0B8543006E3192 /* Keys.swift */,
@@ -404,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897E61D22A0BA910008D1687 /* VerificationView.swift in Sources */,
 				896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */,
 				CEC19B892A0B8543006E3192 /* Keys.swift in Sources */,
 				CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */,
@@ -416,9 +437,12 @@
 				897EDC362A050E24001B652E /* Persistence.swift in Sources */,
 				CEC19B872A0B84F7006E3192 /* MTConfiguration.swift in Sources */,
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
+				897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */,
 				897EDC6E2A05272F001B652E /* LoginView.swift in Sources */,
 				8904787E2A0A00A7005CC921 /* MTTextField.swift in Sources */,
+				897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
+				897E61D02A0BA846008D1687 /* OverlayModifier.swift in Sources */,
 				CEC19B7A2A0B7FBD006E3192 /* WebRequester.swift in Sources */,
 				CEC19B812A0B83D0006E3192 /* AppURL.swift in Sources */,
 			);
@@ -597,7 +621,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -632,7 +656,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
