@@ -11,7 +11,7 @@ struct FormModifier: ViewModifier {
 	func body(content: Content) -> some View {
 		content
 			.padding()
-			.background {
+			.myBackground(backgroundView: {
 				ZStack {
 					Rectangle()
 						.foregroundColor(AppColor.theme)
@@ -23,7 +23,7 @@ struct FormModifier: ViewModifier {
 						.shadow(radius: 8)
 				}
 				.frame(minWidth: 0, maxWidth: .infinity)
-			}
+			})
 			.padding()
 	}
 }

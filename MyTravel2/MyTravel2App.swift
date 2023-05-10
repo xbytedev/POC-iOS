@@ -29,7 +29,8 @@ struct MyTravel2App: App {
     }
 
 	private var rootView: some View {
-		ContentView()
-			.environment(\.managedObjectContext, persistenceController.container.viewContext)
+		LoginView()
+		/*ContentView()
+			.environment(\.managedObjectContext, persistenceController.container.viewContext)*/
 	}
 }

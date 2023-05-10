@@ -39,7 +39,7 @@ struct LoginView: View {
 			}
 			.padding(.init(top: 48, leading: 0, bottom: 24, trailing: 0))
 			.modifier(FormModifier())
-			.overlay(alignment: .bottom) {
+			.myOverlay(alignment: .bottom) {
 				MTButton(isLoading: $isRequesting, title: "Login", loadingTitle: "Loggin in") {
 					withAnimation {
 						isRequesting.toggle()
@@ -49,19 +49,19 @@ struct LoginView: View {
 				.padding(.horizontal, 64)
 				.offset(x: 0, y: 20)
 			}
-			.overlay(alignment: .top) {
+			.myOverlay(alignment: .top) {
 				Image(R.image.ic_avatar)
 					.frame(height: 48)
 					.aspectRatio(contentMode: .fit)
 					.padding(24)
-					.background {
+					.myBackground {
 						Circle()
 							.foregroundColor(AppColor.theme.opacity(0.9))
 					}
 					.offset(x: 0, y: -36)
 			}
 		}
-		.overlay(alignment: .top) {
+		.myOverlay(alignment: .top) {
 			Image(R.image.img_myTravelLogo)
 				.resizable()
 				.scaledToFit()
