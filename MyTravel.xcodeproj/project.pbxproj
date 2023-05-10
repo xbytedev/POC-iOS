@@ -16,6 +16,7 @@
 		897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CA2A0BA7FA008D1687 /* ProgressViewModifier.swift */; };
 		897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CD2A0BA821008D1687 /* BackgroundModifier.swift */; };
 		897E61D02A0BA846008D1687 /* OverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CF2A0BA846008D1687 /* OverlayModifier.swift */; };
+		897E61D22A0BA910008D1687 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61D12A0BA910008D1687 /* VerificationView.swift */; };
 		897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC2C2A050E22001B652E /* MyTravel2App.swift */; };
 		897EDC2F2A050E22001B652E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC2E2A050E22001B652E /* ContentView.swift */; };
 		897EDC312A050E24001B652E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 897EDC302A050E24001B652E /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		897E61CA2A0BA7FA008D1687 /* ProgressViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModifier.swift; sourceTree = "<group>"; };
 		897E61CD2A0BA821008D1687 /* BackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundModifier.swift; sourceTree = "<group>"; };
 		897E61CF2A0BA846008D1687 /* OverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayModifier.swift; sourceTree = "<group>"; };
+		897E61D12A0BA910008D1687 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		897EDC292A050E22001B652E /* MyTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		897EDC2C2A050E22001B652E /* MyTravel2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravel2App.swift; sourceTree = "<group>"; };
 		897EDC2E2A050E22001B652E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				8904787D2A0A00A7005CC921 /* MTTextField.swift */,
 				894471F52A08FE9F0011DDD2 /* MTContainerView.swift */,
 				897EDC6D2A05272F001B652E /* LoginView.swift */,
+				897E61D12A0BA910008D1687 /* VerificationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897E61D22A0BA910008D1687 /* VerificationView.swift in Sources */,
 				896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */,
 				CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */,
 				894471EE2A08F8400011DDD2 /* MTButton.swift in Sources */,
