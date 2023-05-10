@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8904787E2A0A00A7005CC921 /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8904787D2A0A00A7005CC921 /* MTTextField.swift */; };
+		894471EE2A08F8400011DDD2 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894471ED2A08F83F0011DDD2 /* MTButton.swift */; };
+		894471F62A08FE9F0011DDD2 /* MTContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894471F52A08FE9F0011DDD2 /* MTContainerView.swift */; };
 		896E8FC42A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 896E8FC32A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */; };
 		896E8FC82A08BAA6002AA4D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */; };
@@ -47,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8904787D2A0A00A7005CC921 /* MTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTextField.swift; sourceTree = "<group>"; };
+		894471ED2A08F83F0011DDD2 /* MTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
+		894471F52A08FE9F0011DDD2 /* MTContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTContainerView.swift; sourceTree = "<group>"; };
 		896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		897EDC292A050E22001B652E /* MyTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +180,9 @@
 			isa = PBXGroup;
 			children = (
 				897EDC2E2A050E22001B652E /* ContentView.swift */,
+				894471ED2A08F83F0011DDD2 /* MTButton.swift */,
+				8904787D2A0A00A7005CC921 /* MTTextField.swift */,
+				894471F52A08FE9F0011DDD2 /* MTContainerView.swift */,
 				897EDC6D2A05272F001B652E /* LoginView.swift */,
 			);
 			path = View;
@@ -356,7 +365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -367,11 +376,14 @@
 			files = (
 				896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */,
 				CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */,
+				894471EE2A08F8400011DDD2 /* MTButton.swift in Sources */,
+				894471F62A08FE9F0011DDD2 /* MTContainerView.swift in Sources */,
 				897EDC392A050E24001B652E /* MyTravel2.xcdatamodeld in Sources */,
 				CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */,
 				897EDC362A050E24001B652E /* Persistence.swift in Sources */,
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
 				897EDC6E2A05272F001B652E /* LoginView.swift in Sources */,
+				8904787E2A0A00A7005CC921 /* MTTextField.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
