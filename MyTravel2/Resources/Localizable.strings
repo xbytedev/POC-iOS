@@ -6,3 +6,20 @@
   
 */
 "Ok" = "OK";
+"Error" = "Error";
+"customErrorCode" = "Custom error code %.2f";
+"request.inProgressOrNoMoreData" = "Request is already in progress or no more data";
+"request.succeed.noData" = "Request succeed, but no expected data found";
+"request.failed.noMessageFound" = "Request failed, no error message found";
+
+//login
+"Please enter your email" = "Please enter your email";
+"Please enter your valid email" = "Please enter your valid email";
+"Please enter your password" = "Please enter your password";
+"Username" = "Username";
+"Password" = "Password";
+"Forgot Password" = "Forgot Password?";
+"Do not have an account" = "Don't have an account? ";
+"Register" = "Register";
+"Login" = "Login";
+"Loggin in" = "Loggin in";
