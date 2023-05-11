@@ -39,11 +39,16 @@ struct MTTabBarView: View {
 		}
 		.padding(.vertical, 8)
 		.frame(maxWidth: .infinity)
-		.background(
-			selection == tab ?
-			Circle().foregroundColor(AppColor.theme).shadow(radius: 4) :
-				Circle().foregroundColor(Color.clear).shadow(color: .clear, radius: 0)
-		)
+		.myBackground {
+			ZStack {
+				if selection == tab {
+					Circle()
+						.foregroundColor(AppColor.theme)
+						.shadow(radius: 4)
+						.matchedGeometryEffect(id: "background_round", in: namespace)
+				}
+			}
+		}
 	}
 
 	func switchToTab(tab: TabItem) {
