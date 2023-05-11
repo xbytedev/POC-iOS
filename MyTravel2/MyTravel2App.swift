@@ -28,8 +28,10 @@ struct MyTravel2App: App {
         }
     }
 
+	@ViewBuilder
 	private var rootView: some View {
-		LoginView()
+		let viewModel = AuthViewModel(provider: AuthAPIProvider())
+		LoginView(viewModel: viewModel)
 		/*ContentView()
 			.environment(\.managedObjectContext, persistenceController.container.viewContext)*/
 	}

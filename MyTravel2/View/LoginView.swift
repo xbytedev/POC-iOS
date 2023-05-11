@@ -40,7 +40,7 @@ struct LoginView: View {
 			}
 			.padding(.init(top: 48, leading: 0, bottom: 24, trailing: 0))
 			.modifier(FormModifier())
-			.overlay(alignment: .bottom) {
+			.myOverlay(alignment: .bottom) {
 				MTButton(isLoading: $configuration.isLoading,
 						 title: R.string.localizable.login(),
 						 loadingTitle: R.string.localizable.logginIn()) {
@@ -160,12 +160,14 @@ struct LoginView_Previews: PreviewProvider {
 }
 
 extension View {
-	func showAlert(title: String? = R.string.localizable.error(), isPresented: Binding<Bool>,
-				   @ViewBuilder action: () -> some View = { EmptyView() },
-				   @ViewBuilder messageView: () -> some View) -> some View {
-		return self.alert(title ?? R.string.localizable.error(),
-						  isPresented: isPresented,
-						  actions: action,
-						  message: messageView)
-	}
+	func showAlert(
+		title: String? = R.string.localizable.error(), isPresented: Binding<Bool>,
+		@ViewBuilder action: () -> some View = { EmptyView() },
+		@ViewBuilder messageView: () -> some View) -> some View {
+		// TODO: pass actual alert with vintage OS compatibility
+			return EmptyView() // self.alert(title ?? R.string.localizable.error(),
+//						  isPresented: isPresented,
+//						  actions: action,
+//						  message: messageView)
+		}
 }
