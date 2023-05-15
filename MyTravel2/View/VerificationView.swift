@@ -35,7 +35,6 @@ struct VerificationView: View {
 			.padding()
 		}
     }
-
 }
 
 struct VerificationView_Previews: PreviewProvider {
