@@ -7,10 +7,8 @@
 
 import SwiftUI
 
-class ViewModel: ObservableObject {
-
-	let otpDigitCount = 4
-
+class OTPViewModel: ObservableObject {
+	let otpDigitCount: Int
 	@Published var otpField = "" {
 		didSet {
 			isNextTypedArr = Array(repeating: false, count: otpDigitCount)
@@ -25,7 +23,7 @@ class ViewModel: ObservableObject {
 		}
 	}
 
-	@Published var isNextTypedArr = Array(repeating: false, count: 4) // otpDigitCount
+	@Published var isNextTypedArr: [Bool]
 	@Published var isEditing = false {
 		didSet {
 			isNextTypedArr = Array(repeating: false, count: otpDigitCount)
@@ -33,6 +31,11 @@ class ViewModel: ObservableObject {
 				isNextTypedArr[otpField.count] = true
 			}
 		}
+	}
+
+	init() {
+		otpDigitCount = 4
+		isNextTypedArr = Array(repeating: false, count: otpDigitCount)
 	}
 
 	func getSingleDigitFromOTP(atIndex index: Int) -> String {
@@ -44,7 +47,7 @@ class ViewModel: ObservableObject {
 }
 
 struct OTPView: View {
-	@StateObject var viewModel = ViewModel()
+	@StateObject var viewModel = OTPViewModel()
 
 	var body: some View {
 		VStack {

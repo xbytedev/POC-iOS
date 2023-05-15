@@ -23,6 +23,7 @@ struct VerificationView: View {
 					.font(AppFont.getFont(forStyle: .headline, forWeight: .medium))
 					.foregroundColor(AppColor.theme)
 			}
+			OTPView()
 			Text("Resend in 00 : 30")
 				.font(AppFont.getFont(forStyle: .headline, forWeight: .medium))
 				.foregroundColor(AppColor.theme)
