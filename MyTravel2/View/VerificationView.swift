@@ -8,27 +8,34 @@
 import SwiftUI
 
 struct VerificationView: View {
+	@State private var isLoading = false
+	@State private var otpValue = ""
     var body: some View {
-		ZStack {
-			backgroundImage
+		ScrollView {
+			VStack(spacing: 36) {
+				VStack(spacing: 8) {
+					Image(R.image.img_verification)
+						.resizable()
+						.scaledToFit()
+						.padding(.horizontal)
+					Text(R.string.localizable.verificationCode)
+						.font(AppFont.getFont(forStyle: .title1, forWeight: .bold))
+						.foregroundColor(AppColor.theme)
+					Text(R.string.localizable.weHaveSentVerificationCode)
+						.font(AppFont.getFont(forStyle: .headline, forWeight: .medium))
+						.foregroundColor(AppColor.theme)
+				}
+				OTPView(otpDigitCount: 4, otpString: $otpValue)
+				Text(R.string.localizable.resendInTime("00:30"))
+					.font(AppFont.getFont(forStyle: .headline, forWeight: .medium))
+					.foregroundColor(AppColor.theme)
+				MTButton(isLoading: $isLoading, title: R.string.localizable.verify(), loadingTitle: R.string.localizable.verifying()) {
+				}
+			}
+			.padding()
 		}
     }
 
-	private var bgImage: some View {
-		Image(uiImage: UIImage(named: "img_background")!)
-			.resizable()
-			.aspectRatio(contentMode: .fill)
-			.clipped()
-			.frame(minWidth: 0, maxWidth: .infinity)
-	}
-
-	private var backgroundImage: some View {
-		if #available(iOS 14.0, *) {
-			return bgImage.ignoresSafeArea()
-		} else {
-			return bgImage.edgesIgnoringSafeArea(.all)
-		}
-	}
 }
 
 struct VerificationView_Previews: PreviewProvider {
