@@ -23,3 +23,10 @@
 "Register" = "Register";
 "Login" = "Login";
 "Loggin in" = "Loggin in";
+
+// Verification
+"Verification Code" = "Verification Code";
+"we have sent verification code" = "We have sent the verification code to your email.";
+"resend in time" = "Resend in %@";
+"Verify" = "Verify";
+"Verifying" = "Verifying";

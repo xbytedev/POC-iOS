@@ -7,24 +7,10 @@
 
 import SwiftUI
 
-class OTPViewModel: ObservableObject {
+struct OTPView: View {
 	let otpDigitCount: Int
-	@Published var otpField = "" {
-		didSet {
-			isNextTypedArr = Array(repeating: false, count: otpDigitCount)
-			guard otpField.count <= otpDigitCount,
-				  otpField.last?.isNumber ?? true else {
-				otpField = oldValue
-				return
-			}
-			if otpField.count < otpDigitCount {
-				isNextTypedArr[otpField.count] = true
-			}
-		}
-	}
 
-	@Published var isNextTypedArr: [Bool]
-	@Published var isEditing = false {
+	@State private var isEditing = false {
 		didSet {
 			isNextTypedArr = Array(repeating: false, count: otpDigitCount)
 			if isEditing && otpField.count < otpDigitCount {
@@ -32,42 +18,45 @@ class OTPViewModel: ObservableObject {
 			}
 		}
 	}
+	@State private var isNextTypedArr: [Bool]
+	@Binding var otpField: String
 
-	init() {
-		otpDigitCount = 4
+	init(otpDigitCount: Int, otpString: Binding<String>) {
 		isNextTypedArr = Array(repeating: false, count: otpDigitCount)
+		self.otpDigitCount = otpDigitCount
+		_otpField = otpString
 	}
-
-	func getSingleDigitFromOTP(atIndex index: Int) -> String {
-		guard otpField.count >= index + 1 else {
-			return ""
-		}
-		return String(otpField[otpField.index(otpField.startIndex, offsetBy: index)])
-	}
-}
-
-struct OTPView: View {
-	@StateObject var viewModel = OTPViewModel()
 
 	var body: some View {
 		VStack {
 			ZStack {
 				HStack(spacing: 24) {
-					ForEach(0..<viewModel.otpDigitCount, id: \.self) { index in
-						otpText(text: viewModel.getSingleDigitFromOTP(atIndex: index), isNextTyped: $viewModel.isNextTypedArr[index])
+					ForEach(0..<otpDigitCount, id: \.self) { index in
+						otpText(text: getSingleDigitFromOTP(atIndex: index), isNextTyped: $isNextTypedArr[index])
 					}
 				}
 				.frame(height: 64)
 				.padding(.horizontal, 32)
-				TextField("", text: $viewModel.otpField) { isEditing in
-					viewModel.isEditing = isEditing
+				TextField("", text: $otpField) { isEditing in
+					self.isEditing = isEditing
 				}
-				.frame(width: viewModel.isEditing ? 0 : .infinity, height: 64)
+				.frame(maxWidth: isEditing ? 0 : .infinity, minHeight: 64, maxHeight: 64)
 				.textContentType(.oneTimeCode)
 				.foregroundColor(.clear)
 				.accentColor(.clear)
 				.background(Color.clear)
 				.keyboardType(.numberPad)
+			}
+		}
+		.onChange(of: otpField) { [otpField] newValue in
+			isNextTypedArr = Array(repeating: false, count: otpDigitCount)
+			guard newValue.count <= otpDigitCount,
+				  newValue.last?.isNumber ?? true else {
+				self.otpField = otpField
+				return
+			}
+			if newValue.count < otpDigitCount {
+				isNextTypedArr[newValue.count] = true
 			}
 		}
 	}
@@ -84,13 +73,20 @@ struct OTPView: View {
 				)
 		}
 	}
+
+	private func getSingleDigitFromOTP(atIndex index: Int) -> String {
+		guard otpField.count >= index + 1 else {
+			return ""
+		}
+		return String(otpField[otpField.index(otpField.startIndex, offsetBy: index)])
+	}
 }
 
 struct OTPView_Previews: PreviewProvider {
     static var previews: some View {
-		OTPView()
+		OTPView(otpDigitCount: 4, otpString: .constant(""))
 			.previewDevice("iPhone 14 Pro")
-		OTPView()
+		OTPView(otpDigitCount: 4, otpString: .constant(""))
 			.previewDevice("iPhone 8 Plus")
     }
 }
