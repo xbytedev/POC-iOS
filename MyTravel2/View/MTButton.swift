@@ -12,6 +12,8 @@ struct MTButton: View {
 	let title: String
 	let loadingTitle: String
 	let action: () -> Void
+	@State private var foregroundColor: Color = AppColor.Text.tertiary
+	@State private var backgroundColor: Color = AppColor.theme
     var body: some View {
 		Button {
 			action()
@@ -24,18 +26,25 @@ struct MTButton: View {
 				}
 				Text(isLoading ? loadingTitle : title)
 					.transition(.opacity)
-					.foregroundColor(AppColor.Text.tertiary)
+					.foregroundColor(foregroundColor)
 			}
-			.frame(minWidth: 0, maxWidth: .infinity)
+			.frame(width: 250, height: 20)
 			.font(AppFont.getFont(forStyle: .headline, forWeight: .bold))
 		}
 		.padding()
-		.background(AppColor.theme)
+		.background(backgroundColor)
 		.cornerRadius(18)
 		.shadow(radius: 7)
 		.padding(7)
 		.disabled(isLoading)
     }
+
+	func inverted() -> some View {
+		var view = self
+		view._backgroundColor = State(initialValue: foregroundColor)
+		view._foregroundColor = State(initialValue: backgroundColor)
+		return view
+	}
 }
 
 struct MTButton_Previews: PreviewProvider {

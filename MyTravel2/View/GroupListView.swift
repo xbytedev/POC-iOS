@@ -48,29 +48,17 @@ struct GroupListView: View {
 	var groupData: some View {
 		VStack(spacing: 36) {
 			Text("Groups")
-				.font(AppFont.getFont(forStyle: .largeTitle, forWeight: .bold))
+				.font(AppFont.getFont(forStyle: .largeTitle, forWeight: .semibold))
 				.foregroundColor(AppColor.Text.tertiary)
 				.padding(.top, 48)
 			Text("Setup a Group to save time and check-in several travelers at the same time.")
 				.multilineTextAlignment(.center)
-				.font(AppFont.getFont(forStyle: .title3, forWeight: .semibold))
+				.font(AppFont.getFont(forStyle: .title3, forWeight: .medium))
 				.foregroundColor(AppColor.Text.tertiary)
-			Button {
+			MTButton(isLoading: .constant(false), title: "Setup Group", loadingTitle: "") {
 				action()
-			} label: {
-				HStack {
-					Text("Setup Group")
-						.font(AppFont.getFont(forStyle: .title2, forWeight: .bold))
-						.foregroundColor(AppColor.theme)
-				}
-				.frame(minWidth: 0, maxWidth: .infinity, maxHeight: 24)
-				.font(AppFont.getFont(forStyle: .headline, forWeight: .bold))
 			}
-			.padding()
-			.background(AppColor.Text.tertiary)
-			.cornerRadius(18)
-			.shadow(radius: 7)
-			.padding(8)
+			.inverted()
 			Spacer()
 		}
 		.padding(.horizontal, 36)
