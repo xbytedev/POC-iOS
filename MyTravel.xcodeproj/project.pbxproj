@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89032F6F2A134F4F005FFC29 /* GroupListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89032F6E2A134F4F005FFC29 /* GroupListRow.swift */; };
 		8904787E2A0A00A7005CC921 /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8904787D2A0A00A7005CC921 /* MTTextField.swift */; };
 		8906D72E2A0F8E7400E7D60B /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8906D72D2A0F8E7400E7D60B /* OTPView.swift */; };
 		894471EE2A08F8400011DDD2 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894471ED2A08F83F0011DDD2 /* MTButton.swift */; };
@@ -73,6 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		89032F6E2A134F4F005FFC29 /* GroupListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListRow.swift; sourceTree = "<group>"; };
 		8904787D2A0A00A7005CC921 /* MTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTextField.swift; sourceTree = "<group>"; };
 		8906D72D2A0F8E7400E7D60B /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
 		894471ED2A08F83F0011DDD2 /* MTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				897EDC6D2A05272F001B652E /* LoginView.swift */,
 				897E61D12A0BA910008D1687 /* VerificationView.swift */,
 				8906D72D2A0F8E7400E7D60B /* OTPView.swift */,
+				89032F6E2A134F4F005FFC29 /* GroupListRow.swift */,
 				896259352A125C2500AAE879 /* GroupListView.swift */,
 				896259332A1243CA00AAE879 /* MTShapeView.swift */,
 			);
@@ -502,6 +505,7 @@
 				894471EE2A08F8400011DDD2 /* MTButton.swift in Sources */,
 				CEC19B7C2A0B80D8006E3192 /* MTNetworkLogger.swift in Sources */,
 				894471F62A08FE9F0011DDD2 /* MTContainerView.swift in Sources */,
+				89032F6F2A134F4F005FFC29 /* GroupListRow.swift in Sources */,
 				897EDC392A050E24001B652E /* MyTravel2.xcdatamodeld in Sources */,
 				CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */,
 				CEC19B932A0B97F6006E3192 /* AuthViewModel.swift in Sources */,
@@ -691,10 +695,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyTravel2/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3NHW5R384Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MyTravel2/Resources/MyTravel-Info.plist";
@@ -714,6 +720,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.com.pedro.POC-Scanner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "POC Scanner Development";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -729,10 +736,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyTravel2/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3NHW5R384Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MyTravel2/Resources/MyTravel-Info.plist";
@@ -752,6 +761,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.com.pedro.POC-Scanner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "POC Scanner Development";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
