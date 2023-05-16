@@ -37,4 +37,12 @@ struct APPURL {
 	static var loginBorderScannerPartner: String {
 		 apiBaseURL + "login_border_scanner_partner"
 	}
+
+	static var resendLoginOTP: String {
+		apiBaseURL + "resend_login_otp"
+	}
+
+	static var borderScannerPartnerCheckOtp: String {
+		apiBaseURL + "border_scanner_partner_check_otp"
+	}
 }

@@ -21,7 +21,7 @@ struct WebRequesterSessionProvider {
 
 class WebRequester<MTDecodable: Decodable> {
 	private let session: Session
-	private var decoder = SMJSONDecoder()
+	private var decoder = MTJSONDecoder()
 
 	init(withSession session: Session) {
 		self.session = session

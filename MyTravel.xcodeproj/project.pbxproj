@@ -35,6 +35,9 @@
 		897EDC6E2A05272F001B652E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC6D2A05272F001B652E /* LoginView.swift */; };
 		89C62F792A0CB1AF00E2FD05 /* AppTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C62F782A0CB1AF00E2FD05 /* AppTabBarView.swift */; };
 		89C62F7E2A0CBB2200E2FD05 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */; };
+		CE36DE872A134D8E009790A5 /* MTUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36DE862A134D8E009790A5 /* MTUserDefaults.swift */; };
+		CE36DE8A2A135DD3009790A5 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36DE892A135DD3009790A5 /* Extension.swift */; };
+		CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36DE8C2A136249009790A5 /* WebUser.swift */; };
 		CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E42A08CD1100C4AE43 /* AppFont.swift */; };
 		CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */; };
 		CE66413F2A0A4D2B0028CFC5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE66413E2A0A4D2B0028CFC5 /* Localizable.strings */; };
@@ -99,6 +102,9 @@
 		897EDC6D2A05272F001B652E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		89C62F782A0CB1AF00E2FD05 /* AppTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarView.swift; sourceTree = "<group>"; };
 		89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		CE36DE862A134D8E009790A5 /* MTUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTUserDefaults.swift; sourceTree = "<group>"; };
+		CE36DE892A135DD3009790A5 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		CE36DE8C2A136249009790A5 /* WebUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUser.swift; sourceTree = "<group>"; };
 		CE3E83E42A08CD1100C4AE43 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		CE66413E2A0A4D2B0028CFC5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -273,6 +279,8 @@
 				CEC19B862A0B84F7006E3192 /* MTConfiguration.swift */,
 				CEC19B9A2A0B9FBC006E3192 /* CustomError.swift */,
 				CEC19B9D2A0BA423006E3192 /* Validator.swift */,
+				CE36DE862A134D8E009790A5 /* MTUserDefaults.swift */,
+				CE36DE892A135DD3009790A5 /* Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -300,6 +308,7 @@
 			children = (
 				CEC19B972A0B991A006E3192 /* MTResponse.swift */,
 				89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */,
+				CE36DE8C2A136249009790A5 /* WebUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -497,6 +506,7 @@
 				CEC19B7C2A0B80D8006E3192 /* MTNetworkLogger.swift in Sources */,
 				894471F62A08FE9F0011DDD2 /* MTContainerView.swift in Sources */,
 				897EDC392A050E24001B652E /* MyTravel2.xcdatamodeld in Sources */,
+				CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */,
 				CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */,
 				CEC19B932A0B97F6006E3192 /* AuthViewModel.swift in Sources */,
 				895DF4BF2A0BD05900899187 /* MTTabBarContainerView.swift in Sources */,
@@ -510,11 +520,13 @@
 				CEC19B962A0B982D006E3192 /* AuthProvider.swift in Sources */,
 				CEC19B9B2A0B9FBC006E3192 /* CustomError.swift in Sources */,
 				897EDC6E2A05272F001B652E /* LoginView.swift in Sources */,
+				CE36DE872A134D8E009790A5 /* MTUserDefaults.swift in Sources */,
 				CEC19B9E2A0BA423006E3192 /* Validator.swift in Sources */,
 				8906D72E2A0F8E7400E7D60B /* OTPView.swift in Sources */,
 				895DF4BC2A0BC17400899187 /* MTTabBarView.swift in Sources */,
 				8904787E2A0A00A7005CC921 /* MTTextField.swift in Sources */,
 				895DF4C22A0BD2B200899187 /* MTTabBarPreferenceKey.swift in Sources */,
+				CE36DE8A2A135DD3009790A5 /* Extension.swift in Sources */,
 				897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
 				897E61D02A0BA846008D1687 /* OverlayModifier.swift in Sources */,

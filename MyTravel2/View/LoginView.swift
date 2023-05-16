@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
-	@State private var usernameStr = ""
-	@State private var passwordStr = ""
+	@State private var usernameStr = "testid@gmail.com"
+	@State private var passwordStr = "test@123"
 	private(set) var viewModel: AuthViewModel
 	@State private var shouldVerify = false
 	@State var configuration = UIConfiguration()
@@ -42,7 +42,7 @@ struct LoginView: View {
 			.padding(.init(top: 48, leading: 0, bottom: 24, trailing: 0))
 			.modifier(FormModifier())
 			.myOverlay(alignment: .bottom) {
-				NavigationLink(destination: VerificationView(), isActive: $shouldVerify) {
+				NavigationLink(destination: VerificationView(viewModel: viewModel), isActive: $shouldVerify) {
 					MTButton(isLoading: $configuration.isLoading,
 							 title: R.string.localizable.login(),
 							 loadingTitle: R.string.localizable.logginIn()) {

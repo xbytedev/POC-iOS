@@ -16,7 +16,12 @@ struct UIConfiguration {
 	var alertPresent = false
 }
 
-func SMJSONDecoder() -> JSONDecoder {
+func MTJSONEncoder() -> JSONEncoder {
+	let encoder = JSONEncoder()
+	return encoder
+}
+
+func MTJSONDecoder() -> JSONDecoder {
 	let decoder = JSONDecoder()
 	return decoder
 }
