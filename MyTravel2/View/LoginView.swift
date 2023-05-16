@@ -11,9 +11,10 @@ struct LoginView: View {
 	@State private var usernameStr = ""
 	@State private var passwordStr = ""
 	private(set) var viewModel: AuthViewModel
+	@State private var shouldVerify = false
 	@State var configuration = UIConfiguration()
 
-    var body: some View {
+	var body: some View {
 		ZStack {
 			backgroundImage
 			VStack {
@@ -41,16 +42,18 @@ struct LoginView: View {
 			.padding(.init(top: 48, leading: 0, bottom: 24, trailing: 0))
 			.modifier(FormModifier())
 			.myOverlay(alignment: .bottom) {
-				MTButton(isLoading: $configuration.isLoading,
-						 title: R.string.localizable.login(),
-						 loadingTitle: R.string.localizable.logginIn()) {
-					handleLoginAction()
-				}
-				.frame(maxWidth: .infinity)
-				.padding(.horizontal, 64)
-				.offset(x: 0, y: 20)
-				.showAlert(isPresented: $configuration.alertPresent) {
-					Text(configuration.errorMeessage)
+				NavigationLink(destination: VerificationView(), isActive: $shouldVerify) {
+					MTButton(isLoading: $configuration.isLoading,
+							 title: R.string.localizable.login(),
+							 loadingTitle: R.string.localizable.logginIn()) {
+						handleLoginAction()
+					}
+							 .frame(maxWidth: .infinity)
+							 .padding(.horizontal, 64)
+							 .offset(x: 0, y: 20)
+							 .showAlert(isPresented: $configuration.alertPresent) {
+								 Text(configuration.errorMeessage)
+							 }
 				}
 			}
 			.myOverlay(alignment: .top) {
@@ -72,7 +75,7 @@ struct LoginView: View {
 				.frame(height: 128)
 				.padding(.vertical)
 		}
-    }
+	}
 
 	private var bgImage: some View {
 		Image(uiImage: UIImage(named: "img_background")!)
@@ -123,6 +126,7 @@ struct LoginView: View {
 				do {
 					_ = try await viewModel.doLogin(email: usernameStr, password: passwordStr)
 					self.configuration.isLoading = false
+					self.shouldVerify = true
 				} catch {
 					self.configuration.errorMeessage = error.localizedDescription
 					self.configuration.alertPresent = true
