@@ -11,6 +11,7 @@
 "request.inProgressOrNoMoreData" = "Request is already in progress or no more data";
 "request.succeed.noData" = "Request succeed, but no expected data found";
 "request.failed.noMessageFound" = "Request failed, no error message found";
+"Something Went Wrong" = "Something went wrong";
 
 //login
 "Please enter your email" = "Please enter your email";
@@ -27,6 +28,11 @@
 // Verification
 "Verification Code" = "Verification Code";
 "we have sent verification code" = "We have sent the verification code to your email.";
-"resend in time" = "Resend in %@";
+"resend in time" = "Resend in";
+"time" = "00 : %0.2d";
 "Verify" = "Verify";
 "Verifying" = "Verifying";
+"Resend OTP" = "Resend OTP";
+"Did not receive code" = "Didn't receive code?";
+"Required fields are missing" = "Required fields are missing";
+"Please enter valid OTP" = "Please enter valid OTP";

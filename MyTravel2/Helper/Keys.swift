@@ -13,4 +13,9 @@ struct Key {
 		static let apiBaseURL = "API_BASE_URL"
 		static let apiPath = "API_PATH"
 	}
+
+	struct UserDefaults {
+		static let currentUser = "currentUser"
+		static let lastOTPSendDate = "lastOTPSendDate"
+	}
 }
