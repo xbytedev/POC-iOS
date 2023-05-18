@@ -13,11 +13,11 @@ struct AppTabBarView: View {
 
     var body: some View {
 		MTTabBarContainerView(selection: $selection) {
-			Color.red
+			GroupListView()
 				.tabBarItem(tab: .groups, selection: $selection)
-			Color.blue
+			CheckInView()
 				.tabBarItem(tab: .checkIn, selection: $selection)
-			Color.green
+			SettingsView()
 				.tabBarItem(tab: .settings, selection: $selection)
 		}
     }
