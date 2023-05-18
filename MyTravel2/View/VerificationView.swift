@@ -35,7 +35,7 @@ struct VerificationView: View {
 				resendOTPView
 
 				NavigationLink(isActive: $isVerified) {
-					EmptyView()
+					WelcomeView()
 				} label: {
 					MTButton(isLoading: $isLoading, title: R.string.localizable.verify(),
 							 loadingTitle: R.string.localizable.verifying()) {

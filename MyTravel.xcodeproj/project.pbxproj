@@ -10,6 +10,7 @@
 		89032F6F2A134F4F005FFC29 /* GroupListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89032F6E2A134F4F005FFC29 /* GroupListRow.swift */; };
 		8904787E2A0A00A7005CC921 /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8904787D2A0A00A7005CC921 /* MTTextField.swift */; };
 		8906D72E2A0F8E7400E7D60B /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8906D72D2A0F8E7400E7D60B /* OTPView.swift */; };
+		89210B9B2A15E5A000F268FC /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89210B9A2A15E5A000F268FC /* WelcomeView.swift */; };
 		894471EE2A08F8400011DDD2 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894471ED2A08F83F0011DDD2 /* MTButton.swift */; };
 		894471F62A08FE9F0011DDD2 /* MTContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894471F52A08FE9F0011DDD2 /* MTContainerView.swift */; };
 		895DF4BC2A0BC17400899187 /* MTTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895DF4BB2A0BC17400899187 /* MTTabBarView.swift */; };
@@ -80,6 +81,7 @@
 		89032F6E2A134F4F005FFC29 /* GroupListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListRow.swift; sourceTree = "<group>"; };
 		8904787D2A0A00A7005CC921 /* MTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTextField.swift; sourceTree = "<group>"; };
 		8906D72D2A0F8E7400E7D60B /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
+		89210B9A2A15E5A000F268FC /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		894471ED2A08F83F0011DDD2 /* MTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
 		894471F52A08FE9F0011DDD2 /* MTContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTContainerView.swift; sourceTree = "<group>"; };
 		895DF4BB2A0BC17400899187 /* MTTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTabBarView.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				897EDC6D2A05272F001B652E /* LoginView.swift */,
 				897E61D12A0BA910008D1687 /* VerificationView.swift */,
 				8906D72D2A0F8E7400E7D60B /* OTPView.swift */,
+				89210B9A2A15E5A000F268FC /* WelcomeView.swift */,
 				89032F6E2A134F4F005FFC29 /* GroupListRow.swift */,
 				896259352A125C2500AAE879 /* GroupListView.swift */,
 				896259332A1243CA00AAE879 /* MTShapeView.swift */,
@@ -541,6 +544,7 @@
 				CE36DE8A2A135DD3009790A5 /* Extension.swift in Sources */,
 				897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
+				89210B9B2A15E5A000F268FC /* WelcomeView.swift in Sources */,
 				897E61D02A0BA846008D1687 /* OverlayModifier.swift in Sources */,
 				CEC19B7A2A0B7FBD006E3192 /* WebRequester.swift in Sources */,
 				CEC19B812A0B83D0006E3192 /* AppURL.swift in Sources */,
