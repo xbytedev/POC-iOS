@@ -21,8 +21,14 @@ struct WelcomeView: View {
 				.foregroundColor(AppColor.Text.tertiary)
 				.frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
 				VStack {
-					MTButton(isLoading: .constant(false), title: R.string.localizable.manageGroups(), loadingTitle: "") {
+					NavigationLink {
+						AppTabBarView()
+					} label: {
+						MTButton(isLoading: .constant(false), title: R.string.localizable.manageGroups(), loadingTitle: "") {
+						}
+						.disabled(true)
 					}
+
 					MTButton(isLoading: .constant(false), title: R.string.localizable.checkinTravlers(), loadingTitle: "") {
 					}
 				}
@@ -50,6 +56,8 @@ struct WelcomeView: View {
 
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView()
+		NavigationView {
+			WelcomeView()
+		}
     }
 }
