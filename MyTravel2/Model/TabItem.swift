@@ -17,4 +17,12 @@ enum TabItem: CaseIterable {
 		case .settings: return Image(R.image.ic_tab_settings)
 		}
 	}
+
+	var title: String {
+		switch self {
+		case .groups: return "Manage group"
+		case .checkIn: return "Check in"
+		case .settings: return "Settings"
+		}
+	}
 }
