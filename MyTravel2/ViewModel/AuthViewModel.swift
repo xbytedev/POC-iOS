@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class AuthViewModel {
+class AuthViewModel: ObservableObject {
 	private let provider: AuthProvider
 	var cancellable: Cancellable?
 

@@ -15,7 +15,7 @@ struct WelcomeView: View {
 				VStack(alignment: .leading) {
 					Text(R.string.localizable.welcome)
 						.font(AppFont.getFont(forStyle: .title1))
-					Text("Partner Name")
+					Text(MTUserDefaults.currentUser?.name ?? "")
 						.font(AppFont.getFont(forStyle: .largeTitle, forWeight: .semibold))
 				}
 				.foregroundColor(AppColor.Text.tertiary)
@@ -41,7 +41,7 @@ struct WelcomeView: View {
 				.scaledToFit()
 				.frame(height: 128)
 				.padding(.vertical)
-		}
+		}.navigationBarBackButtonHidden()
     }
 
 	var backgroundImage: some View {

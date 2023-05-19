@@ -11,7 +11,7 @@ struct SettingsView: View {
     var body: some View {
 		ScrollView {
 			Button {
-
+				MTUserDefaults.currentUser = nil
 			} label: {
 				Text("Logout")
 			}

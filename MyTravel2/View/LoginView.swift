@@ -13,8 +13,24 @@ struct LoginView: View {
 	private(set) var viewModel: AuthViewModel
 	@State private var shouldVerify = false
 	@State var configuration = UIConfiguration()
+	@State private var shouldGoToWelcome: Bool = false
 
 	var body: some View {
+		ZStack {
+			NavigationLink(destination: WelcomeView(), isActive: $shouldGoToWelcome) {
+				EmptyView()
+			}
+			.opacity(0)
+			loginView
+				.onAppear {
+					if MTUserDefaults.currentUser != nil {
+						shouldGoToWelcome = true
+					}
+				}
+		}
+	}
+
+	var loginView: some View {
 		ZStack {
 			backgroundImage
 			VStack {
