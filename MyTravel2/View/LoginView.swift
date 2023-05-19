@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
-	@State private var usernameStr = "testid@gmail.com"
-	@State private var passwordStr = "test@123"
+	@State private var usernameStr = ""
+	@State private var passwordStr = ""
 	private(set) var viewModel: AuthViewModel
 	@State private var shouldVerify = false
 	@State var configuration = UIConfiguration()

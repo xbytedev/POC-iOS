@@ -42,6 +42,7 @@ struct WelcomeView: View {
 				.frame(height: 128)
 				.padding(.vertical)
 		}
+		.navigationBarBackButtonHidden(true)
     }
 
 	var backgroundImage: some View {

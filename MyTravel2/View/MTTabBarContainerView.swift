@@ -25,6 +25,7 @@ struct MTTabBarContainerView<V: View>: View {
 		.onPreferenceChange(MTTabBarPreferenceKey.self) { value in
 			tabs = value
 		}
+		.navigationTitle(selection.title)
     }
 }
 
