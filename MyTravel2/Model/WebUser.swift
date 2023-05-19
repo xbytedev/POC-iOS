@@ -11,15 +11,15 @@ struct WebUser: Codable {
 	var id: Int
 	let name, email: String
 	let emailVerifiedAt: String?
-	let viewPassword: String
+	let viewPassword: String?
 	let ipAddress, lastLoginDateTime: String?
-	let role, number: String
+	let role, number: String?
 	let createdBy: String?
-	let image, location, businessName, businessType: String
-	let businessLogo, country, state, city: String
-	let address, status, documentName, documentImage: String
+	let image, location, businessName, businessType: String?
+	let businessLogo, country, state, city: String?
+	let address, status, documentName, documentImage: String?
 	let otp: Int
-	let createdAt, updatedAt: String
+	let createdAt, updatedAt: String?
 
 	enum CodingKeys: String, CodingKey {
 		case id, name, email

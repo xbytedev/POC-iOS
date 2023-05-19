@@ -45,4 +45,12 @@ struct APPURL {
 	static var borderScannerPartnerCheckOtp: String {
 		apiBaseURL + "border_scanner_partner_check_otp"
 	}
+
+	static var createGroup: String {
+		apiBaseURL + "create_group"
+	}
+
+	static var groupList: String {
+		apiBaseURL + "group_list"
+	}
 }

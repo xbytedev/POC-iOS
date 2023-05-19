@@ -15,16 +15,16 @@ struct MyTravel2App: App {
 
     var body: some Scene {
         WindowGroup {
-			if #available(iOS 16.0, *) {
-				NavigationStack {
-					rootView
-				}
-			} else {
-				NavigationView {
-					rootView
-				}
-				.navigationViewStyle(.stack)
+			NavigationView {
+				rootView
 			}
+			.navigationViewStyle(.stack)
+//			if #available(iOS 16.0, *) {
+//				NavigationStack {
+//					rootView
+//				}.navigationViewStyle(.columns)
+//			} else {
+//			}
         }
     }
 

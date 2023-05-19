@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct SettingsView: View {
+	@Binding var shouldPopToRootView: Bool
+
     var body: some View {
 		ScrollView {
 			Button {
 				MTUserDefaults.currentUser = nil
+				shouldPopToRootView = false
 			} label: {
 				Text("Logout")
 			}
@@ -21,6 +24,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+		SettingsView(shouldPopToRootView: .constant(false))
     }
 }
