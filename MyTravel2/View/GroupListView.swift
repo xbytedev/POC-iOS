@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GroupListView: View {
 	@State private var isPopupPresented: Bool = false
+
     var body: some View {
 		emptyView
     }
@@ -44,7 +45,8 @@ struct GroupListView: View {
 						.frame(height: geometryProxy.size.height * 0.66)
 				}
 				.ignoresSafeArea(edges: .bottom)
-				CreateGroupView(isPresenting: $isPopupPresented)
+				CreateGroupView(isPresenting: $isPopupPresented,
+								viewModel: GroupViewModel.init(provider: GroupAPIProvider()))
 			}
 		}
 		/*.popup(isPresented: $isPopupPresented, view: {

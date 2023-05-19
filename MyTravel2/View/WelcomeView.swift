@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WelcomeView: View {
+	@Binding var rootIsActive: Bool
+
     var body: some View {
 		ZStack {
 			backgroundImage
@@ -15,20 +17,19 @@ struct WelcomeView: View {
 				VStack(alignment: .leading) {
 					Text(R.string.localizable.welcome)
 						.font(AppFont.getFont(forStyle: .title1))
-					Text("Partner Name")
+					Text(MTUserDefaults.currentUser?.name ?? "")
 						.font(AppFont.getFont(forStyle: .largeTitle, forWeight: .semibold))
 				}
 				.foregroundColor(AppColor.Text.tertiary)
 				.frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
 				VStack {
 					NavigationLink {
-						AppTabBarView()
+						AppTabBarView(rootIsActive: $rootIsActive)
 					} label: {
 						MTButton(isLoading: .constant(false), title: R.string.localizable.manageGroups(), loadingTitle: "") {
 						}
 						.disabled(true)
 					}
-
 					MTButton(isLoading: .constant(false), title: R.string.localizable.checkinTravlers(), loadingTitle: "") {
 					}
 				}
@@ -58,7 +59,7 @@ struct WelcomeView: View {
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
 		NavigationView {
-			WelcomeView()
+			WelcomeView(rootIsActive: .constant(false))
 		}
     }
 }

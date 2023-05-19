@@ -48,6 +48,9 @@
 		CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36DE8C2A136249009790A5 /* WebUser.swift */; };
 		CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E42A08CD1100C4AE43 /* AppFont.swift */; };
 		CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */; };
+		CE65C76B2A178B300021F7FD /* GroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65C76A2A178B300021F7FD /* GroupProvider.swift */; };
+		CE65C76E2A178B3F0021F7FD /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65C76D2A178B3F0021F7FD /* GroupViewModel.swift */; };
+		CE65C7702A1790980021F7FD /* MTGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65C76F2A1790980021F7FD /* MTGroup.swift */; };
 		CE66413F2A0A4D2B0028CFC5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE66413E2A0A4D2B0028CFC5 /* Localizable.strings */; };
 		CEBAEA552A08CF1800F73FA8 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = CEBAEA542A08CF1800F73FA8 /* RswiftLibrary */; };
 		CEC19B7A2A0B7FBD006E3192 /* WebRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B792A0B7FBD006E3192 /* WebRequester.swift */; };
@@ -123,6 +126,9 @@
 		CE36DE8C2A136249009790A5 /* WebUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUser.swift; sourceTree = "<group>"; };
 		CE3E83E42A08CD1100C4AE43 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		CE65C76A2A178B300021F7FD /* GroupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupProvider.swift; sourceTree = "<group>"; };
+		CE65C76D2A178B3F0021F7FD /* GroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewModel.swift; sourceTree = "<group>"; };
+		CE65C76F2A1790980021F7FD /* MTGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTGroup.swift; sourceTree = "<group>"; };
 		CE66413E2A0A4D2B0028CFC5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		CEC19B792A0B7FBD006E3192 /* WebRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequester.swift; sourceTree = "<group>"; };
 		CEC19B7B2A0B80D8006E3192 /* MTNetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTNetworkLogger.swift; sourceTree = "<group>"; };
@@ -323,6 +329,7 @@
 			children = (
 				CEC19B942A0B9815006E3192 /* Provider */,
 				CEC19B922A0B97F6006E3192 /* AuthViewModel.swift */,
+				CE65C76D2A178B3F0021F7FD /* GroupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -333,6 +340,7 @@
 				CEC19B972A0B991A006E3192 /* MTResponse.swift */,
 				89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */,
 				CE36DE8C2A136249009790A5 /* WebUser.swift */,
+				CE65C76F2A1790980021F7FD /* MTGroup.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC19B952A0B982D006E3192 /* AuthProvider.swift */,
+				CE65C76A2A178B300021F7FD /* GroupProvider.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -535,6 +544,7 @@
 				897EDC392A050E24001B652E /* MyTravel2.xcdatamodeld in Sources */,
 				CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */,
 				CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */,
+				CE65C76E2A178B3F0021F7FD /* GroupViewModel.swift in Sources */,
 				CEC19B932A0B97F6006E3192 /* AuthViewModel.swift in Sources */,
 				89210BA02A15F7AD00F268FC /* CheckInView.swift in Sources */,
 				895DF4BF2A0BD05900899187 /* MTTabBarContainerView.swift in Sources */,
@@ -559,6 +569,8 @@
 				895DF4C22A0BD2B200899187 /* MTTabBarPreferenceKey.swift in Sources */,
 				CE36DE8A2A135DD3009790A5 /* Extension.swift in Sources */,
 				897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */,
+				CE65C7702A1790980021F7FD /* MTGroup.swift in Sources */,
+				CE65C76B2A178B300021F7FD /* GroupProvider.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
 				89210B9B2A15E5A000F268FC /* WelcomeView.swift in Sources */,
 				897E61D02A0BA846008D1687 /* OverlayModifier.swift in Sources */,

@@ -12,9 +12,27 @@ struct LoginView: View {
 	@State private var passwordStr = ""
 	private(set) var viewModel: AuthViewModel
 	@State private var shouldVerify = false
+	@State private var shouldGoToWellcome = false
 	@State var configuration = UIConfiguration()
 
 	var body: some View {
+		ZStack {
+			NavigationLink(isActive: $shouldGoToWellcome, destination: {
+				WelcomeView(rootIsActive: $shouldVerify)
+			}, label: {
+				EmptyView()
+			})
+			.opacity(0)
+			loginView
+				.onAppear {
+					if MTUserDefaults.currentUser != nil {
+						shouldGoToWellcome = true
+					}
+				}
+		}
+	}
+
+	var loginView: some View {
 		ZStack {
 			backgroundImage
 			VStack {
@@ -42,18 +60,21 @@ struct LoginView: View {
 			.padding(.init(top: 48, leading: 0, bottom: 24, trailing: 0))
 			.modifier(FormModifier())
 			.myOverlay(alignment: .bottom) {
-				NavigationLink(destination: VerificationView(viewModel: viewModel), isActive: $shouldVerify) {
-					MTButton(isLoading: $configuration.isLoading,
-							 title: R.string.localizable.login(),
-							 loadingTitle: R.string.localizable.logginIn()) {
-						handleLoginAction()
-					}
-							 .frame(maxWidth: .infinity)
-							 .padding(.horizontal, 64)
-							 .offset(x: 0, y: 20)
-							 .showAlert(isPresented: $configuration.alertPresent) {
-								 Text(configuration.errorMeessage)
-							 }
+				NavigationLink(isActive: $shouldVerify) {
+					VerificationView(viewModel: viewModel, rootIsActive: $shouldVerify)
+				} label: {
+					MTButton(
+						isLoading: $configuration.isLoading,
+						title: R.string.localizable.login(),
+						loadingTitle: R.string.localizable.logginIn()) {
+							handleLoginAction()
+						}
+						.frame(maxWidth: .infinity)
+						.padding(.horizontal, 64)
+						.offset(x: 0, y: 20)
+						.showAlert(isPresented: $configuration.alertPresent) {
+							Text(configuration.errorMeessage)
+						}
 				}
 			}
 			.myOverlay(alignment: .top) {

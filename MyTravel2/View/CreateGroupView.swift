@@ -10,6 +10,9 @@ import SwiftUI
 struct CreateGroupView: View {
 	@State private var groupName: String = ""
 	@Binding var isPresenting: Bool
+	private(set) var viewModel: GroupViewModel
+	@State var configuration = UIConfiguration()
+
 	var body: some View {
 		ZStack {
 			Color.black
@@ -19,6 +22,9 @@ struct CreateGroupView: View {
 			popupView
 				.scaleEffect(isPresenting ? 1 : 0)
 				.animation(.spring(), value: isPresenting)
+		}
+		.showAlert(isPresented: $configuration.alertPresent) {
+			Text(configuration.errorMeessage)
 		}
 	}
 
@@ -50,9 +56,31 @@ struct CreateGroupView: View {
 		.modifier(FormModifier())
 		.myOverlay(alignment: .bottom) {
 			MTButton(isLoading: .constant(false), title: "Done", loadingTitle: "Creating group") {
+				handleCreateGroupAction()
 			}
 			.padding(.horizontal, 64)
 			.offset(x: 0, y: 20)
+		}
+	}
+
+	func handleCreateGroupAction() {
+		if groupName.isEmpty {
+			configuration.alertPresent = true
+			configuration.errorMeessage = R.string.localizable.requiredFieldsAreMissing()
+		} else {
+			Task {
+				do {
+					configuration.isLoading = true
+					configuration.alertPresent = false
+					_ = try await viewModel.doCreateGroup(groupName: groupName)
+					self.configuration.isLoading = false
+					isPresenting = false
+				} catch {
+					self.configuration.errorMeessage = error.localizedDescription
+					self.configuration.alertPresent = true
+					self.configuration.isLoading = false
+				}
+			}
 		}
 	}
 
@@ -63,6 +91,6 @@ struct CreateGroupView: View {
 
 struct CreateGroupView_Previews: PreviewProvider {
     static var previews: some View {
-		CreateGroupView(isPresenting: .constant(true))
+		CreateGroupView(isPresenting: .constant(true), viewModel: GroupViewModel.init(provider: GroupAPIProvider()))
     }
 }

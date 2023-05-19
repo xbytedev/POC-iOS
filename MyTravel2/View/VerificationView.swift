@@ -15,6 +15,7 @@ struct VerificationView: View {
 	@State private var countDownStr = ""
 	@State private var isVerified: Bool = false
 	@State private var configuration: UIConfiguration = UIConfiguration()
+	@Binding var rootIsActive: Bool
 
     var body: some View {
 		ScrollView {
@@ -35,7 +36,7 @@ struct VerificationView: View {
 				resendOTPView
 
 				NavigationLink(isActive: $isVerified) {
-					WelcomeView()
+					WelcomeView(rootIsActive: $rootIsActive)
 				} label: {
 					MTButton(isLoading: $isLoading, title: R.string.localizable.verify(),
 							 loadingTitle: R.string.localizable.verifying()) {
@@ -130,7 +131,20 @@ struct VerificationView: View {
 					self.configuration.isLoading = false
 					viewModel.cancellable?.cancel()
 					isVerified = true
-				} catch {
+
+				}
+				/*catch DecodingError.keyNotFound(let key, let context) {
+				 print("could not find key \(key) in JSON: \(context.debugDescription)")
+				 } catch DecodingError.valueNotFound(let type, let context) {
+				 print("could not find type \(type) in JSON: \(context.debugDescription)")
+				 } catch DecodingError.typeMismatch(let type, let context) {
+				 print("type mismatch for type \(type) in JSON: \(context.debugDescription)")
+				 } catch DecodingError.dataCorrupted(let context) {
+				 print("data found to be corrupted in JSON: \(context.debugDescription)")
+				 } catch let error as NSError {
+				 print("Error in read(from:ofType:) domain= \(error.domain), description= \(error.localizedDescription)")
+				 }*/
+				catch {
 					viewModel.cancellable?.cancel()
 					self.configuration.errorMeessage = error.localizedDescription
 					self.configuration.alertPresent = true
@@ -144,6 +158,6 @@ struct VerificationView: View {
 struct VerificationView_Previews: PreviewProvider {
     static var previews: some View {
 		let viewModel = AuthViewModel(provider: AuthAPIProvider())
-        VerificationView(viewModel: viewModel)
+		VerificationView(viewModel: viewModel, rootIsActive: .constant(false))
     }
 }
