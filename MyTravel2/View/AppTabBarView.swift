@@ -21,19 +21,7 @@ struct AppTabBarView: View {
 			SettingsView(shouldPopToRootView: $rootIsActive)
 				.tabBarItem(tab: .settings, selection: $selection)
 		}
-		.toolbar {
-			ToolbarItem(placement: .navigationBarLeading) {
-//				Button(action: dismiss) {
-//					Image(systemName: "chevron.backward")
-//						.padding()
-//						.myBackground {
-//							Circle()
-//								.foregroundColor(AppColor.Text.tertiary)
-//								.shadow(radius: 4, x: 2, y: 2)
-//						}
-//				}
-			}
-		}
+		.setThemeBackButton()
     }
 }
 

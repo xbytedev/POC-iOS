@@ -52,6 +52,7 @@ struct VerificationView: View {
 			setValuesForResendOTP()
 			setTimer()
 		}
+		.setThemeBackButton()
     }
 
 	var resendOTPView: some View {
