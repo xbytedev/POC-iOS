@@ -6,6 +6,7 @@
   
 */
 "Ok" = "OK";
+"Cancel" = "Cancel";
 "Error" = "Error";
 "customErrorCode" = "Custom error code %.2f";
 "request.inProgressOrNoMoreData" = "Request is already in progress or no more data";
@@ -44,3 +45,7 @@
 
 //create croup
 "Please enter your group name" = "Please enter your group name";
+
+// Create group success
+"group name created" = "Group\n%@\ncreated!";
+"add travelers" = "Add Travelers";
