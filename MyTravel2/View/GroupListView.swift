@@ -56,7 +56,7 @@ struct GroupListView: MTAsyncView {
 				}
 				.ignoresSafeArea(edges: .bottom)
 				CreateGroupView(isPresenting: $isPopupPresented,
-								viewModel: GroupViewModel.init(provider: GroupAPIProvider()))
+								viewModel: GroupViewModel.init(provider: GroupAPIProvider()), createGroupSuccessfull: { load() })
 			}
 		}
 		/*.popup(isPresented: $isPopupPresented, view: {
