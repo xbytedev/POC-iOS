@@ -16,7 +16,7 @@ class GroupViewModel: ObservableObject {
 		self.provider = provider
 	}
 
-	func doCreateGroup(groupName name: String) async throws -> Bool {
+	func doCreateGroup(groupName name: String) async throws -> MTGroup {
 		try await provider.doCreateGroup(user: MTUserDefaults.currentUser, groupName: name).get()
 	}
 
@@ -26,6 +26,7 @@ class GroupViewModel: ObservableObject {
 		do {
 			groupList = try await provider.getGroupList(user: MTUserDefaults.currentUser).get()
 			self.state = .loaded
+			groupList.removeAll()
 		} catch {
 			self.state = .failed(error)
 		}
