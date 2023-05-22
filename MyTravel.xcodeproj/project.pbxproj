@@ -43,6 +43,7 @@
 		897EDC632A052494001B652E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 897EDC622A052494001B652E /* Alamofire */; };
 		897EDC672A0524CC001B652E /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 897EDC662A0524CC001B652E /* SDWebImageSwiftUI */; };
 		897EDC6E2A05272F001B652E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC6D2A05272F001B652E /* LoginView.swift */; };
+		89C1D8A32A1B8498007EB9E1 /* CreateGroupSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C1D8A22A1B8498007EB9E1 /* CreateGroupSuccessView.swift */; };
 		89C62F792A0CB1AF00E2FD05 /* AppTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C62F782A0CB1AF00E2FD05 /* AppTabBarView.swift */; };
 		89C62F7E2A0CBB2200E2FD05 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */; };
 		CE36DE872A134D8E009790A5 /* MTUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36DE862A134D8E009790A5 /* MTUserDefaults.swift */; };
@@ -124,6 +125,7 @@
 		897EDC4C2A050E25001B652E /* MyTravel2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravel2UITests.swift; sourceTree = "<group>"; };
 		897EDC4E2A050E25001B652E /* MyTravel2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravel2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		897EDC6D2A05272F001B652E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		89C1D8A22A1B8498007EB9E1 /* CreateGroupSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupSuccessView.swift; sourceTree = "<group>"; };
 		89C62F782A0CB1AF00E2FD05 /* AppTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarView.swift; sourceTree = "<group>"; };
 		89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		CE36DE862A134D8E009790A5 /* MTUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTUserDefaults.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				89032F6E2A134F4F005FFC29 /* GroupListRow.swift */,
 				896259352A125C2500AAE879 /* GroupListView.swift */,
 				89210BA62A162C6400F268FC /* CreateGroupView.swift */,
+				89C1D8A22A1B8498007EB9E1 /* CreateGroupSuccessView.swift */,
 				89210B9F2A15F7AD00F268FC /* CheckInView.swift */,
 				89210BA22A15F7C700F268FC /* SettingsView.swift */,
 				896259332A1243CA00AAE879 /* MTShapeView.swift */,
@@ -564,6 +567,7 @@
 				CEC19B872A0B84F7006E3192 /* MTConfiguration.swift in Sources */,
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
 				897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */,
+				89C1D8A32A1B8498007EB9E1 /* CreateGroupSuccessView.swift in Sources */,
 				89210BAA2A16487700F268FC /* Extension+SwiftUI.swift in Sources */,
 				CEC19B962A0B982D006E3192 /* AuthProvider.swift in Sources */,
 				CEC19B9B2A0B9FBC006E3192 /* CustomError.swift in Sources */,
