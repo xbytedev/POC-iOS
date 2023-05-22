@@ -14,7 +14,7 @@ struct AppTabBarView: View {
 
     var body: some View {
 		MTTabBarContainerView(selection: $selection) {
-			GroupListView()
+			GroupListView(viewModel: GroupViewModel(provider: GroupAPIProvider()))
 				.tabBarItem(tab: .groups, selection: $selection)
 			CheckInView()
 				.tabBarItem(tab: .checkIn, selection: $selection)

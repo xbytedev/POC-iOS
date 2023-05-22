@@ -25,3 +25,10 @@ func MTJSONDecoder() -> JSONDecoder {
 	let decoder = JSONDecoder()
 	return decoder
 }
+
+enum MTLoadingState {
+	case idle
+	case loading
+	case failed(Error)
+	case loaded
+}

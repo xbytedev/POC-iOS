@@ -9,7 +9,7 @@ import Foundation
 
 struct MTResponse<MTDecodable: Decodable> {
 	let status: Bool
-	let message: String
+	let message: String?
 	let role: String?
 	let userID: Int?
 	let data: MTDecodable?
@@ -35,7 +35,7 @@ extension MTResponse: Decodable {
 //				String.self, .init(codingPath: [CodingKeys.userID], debugDescription: "type neight in Number nor in String"))
 		}
 		status = try container.decode(Bool.self, forKey: .status)
-		message = try container.decode(String.self, forKey: .message)
+		message = try container.decodeIfPresent(String.self, forKey: .message)
 		role = try container.decodeIfPresent(String.self, forKey: .role)
 		data = try container.decodeIfPresent(MTDecodable.self, forKey: .data)
 	}

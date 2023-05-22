@@ -12,6 +12,7 @@ struct CreateGroupView: View {
 	@Binding var isPresenting: Bool
 	private(set) var viewModel: GroupViewModel
 	@State var configuration = UIConfiguration()
+	var createGroupSuccessfull: () -> Void
 
 	var body: some View {
 		ZStack {
@@ -66,7 +67,7 @@ struct CreateGroupView: View {
 	func handleCreateGroupAction() {
 		if groupName.isEmpty {
 			configuration.alertPresent = true
-			configuration.errorMeessage = R.string.localizable.requiredFieldsAreMissing()
+			configuration.errorMeessage = R.string.localizable.pleaseEnterYourGroupName()
 		} else {
 			Task {
 				do {
@@ -75,6 +76,7 @@ struct CreateGroupView: View {
 					_ = try await viewModel.doCreateGroup(groupName: groupName)
 					self.configuration.isLoading = false
 					isPresenting = false
+					createGroupSuccessfull()
 				} catch {
 					self.configuration.errorMeessage = error.localizedDescription
 					self.configuration.alertPresent = true
@@ -91,6 +93,6 @@ struct CreateGroupView: View {
 
 struct CreateGroupView_Previews: PreviewProvider {
     static var previews: some View {
-		CreateGroupView(isPresenting: .constant(true), viewModel: GroupViewModel.init(provider: GroupAPIProvider()))
+		CreateGroupView(isPresenting: .constant(true), viewModel: GroupViewModel.init(provider: GroupAPIProvider()), createGroupSuccessfull: { })
     }
 }

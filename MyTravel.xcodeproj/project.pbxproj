@@ -50,6 +50,7 @@
 		CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36DE8C2A136249009790A5 /* WebUser.swift */; };
 		CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E42A08CD1100C4AE43 /* AppFont.swift */; };
 		CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */; };
+		CE5756562A1B3A5500801FD9 /* MTAsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5756552A1B3A5500801FD9 /* MTAsyncView.swift */; };
 		CE65C76B2A178B300021F7FD /* GroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65C76A2A178B300021F7FD /* GroupProvider.swift */; };
 		CE65C76E2A178B3F0021F7FD /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65C76D2A178B3F0021F7FD /* GroupViewModel.swift */; };
 		CE65C7702A1790980021F7FD /* MTGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65C76F2A1790980021F7FD /* MTGroup.swift */; };
@@ -130,6 +131,7 @@
 		CE36DE8C2A136249009790A5 /* WebUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUser.swift; sourceTree = "<group>"; };
 		CE3E83E42A08CD1100C4AE43 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		CE5756552A1B3A5500801FD9 /* MTAsyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTAsyncView.swift; sourceTree = "<group>"; };
 		CE65C76A2A178B300021F7FD /* GroupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupProvider.swift; sourceTree = "<group>"; };
 		CE65C76D2A178B3F0021F7FD /* GroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewModel.swift; sourceTree = "<group>"; };
 		CE65C76F2A1790980021F7FD /* MTGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTGroup.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				895DF4BB2A0BC17400899187 /* MTTabBarView.swift */,
 				895DF4BE2A0BD05900899187 /* MTTabBarContainerView.swift */,
 				895DF4C12A0BD2B200899187 /* MTTabBarPreferenceKey.swift */,
+				CE5756552A1B3A5500801FD9 /* MTAsyncView.swift */,
 				897EDC6D2A05272F001B652E /* LoginView.swift */,
 				897E61D12A0BA910008D1687 /* VerificationView.swift */,
 				8906D72D2A0F8E7400E7D60B /* OTPView.swift */,
@@ -574,6 +577,7 @@
 				895DF4BC2A0BC17400899187 /* MTTabBarView.swift in Sources */,
 				8904787E2A0A00A7005CC921 /* MTTextField.swift in Sources */,
 				893E10552A1B461B00DBD46C /* MTBackButton.swift in Sources */,
+				CE5756562A1B3A5500801FD9 /* MTAsyncView.swift in Sources */,
 				895DF4C22A0BD2B200899187 /* MTTabBarPreferenceKey.swift in Sources */,
 				CE36DE8A2A135DD3009790A5 /* Extension.swift in Sources */,
 				897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */,
