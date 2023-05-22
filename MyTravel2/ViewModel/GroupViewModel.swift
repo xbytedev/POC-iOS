@@ -26,7 +26,6 @@ class GroupViewModel: ObservableObject {
 		do {
 			groupList = try await provider.getGroupList(user: MTUserDefaults.currentUser).get()
 			self.state = .loaded
-			groupList.removeAll()
 		} catch {
 			self.state = .failed(error)
 		}
