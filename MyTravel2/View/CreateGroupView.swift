@@ -66,7 +66,7 @@ struct CreateGroupView: View {
 	func handleCreateGroupAction() {
 		if groupName.isEmpty {
 			configuration.alertPresent = true
-			configuration.errorMeessage = R.string.localizable.requiredFieldsAreMissing()
+			configuration.errorMeessage = R.string.localizable.pleaseEnterYourGroupName()
 		} else {
 			Task {
 				do {

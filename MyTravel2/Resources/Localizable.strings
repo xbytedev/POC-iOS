@@ -41,3 +41,6 @@
 "welcome" = "Welcome";
 "manage groups" = "Manage Groups";
 "checkin travlers" = "Check-in Travelers";
+
+//create croup
+"Please enter your group name" = "Please enter your group name";

@@ -7,24 +7,34 @@
 
 import SwiftUI
 
-struct GroupListView: View {
-	@State private var isPopupPresented: Bool = false
+struct GroupListView: MTAsyncView {
 
-    var body: some View {
-		emptyView
-    }
+	@State private var isPopupPresented: Bool = false
+	@ObservedObject var viewModel: GroupViewModel
+
+	var state: MTLoadingState {
+		viewModel.state
+	}
+
+	func load() {
+		Task {
+			await viewModel.getGroupList()
+		}
+	}
+
+	var loadedView: some View {
+		Group {
+			if viewModel.groupList.isEmpty {
+				emptyView
+			} else {
+				dataView
+			}
+		}
+	}
 
 	var dataView: some View {
-		List {
-			GroupListRow(groupName: "Mrugesh")
-				.mtListBackgroundStyle()
-			GroupListRow(groupName: "Swati")
-				.mtListBackgroundStyle()
-			GroupListRow(groupName: "Umang")
-				.mtListBackgroundStyle()
-			GroupListRow(groupName: "Siddharth")
-				.mtListBackgroundStyle()
-			GroupListRow(groupName: "Yash")
+		List(viewModel.groupList) { item in
+			GroupListRow(groupName: item.name ?? "")
 				.mtListBackgroundStyle()
 		}.listStyle(.plain)
 	}
@@ -80,7 +90,7 @@ struct GroupListView: View {
 
 struct GroupList_Previews: PreviewProvider {
     static var previews: some View {
-		GroupListView()
+		GroupListView(viewModel: GroupViewModel(provider: GroupAPIProvider()))
     }
 }
 /*

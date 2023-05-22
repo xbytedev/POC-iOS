@@ -8,9 +8,9 @@
 import Foundation
 
 protocol AuthProvider {
-	func doLogin(toEmail email: String, withPassword password: String) async -> Result<Bool, Error>
-	func doResendLoginOTP() async -> Result<Bool, Error>
-	func verify(otp: String) async -> Result<WebUser, Error>
+	func doLogin(toEmail email: String, withPassword password: String) async -> Result<WebUser, Error>
+	func doResendLoginOTP(user: WebUser?) async -> Result<Bool, Error>
+	func verify(user: WebUser?, otp: String) async -> Result<WebUser, Error>
 }
 
 struct AuthAPIProvider: AuthProvider {
@@ -29,7 +29,7 @@ struct AuthAPIProvider: AuthProvider {
 		let otp: String
 	}
 
-	func doLogin(toEmail email: String, withPassword password: String) async -> Result<Bool, Error> {
+	func doLogin(toEmail email: String, withPassword password: String) async -> Result<WebUser, Error> {
 		let requester = WebRequester<MTResponse<NullCodable>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.loginBorderScannerPartner, withParameters:
 												LoginRequester(email: email, password: password))
@@ -42,38 +42,40 @@ struct AuthAPIProvider: AuthProvider {
 									   lastLoginDateTime: "", role: "", number: "", createdBy: "", image: "", location: "",
 									   businessName: "", businessType: "", businessLogo: "", country: "", state: "", city: "",
 									   address: "", status: "", documentName: "", documentImage: "", otp: 0, createdAt: "", updatedAt: "")
-					MTUserDefaults.currentUser = user
+
+					return .success(user)
+				} else {
+					return .failure(CustomError.message(R.string.localizable.requestSucceedNoData()))
 				}
-				return .success(true)
 			} else {
-				return .failure(CustomError.message(response.message))
+				return .failure(CustomError.message(response.message ?? ""))
 			}
 		case .failure(let error):
 			return .failure(error)
 		}
 	}
 
-	func doResendLoginOTP() async -> Result<Bool, Error> {
+	func doResendLoginOTP(user: WebUser?) async -> Result<Bool, Error> {
 		let requester = WebRequester<MTResponse<NullCodable>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.resendLoginOTP,
-											 withParameters: ResendLoginOTPRequester(userID: MTUserDefaults.currentUser?.id ?? 0))
+											 withParameters: ResendLoginOTPRequester(userID: user?.id ?? 0))
 		switch result {
 		case .success(let response):
 			if response.status == true {
 				MTUserDefaults.lastOTPSendDate = Date()
 				return .success(true)
 			} else {
-				return .failure(CustomError.message(response.message))
+				return .failure(CustomError.message(response.message ?? ""))
 			}
 		case .failure(let error):
 			return .failure(getOriginalErrorIfAny(error))
 		}
 	}
 
-	func verify(otp: String) async -> Result<WebUser, Error> {
+	func verify(user: WebUser?, otp: String) async -> Result<WebUser, Error> {
 		let requester = WebRequester<MTResponse<WebUser>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.borderScannerPartnerCheckOtp,
-											 withParameters: VerifyOTPRequester(userID: MTUserDefaults.currentUser?.id ?? 0, otp: otp))
+											 withParameters: VerifyOTPRequester(userID: user?.id ?? 0, otp: otp))
 		switch result {
 		case .success(let response):
 			if response.status == true {
@@ -84,7 +86,7 @@ struct AuthAPIProvider: AuthProvider {
 					return .failure(CustomError.successButNoData)
 				}
 			} else {
-				return .failure(CustomError.message(response.message))
+				return .failure(CustomError.message(response.message ?? ""))
 			}
 		case .failure(let error):
 			return .failure(getOriginalErrorIfAny(error))

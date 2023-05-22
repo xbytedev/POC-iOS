@@ -9,12 +9,25 @@ import Foundation
 
 class GroupViewModel: ObservableObject {
 	private let provider: GroupProvider
+	@Published @MainActor private(set) var groupList: [MTGroup] = .init()
+	@Published @MainActor private(set) var state: MTLoadingState = .idle
 
 	init(provider: GroupProvider) {
 		self.provider = provider
 	}
 
 	func doCreateGroup(groupName name: String) async throws -> Bool {
-		try await provider.doCreateGroup(groupName: name).get()
+		try await provider.doCreateGroup(user: MTUserDefaults.currentUser, groupName: name).get()
+	}
+
+	@MainActor
+	func getGroupList() async {
+		self.state = .loading
+		do {
+			groupList = try await provider.getGroupList(user: MTUserDefaults.currentUser).get()
+			self.state = .loaded
+		} catch {
+			self.state = .failed(error)
+		}
 	}
 }
