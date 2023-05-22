@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreateGroupSuccessView: View {
+	@Environment (\.mtDismissable) var dismiss
     var body: some View {
 		ZStack {
 			AppColor.theme.ignoresSafeArea()
@@ -19,11 +20,12 @@ struct CreateGroupSuccessView: View {
 						.foregroundColor(AppColor.Text.tertiary)
 						.font(AppFont.getFont(forStyle: .largeTitle, forWeight: .medium))
 				}
-				VStack() {
+				VStack {
 					MTButton(isLoading: .constant(false), title: "Add Travelers", loadingTitle: "") {
 					}
 					.inverted()
 					Button {
+						dismiss()
 					} label: {
 						Text("Cancel")
 							.foregroundColor(AppColor.Text.tertiary)
