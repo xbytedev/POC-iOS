@@ -12,13 +12,13 @@ struct LoginView: View {
 	@State private var passwordStr = ""
 	private(set) var viewModel: AuthViewModel
 	@State private var shouldVerify = false
-	@State private var shouldGoToWellcome = false
+	@State private var shouldGoToWelcome = false
 	@State var configuration = UIConfiguration()
 
 	var body: some View {
 		ZStack {
-			NavigationLink(isActive: $shouldGoToWellcome, destination: {
-				WelcomeView(rootIsActive: $shouldVerify)
+			NavigationLink(isActive: $shouldGoToWelcome, destination: {
+				WelcomeView(rootIsActive: $shouldGoToWelcome)
 			}, label: {
 				EmptyView()
 			})
@@ -26,7 +26,7 @@ struct LoginView: View {
 			loginView
 				.onAppear {
 					if MTUserDefaults.currentUser != nil {
-						shouldGoToWellcome = true
+						shouldGoToWelcome = true
 					}
 				}
 		}
