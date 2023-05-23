@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct CreateGroupSuccessView: View {
+	@Environment (\.mtDismissable) var dismiss
 	let group: MTGroup
 	@Binding var shouldPresent: Bool
+
     var body: some View {
 		ZStack {
 			AppColor.theme.ignoresSafeArea()
@@ -25,9 +27,7 @@ struct CreateGroupSuccessView: View {
 					MTButton(isLoading: .constant(false), title: R.string.localizable.addTravelers(), loadingTitle: "") {
 					}
 					.inverted()
-					Button {
-						shouldPresent = false
-					} label: {
+					Button(action: dismiss) {
 						Text(R.string.localizable.cancel)
 							.foregroundColor(AppColor.Text.tertiary)
 							.font(AppFont.getFont(forStyle: .headline, forWeight: .semibold))

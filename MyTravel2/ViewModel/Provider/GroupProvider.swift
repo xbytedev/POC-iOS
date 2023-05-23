@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GroupProvider {
-	func doCreateGroup(user: WebUser?, groupName name: String) async -> Result<Bool, Error>
+	func doCreateGroup(user: WebUser?, groupName name: String) async -> Result<MTGroup, Error>
 	func getGroupList(user: WebUser?) async -> Result<[MTGroup], Error>
 }
 
@@ -23,15 +23,19 @@ struct GroupAPIProvider: GroupProvider {
 		let partnerID: Int
 	}
 
-	func doCreateGroup(user: WebUser?, groupName name: String) async -> Result<Bool, Error> {
-		let requester = WebRequester<MTResponse<NullCodable>>(withSession: WebRequesterSessionProvider.session)
+	func doCreateGroup(user: WebUser?, groupName name: String) async -> Result<MTGroup, Error> {
+		let requester = WebRequester<MTResponse<MTGroup>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.createGroup,
 											 withParameters: CreateGroupRequester(name: name,
 																				  partnerID: user?.id ?? 0))
 		switch result {
 		case .success(let response):
 			if response.status == true {
-				return .success(true)
+				if let data = response.data {
+					return .success(data)
+				} else {
+					return .failure(CustomError.message(R.string.localizable.requestSucceedNoData()))
+				}
 			} else {
 				return .failure(CustomError.message(response.message ?? ""))
 			}

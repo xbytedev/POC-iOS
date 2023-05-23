@@ -12,7 +12,7 @@ struct CreateGroupView: View {
 	@Binding var isPresenting: Bool
 	private(set) var viewModel: GroupViewModel
 	@State var configuration = UIConfiguration()
-	var createGroupSuccessfull: () -> Void
+	var createGroupSuccessfull: (_ group: MTGroup) -> Void
 
 	var body: some View {
 		ZStack {
@@ -73,10 +73,10 @@ struct CreateGroupView: View {
 				do {
 					configuration.isLoading = true
 					configuration.alertPresent = false
-					_ = try await viewModel.doCreateGroup(groupName: groupName)
+					let group = try await viewModel.doCreateGroup(groupName: groupName)
 					self.configuration.isLoading = false
 					isPresenting = false
-					createGroupSuccessfull()
+					createGroupSuccessfull(group)
 				} catch {
 					self.configuration.errorMeessage = error.localizedDescription
 					self.configuration.alertPresent = true
@@ -93,6 +93,7 @@ struct CreateGroupView: View {
 
 struct CreateGroupView_Previews: PreviewProvider {
     static var previews: some View {
-		CreateGroupView(isPresenting: .constant(true), viewModel: GroupViewModel.init(provider: GroupAPIProvider()), createGroupSuccessfull: { })
+		CreateGroupView(isPresenting: .constant(true),
+						viewModel: GroupViewModel.init(provider: GroupAPIProvider()), createGroupSuccessfull: { group in })
     }
 }

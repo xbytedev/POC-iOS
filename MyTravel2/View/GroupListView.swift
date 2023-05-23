@@ -11,6 +11,8 @@ struct GroupListView: MTAsyncView {
 
 	@State private var isPopupPresented: Bool = false
 	@ObservedObject var viewModel: GroupViewModel
+	@State private var shouldGroupSuccess: Bool = false
+	@State private var createdGroup: MTGroup?
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -56,12 +58,16 @@ struct GroupListView: MTAsyncView {
 				}
 				.ignoresSafeArea(edges: .bottom)
 				CreateGroupView(isPresenting: $isPopupPresented,
-								viewModel: GroupViewModel.init(provider: GroupAPIProvider()), createGroupSuccessfull: { load() })
+								viewModel: GroupViewModel.init(provider: GroupAPIProvider())) { group in
+					self.createdGroup = group
+					shouldGroupSuccess = true
+					load()
+				}
 			}
 		}
 		/*.popup(isPresented: $isPopupPresented, view: {
-			Text("Hello")
-		})*/
+		 Text("Hello")
+		 })*/
 	}
 
 	var groupData: some View {
@@ -81,6 +87,11 @@ struct GroupListView: MTAsyncView {
 			Spacer()
 		}
 		.padding(.horizontal, 36)
+		.fullScreenCover(isPresented: $shouldGroupSuccess) {
+			if let group = createdGroup {
+				CreateGroupSuccessView(group: group, shouldPresent: .constant(true))
+			}
+		}
 	}
 
 	func action() {
