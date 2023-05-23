@@ -11,7 +11,7 @@ struct SettingsView: View {
 	@Binding var shouldPopToRootView: Bool
 
     var body: some View {
-		ScrollView {
+		List {
 			Button {
 				MTUserDefaults.currentUser = nil
 				shouldPopToRootView = false
