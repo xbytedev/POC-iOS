@@ -94,6 +94,6 @@ struct CreateGroupView: View {
 struct CreateGroupView_Previews: PreviewProvider {
     static var previews: some View {
 		CreateGroupView(isPresenting: .constant(true),
-						viewModel: GroupViewModel.init(provider: GroupAPIProvider()), createGroupSuccessfull: { group in })
+						viewModel: .init(provider: GroupAPIProvider()), createGroupSuccessfull: { _ in })
     }
 }
