@@ -25,13 +25,14 @@ struct GroupListView: MTAsyncView {
 	}
 
 	var loadedView: some View {
-		Group {
-			if viewModel.groupList.isEmpty {
-				emptyView
-			} else {
-				dataView
+		dataView
+			.myOverlay {
+				Group {
+					if viewModel.groupList.isEmpty {
+						emptyView
+					}
+				}
 			}
-		}
 	}
 
 	var dataView: some View {
