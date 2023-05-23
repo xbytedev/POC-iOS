@@ -49,3 +49,8 @@
 // Create group success
 "group name created" = "Group\n%@\ncreated!";
 "add travelers" = "Add Travelers";
+
+// Settings
+"logout" = "Logout";
+"Are you sure" = "Are you sure?";
+"Do you want to logout" = "Do you want to logout?";
