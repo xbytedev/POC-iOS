@@ -77,6 +77,7 @@ struct CreateGroupView: View {
 					self.configuration.isLoading = false
 					isPresenting = false
 					createGroupSuccessfull(group)
+					groupName = ""
 				} catch {
 					self.configuration.errorMeessage = error.localizedDescription
 					self.configuration.alertPresent = true
