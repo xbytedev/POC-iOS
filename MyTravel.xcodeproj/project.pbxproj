@@ -51,6 +51,9 @@
 		CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36DE8C2A136249009790A5 /* WebUser.swift */; };
 		CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E42A08CD1100C4AE43 /* AppFont.swift */; };
 		CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */; };
+		CE5742CE2A1DF7F60089666A /* PreviewGroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5742CD2A1DF7F60089666A /* PreviewGroupProvider.swift */; };
+		CE5742D12A1DF8950089666A /* UserPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5742D02A1DF8950089666A /* UserPreview.swift */; };
+		CE5742D42A1DFA040089666A /* GroupPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5742D32A1DFA040089666A /* GroupPreview.swift */; };
 		CE5756562A1B3A5500801FD9 /* MTAsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5756552A1B3A5500801FD9 /* MTAsyncView.swift */; };
 		CE65C76B2A178B300021F7FD /* GroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65C76A2A178B300021F7FD /* GroupProvider.swift */; };
 		CE65C76E2A178B3F0021F7FD /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65C76D2A178B3F0021F7FD /* GroupViewModel.swift */; };
@@ -133,6 +136,9 @@
 		CE36DE8C2A136249009790A5 /* WebUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUser.swift; sourceTree = "<group>"; };
 		CE3E83E42A08CD1100C4AE43 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		CE3E83E62A08CD1A00C4AE43 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		CE5742CD2A1DF7F60089666A /* PreviewGroupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGroupProvider.swift; sourceTree = "<group>"; };
+		CE5742D02A1DF8950089666A /* UserPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreview.swift; sourceTree = "<group>"; };
+		CE5742D32A1DFA040089666A /* GroupPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPreview.swift; sourceTree = "<group>"; };
 		CE5756552A1B3A5500801FD9 /* MTAsyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTAsyncView.swift; sourceTree = "<group>"; };
 		CE65C76A2A178B300021F7FD /* GroupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupProvider.swift; sourceTree = "<group>"; };
 		CE65C76D2A178B3F0021F7FD /* GroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewModel.swift; sourceTree = "<group>"; };
@@ -236,7 +242,10 @@
 		897EDC322A050E24001B652E /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				CE5742D02A1DF8950089666A /* UserPreview.swift */,
+				CE5742D32A1DFA040089666A /* GroupPreview.swift */,
 				897EDC332A050E24001B652E /* Preview Assets.xcassets */,
+				CE5742CD2A1DF7F60089666A /* PreviewGroupProvider.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -545,6 +554,7 @@
 			files = (
 				897E61D22A0BA910008D1687 /* VerificationView.swift in Sources */,
 				896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */,
+				CE5742D42A1DFA040089666A /* GroupPreview.swift in Sources */,
 				CEC19B892A0B8543006E3192 /* Keys.swift in Sources */,
 				CE3E83E72A08CD1A00C4AE43 /* AppColor.swift in Sources */,
 				89210BA72A162C6400F268FC /* CreateGroupView.swift in Sources */,
@@ -552,6 +562,7 @@
 				89210BA32A15F7C700F268FC /* SettingsView.swift in Sources */,
 				CEC19B7C2A0B80D8006E3192 /* MTNetworkLogger.swift in Sources */,
 				894471F62A08FE9F0011DDD2 /* MTContainerView.swift in Sources */,
+				CE5742D12A1DF8950089666A /* UserPreview.swift in Sources */,
 				89032F6F2A134F4F005FFC29 /* GroupListRow.swift in Sources */,
 				897EDC392A050E24001B652E /* MyTravel2.xcdatamodeld in Sources */,
 				CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */,
@@ -585,6 +596,7 @@
 				895DF4C22A0BD2B200899187 /* MTTabBarPreferenceKey.swift in Sources */,
 				CE36DE8A2A135DD3009790A5 /* Extension.swift in Sources */,
 				897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */,
+				CE5742CE2A1DF7F60089666A /* PreviewGroupProvider.swift in Sources */,
 				CE65C7702A1790980021F7FD /* MTGroup.swift in Sources */,
 				CE65C76B2A178B300021F7FD /* GroupProvider.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
@@ -758,7 +770,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MyTravel2/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "MyTravel2/Preview\\ Content/GroupPreview.swift MyTravel2/Preview\\ Content MyTravel2/Preview\\ Content/UserPreview.swift MyTravel2/Preview\\ Content/PreviewGroupProvider.swift";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3NHW5R384Z;
 				ENABLE_PREVIEWS = YES;
@@ -799,7 +811,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MyTravel2/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "MyTravel2/Preview\\ Content/GroupPreview.swift MyTravel2/Preview\\ Content MyTravel2/Preview\\ Content/UserPreview.swift MyTravel2/Preview\\ Content/PreviewGroupProvider.swift";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3NHW5R384Z;
 				ENABLE_PREVIEWS = YES;

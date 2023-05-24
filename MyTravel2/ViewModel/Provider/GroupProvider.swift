@@ -8,8 +8,8 @@
 import Foundation
 
 protocol GroupProvider {
-	func doCreateGroup(user: WebUser?, groupName name: String) async -> Result<MTGroup, Error>
-	func getGroupList(user: WebUser?) async -> Result<[MTGroup], Error>
+	func doCreateGroup(user: WebUser, groupName name: String) async -> Result<MTGroup, Error>
+	func getGroupList(user: WebUser) async -> Result<[MTGroup], Error>
 }
 
 struct GroupAPIProvider: GroupProvider {
@@ -23,11 +23,11 @@ struct GroupAPIProvider: GroupProvider {
 		let partnerID: Int
 	}
 
-	func doCreateGroup(user: WebUser?, groupName name: String) async -> Result<MTGroup, Error> {
+	func doCreateGroup(user: WebUser, groupName name: String) async -> Result<MTGroup, Error> {
 		let requester = WebRequester<MTResponse<MTGroup>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.createGroup,
 											 withParameters: CreateGroupRequester(name: name,
-																				  partnerID: user?.id ?? 0))
+																				  partnerID: user.id))
 		switch result {
 		case .success(let response):
 			if response.status == true {
@@ -44,10 +44,10 @@ struct GroupAPIProvider: GroupProvider {
 		}
 	}
 
-	func getGroupList(user: WebUser?) async -> Result<[MTGroup], Error> {
+	func getGroupList(user: WebUser) async -> Result<[MTGroup], Error> {
 		let requester = WebRequester<MTResponse<[MTGroup]>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.groupList,
-											 withParameters: GroupListRequester(partnerID: user?.id ?? 0))
+											 withParameters: GroupListRequester(partnerID: user.id))
 		switch result {
 		case .success(let response):
 			if response.status == true {

@@ -9,8 +9,8 @@ import Foundation
 
 protocol AuthProvider {
 	func doLogin(toEmail email: String, withPassword password: String) async -> Result<WebUser, Error>
-	func doResendLoginOTP(user: WebUser?) async -> Result<Bool, Error>
-	func verify(user: WebUser?, otp: String) async -> Result<WebUser, Error>
+	func doResendLoginOTP(user: WebUser) async -> Result<Bool, Error>
+	func verify(user: WebUser, otp: String) async -> Result<WebUser, Error>
 }
 
 struct AuthAPIProvider: AuthProvider {
@@ -55,10 +55,10 @@ struct AuthAPIProvider: AuthProvider {
 		}
 	}
 
-	func doResendLoginOTP(user: WebUser?) async -> Result<Bool, Error> {
+	func doResendLoginOTP(user: WebUser) async -> Result<Bool, Error> {
 		let requester = WebRequester<MTResponse<NullCodable>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.resendLoginOTP,
-											 withParameters: ResendLoginOTPRequester(userID: user?.id ?? 0))
+											 withParameters: ResendLoginOTPRequester(userID: user.id))
 		switch result {
 		case .success(let response):
 			if response.status == true {
@@ -72,10 +72,10 @@ struct AuthAPIProvider: AuthProvider {
 		}
 	}
 
-	func verify(user: WebUser?, otp: String) async -> Result<WebUser, Error> {
+	func verify(user: WebUser, otp: String) async -> Result<WebUser, Error> {
 		let requester = WebRequester<MTResponse<WebUser>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.borderScannerPartnerCheckOtp,
-											 withParameters: VerifyOTPRequester(userID: user?.id ?? 0, otp: otp))
+											 withParameters: VerifyOTPRequester(userID: user.id, otp: otp))
 		switch result {
 		case .success(let response):
 			if response.status == true {

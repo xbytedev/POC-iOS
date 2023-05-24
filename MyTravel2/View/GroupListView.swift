@@ -20,7 +20,7 @@ struct GroupListView: MTAsyncView {
 
 	func load() {
 		Task {
-			await viewModel.getGroupList()
+			try await viewModel.getGroupList()
 		}
 	}
 
@@ -101,7 +101,7 @@ struct GroupListView: MTAsyncView {
 
 struct GroupList_Previews: PreviewProvider {
     static var previews: some View {
-		GroupListView(viewModel: GroupViewModel(provider: GroupAPIProvider()))
+		GroupListView(viewModel: GroupViewModel(provider: GroupSuccessProvider()))
     }
 }
 /*
