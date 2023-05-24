@@ -26,6 +26,8 @@ platform :ios do
      xcodeproj: "MyTravel.xcodeproj"
     )
     commit_version_bump(xcodeproj: "MyTravel.xcodeproj")
+    add_git_tag
+    push_to_git_remote
     build_app(
       scheme: "MyTravel",
       export_method: "app-store",
@@ -35,10 +37,12 @@ platform :ios do
         }
       }
     )
-    changelog_from_git_commits(merge_commit_filtering: 'exclude_merges')
+    changelog_from_git_commits(
+      merge_commit_filtering: 'exclude_merges',
+      distribute_external: true,
+      groups: 'External group1'
+    )
     upload_to_testflight
-    add_git_tag
-    push_to_git_remote
   end
 
 end
