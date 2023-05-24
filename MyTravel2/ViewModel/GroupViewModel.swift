@@ -12,19 +12,24 @@ class GroupViewModel: ObservableObject {
 	@Published @MainActor private(set) var groupList: [MTGroup] = .init()
 	@Published @MainActor private(set) var state: MTLoadingState = .idle
 
+	var user: WebUser?
+
 	init(provider: GroupProvider) {
 		self.provider = provider
+		user = MTUserDefaults.currentUser
 	}
 
 	func doCreateGroup(groupName name: String) async throws -> MTGroup {
-		try await provider.doCreateGroup(user: MTUserDefaults.currentUser, groupName: name).get()
+		guard let user else { throw CustomError.message(R.string.localizable.internalUserDataNotFound()) }
+		return try await provider.doCreateGroup(user: user, groupName: name).get()
 	}
 
 	@MainActor
-	func getGroupList() async {
+	func getGroupList() async throws {
+		guard let user else { throw CustomError.message(R.string.localizable.internalUserDataNotFound()) }
 		self.state = .loading
 		do {
-			groupList = try await provider.getGroupList(user: MTUserDefaults.currentUser).get()
+			groupList = try await provider.getGroupList(user: user).get()
 			self.state = .loaded
 		} catch {
 			self.state = .failed(error)

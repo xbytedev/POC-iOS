@@ -12,6 +12,7 @@
 "request.inProgressOrNoMoreData" = "Request is already in progress or no more data";
 "request.succeed.noData" = "Request succeed, but no expected data found";
 "request.failed.noMessageFound" = "Request failed, no error message found";
+"internal.user data not found" = "User data not found";
 "Something Went Wrong" = "Something went wrong";
 
 //login

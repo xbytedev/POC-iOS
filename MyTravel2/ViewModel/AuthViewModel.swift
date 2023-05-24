@@ -24,11 +24,13 @@ class AuthViewModel: ObservableObject {
 	}
 
 	func resendLoginOTP() async throws -> Bool {
+		guard let user else { return false }
 		let result = await provider.doResendLoginOTP(user: user)
 		return try result.get()
 	}
 
 	func otpVerification(otp: String) async throws {
+		guard let user else { throw CustomError.message(R.string.localizable.internalUserDataNotFound()) }
 		let result = await provider.verify(user: user, otp: otp)
 		_ = try result.get()
 	}

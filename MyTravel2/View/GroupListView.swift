@@ -20,7 +20,7 @@ struct GroupListView: MTAsyncView {
 
 	func load() {
 		Task {
-			await viewModel.getGroupList()
+			try await viewModel.getGroupList()
 		}
 	}
 
