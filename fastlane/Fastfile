@@ -14,8 +14,10 @@
 # update_fastlane
 
 default_platform(:ios)
+ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"] = "xsmj-rlzh-rvwp-vzcw"
 
 platform :ios do
+  
   desc "Push a new beta build to TestFlight"
   lane :beta do
     ensure_git_status_clean
@@ -24,10 +26,19 @@ platform :ios do
      xcodeproj: "MyTravel.xcodeproj"
     )
     commit_version_bump(xcodeproj: "MyTravel.xcodeproj")
-    build_app(scheme: "MyTravel")
+    build_app(
+      scheme: "MyTravel",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "com.com.pedro.POC-Scanner" => "POC scanner App Store"
+        }
+      }
+    )
     changelog_from_git_commits(merge_commit_filtering: 'exclude_merges')
     upload_to_testflight
     add_git_tag
     push_to_git_remote
   end
+  
 end
