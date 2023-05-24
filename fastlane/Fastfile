@@ -20,12 +20,12 @@ platform :ios do
   
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    #ensure_git_status_clean
-    #increment_build_number(
-    #  build_number: latest_testflight_build_number + 1,
-    # xcodeproj: "MyTravel.xcodeproj"
-    #)
-    #commit_version_bump(xcodeproj: "MyTravel.xcodeproj")
+    ensure_git_status_clean
+    increment_build_number(
+      build_number: latest_testflight_build_number + 1,
+     xcodeproj: "MyTravel.xcodeproj"
+    )
+    commit_version_bump(xcodeproj: "MyTravel.xcodeproj")
     build_app(
       scheme: "MyTravel",
       export_method: "app-store",
