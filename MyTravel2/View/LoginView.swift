@@ -30,6 +30,9 @@ struct LoginView: View {
 					}
 				}
 		}
+		.showAlert(isPresented: $configuration.alertPresent) {
+			Text(configuration.errorMeessage)
+		}
 	}
 
 	var loginView: some View {
@@ -60,40 +63,35 @@ struct LoginView: View {
 			.padding(.init(top: 48, leading: 0, bottom: 24, trailing: 0))
 			.modifier(FormModifier())
 			.myOverlay(alignment: .bottom) {
-				NavigationLink(isActive: $shouldVerify) {
-					VerificationView(viewModel: viewModel, rootIsActive: $shouldVerify)
-				} label: {
-					MTButton(
-						isLoading: $configuration.isLoading,
-						title: R.string.localizable.login(),
-						loadingTitle: R.string.localizable.logginIn()) {
-							handleLoginAction()
-						}
-						.frame(maxWidth: .infinity)
-						.padding(.horizontal, 64)
-						.offset(x: 0, y: 20)
-						.showAlert(isPresented: $configuration.alertPresent) {
-							Text(configuration.errorMeessage)
-						}
-				}
+					NavigationLink(isActive: $shouldVerify) {
+						VerificationView(viewModel: viewModel, rootIsActive: $shouldVerify)
+					} label: {
+						MTButton(
+							isLoading: $configuration.isLoading,
+							title: R.string.localizable.login(),
+							loadingTitle: R.string.localizable.logginIn()) {
+								handleLoginAction()
+							}
+					}
+					.padding(.bottom, -20)
 			}
 			.myOverlay(alignment: .top) {
 				Image(R.image.ic_avatar)
-					.frame(height: 48)
+					.frame(height: 36)
 					.aspectRatio(contentMode: .fit)
 					.padding(24)
 					.myBackground {
 						Circle()
 							.foregroundColor(AppColor.theme.opacity(0.9))
 					}
-					.offset(x: 0, y: -36)
+					.offset(x: 0, y: -24)
 			}
 		}
 		.myOverlay(alignment: .top) {
 			Image(R.image.img_myTravelLogo)
 				.resizable()
 				.scaledToFit()
-				.frame(height: 128)
+				.frame(height: 104)
 				.padding(.vertical)
 		}
 	}
@@ -140,7 +138,7 @@ struct LoginView: View {
 
 	func handleLoginAction() {
 		do {
-			_ = try validate()
+			try validate()
 			configuration.isLoading = true
 			configuration.alertPresent = false
 			Task {
@@ -159,7 +157,7 @@ struct LoginView: View {
 			configuration.errorMeessage = error.localizedDescription
 		}
 
-		func validate() throws -> Bool {
+		func validate() throws {
 			if usernameStr.isEmpty {
 				throw CustomError.message(R.string.localizable.pleaseEnterYourEmail())
 			} else if !Validator.shared.isValidEmail(usernameStr) {
@@ -167,7 +165,6 @@ struct LoginView: View {
 			} else if passwordStr.isEmpty {
 				throw CustomError.message(R.string.localizable.pleaseEnterYourPassword())
 			}
-			return true
 		}
 	}
 }
@@ -175,31 +172,15 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
 	static var previews: some View {
 		let viewModel = AuthViewModel(provider: AuthAPIProvider())
-		LoginView(viewModel: viewModel)
-			.previewDevice("iPhone 14 Pro")
-			.previewDisplayName("iPhone 14 Pro")
-		LoginView(viewModel: viewModel)
-			.previewDevice("iPhone 8 Plus")
-			.previewDisplayName("iPhone 8 Plus")
-	}
-}
-
-extension View {
-	func showAlert(
-		title: String = R.string.localizable.error(), isPresented: Binding<Bool>,
-		defaultButtonTitle: String = R.string.localizable.ok(), action: @escaping () -> Void = { },
-		@ViewBuilder messageView: () -> Text) -> some View {
-			if #available(iOS 15.0, *) {
-				return self.alert(
-					title, isPresented: isPresented,
-					actions: { Button(action: action, label: { Text(defaultButtonTitle)}) },
-					message: messageView)
-			} else {
-				return self.alert(isPresented: isPresented) {
-					Alert(
-						title: Text(title), message: messageView(),
-						dismissButton: .default(Text(defaultButtonTitle), action: action))
-				}
-			}
+		NavigationView {
+			LoginView(viewModel: viewModel)
 		}
+		.previewDevice("iPhone 14 Pro")
+		.previewDisplayName("iPhone 14 Pro")
+		NavigationView {
+			LoginView(viewModel: viewModel)
+		}
+		.previewDevice("iPhone SE 3rd generation")
+		.previewDisplayName("iPhone SE 3rd generation")
+	}
 }

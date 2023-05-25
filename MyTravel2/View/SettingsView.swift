@@ -9,15 +9,27 @@ import SwiftUI
 
 struct SettingsView: View {
 	@Binding var shouldPopToRootView: Bool
+	@State private var shouldPresentAlert: Bool = false
 
     var body: some View {
 		List {
 			Button {
-				MTUserDefaults.currentUser = nil
-				shouldPopToRootView = false
+				shouldPresentAlert = true
 			} label: {
-				Text("Logout")
+				Text(R.string.localizable.logout)
 			}
+		}
+		.alert(isPresented: $shouldPresentAlert) {
+			Alert(
+				title: Text(R.string.localizable.areYouSure), message: Text(R.string.localizable.doYouWantToLogout),
+				primaryButton: .cancel(Text(R.string.localizable.cancel)),
+				secondaryButton: .destructive(
+					Text(R.string.localizable.logout), action: {
+						MTUserDefaults.currentUser = nil
+						shouldPopToRootView = false
+					}
+				)
+			)
 		}
     }
 }

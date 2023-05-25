@@ -67,5 +67,3 @@ struct MTTabBarView_Previews: PreviewProvider {
 		}
     }
 }
-
-// TODO: create custom tab bar container view

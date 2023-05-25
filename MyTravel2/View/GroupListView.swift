@@ -9,10 +9,10 @@ import SwiftUI
 
 struct GroupListView: MTAsyncView {
 
-	@State private var isPopupPresented: Bool = false
-	@ObservedObject var viewModel: GroupViewModel
-	@State private var shouldGroupSuccess: Bool = false
-	@State private var createdGroup: MTGroup?
+	@Binding var isPopupPresented: Bool
+	@StateObject private var viewModel: GroupViewModel = .init(provider: GroupAPIProvider())
+	@Binding var shouldGroupSuccess: Bool
+	@Binding var createdGroup: MTGroup?
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -25,13 +25,23 @@ struct GroupListView: MTAsyncView {
 	}
 
 	var loadedView: some View {
-		Group {
-			if viewModel.groupList.isEmpty {
-				emptyView
-			} else {
-				dataView
+		dataView
+			.myOverlay {
+				Group {
+					if viewModel.groupList.isEmpty {
+						emptyView
+					}
+				}
 			}
-		}
+			.fullScreenCover(isPresented: $shouldGroupSuccess) {
+				if let group = createdGroup {
+					CreateGroupSuccessView(group: group, shouldPresent: .constant(true))
+				}
+			}
+			.onChange(of: shouldGroupSuccess) { newValue in
+				guard !newValue else { return }
+				load()
+			}
 	}
 
 	var dataView: some View {
@@ -43,31 +53,20 @@ struct GroupListView: MTAsyncView {
 
 	var emptyView: some View {
 		GeometryReader { geometryProxy in
-			ZStack {
-				VStack {
-					Spacer()
-					Image(R.image.img_setupGroup)
-						.resizable()
-						.scaledToFit()
-						.offset(y: 8)
-					groupData
-						.background(AppColor.theme)
-						.cornerRadius(32)
-						.shadow(radius: 8, y: -4)
-						.frame(height: geometryProxy.size.height * 0.66)
-				}
-				.ignoresSafeArea(edges: .bottom)
-				CreateGroupView(isPresenting: $isPopupPresented,
-								viewModel: GroupViewModel.init(provider: GroupAPIProvider())) { group in
-					self.createdGroup = group
-					shouldGroupSuccess = true
-					load()
-				}
+			VStack {
+				Spacer()
+				Image(R.image.img_setupGroup)
+					.resizable()
+					.scaledToFit()
+					.offset(y: 8)
+				groupData
+					.background(AppColor.theme)
+					.cornerRadius(32)
+					.shadow(radius: 8, y: -4)
+					.frame(height: geometryProxy.size.height * 0.66)
 			}
+			.ignoresSafeArea(edges: .bottom)
 		}
-		/*.popup(isPresented: $isPopupPresented, view: {
-		 Text("Hello")
-		 })*/
 	}
 
 	var groupData: some View {
@@ -87,11 +86,6 @@ struct GroupListView: MTAsyncView {
 			Spacer()
 		}
 		.padding(.horizontal, 36)
-		.fullScreenCover(isPresented: $shouldGroupSuccess) {
-			if let group = createdGroup {
-				CreateGroupSuccessView(group: group, shouldPresent: .constant(true))
-			}
-		}
 	}
 
 	func action() {
@@ -101,7 +95,9 @@ struct GroupListView: MTAsyncView {
 
 struct GroupList_Previews: PreviewProvider {
     static var previews: some View {
-		GroupListView(viewModel: GroupViewModel(provider: GroupSuccessProvider()))
+		GroupListView(
+			isPopupPresented: .constant(false), /*viewModel: .init(provider: GroupAPIProvider()),*/
+			shouldGroupSuccess: .constant(true), createdGroup: .constant(nil))
     }
 }
 /*

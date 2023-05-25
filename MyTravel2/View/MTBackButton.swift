@@ -13,12 +13,8 @@ struct MTBackButton: View {
 	var body: some View {
 		Button(action: dismiss) {
 			Image(systemName: "chevron.backward")
-				.padding()
-				.myBackground {
-					Circle()
-						.foregroundColor(AppColor.Text.tertiary)
-						.shadow(radius: 4, x: 2, y: 2)
-				}
+				.resizable()
+				.roundButton()
 		}
 	}
 }

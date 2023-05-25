@@ -25,3 +25,23 @@ extension EnvironmentValues {
 		}
 	}
 }
+
+extension View {
+	func showAlert(
+		title: String = R.string.localizable.error(), isPresented: Binding<Bool>,
+		defaultButtonTitle: String = R.string.localizable.ok(), action: @escaping () -> Void = { },
+		@ViewBuilder messageView: () -> Text) -> some View {
+			if #available(iOS 15.0, *) {
+				return self.alert(
+					title, isPresented: isPresented,
+					actions: { Button(action: action, label: { Text(defaultButtonTitle)}) },
+					message: messageView)
+			} else {
+				return self.alert(isPresented: isPresented) {
+					Alert(
+						title: Text(title), message: messageView(),
+						dismissButton: .default(Text(defaultButtonTitle), action: action))
+				}
+			}
+		}
+}

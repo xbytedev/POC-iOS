@@ -33,7 +33,7 @@ struct MTUserDefaults {
 			UserDefaults.standard.removePersistentDomain(forName: appDomain)
 		}
 	}
-	
+
 	static var currentUser: WebUser? {
 		get {
 			if let data = UserDefaults.standard.data(forKey: Key.UserDefaults.currentUser) {

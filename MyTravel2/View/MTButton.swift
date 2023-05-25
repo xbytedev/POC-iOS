@@ -15,9 +15,7 @@ struct MTButton: View {
 	@State private var foregroundColor: Color = AppColor.Text.tertiary
 	@State private var backgroundColor: Color = AppColor.theme
     var body: some View {
-		Button {
-			action()
-		} label: {
+		Button(action: action) {
 			HStack(spacing: 16) {
 				if isLoading {
 					ProgressView()
