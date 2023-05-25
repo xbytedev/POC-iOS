@@ -72,6 +72,7 @@ struct MTLoadingView: View {
 			}
 		}
 		.foregroundColor(AppColor.Text.secondary)
+		.padding(.horizontal)
 		.frame(maxHeight: .infinity)
 	}
 }
@@ -104,6 +105,7 @@ struct SMErrorView: View {
 			}
 		}
 		.foregroundColor(AppColor.theme)
+		.padding(.horizontal)
 		.frame(maxHeight: .infinity)
 	}
 }
