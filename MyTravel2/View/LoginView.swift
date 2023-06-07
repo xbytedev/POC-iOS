@@ -37,7 +37,7 @@ struct LoginView: View {
 
 	var loginView: some View {
 		ZStack {
-			backgroundImage
+			bgImage
 			VStack {
 				VStack(spacing: 0) {
 					MTTextField(label: R.string.localizable.username(), valueStr: $usernameStr)
@@ -87,6 +87,7 @@ struct LoginView: View {
 					.offset(x: 0, y: -24)
 			}
 		}
+		.ignoresSafeArea(.keyboard, edges: .bottom)
 		.myOverlay(alignment: .top) {
 			Image(R.image.img_myTravelLogo)
 				.resizable()
@@ -102,14 +103,7 @@ struct LoginView: View {
 			.aspectRatio(contentMode: .fill)
 			.clipped()
 			.frame(minWidth: 0, maxWidth: .infinity)
-	}
-
-	private var backgroundImage: some View {
-		if #available(iOS 14.0, *) {
-			return bgImage.ignoresSafeArea()
-		} else {
-			return bgImage.edgesIgnoringSafeArea(.all)
-		}
+			.ignoresSafeArea(.container)
 	}
 
 	private var forgotPasswordView: some View {
