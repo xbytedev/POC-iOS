@@ -73,7 +73,7 @@ struct AuthAPIProvider: AuthProvider {
 	}
 
 	func verify(user: WebUser, otp: String) async -> Result<WebUser, Error> {
-		let requester = WebRequester<MTResponse<WebUser>>(withSession: WebRequesterSessionProvider.session)
+		let requester = WebRequester<CheckOTPResponse>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.borderScannerPartnerCheckOtp,
 											 withParameters: VerifyOTPRequester(userID: user.id, otp: otp))
 		switch result {
@@ -81,6 +81,8 @@ struct AuthAPIProvider: AuthProvider {
 			if response.status == true {
 				if let loggedInUser = response.data {
 					MTUserDefaults.currentUser = loggedInUser
+					MTKeychainWrapper.authToken = response.token
+					WebRequesterSessionProvider.authStorage.refreshToken()
 					return .success(loggedInUser)
 				} else {
 					return .failure(CustomError.successButNoData)

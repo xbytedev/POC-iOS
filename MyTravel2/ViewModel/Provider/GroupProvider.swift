@@ -16,18 +16,18 @@ struct GroupAPIProvider: GroupProvider {
 
 	struct CreateGroupRequester {
 		let name: String
-		let partnerID: Int
+		let agentId: Int
 	}
 
 	struct GroupListRequester {
-		let partnerID: Int
+		let agentId: Int
 	}
 
 	func doCreateGroup(user: WebUser, groupName name: String) async -> Result<MTGroup, Error> {
 		let requester = WebRequester<MTResponse<MTGroup>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.createGroup,
 											 withParameters: CreateGroupRequester(name: name,
-																				  partnerID: user.id))
+																				  agentId: user.id))
 		switch result {
 		case .success(let response):
 			if response.status == true {
@@ -47,7 +47,7 @@ struct GroupAPIProvider: GroupProvider {
 	func getGroupList(user: WebUser) async -> Result<[MTGroup], Error> {
 		let requester = WebRequester<MTResponse<[MTGroup]>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.groupList,
-											 withParameters: GroupListRequester(partnerID: user.id))
+											 withParameters: GroupListRequester(agentId: user.id))
 		switch result {
 		case .success(let response):
 			if response.status == true {
@@ -67,13 +67,13 @@ struct GroupAPIProvider: GroupProvider {
 
 extension GroupAPIProvider.CreateGroupRequester: Encodable {
 	enum CodingKeys: String, CodingKey {
-		case partnerID = "partner_id"
+		case agentId = "agent_id"
 		case name
 	}
 }
 
 extension GroupAPIProvider.GroupListRequester: Encodable {
 	enum CodingKeys: String, CodingKey {
-		case partnerID = "partner_id"
+		case agentId = "agent_id"
 	}
 }

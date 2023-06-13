@@ -9,12 +9,14 @@ import Foundation
 import Alamofire
 
 struct WebRequesterSessionProvider {
+	static let authStorage = KeychainStorage()
 	static let session: Session = {
 		let sessionConfiguration = URLSessionConfiguration.af.default
 		sessionConfiguration.timeoutIntervalForRequest = 30
 		let networkLogger = MTNetworkLogger()
 		let session: Session
-		session = .init(configuration: sessionConfiguration, eventMonitors: [networkLogger])
+		let requestInterceptor = MTRequestInterceptor(tokenProvider: authStorage)
+		session = .init(configuration: sessionConfiguration, interceptor: requestInterceptor, eventMonitors: [networkLogger])
 		return session
 	}()
 }

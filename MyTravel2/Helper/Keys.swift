@@ -18,4 +18,8 @@ struct Key {
 		static let currentUser = "currentUser"
 		static let lastOTPSendDate = "lastOTPSendDate"
 	}
+
+	struct Keychain {
+		static let authToken = "authToken"
+	}
 }
