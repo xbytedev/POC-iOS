@@ -27,6 +27,7 @@ struct SettingsView: View {
 					Text(R.string.localizable.logout), action: {
 						MTUserDefaults.currentUser = nil
 						shouldPopToRootView = false
+						WebRequesterSessionProvider.authStorage.refreshToken()
 					}
 				)
 			)

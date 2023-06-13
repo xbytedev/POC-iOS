@@ -13,7 +13,6 @@ struct MTResponse<MTDecodable: Decodable> {
 	let role: String?
 	let userID: Int?
 	let data: MTDecodable?
-
 }
 
 extension MTResponse: Decodable {
