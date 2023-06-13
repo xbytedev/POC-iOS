@@ -21,13 +21,13 @@ enum CustomError: Error {
 //		return  .code(code)
 //	}
 //
-//	static func getError(fromMessage message: String?) -> CustomError {
-//		if let message {
-//			return .message(message)
-//		} else {
-//			return .failedButNoMessage
-//		}
-//	}
+	static func getError(fromMessage message: String?) -> CustomError {
+		if let message {
+			return .message(message)
+		} else {
+			return .failedButNoMessage
+		}
+	}
 }
 
 extension CustomError: LocalizedError {

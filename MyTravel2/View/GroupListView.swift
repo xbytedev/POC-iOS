@@ -45,10 +45,32 @@ struct GroupListView: MTAsyncView {
 	}
 
 	var dataView: some View {
-		List(viewModel.groupList) { item in
-			GroupListRow(groupName: item.name ?? "")
+		List {
+			ForEach(viewModel.groupList) { item in
+				ZStack {
+					NavigationLink {
+						GroupDetailView(viewModel: .init(group: item, groupDetailProvider: GroupDetailAPIProvider()))
+							.navigationTitle(item.name ?? "")
+							.setThemeBackButton()
+					} label: {
+						EmptyView()
+					}
+					.opacity(0)
+					GroupListRow(groupName: item.name ?? "")
+				}
 				.mtListBackgroundStyle()
-		}.listStyle(.plain)
+			}
+			.onDelete { index in
+			}
+		}
+		.listStyle(.plain)
+		/*.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+			Button {
+				print("Delete")
+			} label: {
+				Label("Delete", systemImage: "trash")
+			}
+		}*/
 	}
 
 	var emptyView: some View {

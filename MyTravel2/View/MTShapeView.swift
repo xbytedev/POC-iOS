@@ -16,12 +16,14 @@ struct MTListBackgroundModifier: ViewModifier {
 						backgroundView
 					}
 					.listRowSeparator(.hidden)
+					.listRowBackground(Color.clear)
 			} else {
 				content
 					.padding()
 					.myBackground {
 						backgroundView
 					}
+					.listRowBackground(Color.clear)
 			}
 	}
 
