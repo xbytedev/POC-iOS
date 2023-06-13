@@ -49,7 +49,9 @@ struct GroupListView: MTAsyncView {
 			ForEach(viewModel.groupList) { item in
 				ZStack {
 					NavigationLink {
-						GroupDetailView()
+						GroupDetailView(viewModel: .init(group: item, groupDetailProvider: GroupDetailAPIProvider()))
+							.navigationTitle(item.name ?? "")
+							.setThemeBackButton()
 					} label: {
 						EmptyView()
 					}
