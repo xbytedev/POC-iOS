@@ -45,6 +45,7 @@
 		897EDC632A052494001B652E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 897EDC622A052494001B652E /* Alamofire */; };
 		897EDC672A0524CC001B652E /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 897EDC662A0524CC001B652E /* SDWebImageSwiftUI */; };
 		897EDC6E2A05272F001B652E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC6D2A05272F001B652E /* LoginView.swift */; };
+		89A1AE682A386F5D00C089E1 /* ScanQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */; };
 		89BD67A02A38382E006129F2 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD679F2A38382E006129F2 /* KeychainWrapper.swift */; };
 		89BD67A22A383852006129F2 /* KeychainWrappperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD67A12A383852006129F2 /* KeychainWrappperTests.swift */; };
 		89BD67A62A3838B8006129F2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 89BD67A52A3838B8006129F2 /* Alamofire */; };
@@ -146,6 +147,7 @@
 		897EDC4C2A050E25001B652E /* MyTravel2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravel2UITests.swift; sourceTree = "<group>"; };
 		897EDC4E2A050E25001B652E /* MyTravel2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravel2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		897EDC6D2A05272F001B652E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeView.swift; sourceTree = "<group>"; };
 		89BD679F2A38382E006129F2 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		89BD67A12A383852006129F2 /* KeychainWrappperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrappperTests.swift; sourceTree = "<group>"; };
 		89BD67AE2A38398D006129F2 /* MTKeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTKeychainWrapper.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				89032F6E2A134F4F005FFC29 /* GroupListRow.swift */,
 				896259352A125C2500AAE879 /* GroupListView.swift */,
 				89F8AFB22A3070EA008D00BC /* GroupDetailView.swift */,
+				89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */,
 				89210BA62A162C6400F268FC /* CreateGroupView.swift */,
 				89C1D8A22A1B8498007EB9E1 /* CreateGroupSuccessView.swift */,
 				89210B9F2A15F7AD00F268FC /* CheckInView.swift */,
@@ -629,6 +632,7 @@
 				89BD67BD2A3852AE006129F2 /* GroupDetailPreviewProvider.swift in Sources */,
 				CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */,
 				CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */,
+				89A1AE682A386F5D00C089E1 /* ScanQRCodeView.swift in Sources */,
 				CE65C76E2A178B3F0021F7FD /* GroupViewModel.swift in Sources */,
 				CEC19B932A0B97F6006E3192 /* AuthViewModel.swift in Sources */,
 				89210BA02A15F7AD00F268FC /* CheckInView.swift in Sources */,
