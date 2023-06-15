@@ -22,12 +22,13 @@ struct GroupDetailView: MTAsyncView {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
 			.toolbar {
 				ToolbarItem(placement: .navigationBarTrailing) {
-						Button {
-//							isPopupPresented = true
-						} label: {
-							Image(systemName: "plus")
-								.roundButton()
-						}
+					NavigationLink {
+						ScanQRCodeView(viewModel: ScanQRCodeViewModel())
+							.navigationTitle("QR Code")
+					} label: {
+						Image(systemName: "plus")
+							.roundButton()
+					}
 				}
 			}
     }

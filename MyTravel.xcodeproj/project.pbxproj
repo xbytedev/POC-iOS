@@ -29,6 +29,10 @@
 		896E8FC42A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 896E8FC32A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */; };
 		896E8FC82A08BAA6002AA4D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */; };
+		897DAB142A397501006CB159 /* ScanQRCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */; };
+		897DAB192A39812D006CB159 /* QrCodeCameraDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB182A39812D006CB159 /* QrCodeCameraDelegate.swift */; };
+		897DAB1C2A3984D1006CB159 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB1B2A3984D1006CB159 /* CameraPreviewView.swift */; };
+		897DAB1F2A398BFB006CB159 /* QRCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB1E2A398BFB006CB159 /* QRCodeScannerView.swift */; };
 		897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CA2A0BA7FA008D1687 /* ProgressViewModifier.swift */; };
 		897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CD2A0BA821008D1687 /* BackgroundModifier.swift */; };
 		897E61D02A0BA846008D1687 /* OverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CF2A0BA846008D1687 /* OverlayModifier.swift */; };
@@ -130,6 +134,10 @@
 		896259352A125C2500AAE879 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeViewModel.swift; sourceTree = "<group>"; };
+		897DAB182A39812D006CB159 /* QrCodeCameraDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeCameraDelegate.swift; sourceTree = "<group>"; };
+		897DAB1B2A3984D1006CB159 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		897DAB1E2A398BFB006CB159 /* QRCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerView.swift; sourceTree = "<group>"; };
 		897E61CA2A0BA7FA008D1687 /* ProgressViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModifier.swift; sourceTree = "<group>"; };
 		897E61CD2A0BA821008D1687 /* BackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundModifier.swift; sourceTree = "<group>"; };
 		897E61CF2A0BA846008D1687 /* OverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayModifier.swift; sourceTree = "<group>"; };
@@ -346,6 +354,8 @@
 				89210B9F2A15F7AD00F268FC /* CheckInView.swift */,
 				89210BA22A15F7C700F268FC /* SettingsView.swift */,
 				896259332A1243CA00AAE879 /* MTShapeView.swift */,
+				897DAB1B2A3984D1006CB159 /* CameraPreviewView.swift */,
+				897DAB1E2A398BFB006CB159 /* QRCodeScannerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -372,6 +382,9 @@
 				897E61C92A0BA7E7008D1687 /* ViewModifiers */,
 				CEC19B802A0B83D0006E3192 /* AppURL.swift */,
 				CEC19B7D2A0B8108006E3192 /* Constant.swift */,
+				CEC19B9A2A0B9FBC006E3192 /* CustomError.swift */,
+				CE36DE892A135DD3009790A5 /* Extension.swift */,
+				89210BA92A16487700F268FC /* Extension+SwiftUI.swift */,
 				CEC19B882A0B8543006E3192 /* Keys.swift */,
 				89BD679F2A38382E006129F2 /* KeychainWrapper.swift */,
 				CEC19B792A0B7FBD006E3192 /* WebRequester.swift */,
@@ -379,11 +392,9 @@
 				8909BF842A3830F900ACFFF7 /* MTRequestIntercepter.swift */,
 				CEC19B7B2A0B80D8006E3192 /* MTNetworkLogger.swift */,
 				CEC19B862A0B84F7006E3192 /* MTConfiguration.swift */,
-				CEC19B9A2A0B9FBC006E3192 /* CustomError.swift */,
-				CEC19B9D2A0BA423006E3192 /* Validator.swift */,
 				CE36DE862A134D8E009790A5 /* MTUserDefaults.swift */,
-				CE36DE892A135DD3009790A5 /* Extension.swift */,
-				89210BA92A16487700F268FC /* Extension+SwiftUI.swift */,
+				897DAB182A39812D006CB159 /* QrCodeCameraDelegate.swift */,
+				CEC19B9D2A0BA423006E3192 /* Validator.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -404,6 +415,7 @@
 				CEC19B922A0B97F6006E3192 /* AuthViewModel.swift */,
 				CE65C76D2A178B3F0021F7FD /* GroupViewModel.swift */,
 				89BD67BA2A385129006129F2 /* GroupDetailViewModel.swift */,
+				897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -629,6 +641,7 @@
 				897EDC392A050E24001B652E /* MyTravel2.xcdatamodeld in Sources */,
 				89D12C8F2A1E2BA60024F3DF /* MTLazyView.swift in Sources */,
 				89BD67B82A384940006129F2 /* GroupDetailProvider.swift in Sources */,
+				897DAB192A39812D006CB159 /* QrCodeCameraDelegate.swift in Sources */,
 				89BD67BD2A3852AE006129F2 /* GroupDetailPreviewProvider.swift in Sources */,
 				CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */,
 				CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */,
@@ -636,7 +649,9 @@
 				CE65C76E2A178B3F0021F7FD /* GroupViewModel.swift in Sources */,
 				CEC19B932A0B97F6006E3192 /* AuthViewModel.swift in Sources */,
 				89210BA02A15F7AD00F268FC /* CheckInView.swift in Sources */,
+				897DAB1C2A3984D1006CB159 /* CameraPreviewView.swift in Sources */,
 				895DF4BF2A0BD05900899187 /* MTTabBarContainerView.swift in Sources */,
+				897DAB1F2A398BFB006CB159 /* QRCodeScannerView.swift in Sources */,
 				89F8AFB32A3070EA008D00BC /* GroupDetailView.swift in Sources */,
 				CEC19B7E2A0B8108006E3192 /* Constant.swift in Sources */,
 				897EDC362A050E24001B652E /* Persistence.swift in Sources */,
@@ -664,6 +679,7 @@
 				CE5756562A1B3A5500801FD9 /* MTAsyncView.swift in Sources */,
 				8909BF852A3830F900ACFFF7 /* MTRequestIntercepter.swift in Sources */,
 				895DF4C22A0BD2B200899187 /* MTTabBarPreferenceKey.swift in Sources */,
+				897DAB142A397501006CB159 /* ScanQRCodeViewModel.swift in Sources */,
 				CE36DE8A2A135DD3009790A5 /* Extension.swift in Sources */,
 				897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */,
 				CE5742CE2A1DF7F60089666A /* PreviewGroupProvider.swift in Sources */,
@@ -884,7 +900,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "MyTravel2/Preview\\ Content/GroupPreview.swift MyTravel2/Preview\\ Content MyTravel2/Preview\\ Content/UserPreview.swift MyTravel2/Preview\\ Content/PreviewGroupProvider.swift";
@@ -910,7 +926,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.com.pedro.POC-Scanner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "POC Scanner Development";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "POC Scanner Adhoc";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
