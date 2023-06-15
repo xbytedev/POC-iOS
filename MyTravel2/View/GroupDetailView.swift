@@ -19,11 +19,11 @@ struct GroupDetailView: MTAsyncView {
 	}
 
 	var loadedView: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		dataView
 			.toolbar {
 				ToolbarItem(placement: .navigationBarTrailing) {
 					NavigationLink {
-						ScanQRCodeView(viewModel: ScanQRCodeViewModel())
+						ScanQRCodeView(viewModel: ScanQRCodeViewModel(group: viewModel.group, provider: AddTravellerAPIProvider()))
 							.navigationTitle("QR Code")
 					} label: {
 						Image(systemName: "plus")
@@ -32,6 +32,18 @@ struct GroupDetailView: MTAsyncView {
 				}
 			}
     }
+
+	var dataView: some View {
+		List {
+			ForEach(viewModel.travellers) { item in
+				TravellerListRow(traveller: item)
+				.mtListBackgroundStyle()
+			}
+			.onDelete { index in
+			}
+		}
+		.listStyle(.plain)
+	}
 
 	func load() {
 		Task {

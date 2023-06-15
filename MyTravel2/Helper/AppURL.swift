@@ -57,4 +57,8 @@ struct APPURL {
 	static var groupPeopleList: String {
 		apiBaseURL + "group_people_list"
 	}
+
+	static var addTravellerToGroup: String {
+		apiBaseURL + "add_group_people"
+	}
 }

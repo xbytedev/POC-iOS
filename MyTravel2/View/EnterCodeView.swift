@@ -70,6 +70,8 @@ struct EnterCodeView: View {
 			configuration.alertPresent = true
 			configuration.errorMeessage = R.string.localizable.pleaseEnterYourGroupName()
 		} else {
+			addedToGroupSuccessfull(code)
+			dismiss()
 			/*Task {
 				do {
 					configuration.isLoading = true

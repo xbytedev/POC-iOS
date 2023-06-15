@@ -36,15 +36,25 @@ struct ScanQRCodeView: View {
 			}
 			EnterCodeView(isPresenting: $isPresenting) { code
 				in
-
+				viewModel.onFound(qrCode: code)
 			}
 		}
 		.setThemeBackButton()
+		.onChange(of: viewModel.lastQRCode) { newValue in
+			guard let code = Int(newValue) else { return }
+			Task {
+				do {
+					try await viewModel.addTraveller(with: code)
+				} catch {
+					print(error.localizedDescription)
+				}
+			}
+		}
     }
 }
 
 struct ScanQRCodeView_Previews: PreviewProvider {
     static var previews: some View {
-		ScanQRCodeView(viewModel: .init())
+		ScanQRCodeView(viewModel: .init(group: .preview, provider: AddTravellerSuccessProvider()))
     }
 }
