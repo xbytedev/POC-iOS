@@ -11,7 +11,7 @@ class GroupDetailViewModel: ObservableObject {
 	let group: MTGroup
 	let groupDetailProvider: GroupDetailProvider
 	@Published @MainActor private(set) var state = MTLoadingState.idle
-	@Published @MainActor private(set) var travellers = [MTTraveller]()
+	@Published @MainActor var travellers = [MTTraveller]()
 
 	init(group: MTGroup, groupDetailProvider: GroupDetailProvider) {
 		self.group = group

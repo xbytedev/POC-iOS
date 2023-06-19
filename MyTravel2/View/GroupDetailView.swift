@@ -35,8 +35,12 @@ struct GroupDetailView: MTAsyncView {
 
 	var dataView: some View {
 		List {
-			ForEach(viewModel.travellers) { item in
-				TravellerListRow(traveller: item)
+			ForEach($viewModel.travellers) { item in
+				Toggle(item.name.wrappedValue, isOn: item.status)
+					.onChange(of: item.status.wrappedValue, perform: { newValue in
+						print(newValue)
+					})
+//				TravellerListRow(traveller: item)
 				.mtListBackgroundStyle()
 			}
 			.onDelete { index in

@@ -8,28 +8,37 @@
 import Foundation
 
 struct MTTraveller {
+	let id: Int
 	let groupId: Int
 	let groupCode: String
-	let peopleId: Int
+	let partnerId: Int
 	let peopleCode: String
-	let status: Int
-	let agentId: Int
+	var status: Bool
+	var name: String
 }
 
-extension MTTraveller: Identifiable {
-	var id: String {
-		peopleCode
-	}
-}
+extension MTTraveller: Identifiable { }
 extension MTTraveller: Equatable { }
 extension MTTraveller: Hashable { }
 extension MTTraveller: Decodable {
 	enum CodingKeys: String, CodingKey {
+		case id
 		case groupId = "group_id"
 		case groupCode = "group_code"
-		case peopleId = "people_id"
+		case partnerId = "partner_id"
 		case peopleCode = "people_code"
 		case status
-		case agentId = "agent_id"
+		case name = "people_name"
+	}
+
+	init(from decoder: Decoder) throws {
+		var container = try decoder.container(keyedBy: CodingKeys.self)
+		id = try container.decode(Int.self, forKey: .id)
+		groupId = try container.decode(Int.self, forKey: .groupId)
+		groupCode = try container.decode(String.self, forKey: .groupCode)
+		partnerId = try container.decode(Int.self, forKey: .partnerId)
+		peopleCode = try container.decode(String.self, forKey: .peopleCode)
+		status = try container.decode(Int.self, forKey: .status) == 1
+		name = try container.decode(String.self, forKey: .name)
 	}
 }

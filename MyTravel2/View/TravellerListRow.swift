@@ -11,9 +11,9 @@ struct TravellerListRow: View {
 	let traveller: MTTraveller
 	var body: some View {
 		HStack {
-			Text(traveller.peopleCode)
+			Text(traveller.name)
 			Spacer()
-			Image(R.image.ic_arrowRight)
+//			Toggle("", isOn: $(traveller.status == 1))
 		}
 	}
 }
