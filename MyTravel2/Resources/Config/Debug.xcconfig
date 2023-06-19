@@ -8,6 +8,6 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-API_BASE_SCHEME = https
-API_BASE_URL = tem.mytravel2.com
-API_PATH = /public/api
+API_BASE_SCHEME = http
+API_BASE_URL = 192.168.1.217:8000
+API_PATH = /api

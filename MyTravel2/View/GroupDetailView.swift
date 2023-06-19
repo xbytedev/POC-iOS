@@ -33,15 +33,26 @@ struct GroupDetailView: MTAsyncView {
 			}
     }
 
+	@ViewBuilder
 	var dataView: some View {
+		if #available(iOS 15.0, *) {
+			listView
+				.refreshable {
+					load()
+				}
+		} else {
+			listView
+		}
+	}
+
+	var listView: some View {
 		List {
 			ForEach($viewModel.travellers) { item in
 				Toggle(item.name.wrappedValue, isOn: item.status)
 					.onChange(of: item.status.wrappedValue, perform: { newValue in
 						print(newValue)
 					})
-//				TravellerListRow(traveller: item)
-				.mtListBackgroundStyle()
+					.mtListBackgroundStyle()
 			}
 			.onDelete { index in
 			}
