@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ScanQRCodeView: View {
 	@State private var isPresenting: Bool = false
+	@State private var configuration = UIConfiguration()
+	@Environment(\.mtDismissable) var dismiss
 	@ObservedObject var viewModel: ScanQRCodeViewModel
 
     var body: some View {
@@ -22,7 +24,6 @@ struct ScanQRCodeView: View {
 							.tourchLight(isOn: viewModel.isTorchOn)
 							.interval(delay: viewModel.scanInterval)
 							.frame(width: width, height: width)
-						Text(viewModel.lastQRCode)
 						Text(R.string.localizable.pointTheCameraAtTheQrCode())
 							.font(AppFont.getFont(forStyle: .title3))
 							.foregroundColor(AppColor.theme)
@@ -40,16 +41,24 @@ struct ScanQRCodeView: View {
 			}
 		}
 		.setThemeBackButton()
+		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
+			Text(configuration.errorMeessage)
+		}
 		.onChange(of: viewModel.lastQRCode) { newValue in
-			guard let code = Int(newValue) else { return }
+			guard let code = Int(newValue),
+				  Validator.shared.isValid(travellerCode: newValue) else { return }
 			Task {
 				do {
 					try await viewModel.addTraveller(with: code)
+					dismiss()
 				} catch {
-					print(error.localizedDescription)
+					configuration.errorTitle = R.string.localizable.error()
+					configuration.errorMeessage = error.localizedDescription
+					configuration.alertPresent = true
 				}
 			}
 		}
+
     }
 }
 

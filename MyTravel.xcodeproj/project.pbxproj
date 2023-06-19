@@ -128,6 +128,7 @@
 		89210BA22A15F7C700F268FC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		89210BA62A162C6400F268FC /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
 		89210BA92A16487700F268FC /* Extension+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+SwiftUI.swift"; sourceTree = "<group>"; };
+		8924967B2A4056AD00767E19 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		893E10542A1B461B00DBD46C /* MTBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTBackButton.swift; sourceTree = "<group>"; };
 		893E10562A1B467500DBD46C /* BackButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonModifier.swift; sourceTree = "<group>"; };
 		894471ED2A08F83F0011DDD2 /* MTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
@@ -260,6 +261,7 @@
 		897EDC202A050E22001B652E = {
 			isa = PBXGroup;
 			children = (
+				8924967B2A4056AD00767E19 /* README.md */,
 				897EDC2B2A050E22001B652E /* MyTravel2 */,
 				897EDC412A050E25001B652E /* MyTravel2Tests */,
 				897EDC4B2A050E25001B652E /* MyTravel2UITests */,

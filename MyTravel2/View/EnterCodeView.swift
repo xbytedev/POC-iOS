@@ -35,6 +35,7 @@ struct EnterCodeView: View {
 				.foregroundColor(AppColor.theme)
 			Spacer()
 			Button {
+				code = ""
 				dismiss()
 			} label: {
 				Image(systemName: "xmark")
@@ -52,6 +53,7 @@ struct EnterCodeView: View {
 			headerView
 			MTTextField(label: R.string.localizable.enterCode(), valueStr: $code)
 				.padding(.bottom, 24)
+				.keyboardType(.numberPad)
 		}
 		.modifier(FormModifier())
 		.myOverlay(alignment: .bottom) {
@@ -67,8 +69,13 @@ struct EnterCodeView: View {
 
 	func handleAddToGroupAction() {
 		if code.isEmpty {
+			configuration.errorTitle = R.string.localizable.error()
+			configuration.errorMeessage = R.string.localizable.pleaseEnterCode()
 			configuration.alertPresent = true
-			configuration.errorMeessage = R.string.localizable.pleaseEnterYourGroupName()
+		} else if !Validator.shared.isValid(travellerCode: code) {
+			configuration.errorTitle = R.string.localizable.error()
+			configuration.errorMeessage = R.string.localizable.pleaseEnterValidCode()
+			configuration.alertPresent = true
 		} else {
 			addedToGroupSuccessfull(code)
 			dismiss()
