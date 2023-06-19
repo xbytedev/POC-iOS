@@ -30,4 +30,16 @@ class GroupDetailViewModel: ObservableObject {
 			state = .failed(error)
 		}
 	}
+
+	@MainActor @Sendable
+	func refreshTravellerList() async {
+		let result = await groupDetailProvider.getGroupPeopleList(from: group)
+		switch result {
+		case .success(let travellers):
+			self.travellers = travellers
+			state = .loaded
+		case .failure(let error):
+			state = .failed(error)
+		}
+	}
 }

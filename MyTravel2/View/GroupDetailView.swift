@@ -37,9 +37,7 @@ struct GroupDetailView: MTAsyncView {
 	var dataView: some View {
 		if #available(iOS 15.0, *) {
 			listView
-				.refreshable {
-					load()
-				}
+				.refreshable(action: viewModel.refreshTravellerList)
 		} else {
 			listView
 		}
