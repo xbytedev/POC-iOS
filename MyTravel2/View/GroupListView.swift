@@ -50,7 +50,7 @@ struct GroupListView: MTAsyncView {
 				ZStack {
 					NavigationLink {
 						GroupDetailView(viewModel: .init(group: item, groupDetailProvider: GroupDetailAPIProvider()))
-							.navigationTitle(item.name ?? "")
+							.navigationTitle(R.string.localizable.groups())
 							.setThemeBackButton()
 					} label: {
 						EmptyView()
