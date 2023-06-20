@@ -47,6 +47,7 @@ struct GroupDetailView: MTAsyncView {
 		List {
 			ForEach($viewModel.travellers) { item in
 				Toggle(item.name.wrappedValue, isOn: item.status)
+					.toggleStyle(MTToggleStyle())
 					.onChange(of: item.status.wrappedValue, perform: { newValue in
 						print(newValue)
 					})
