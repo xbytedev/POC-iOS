@@ -23,6 +23,7 @@ struct CreateGroupView: View {
 			popupView
 				.scaleEffect(isPresenting ? 1 : 0)
 				.animation(.spring(), value: isPresenting)
+				.opacity(isPresenting ? 1 : 0)
 		}
 		.showAlert(isPresented: $configuration.alertPresent) {
 			Text(configuration.errorMeessage)
