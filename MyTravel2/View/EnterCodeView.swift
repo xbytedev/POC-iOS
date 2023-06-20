@@ -1,20 +1,19 @@
 //
-//  CreateGroupView.swift
+//  EnterCodeView.swift
 //  MyTravel
 //
-//  Created by Mrugesh Tank on 18/05/23.
+//  Created by Mrugesh Tank on 15/06/23.
 //
 
 import SwiftUI
 
-struct CreateGroupView: View {
-	@State private var groupName: String = ""
+struct EnterCodeView: View {
+	@State private var code: String = ""
 	@Binding var isPresenting: Bool
-	private(set) var viewModel: GroupViewModel
 	@State var configuration = UIConfiguration()
-	var createGroupSuccessfull: (_ group: MTGroup) -> Void
+	var addedToGroupSuccessfull: (_ code: String) -> Void
 
-	var body: some View {
+    var body: some View {
 		ZStack {
 			Color.black
 				.ignoresSafeArea()
@@ -28,15 +27,16 @@ struct CreateGroupView: View {
 		.showAlert(isPresented: $configuration.alertPresent) {
 			Text(configuration.errorMeessage)
 		}
-	}
+    }
 
-	private var headerView: some View {
+	var headerView: some View {
 		HStack {
-			Text("New Group")
+			Text(R.string.localizable.enterCodeManually())
 				.font(AppFont.getFont(forStyle: .title1, forWeight: .bold))
 				.foregroundColor(AppColor.theme)
 			Spacer()
 			Button {
+				code = ""
 				dismiss()
 			} label: {
 				Image(systemName: "xmark")
@@ -49,42 +49,52 @@ struct CreateGroupView: View {
 		}
 	}
 
-	private var popupView: some View {
+	var popupView: some View {
 		VStack {
 			headerView
-			MTTextField(label: "Group Name", valueStr: $groupName)
+			MTTextField(label: R.string.localizable.enterCode(), valueStr: $code)
 				.padding(.bottom, 24)
+				.keyboardType(.numberPad)
 		}
 		.modifier(FormModifier())
 		.myOverlay(alignment: .bottom) {
-			MTButton(isLoading: .constant(false), title: "Done", loadingTitle: "Creating group") {
-				handleCreateGroupAction()
-			}
+			MTButton(
+				isLoading: .constant(false), title: R.string.localizable.done(),
+				loadingTitle: R.string.localizable.addingToGroup()) {
+					handleAddToGroupAction()
+				}
 			.padding(.horizontal, 64)
 			.offset(x: 0, y: 20)
 		}
 	}
 
-	func handleCreateGroupAction() {
-		if groupName.isEmpty {
+	func handleAddToGroupAction() {
+		if code.isEmpty {
+			configuration.errorTitle = R.string.localizable.error()
+			configuration.errorMeessage = R.string.localizable.pleaseEnterCode()
 			configuration.alertPresent = true
-			configuration.errorMeessage = R.string.localizable.pleaseEnterYourGroupName()
+		} else if !Validator.shared.isValid(travellerCode: code) {
+			configuration.errorTitle = R.string.localizable.error()
+			configuration.errorMeessage = R.string.localizable.pleaseEnterValidCode()
+			configuration.alertPresent = true
 		} else {
-			Task {
+			addedToGroupSuccessfull(code)
+			dismiss()
+			/*Task {
 				do {
 					configuration.isLoading = true
 					configuration.alertPresent = false
 					let group = try await viewModel.doCreateGroup(groupName: groupName)
 					self.configuration.isLoading = false
 					isPresenting = false
-					createGroupSuccessfull(group)
-					groupName = ""
+					addedToGroupSuccessfull(group)
+					code = ""
 				} catch {
 					self.configuration.errorMeessage = error.localizedDescription
 					self.configuration.alertPresent = true
 					self.configuration.isLoading = false
 				}
-			}
+			}*/
 		}
 	}
 
@@ -93,9 +103,8 @@ struct CreateGroupView: View {
 	}
 }
 
-struct CreateGroupView_Previews: PreviewProvider {
+struct EnterCodeView_Previews: PreviewProvider {
     static var previews: some View {
-		CreateGroupView(isPresenting: .constant(true),
-						viewModel: .init(provider: GroupAPIProvider()), createGroupSuccessfull: { _ in })
+		EnterCodeView(isPresenting: .constant(true), addedToGroupSuccessfull: { _ in })
     }
 }

@@ -55,3 +55,14 @@
 "logout" = "Logout";
 "Are you sure" = "Are you sure?";
 "Do you want to logout" = "Do you want to logout?";
+
+// QR Code scanning
+"point the camera at the qr code" = "Point the Camera at the QR Code";
+"Enter code manually" = "Enter code manually";
+
+// Enter code manually
+"enter code" = "Enter Code";
+"done" = "Done";
+"adding to group" = "Adding to group";
+"please enter code" = "Please enter code";
+"Please enter valid code" = "Please enter valid code";

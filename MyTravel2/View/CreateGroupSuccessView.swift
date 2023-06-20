@@ -41,7 +41,7 @@ struct CreateGroupSuccessView: View {
 
 struct CreateGroupSuccessView_Previews: PreviewProvider {
     static var previews: some View {
-		let group = MTGroup(id: 0, name: "Hammiltons & Friedmmans", partnerID: 0, status: 0, createdAt: nil, updatedAt: nil)
+		let group = MTGroup.preview
 		CreateGroupSuccessView(group: group, shouldPresent: .constant(false))
     }
 }

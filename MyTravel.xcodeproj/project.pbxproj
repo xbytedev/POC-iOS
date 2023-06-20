@@ -29,6 +29,10 @@
 		896E8FC42A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 896E8FC32A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */; };
 		896E8FC82A08BAA6002AA4D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */; };
+		897DAB142A397501006CB159 /* ScanQRCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */; };
+		897DAB192A39812D006CB159 /* QrCodeCameraDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB182A39812D006CB159 /* QrCodeCameraDelegate.swift */; };
+		897DAB1C2A3984D1006CB159 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB1B2A3984D1006CB159 /* CameraPreviewView.swift */; };
+		897DAB1F2A398BFB006CB159 /* QRCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB1E2A398BFB006CB159 /* QRCodeScannerView.swift */; };
 		897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CA2A0BA7FA008D1687 /* ProgressViewModifier.swift */; };
 		897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CD2A0BA821008D1687 /* BackgroundModifier.swift */; };
 		897E61D02A0BA846008D1687 /* OverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E61CF2A0BA846008D1687 /* OverlayModifier.swift */; };
@@ -45,6 +49,7 @@
 		897EDC632A052494001B652E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 897EDC622A052494001B652E /* Alamofire */; };
 		897EDC672A0524CC001B652E /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 897EDC662A0524CC001B652E /* SDWebImageSwiftUI */; };
 		897EDC6E2A05272F001B652E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC6D2A05272F001B652E /* LoginView.swift */; };
+		89A1AE682A386F5D00C089E1 /* ScanQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */; };
 		89BD67A02A38382E006129F2 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD679F2A38382E006129F2 /* KeychainWrapper.swift */; };
 		89BD67A22A383852006129F2 /* KeychainWrappperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD67A12A383852006129F2 /* KeychainWrappperTests.swift */; };
 		89BD67A62A3838B8006129F2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 89BD67A52A3838B8006129F2 /* Alamofire */; };
@@ -61,7 +66,13 @@
 		89C62F7E2A0CBB2200E2FD05 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */; };
 		89D12C8C2A1DE7F60024F3DF /* MTRoundButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D12C8B2A1DE7F60024F3DF /* MTRoundButtonModifier.swift */; };
 		89D12C8F2A1E2BA60024F3DF /* MTLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D12C8E2A1E2BA60024F3DF /* MTLazyView.swift */; };
+		89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D2272C2A3AC65E00D6D425 /* EnterCodeView.swift */; };
 		89F8AFB32A3070EA008D00BC /* GroupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F8AFB22A3070EA008D00BC /* GroupDetailView.swift */; };
+		C96F9A1D2A3B3A43006DE900 /* AddTravellerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F9A1C2A3B3A43006DE900 /* AddTravellerProvider.swift */; };
+		C96F9A1F2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F9A1E2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift */; };
+		C96F9A212A3B3EE4006DE900 /* MTTraveller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F9A202A3B3EE4006DE900 /* MTTraveller.swift */; };
+		C96F9A242A3B40F3006DE900 /* TravellerListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F9A232A3B40F3006DE900 /* TravellerListRow.swift */; };
+		C96F9A262A3B41C0006DE900 /* TravellerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F9A252A3B41C0006DE900 /* TravellerPreview.swift */; };
 		CE36DE872A134D8E009790A5 /* MTUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36DE862A134D8E009790A5 /* MTUserDefaults.swift */; };
 		CE36DE8A2A135DD3009790A5 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36DE892A135DD3009790A5 /* Extension.swift */; };
 		CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36DE8C2A136249009790A5 /* WebUser.swift */; };
@@ -117,6 +128,7 @@
 		89210BA22A15F7C700F268FC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		89210BA62A162C6400F268FC /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
 		89210BA92A16487700F268FC /* Extension+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+SwiftUI.swift"; sourceTree = "<group>"; };
+		8924967B2A4056AD00767E19 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		893E10542A1B461B00DBD46C /* MTBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTBackButton.swift; sourceTree = "<group>"; };
 		893E10562A1B467500DBD46C /* BackButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonModifier.swift; sourceTree = "<group>"; };
 		894471ED2A08F83F0011DDD2 /* MTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
@@ -129,6 +141,10 @@
 		896259352A125C2500AAE879 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeViewModel.swift; sourceTree = "<group>"; };
+		897DAB182A39812D006CB159 /* QrCodeCameraDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeCameraDelegate.swift; sourceTree = "<group>"; };
+		897DAB1B2A3984D1006CB159 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		897DAB1E2A398BFB006CB159 /* QRCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerView.swift; sourceTree = "<group>"; };
 		897E61CA2A0BA7FA008D1687 /* ProgressViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModifier.swift; sourceTree = "<group>"; };
 		897E61CD2A0BA821008D1687 /* BackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundModifier.swift; sourceTree = "<group>"; };
 		897E61CF2A0BA846008D1687 /* OverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayModifier.swift; sourceTree = "<group>"; };
@@ -146,6 +162,7 @@
 		897EDC4C2A050E25001B652E /* MyTravel2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravel2UITests.swift; sourceTree = "<group>"; };
 		897EDC4E2A050E25001B652E /* MyTravel2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravel2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		897EDC6D2A05272F001B652E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeView.swift; sourceTree = "<group>"; };
 		89BD679F2A38382E006129F2 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		89BD67A12A383852006129F2 /* KeychainWrappperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrappperTests.swift; sourceTree = "<group>"; };
 		89BD67AE2A38398D006129F2 /* MTKeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTKeychainWrapper.swift; sourceTree = "<group>"; };
@@ -158,7 +175,13 @@
 		89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		89D12C8B2A1DE7F60024F3DF /* MTRoundButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRoundButtonModifier.swift; sourceTree = "<group>"; };
 		89D12C8E2A1E2BA60024F3DF /* MTLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLazyView.swift; sourceTree = "<group>"; };
+		89D2272C2A3AC65E00D6D425 /* EnterCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeView.swift; sourceTree = "<group>"; };
 		89F8AFB22A3070EA008D00BC /* GroupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailView.swift; sourceTree = "<group>"; };
+		C96F9A1C2A3B3A43006DE900 /* AddTravellerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTravellerProvider.swift; sourceTree = "<group>"; };
+		C96F9A1E2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTravellerPreviewProvider.swift; sourceTree = "<group>"; };
+		C96F9A202A3B3EE4006DE900 /* MTTraveller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTraveller.swift; sourceTree = "<group>"; };
+		C96F9A232A3B40F3006DE900 /* TravellerListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerListRow.swift; sourceTree = "<group>"; };
+		C96F9A252A3B41C0006DE900 /* TravellerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerPreview.swift; sourceTree = "<group>"; };
 		CE36DE862A134D8E009790A5 /* MTUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTUserDefaults.swift; sourceTree = "<group>"; };
 		CE36DE892A135DD3009790A5 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CE36DE8C2A136249009790A5 /* WebUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUser.swift; sourceTree = "<group>"; };
@@ -238,6 +261,7 @@
 		897EDC202A050E22001B652E = {
 			isa = PBXGroup;
 			children = (
+				8924967B2A4056AD00767E19 /* README.md */,
 				897EDC2B2A050E22001B652E /* MyTravel2 */,
 				897EDC412A050E25001B652E /* MyTravel2Tests */,
 				897EDC4B2A050E25001B652E /* MyTravel2UITests */,
@@ -279,9 +303,11 @@
 			children = (
 				CE5742D02A1DF8950089666A /* UserPreview.swift */,
 				CE5742D32A1DFA040089666A /* GroupPreview.swift */,
+				C96F9A252A3B41C0006DE900 /* TravellerPreview.swift */,
 				897EDC332A050E24001B652E /* Preview Assets.xcassets */,
 				CE5742CD2A1DF7F60089666A /* PreviewGroupProvider.swift */,
 				89BD67BC2A3852AE006129F2 /* GroupDetailPreviewProvider.swift */,
+				C96F9A1E2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -337,12 +363,17 @@
 				89210B9A2A15E5A000F268FC /* WelcomeView.swift */,
 				89032F6E2A134F4F005FFC29 /* GroupListRow.swift */,
 				896259352A125C2500AAE879 /* GroupListView.swift */,
+				C96F9A232A3B40F3006DE900 /* TravellerListRow.swift */,
 				89F8AFB22A3070EA008D00BC /* GroupDetailView.swift */,
+				89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */,
 				89210BA62A162C6400F268FC /* CreateGroupView.swift */,
 				89C1D8A22A1B8498007EB9E1 /* CreateGroupSuccessView.swift */,
 				89210B9F2A15F7AD00F268FC /* CheckInView.swift */,
 				89210BA22A15F7C700F268FC /* SettingsView.swift */,
 				896259332A1243CA00AAE879 /* MTShapeView.swift */,
+				897DAB1B2A3984D1006CB159 /* CameraPreviewView.swift */,
+				897DAB1E2A398BFB006CB159 /* QRCodeScannerView.swift */,
+				89D2272C2A3AC65E00D6D425 /* EnterCodeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -369,18 +400,19 @@
 				897E61C92A0BA7E7008D1687 /* ViewModifiers */,
 				CEC19B802A0B83D0006E3192 /* AppURL.swift */,
 				CEC19B7D2A0B8108006E3192 /* Constant.swift */,
+				CEC19B9A2A0B9FBC006E3192 /* CustomError.swift */,
+				CE36DE892A135DD3009790A5 /* Extension.swift */,
+				89210BA92A16487700F268FC /* Extension+SwiftUI.swift */,
 				CEC19B882A0B8543006E3192 /* Keys.swift */,
 				89BD679F2A38382E006129F2 /* KeychainWrapper.swift */,
-				CEC19B792A0B7FBD006E3192 /* WebRequester.swift */,
 				89BD67AE2A38398D006129F2 /* MTKeychainWrapper.swift */,
 				8909BF842A3830F900ACFFF7 /* MTRequestIntercepter.swift */,
 				CEC19B7B2A0B80D8006E3192 /* MTNetworkLogger.swift */,
 				CEC19B862A0B84F7006E3192 /* MTConfiguration.swift */,
-				CEC19B9A2A0B9FBC006E3192 /* CustomError.swift */,
-				CEC19B9D2A0BA423006E3192 /* Validator.swift */,
 				CE36DE862A134D8E009790A5 /* MTUserDefaults.swift */,
-				CE36DE892A135DD3009790A5 /* Extension.swift */,
-				89210BA92A16487700F268FC /* Extension+SwiftUI.swift */,
+				897DAB182A39812D006CB159 /* QrCodeCameraDelegate.swift */,
+				CEC19B9D2A0BA423006E3192 /* Validator.swift */,
+				CEC19B792A0B7FBD006E3192 /* WebRequester.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -401,6 +433,7 @@
 				CEC19B922A0B97F6006E3192 /* AuthViewModel.swift */,
 				CE65C76D2A178B3F0021F7FD /* GroupViewModel.swift */,
 				89BD67BA2A385129006129F2 /* GroupDetailViewModel.swift */,
+				897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -413,6 +446,7 @@
 				89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */,
 				CE36DE8C2A136249009790A5 /* WebUser.swift */,
 				CE65C76F2A1790980021F7FD /* MTGroup.swift */,
+				C96F9A202A3B3EE4006DE900 /* MTTraveller.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -423,6 +457,7 @@
 				CEC19B952A0B982D006E3192 /* AuthProvider.swift */,
 				CE65C76A2A178B300021F7FD /* GroupProvider.swift */,
 				89BD67B72A384940006129F2 /* GroupDetailProvider.swift */,
+				C96F9A1C2A3B3A43006DE900 /* AddTravellerProvider.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -611,6 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				897E61D22A0BA910008D1687 /* VerificationView.swift in Sources */,
+				C96F9A1D2A3B3A43006DE900 /* AddTravellerProvider.swift in Sources */,
 				896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */,
 				CE5742D42A1DFA040089666A /* GroupPreview.swift in Sources */,
 				CEC19B892A0B8543006E3192 /* Keys.swift in Sources */,
@@ -626,13 +662,17 @@
 				897EDC392A050E24001B652E /* MyTravel2.xcdatamodeld in Sources */,
 				89D12C8F2A1E2BA60024F3DF /* MTLazyView.swift in Sources */,
 				89BD67B82A384940006129F2 /* GroupDetailProvider.swift in Sources */,
+				897DAB192A39812D006CB159 /* QrCodeCameraDelegate.swift in Sources */,
 				89BD67BD2A3852AE006129F2 /* GroupDetailPreviewProvider.swift in Sources */,
 				CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */,
 				CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */,
+				89A1AE682A386F5D00C089E1 /* ScanQRCodeView.swift in Sources */,
 				CE65C76E2A178B3F0021F7FD /* GroupViewModel.swift in Sources */,
 				CEC19B932A0B97F6006E3192 /* AuthViewModel.swift in Sources */,
 				89210BA02A15F7AD00F268FC /* CheckInView.swift in Sources */,
+				897DAB1C2A3984D1006CB159 /* CameraPreviewView.swift in Sources */,
 				895DF4BF2A0BD05900899187 /* MTTabBarContainerView.swift in Sources */,
+				897DAB1F2A398BFB006CB159 /* QRCodeScannerView.swift in Sources */,
 				89F8AFB32A3070EA008D00BC /* GroupDetailView.swift in Sources */,
 				CEC19B7E2A0B8108006E3192 /* Constant.swift in Sources */,
 				897EDC362A050E24001B652E /* Persistence.swift in Sources */,
@@ -640,11 +680,15 @@
 				89C62F792A0CB1AF00E2FD05 /* AppTabBarView.swift in Sources */,
 				CEC19B872A0B84F7006E3192 /* MTConfiguration.swift in Sources */,
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
+				89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */,
 				897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */,
 				89C1D8A32A1B8498007EB9E1 /* CreateGroupSuccessView.swift in Sources */,
 				89210BAA2A16487700F268FC /* Extension+SwiftUI.swift in Sources */,
 				CEC19B962A0B982D006E3192 /* AuthProvider.swift in Sources */,
+				C96F9A242A3B40F3006DE900 /* TravellerListRow.swift in Sources */,
+				C96F9A212A3B3EE4006DE900 /* MTTraveller.swift in Sources */,
 				CEC19B9B2A0B9FBC006E3192 /* CustomError.swift in Sources */,
+				C96F9A1F2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift in Sources */,
 				897EDC6E2A05272F001B652E /* LoginView.swift in Sources */,
 				89BD67BB2A385129006129F2 /* GroupDetailViewModel.swift in Sources */,
 				CE36DE872A134D8E009790A5 /* MTUserDefaults.swift in Sources */,
@@ -660,6 +704,7 @@
 				CE5756562A1B3A5500801FD9 /* MTAsyncView.swift in Sources */,
 				8909BF852A3830F900ACFFF7 /* MTRequestIntercepter.swift in Sources */,
 				895DF4C22A0BD2B200899187 /* MTTabBarPreferenceKey.swift in Sources */,
+				897DAB142A397501006CB159 /* ScanQRCodeViewModel.swift in Sources */,
 				CE36DE8A2A135DD3009790A5 /* Extension.swift in Sources */,
 				897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */,
 				CE5742CE2A1DF7F60089666A /* PreviewGroupProvider.swift in Sources */,
@@ -674,6 +719,7 @@
 				89BD67A02A38382E006129F2 /* KeychainWrapper.swift in Sources */,
 				CEC19B812A0B83D0006E3192 /* AppURL.swift in Sources */,
 				CEC19B982A0B991A006E3192 /* MTResponse.swift in Sources */,
+				C96F9A262A3B41C0006DE900 /* TravellerPreview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,7 +926,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "MyTravel2/Preview\\ Content/GroupPreview.swift MyTravel2/Preview\\ Content MyTravel2/Preview\\ Content/UserPreview.swift MyTravel2/Preview\\ Content/PreviewGroupProvider.swift";
@@ -906,7 +952,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.com.pedro.POC-Scanner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "POC Scanner Development";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "POC Scanner Adhoc";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;

@@ -16,4 +16,10 @@ class Validator {
 		let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
 		return emailPred.evaluate(with: email)
 	}
+
+	func isValid(travellerCode: String) -> Bool {
+		let travellerCodeRegEx = "^[0-9]{12}$"
+		let travellerCodePred = NSPredicate(format: "SELF MATCHES %@", travellerCodeRegEx)
+		return travellerCodePred.evaluate(with: travellerCode)
+	}
 }

@@ -8,6 +8,8 @@
 	<string>$(API_BASE_URL)</string>
 	<key>API_PATH</key>
 	<string>$(API_PATH)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow $(PRODUCT_NAME) to use camera to let you scan QR code for traveller or group</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-VariableFont_wght.ttf</string>

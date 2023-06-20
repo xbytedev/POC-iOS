@@ -8,25 +8,28 @@
 import Foundation
 
 protocol GroupDetailProvider {
-	func getGroupPeopleList(from group: MTGroup) async -> Result<Bool, Error>
+	func getGroupPeopleList(from group: MTGroup) async -> Result<[MTTraveller], Error>
 }
 
 struct GroupDetailAPIProvider: GroupDetailProvider {
 	struct PeopleListParam {
 		let group: MTGroup
 	}
-	func getGroupPeopleList(from group: MTGroup) async -> Result<Bool, Error> {
-		let requester = WebRequester<MTResponse<NullCodable>>(withSession: WebRequesterSessionProvider.session)
+	func getGroupPeopleList(from group: MTGroup) async -> Result<[MTTraveller], Error> {
+		let requester = WebRequester<MTResponse<[MTTraveller]>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.groupPeopleList, withParameters: PeopleListParam(group: group))
 		switch result {
 		case .success(let response):
-			if response.status == true {
-				return .success(true)
+			if response.status {
+				if let travellers = response.data {
+					return .success(travellers)
+				} else {
+					return .failure(CustomError.successButNoData)
+				}
 			} else {
 				return .failure(CustomError.getError(fromMessage: response.message))
 			}
-		case .failure(let error):
-			return .failure(getOriginalErrorIfAny(error))
+		case .failure(let error): return .failure(getOriginalErrorIfAny(error))
 		}
 	}
 }

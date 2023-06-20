@@ -60,7 +60,7 @@ struct GroupAPIProvider: GroupProvider {
 				return .failure(CustomError.message(response.message ?? ""))
 			}
 		case .failure(let error):
-			return .failure(CustomError.message(error.localizedDescription))
+			return .failure(getOriginalErrorIfAny(error))
 		}
 	}
 }

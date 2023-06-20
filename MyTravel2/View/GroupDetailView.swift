@@ -19,18 +19,44 @@ struct GroupDetailView: MTAsyncView {
 	}
 
 	var loadedView: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		dataView
 			.toolbar {
 				ToolbarItem(placement: .navigationBarTrailing) {
-						Button {
-//							isPopupPresented = true
-						} label: {
-							Image(systemName: "plus")
-								.roundButton()
-						}
+					NavigationLink {
+						ScanQRCodeView(viewModel: ScanQRCodeViewModel(group: viewModel.group, provider: AddTravellerAPIProvider()))
+							.navigationTitle("QR Code")
+					} label: {
+						Image(systemName: "plus")
+							.roundButton()
+					}
 				}
 			}
     }
+
+	@ViewBuilder
+	var dataView: some View {
+		if #available(iOS 15.0, *) {
+			listView
+				.refreshable(action: viewModel.refreshTravellerList)
+		} else {
+			listView
+		}
+	}
+
+	var listView: some View {
+		List {
+			ForEach($viewModel.travellers) { item in
+				Toggle(item.name.wrappedValue, isOn: item.status)
+					.onChange(of: item.status.wrappedValue, perform: { newValue in
+						print(newValue)
+					})
+					.mtListBackgroundStyle()
+			}
+			.onDelete { index in
+			}
+		}
+		.listStyle(.plain)
+	}
 
 	func load() {
 		Task {
