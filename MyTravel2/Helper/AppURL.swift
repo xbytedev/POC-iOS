@@ -61,4 +61,8 @@ struct APPURL {
 	static var addTravellerToGroup: String {
 		apiBaseURL + "add_group_people"
 	}
+
+	static var changeStatusTraveller: String {
+		apiBaseURL + "change_status_group_people"
+	}
 }

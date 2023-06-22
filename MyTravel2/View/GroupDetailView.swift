@@ -10,6 +10,8 @@ import SwiftUI
 struct GroupDetailView: MTAsyncView {
 	@ObservedObject var viewModel: GroupDetailViewModel
 	@State private var isMakingDefault = false
+	@State private var configuration = UIConfiguration()
+	@State private var updatingMessage = "Loading"
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -24,8 +26,7 @@ struct GroupDetailView: MTAsyncView {
 			.toolbar {
 				ToolbarItem(placement: .navigationBarTrailing) {
 					NavigationLink {
-						ScanQRCodeView(viewModel: ScanQRCodeViewModel(group: viewModel.group, provider: AddTravellerAPIProvider()))
-							.navigationTitle("QR Code")
+						GroupEditView(viewModel: viewModel)
 					} label: {
 						Image(R.image.ic_edit)
 							.aspectRatio(contentMode: .fit)
@@ -36,6 +37,25 @@ struct GroupDetailView: MTAsyncView {
 									.foregroundColor(AppColor.Text.tertiary)
 									.shadow(radius: 4, x: 2, y: 2)
 							}
+					}
+				}
+			}
+			.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
+				Text(configuration.errorMeessage)
+			}
+			.myOverlay {
+				Group {
+					if configuration.isLoading {
+						ZStack {
+							Color.black.opacity(0.4)
+							VStack {
+								ProgressView()
+									.modifier(ProgressViewModifier(color: AppColor.Text.tertiary))
+								Text(updatingMessage)
+									.font(AppFont.getFont(forStyle: .body))
+									.foregroundColor(AppColor.Text.tertiary)
+							}
+						}
 					}
 				}
 			}
@@ -65,11 +85,11 @@ struct GroupDetailView: MTAsyncView {
 
 	var sectionView: some View {
 		Section {
-			ForEach($viewModel.travellers) { item in
-				Toggle(item.name.wrappedValue, isOn: item.status)
+			ForEach($viewModel.travellers) { traveller in
+				Toggle(traveller.name.wrappedValue, isOn: traveller.status)
 					.toggleStyle(MTToggleStyle())
-					.onChange(of: item.status.wrappedValue, perform: { newValue in
-						print(newValue)
+					.onChange(of: traveller.status.wrappedValue, perform: { _ in
+						changeStatus(of: traveller.wrappedValue)
 					})
 					.mtListBackgroundStyle()
 			}
@@ -92,6 +112,22 @@ struct GroupDetailView: MTAsyncView {
 	func load() {
 		Task {
 			await viewModel.getPeopleList()
+		}
+	}
+
+	func changeStatus(of traveller: MTTraveller) {
+		Task {
+			do {
+				updatingMessage = (traveller.status ? "Activating " : "Deactivating ") + traveller.name
+				configuration.isLoading = true
+				try await viewModel.changeStatus(ofTraveller: traveller)
+				configuration.isLoading = false
+			} catch {
+				configuration.isLoading = false
+				configuration.errorTitle = R.string.localizable.error()
+				configuration.errorMeessage = error.localizedDescription
+				configuration.alertPresent = true
+			}
 		}
 	}
 }

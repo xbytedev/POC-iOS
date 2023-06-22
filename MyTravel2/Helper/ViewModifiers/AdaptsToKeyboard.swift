@@ -17,7 +17,8 @@ struct AdaptsToKeyboard: ViewModifier {
 				.padding(.bottom, currentHeight)
 				.onAppear {
 					NotificationCenter.Publisher(center: .default, name: UIResponder.keyboardWillShowNotification)
-						.merge(with: NotificationCenter.Publisher(center: .default, name: UIResponder.keyboardWillChangeFrameNotification))
+						.merge(with: NotificationCenter.Publisher(
+							center: .default, name: UIResponder.keyboardWillChangeFrameNotification))
 						.compactMap { notification in
 							withAnimation(.easeOut(duration: 0.16)) {
 								notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
@@ -28,7 +29,8 @@ struct AdaptsToKeyboard: ViewModifier {
 							if duration > 0 {
 								let curve = userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey]
 									.flatMap { $0 as? Int }
-									.flatMap { AnimationCurve(rawValue: $0)?.getAnimation(duration: duration)} ?? Animation.easeInOut(duration: duration)
+									.flatMap {
+							 AnimationCurve(rawValue: $0)?.getAnimation(duration: duration)} ?? Animation.easeInOut(duration: duration)
 								withAnimation(curve) {
 									notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
 								}

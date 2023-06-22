@@ -42,4 +42,9 @@ class GroupDetailViewModel: ObservableObject {
 			state = .failed(error)
 		}
 	}
+
+	@MainActor
+	func changeStatus(ofTraveller traveller: MTTraveller) async throws {
+		try await groupDetailProvider.changeStatus(ofTraveller: traveller).get()
+	}
 }

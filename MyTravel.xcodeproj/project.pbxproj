@@ -69,6 +69,7 @@
 		89D12C8F2A1E2BA60024F3DF /* MTLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D12C8E2A1E2BA60024F3DF /* MTLazyView.swift */; };
 		89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D2272C2A3AC65E00D6D425 /* EnterCodeView.swift */; };
 		89F8AFB32A3070EA008D00BC /* GroupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F8AFB22A3070EA008D00BC /* GroupDetailView.swift */; };
+		89F942492A42B6F300410DED /* GroupEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F942482A42B6F300410DED /* GroupEditView.swift */; };
 		C96F9A1D2A3B3A43006DE900 /* AddTravellerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F9A1C2A3B3A43006DE900 /* AddTravellerProvider.swift */; };
 		C96F9A1F2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F9A1E2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift */; };
 		C96F9A212A3B3EE4006DE900 /* MTTraveller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F9A202A3B3EE4006DE900 /* MTTraveller.swift */; };
@@ -179,6 +180,7 @@
 		89D12C8E2A1E2BA60024F3DF /* MTLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLazyView.swift; sourceTree = "<group>"; };
 		89D2272C2A3AC65E00D6D425 /* EnterCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeView.swift; sourceTree = "<group>"; };
 		89F8AFB22A3070EA008D00BC /* GroupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailView.swift; sourceTree = "<group>"; };
+		89F942482A42B6F300410DED /* GroupEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditView.swift; sourceTree = "<group>"; };
 		C96F9A1C2A3B3A43006DE900 /* AddTravellerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTravellerProvider.swift; sourceTree = "<group>"; };
 		C96F9A1E2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTravellerPreviewProvider.swift; sourceTree = "<group>"; };
 		C96F9A202A3B3EE4006DE900 /* MTTraveller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTraveller.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				896259352A125C2500AAE879 /* GroupListView.swift */,
 				C96F9A232A3B40F3006DE900 /* TravellerListRow.swift */,
 				89F8AFB22A3070EA008D00BC /* GroupDetailView.swift */,
+				89F942482A42B6F300410DED /* GroupEditView.swift */,
 				89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */,
 				89210BA62A162C6400F268FC /* CreateGroupView.swift */,
 				89C1D8A22A1B8498007EB9E1 /* CreateGroupSuccessView.swift */,
@@ -684,6 +687,7 @@
 				89C62F792A0CB1AF00E2FD05 /* AppTabBarView.swift in Sources */,
 				CEC19B872A0B84F7006E3192 /* MTConfiguration.swift in Sources */,
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
+				89F942492A42B6F300410DED /* GroupEditView.swift in Sources */,
 				89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */,
 				897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */,
 				89C1D8A32A1B8498007EB9E1 /* CreateGroupSuccessView.swift in Sources */,
