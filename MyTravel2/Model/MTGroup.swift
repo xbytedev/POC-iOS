@@ -25,3 +25,5 @@ struct MTGroup: Decodable {
 }
 
 extension MTGroup: Identifiable { }
+extension MTGroup: Equatable { }
+extension MTGroup: Hashable { }

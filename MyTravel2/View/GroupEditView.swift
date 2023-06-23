@@ -13,7 +13,9 @@ struct GroupEditView: View {
 	@State private var shouldAddNew = false
 	@State private var configuration = UIConfiguration()
 	@State private var updatingMessage = "Loading"
-	@State private var isConfirmation = false
+	@State private var deleteGroupConfirmation = false
+	@State private var deleteMemberConfirmation = false
+	@State private var deleteMember: MTTraveller?
 	@Environment(\.mtDismissable) var dismiss
 
 	var body: some View {
@@ -26,17 +28,28 @@ struct GroupEditView: View {
 			}
 		}
 		.listStyle(.plain)
-		.setThemeBackButton()
-		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
-			Text(configuration.errorMeessage)
-		}
-		.alert(isPresented: $isConfirmation, content: {
+		.alert(isPresented: $deleteGroupConfirmation, content: {
 			Alert(
 				title: Text("Are you sure?"), message: Text("Do you want to delete group?"),
 				primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
 					deleteGroup()
 				}))
 		})
+		.alert(isPresented: $deleteMemberConfirmation, content: {
+				if let deleteMember {
+					return Alert(
+						title: Text("Are you sure?"), message: Text("Do you want to delete \(deleteMember.name)?"),
+						primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
+							deleteTraveller(deleteMember)
+						}))
+				} else {
+					return Alert(title: Text(""))
+				}
+		})
+		.setThemeBackButton()
+		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
+			Text(configuration.errorMeessage)
+		}
 		.myOverlay {
 			Group {
 				if configuration.isLoading {
@@ -62,6 +75,8 @@ struct GroupEditView: View {
 					Text("\(traveller.name)")
 					Spacer()
 					Button {
+						deleteMember = traveller
+						deleteMemberConfirmation = true
 					} label: {
 						Image(systemName: "trash")
 					}
@@ -91,7 +106,7 @@ struct GroupEditView: View {
 							shouldAddNew = true
 						}
 						MTButton(isLoading: $isDeleting, title: "Delete Group", loadingTitle: "Deleting group") {
-							isConfirmation = true
+							deleteGroupConfirmation = true
 						}
 					}
 					Spacer()
@@ -120,6 +135,10 @@ struct GroupEditView: View {
 				configuration.alertPresent = true
 			}
 		}
+	}
+
+	private func deleteTraveller(_ traveller: MTTraveller) {
+
 	}
 }
 
