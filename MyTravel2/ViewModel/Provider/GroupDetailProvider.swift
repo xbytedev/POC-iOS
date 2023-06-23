@@ -10,6 +10,7 @@ import Foundation
 protocol GroupDetailProvider {
 	func getGroupPeopleList(from group: MTGroup) async -> Result<[MTTraveller], Error>
 	func changeStatus(ofTraveller traveller: MTTraveller) async -> Result<Void, Error>
+	func delete(group: MTGroup) async -> Result<Void, Error>
 }
 
 struct GroupDetailAPIProvider: GroupDetailProvider {
@@ -40,6 +41,20 @@ struct GroupDetailAPIProvider: GroupDetailProvider {
 		let requester = WebRequester<MTResponse<NullCodable>>(withSession: WebRequesterSessionProvider.session)
 		let param = ChangeStatusParam(traveller: traveller)
 		let result = await requester.request(toURL: APPURL.changeStatusTraveller, withParameters: param)
+		switch result {
+		case .success(let response):
+			if response.status {
+				return .success(())
+			} else {
+				return .failure(CustomError.getError(fromMessage: response.message))
+			}
+		case .failure(let error):
+			return .failure(getOriginalErrorIfAny(error))
+		}
+	}
+	func delete(group: MTGroup) async -> Result<Void, Error> {
+		let requester = WebRequester<MTResponse<NullCodable>>(withSession: WebRequesterSessionProvider.session)
+		let result = await requester.request(toURL: APPURL.deleteGroup, withParameters: PeopleListParam(group: group))
 		switch result {
 		case .success(let response):
 			if response.status {

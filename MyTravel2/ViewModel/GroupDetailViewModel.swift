@@ -47,4 +47,8 @@ class GroupDetailViewModel: ObservableObject {
 	func changeStatus(ofTraveller traveller: MTTraveller) async throws {
 		try await groupDetailProvider.changeStatus(ofTraveller: traveller).get()
 	}
+
+	func deleteGroup() async throws {
+		try await groupDetailProvider.delete(group: group).get()
+	}
 }

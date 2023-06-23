@@ -60,8 +60,6 @@ struct GroupListView: MTAsyncView {
 				}
 				.mtListBackgroundStyle()
 			}
-			.onDelete { index in
-			}
 		}
 		.listStyle(.plain)
 		/*.swipeActions(edge: .trailing, allowsFullSwipe: true) {

@@ -15,6 +15,10 @@ struct GroupDetailSuccessProvider: GroupDetailProvider {
 	func changeStatus(ofTraveller traveller: MTTraveller) async -> Result<Void, Error> {
 		return .success(())
 	}
+
+	func delete(group: MTGroup) async -> Result<Void, Error> {
+		return .success(())
+	}
 }
 
 struct GroupDetailFailureProvider: GroupDetailProvider {
@@ -23,6 +27,10 @@ struct GroupDetailFailureProvider: GroupDetailProvider {
 	}
 
 	func changeStatus(ofTraveller traveller: MTTraveller) async -> Result<Void, Error> {
+		return .failure(CustomError.message("Mock Failure"))
+	}
+
+	func delete(group: MTGroup) async -> Result<Void, Error> {
 		return .failure(CustomError.message("Mock Failure"))
 	}
 }
