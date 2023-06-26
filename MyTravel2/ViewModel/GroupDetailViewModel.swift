@@ -51,4 +51,11 @@ class GroupDetailViewModel: ObservableObject {
 	func deleteGroup() async throws {
 		try await groupDetailProvider.delete(group: group).get()
 	}
+
+	@MainActor
+	func delete(traveller: MTTraveller) async throws {
+		try await groupDetailProvider.delete(traveller: traveller).get()
+		guard let index = travellers.firstIndex(of: traveller) else { return }
+		travellers.remove(at: index)
+	}
 }

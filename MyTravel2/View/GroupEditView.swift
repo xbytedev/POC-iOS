@@ -21,20 +21,16 @@ struct GroupEditView: View {
 	var body: some View {
 		List {
 			if #available(iOS 15.0, *) {
-				sectionView
+				sectionView1
+					.listSectionSeparator(.hidden)
+				sectionView2
 					.listSectionSeparator(.hidden)
 			} else {
-				sectionView
+				sectionView1
+				sectionView2
 			}
 		}
 		.listStyle(.plain)
-		.alert(isPresented: $deleteGroupConfirmation, content: {
-			Alert(
-				title: Text("Are you sure?"), message: Text("Do you want to delete group?"),
-				primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
-					deleteGroup()
-				}))
-		})
 		.alert(isPresented: $deleteMemberConfirmation, content: {
 				if let deleteMember {
 					return Alert(
@@ -68,7 +64,7 @@ struct GroupEditView: View {
 		}
 	}
 
-	var sectionView: some View {
+	var sectionView1: some View {
 		Section {
 			ForEach(viewModel.travellers) { traveller in
 				HStack {
@@ -88,7 +84,7 @@ struct GroupEditView: View {
 			Text(viewModel.group.name ?? "")
 				.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 				.foregroundColor(AppColor.theme)
-		} footer: {
+		/*} footer: {
 			ZStack {
 				// TODO: Add navigation to scanner view
 				/*NavigationLink(isActive: $shouldAddNew) {
@@ -112,8 +108,61 @@ struct GroupEditView: View {
 					Spacer()
 				}
 			}
-			.listRowBackground(Color.clear)
+			.listRowBackground(Color.clear)*/
 		}
+		.listRowBackground(Color.clear)
+	}
+
+	var sectionView2: some View {
+		Section {
+			if #available(iOS 15.0, *) {
+				addTravellerButton
+					.listRowSeparator(.hidden)
+				deleteGroupButton
+					.listRowSeparator(.hidden)
+			} else {
+				addTravellerButton
+				deleteGroupButton
+			}
+		}
+		.listRowBackground(Color.clear)
+	}
+
+	var addTravellerButton: some View {
+		HStack {
+			Spacer()
+			ZStack {
+				NavigationLink(isActive: $shouldAddNew) {
+					ScanQRCodeView(
+						viewModel: ScanQRCodeViewModel(group: viewModel.group, provider: AddTravellerAPIProvider()))
+					.navigationTitle("QR Code")
+				} label: {
+					EmptyView()
+				}
+				.opacity(0)
+				MTButton(isLoading: .constant(false), title: "Add Travellers", loadingTitle: "") {
+					shouldAddNew = true
+				}
+			}
+			Spacer()
+		}
+	}
+
+	var deleteGroupButton: some View {
+		HStack {
+			Spacer()
+			MTButton(isLoading: $isDeleting, title: "Delete Group", loadingTitle: "Deleting group") {
+				deleteGroupConfirmation = true
+			}
+			Spacer()
+		}
+		.alert(isPresented: $deleteGroupConfirmation, content: {
+			Alert(
+				title: Text("Are you sure?"), message: Text("Do you want to delete group?"),
+				primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
+					deleteGroup()
+				}))
+		})
 	}
 
 	private func deleteGroup() {
@@ -138,7 +187,19 @@ struct GroupEditView: View {
 	}
 
 	private func deleteTraveller(_ traveller: MTTraveller) {
-
+		Task {
+			do {
+				updatingMessage = "Deleting " + (traveller.name)
+				isDeleting = true
+				try await viewModel.delete(traveller: traveller)
+				isDeleting = false
+			} catch {
+				isDeleting = false
+				configuration.errorTitle = R.string.localizable.error()
+				configuration.errorMeessage = error.localizedDescription
+				configuration.alertPresent = true
+			}
+		}
 	}
 }
 

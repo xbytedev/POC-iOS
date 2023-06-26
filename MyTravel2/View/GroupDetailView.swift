@@ -100,10 +100,12 @@ struct GroupDetailView: MTAsyncView {
 		} footer: {
 			HStack {
 				Spacer()
-				MTButton(
-					isLoading: $isMakingDefault, title: R.string.localizable.makeDefault(),
-					loadingTitle: R.string.localizable.makingDefault()) {
-					}
+				if viewModel.group.isDefault != 1 {
+					MTButton(
+						isLoading: $isMakingDefault, title: R.string.localizable.makeDefault(),
+						loadingTitle: R.string.localizable.makingDefault()) {
+						}
+				}
 				Spacer()
 			}
 		}

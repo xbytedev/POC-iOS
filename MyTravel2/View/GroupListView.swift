@@ -15,13 +15,14 @@ struct GroupListView: MTAsyncView {
 	@Binding var createdGroup: MTGroup?
 	@State private var navigationHash: [Int: Bool]
 
-	init(isPopupPresented: Binding<Bool>, shouldGroupSuccess: Binding<Bool>, createdGroup: Binding<MTGroup?> = .constant(nil)) {
-		_isPopupPresented = isPopupPresented
-		_shouldGroupSuccess = shouldGroupSuccess
-		_createdGroup = createdGroup
-		self.navigationHash = .init()
-		viewModel.groupList.forEach { navigationHash[$0.id] = false }
-	}
+	init(
+		isPopupPresented: Binding<Bool>, shouldGroupSuccess: Binding<Bool>,
+		createdGroup: Binding<MTGroup?> = .constant(nil)) {
+			_isPopupPresented = isPopupPresented
+			_shouldGroupSuccess = shouldGroupSuccess
+			_createdGroup = createdGroup
+			self.navigationHash = .init()
+		}
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -30,6 +31,7 @@ struct GroupListView: MTAsyncView {
 	func load() {
 		Task {
 			try await viewModel.getGroupList()
+			viewModel.groupList.forEach { navigationHash[$0.id] = false }
 		}
 	}
 

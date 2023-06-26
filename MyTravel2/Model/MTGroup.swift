@@ -13,6 +13,7 @@ struct MTGroup: Decodable {
 	let name: String?
 	let partnerID, status: Int?
 	let createdAt, updatedAt: String?
+	var isDefault: Int
 
 	enum CodingKeys: String, CodingKey {
 		case id, name
@@ -21,6 +22,7 @@ struct MTGroup: Decodable {
 		case status
 		case createdAt = "created_at"
 		case updatedAt = "updated_at"
+		case isDefault = "default_status"
 	}
 }
 
