@@ -36,3 +36,20 @@ class GroupViewModel: ObservableObject {
 		}
 	}
 }
+
+extension GroupViewModel: GroupUpdateDelegate {
+	@MainActor
+	func defaultGroupUpdated(group: MTGroup) {
+		while let index = groupList.firstIndex(where: { $0.isDefault == 1}) {
+			var group = groupList[index]
+			group.isDefault = 0
+			groupList.remove(at: index)
+			groupList.insert(group, at: index)
+		}
+		guard let index = groupList.firstIndex(of: group) else { return }
+		groupList.remove(at: index)
+		var group = group
+		group.isDefault = 1
+		groupList.insert(group, at: index)
+	}
+}

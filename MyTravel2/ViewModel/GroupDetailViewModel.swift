@@ -7,15 +7,21 @@
 
 import Foundation
 
+protocol GroupUpdateDelegate: AnyObject {
+	func defaultGroupUpdated(group: MTGroup)
+}
+
 class GroupDetailViewModel: ObservableObject {
-	let group: MTGroup
+	@Published var group: MTGroup
 	let groupDetailProvider: GroupDetailProvider
 	@Published @MainActor private(set) var state = MTLoadingState.idle
 	@Published @MainActor var travellers = [MTTraveller]()
+	weak var groupUpdateDelegate: GroupUpdateDelegate?
 
-	init(group: MTGroup, groupDetailProvider: GroupDetailProvider) {
+	init(group: MTGroup, groupDetailProvider: GroupDetailProvider, groupUpdateDelegate: GroupUpdateDelegate? = nil) {
 		self.group = group
 		self.groupDetailProvider = groupDetailProvider
+		self.groupUpdateDelegate = groupUpdateDelegate
  	}
 
 	@MainActor
@@ -57,5 +63,12 @@ class GroupDetailViewModel: ObservableObject {
 		try await groupDetailProvider.delete(traveller: traveller).get()
 		guard let index = travellers.firstIndex(of: traveller) else { return }
 		travellers.remove(at: index)
+	}
+
+	@MainActor
+	func makingGroupDefault() async throws {
+		try await groupDetailProvider.makeDefault(group: group).get()
+		groupUpdateDelegate?.defaultGroupUpdated(group: group)
+		group.isDefault = 1
 	}
 }

@@ -60,7 +60,7 @@ struct GroupListView: MTAsyncView {
 			ForEach(viewModel.groupList) { item in
 				ZStack {
 					NavigationLink {
-						GroupDetailView(viewModel: .init(group: item, groupDetailProvider: GroupDetailAPIProvider()))
+						GroupDetailView(viewModel: .init(group: item, groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel))
 							.navigationTitle(R.string.localizable.groups())
 							.setThemeBackButton()
 					} label: {

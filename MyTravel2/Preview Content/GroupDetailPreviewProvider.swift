@@ -9,36 +9,44 @@ import Foundation
 
 struct GroupDetailSuccessProvider: GroupDetailProvider {
 	func getGroupPeopleList(from group: MTGroup) async -> Result<[MTTraveller], Error> {
-		return .success([.preview])
+		.success([.preview])
 	}
 
 	func changeStatus(ofTraveller traveller: MTTraveller) async -> Result<Void, Error> {
-		return .success(())
+		.success(())
 	}
 
 	func delete(group: MTGroup) async -> Result<Void, Error> {
-		return .success(())
+		.success(())
 	}
 
 	func delete(traveller: MTTraveller) async -> Result<Void, Error> {
-		return .success(())
+		.success(())
+	}
+
+	func makeDefault(group: MTGroup) async -> Result<Void, Error> {
+		.success(())
 	}
 }
 
 struct GroupDetailFailureProvider: GroupDetailProvider {
 	func getGroupPeopleList(from group: MTGroup) async -> Result<[MTTraveller], Error> {
-		return .failure(CustomError.message("Mock Failure"))
+		.failure(CustomError.message("Mock Failure"))
 	}
 
 	func changeStatus(ofTraveller traveller: MTTraveller) async -> Result<Void, Error> {
-		return .failure(CustomError.message("Mock Failure"))
+		.failure(CustomError.message("Mock Failure"))
 	}
 
 	func delete(group: MTGroup) async -> Result<Void, Error> {
-		return .failure(CustomError.message("Mock Failure"))
+		.failure(CustomError.message("Mock Failure"))
 	}
 
 	func delete(traveller: MTTraveller) async -> Result<Void, Error> {
-		return .failure(CustomError.message("Mock Failure"))
+		.failure(CustomError.message("Mock Failure"))
+	}
+
+	func makeDefault(group: MTGroup) async -> Result<Void, Error> {
+		.failure(CustomError.message("Mock Failure"))
 	}
 }
