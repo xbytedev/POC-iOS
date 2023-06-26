@@ -11,6 +11,7 @@ struct CreateGroupSuccessView: View {
 	@Environment (\.mtDismissable) var dismiss
 	let group: MTGroup
 	@Binding var shouldPresent: Bool
+	@State private var shouldAddTraveller: Bool = false
 
     var body: some View {
 		ZStack {
@@ -24,9 +25,18 @@ struct CreateGroupSuccessView: View {
 						.font(AppFont.getFont(forStyle: .largeTitle, forWeight: .medium))
 				}
 				VStack {
-					MTButton(isLoading: .constant(false), title: R.string.localizable.addTravelers(), loadingTitle: "") {
+					// TODO: Add Traveller navigation is not working
+					NavigationLink {
+						ScanQRCodeView(
+							viewModel: ScanQRCodeViewModel(group: group, provider: AddTravellerAPIProvider()))
+						.navigationTitle("QR Code")
+					} label: {
+						MTButton(isLoading: .constant(false), title: R.string.localizable.addTravelers(), loadingTitle: "") {
+							dismiss()
+							shouldAddTraveller = true
+						}
+						.inverted()
 					}
-					.inverted()
 					Button(action: dismiss) {
 						Text(R.string.localizable.cancel)
 							.foregroundColor(AppColor.Text.tertiary)

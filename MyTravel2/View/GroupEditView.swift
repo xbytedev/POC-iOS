@@ -74,7 +74,7 @@ struct GroupEditView: View {
 						deleteMember = traveller
 						deleteMemberConfirmation = true
 					} label: {
-						Image(systemName: "trash")
+						Image(R.image.ic_delete)
 					}
 					.roundButton()
 				}
@@ -84,31 +84,6 @@ struct GroupEditView: View {
 			Text(viewModel.group.name ?? "")
 				.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 				.foregroundColor(AppColor.theme)
-		/*} footer: {
-			ZStack {
-				// TODO: Add navigation to scanner view
-				/*NavigationLink(isActive: $shouldAddNew) {
-					ScanQRCodeView(
-						viewModel: ScanQRCodeViewModel(group: viewModel.group, provider: AddTravellerAPIProvider()))
-					.navigationTitle("QR Code")
-				} label: {
-					EmptyView()
-				}
-				.opacity(0)*/
-				HStack {
-					Spacer()
-					VStack {
-						MTButton(isLoading: .constant(false), title: "Add Travellers", loadingTitle: "") {
-							shouldAddNew = true
-						}
-						MTButton(isLoading: $isDeleting, title: "Delete Group", loadingTitle: "Deleting group") {
-							deleteGroupConfirmation = true
-						}
-					}
-					Spacer()
-				}
-			}
-			.listRowBackground(Color.clear)*/
 		}
 		.listRowBackground(Color.clear)
 	}
