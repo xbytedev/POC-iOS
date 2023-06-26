@@ -42,4 +42,20 @@ class GroupDetailViewModel: ObservableObject {
 			state = .failed(error)
 		}
 	}
+
+	@MainActor
+	func changeStatus(ofTraveller traveller: MTTraveller) async throws {
+		try await groupDetailProvider.changeStatus(ofTraveller: traveller).get()
+	}
+
+	func deleteGroup() async throws {
+		try await groupDetailProvider.delete(group: group).get()
+	}
+
+	@MainActor
+	func delete(traveller: MTTraveller) async throws {
+		try await groupDetailProvider.delete(traveller: traveller).get()
+		guard let index = travellers.firstIndex(of: traveller) else { return }
+		travellers.remove(at: index)
+	}
 }

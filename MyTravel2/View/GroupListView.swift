@@ -13,6 +13,16 @@ struct GroupListView: MTAsyncView {
 	@StateObject private var viewModel: GroupViewModel = .init(provider: GroupAPIProvider())
 	@Binding var shouldGroupSuccess: Bool
 	@Binding var createdGroup: MTGroup?
+	@State private var navigationHash: [Int: Bool]
+
+	init(
+		isPopupPresented: Binding<Bool>, shouldGroupSuccess: Binding<Bool>,
+		createdGroup: Binding<MTGroup?> = .constant(nil)) {
+			_isPopupPresented = isPopupPresented
+			_shouldGroupSuccess = shouldGroupSuccess
+			_createdGroup = createdGroup
+			self.navigationHash = .init()
+		}
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -21,6 +31,7 @@ struct GroupListView: MTAsyncView {
 	func load() {
 		Task {
 			try await viewModel.getGroupList()
+			viewModel.groupList.forEach { navigationHash[$0.id] = false }
 		}
 	}
 
@@ -50,7 +61,7 @@ struct GroupListView: MTAsyncView {
 				ZStack {
 					NavigationLink {
 						GroupDetailView(viewModel: .init(group: item, groupDetailProvider: GroupDetailAPIProvider()))
-							.navigationTitle(item.name ?? "")
+							.navigationTitle(R.string.localizable.groups())
 							.setThemeBackButton()
 					} label: {
 						EmptyView()
@@ -59,8 +70,6 @@ struct GroupListView: MTAsyncView {
 					GroupListRow(groupName: item.name ?? "")
 				}
 				.mtListBackgroundStyle()
-			}
-			.onDelete { index in
 			}
 		}
 		.listStyle(.plain)

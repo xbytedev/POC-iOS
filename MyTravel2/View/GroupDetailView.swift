@@ -9,6 +9,9 @@ import SwiftUI
 
 struct GroupDetailView: MTAsyncView {
 	@ObservedObject var viewModel: GroupDetailViewModel
+	@State private var isMakingDefault = false
+	@State private var configuration = UIConfiguration()
+	@State private var updatingMessage = "Loading"
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -23,11 +26,36 @@ struct GroupDetailView: MTAsyncView {
 			.toolbar {
 				ToolbarItem(placement: .navigationBarTrailing) {
 					NavigationLink {
-						ScanQRCodeView(viewModel: ScanQRCodeViewModel(group: viewModel.group, provider: AddTravellerAPIProvider()))
-							.navigationTitle("QR Code")
+						GroupEditView(viewModel: viewModel)
 					} label: {
-						Image(systemName: "plus")
-							.roundButton()
+						Image(R.image.ic_edit)
+							.aspectRatio(contentMode: .fit)
+							.frame(width: 16, height: 16)
+							.padding(EdgeInsets(top: 8, leading: 10, bottom: 10, trailing: 8))
+							.myBackground {
+								Circle()
+									.foregroundColor(AppColor.Text.tertiary)
+									.shadow(radius: 4, x: 2, y: 2)
+							}
+					}
+				}
+			}
+			.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
+				Text(configuration.errorMeessage)
+			}
+			.myOverlay {
+				Group {
+					if configuration.isLoading {
+						ZStack {
+							Color.black.opacity(0.4)
+							VStack {
+								ProgressView()
+									.modifier(ProgressViewModifier(color: AppColor.Text.tertiary))
+								Text(updatingMessage)
+									.font(AppFont.getFont(forStyle: .body))
+									.foregroundColor(AppColor.Text.tertiary)
+							}
+						}
 					}
 				}
 			}
@@ -45,22 +73,63 @@ struct GroupDetailView: MTAsyncView {
 
 	var listView: some View {
 		List {
-			ForEach($viewModel.travellers) { item in
-				Toggle(item.name.wrappedValue, isOn: item.status)
-					.onChange(of: item.status.wrappedValue, perform: { newValue in
-						print(newValue)
-					})
-					.mtListBackgroundStyle()
-			}
-			.onDelete { index in
+			if #available(iOS 15.0, *) {
+				sectionView
+					.listSectionSeparator(.hidden)
+			} else {
+				sectionView
 			}
 		}
 		.listStyle(.plain)
 	}
 
+	var sectionView: some View {
+		Section {
+			ForEach($viewModel.travellers) { traveller in
+				Toggle(traveller.name.wrappedValue, isOn: traveller.status)
+					.toggleStyle(MTToggleStyle())
+					.onChange(of: traveller.status.wrappedValue, perform: { _ in
+						changeStatus(of: traveller.wrappedValue)
+					})
+					.mtListBackgroundStyle()
+			}
+		} header: {
+			Text(viewModel.group.name ?? "")
+				.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
+				.foregroundColor(AppColor.theme)
+		} footer: {
+			HStack {
+				Spacer()
+				if viewModel.group.isDefault != 1 {
+					MTButton(
+						isLoading: $isMakingDefault, title: R.string.localizable.makeDefault(),
+						loadingTitle: R.string.localizable.makingDefault()) {
+						}
+				}
+				Spacer()
+			}
+		}
+	}
+
 	func load() {
 		Task {
 			await viewModel.getPeopleList()
+		}
+	}
+
+	func changeStatus(of traveller: MTTraveller) {
+		Task {
+			do {
+				updatingMessage = (traveller.status ? "Activating " : "Deactivating ") + traveller.name
+				configuration.isLoading = true
+				try await viewModel.changeStatus(ofTraveller: traveller)
+				configuration.isLoading = false
+			} catch {
+				configuration.isLoading = false
+				configuration.errorTitle = R.string.localizable.error()
+				configuration.errorMeessage = error.localizedDescription
+				configuration.alertPresent = true
+			}
 		}
 	}
 }

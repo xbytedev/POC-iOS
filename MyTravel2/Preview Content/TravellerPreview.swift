@@ -9,5 +9,6 @@ import Foundation
 
 extension MTTraveller {
 	static let preview = MTTraveller(
-		id: 17, groupId: 13, groupCode: "92385366913", partnerId: 23, peopleCode: "599116350917", status: true, name: "Mrugesh")
+		id: 17, groupId: 13, groupCode: "92385366913", partnerId: 23, peopleCode: "599116350917", status: true,
+		name: "Mrugesh")
 }

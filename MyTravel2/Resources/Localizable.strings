@@ -51,6 +51,11 @@
 "group name created" = "Group\n%@\ncreated!";
 "add travelers" = "Add Travelers";
 
+// Group details
+"groups" = "Groups";
+"make default" = "Make Default";
+"making default" = "making default";
+
 // Settings
 "logout" = "Logout";
 "Are you sure" = "Are you sure?";
