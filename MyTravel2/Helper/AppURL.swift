@@ -73,4 +73,8 @@ struct APPURL {
 	static var deleteTraveller: String {
 		apiBaseURL + "delete_group_people"
 	}
+
+	static var makeAsDefaultGroup: String {
+		apiBaseURL + "make_as_default_status"
+	}
 }

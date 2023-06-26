@@ -9,12 +9,12 @@ import Foundation
 
 struct AddTravellerSuccessProvider: AddTravellerProvider {
 	func addTraveler(to group: MTGroup, with code: Int) async -> Result<Bool, Error> {
-		return .success(true)
+		.success(true)
 	}
 }
 
 struct AddTravellerFailureProvider: AddTravellerProvider {
 	func addTraveler(to group: MTGroup, with code: Int) async -> Result<Bool, Error> {
-		return .failure(CustomError.message("Mock Failure"))
+		.failure(CustomError.message("Mock Failure"))
 	}
 }

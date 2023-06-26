@@ -104,6 +104,7 @@ struct GroupDetailView: MTAsyncView {
 					MTButton(
 						isLoading: $isMakingDefault, title: R.string.localizable.makeDefault(),
 						loadingTitle: R.string.localizable.makingDefault()) {
+							makeGroupDefault()
 						}
 				}
 				Spacer()
@@ -126,6 +127,21 @@ struct GroupDetailView: MTAsyncView {
 				configuration.isLoading = false
 			} catch {
 				configuration.isLoading = false
+				configuration.errorTitle = R.string.localizable.error()
+				configuration.errorMeessage = error.localizedDescription
+				configuration.alertPresent = true
+			}
+		}
+	}
+
+	func makeGroupDefault() {
+		Task {
+			do {
+				isMakingDefault = true
+				try await viewModel.makingGroupDefault()
+				isMakingDefault = false
+			} catch {
+				isMakingDefault = false
 				configuration.errorTitle = R.string.localizable.error()
 				configuration.errorMeessage = error.localizedDescription
 				configuration.alertPresent = true
