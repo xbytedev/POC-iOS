@@ -27,6 +27,7 @@
 		895DF4C22A0BD2B200899187 /* MTTabBarPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895DF4C12A0BD2B200899187 /* MTTabBarPreferenceKey.swift */; };
 		896259342A1243CA00AAE879 /* MTShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896259332A1243CA00AAE879 /* MTShapeView.swift */; };
 		896259362A125C2500AAE879 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896259352A125C2500AAE879 /* GroupListView.swift */; };
+		8965C5A72A49A27800024001 /* TravellerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8965C5A62A49A27800024001 /* TravellerDetailView.swift */; };
 		896E8FC42A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 896E8FC32A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */; };
 		896E8FC82A08BAA6002AA4D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */; };
@@ -142,6 +143,7 @@
 		895DF4C12A0BD2B200899187 /* MTTabBarPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTabBarPreferenceKey.swift; sourceTree = "<group>"; };
 		896259332A1243CA00AAE879 /* MTShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTShapeView.swift; sourceTree = "<group>"; };
 		896259352A125C2500AAE879 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
+		8965C5A62A49A27800024001 /* TravellerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerDetailView.swift; sourceTree = "<group>"; };
 		896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeViewModel.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				89F8AFB22A3070EA008D00BC /* GroupDetailView.swift */,
 				89F942482A42B6F300410DED /* GroupEditView.swift */,
 				89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */,
+				8965C5A62A49A27800024001 /* TravellerDetailView.swift */,
 				89210BA62A162C6400F268FC /* CreateGroupView.swift */,
 				89C1D8A22A1B8498007EB9E1 /* CreateGroupSuccessView.swift */,
 				89210B9F2A15F7AD00F268FC /* CheckInView.swift */,
@@ -686,6 +689,7 @@
 				89C62F7E2A0CBB2200E2FD05 /* TabItem.swift in Sources */,
 				89C62F792A0CB1AF00E2FD05 /* AppTabBarView.swift in Sources */,
 				CEC19B872A0B84F7006E3192 /* MTConfiguration.swift in Sources */,
+				8965C5A72A49A27800024001 /* TravellerDetailView.swift in Sources */,
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
 				89F942492A42B6F300410DED /* GroupEditView.swift in Sources */,
 				89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */,
