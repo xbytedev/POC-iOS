@@ -49,7 +49,8 @@ struct ScanQRCodeView: View {
 				  Validator.shared.isValid(travellerCode: newValue) else { return }
 			Task {
 				do {
-					try await viewModel.addTraveller(with: code)
+					try await viewModel.checkTraveler(with: code)
+//					try await viewModel.addTraveller(with: code, type: .single)
 					dismiss()
 				} catch {
 					configuration.errorTitle = R.string.localizable.error()

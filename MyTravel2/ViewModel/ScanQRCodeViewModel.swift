@@ -24,7 +24,11 @@ class ScanQRCodeViewModel: ObservableObject {
 		lastQRCode = qrCode
 	}
 
-	func addTraveller(with code: Int) async throws {
-		_ = try await provider.addTraveler(to: group, with: code).get()
+	func addTraveller(with code: Int, type: TravelerCodeType) async throws {
+		_ = try await provider.addTraveler(to: group, with: code, type: type).get()
+	}
+
+	func checkTraveler(with code: Int) async throws {
+		_ = try await provider.checkTraveler(to: group, with: code).get()
 	}
 }
