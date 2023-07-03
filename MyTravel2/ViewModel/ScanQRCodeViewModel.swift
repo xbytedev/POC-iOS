@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol AddTravelerDelegate: AnyObject {
+	func newTravelerAdded()
+}
+
 class ScanQRCodeViewModel: ObservableObject {
 	let group: MTGroup
 	let provider: AddTravellerProvider
@@ -15,6 +19,7 @@ class ScanQRCodeViewModel: ObservableObject {
 	var tempTraveler: MTTempTraveler?
 	@Published var isTorchOn = false
 	@Published var lastQRCode = ""
+	weak var delegate: AddTravelerDelegate?
 
 	init(group: MTGroup, provider: AddTravellerProvider) {
 		self.group = group

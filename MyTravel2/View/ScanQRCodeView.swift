@@ -13,11 +13,13 @@ struct ScanQRCodeView: View {
 	@State private var configuration = UIConfiguration()
 	@Environment(\.mtDismissable) var dismiss
 	@ObservedObject var viewModel: ScanQRCodeViewModel
+	@Binding var shouldNavigateBack: Bool
 
     var body: some View {
 		ZStack {
 			NavigationLink(isActive: $shouldTravelDetail) {
-				TravellerDetailView(viewModel: viewModel, code: Int(viewModel.lastQRCode) ?? 0)
+				TravellerDetailView(
+					viewModel: viewModel, code: Int(viewModel.lastQRCode) ?? 0, shouldNavigateBack: $shouldNavigateBack)
 			} label: {
 				EmptyView()
 			}
@@ -73,6 +75,7 @@ struct ScanQRCodeView: View {
 
 struct ScanQRCodeView_Previews: PreviewProvider {
     static var previews: some View {
-		ScanQRCodeView(viewModel: .init(group: .preview, provider: AddTravellerSuccessProvider()))
+		ScanQRCodeView(viewModel: .init(
+			group: .preview, provider: AddTravellerSuccessProvider()), shouldNavigateBack: .constant(true))
     }
 }

@@ -14,24 +14,25 @@ struct AppTabBarView: View {
 	@Binding var rootIsActive: Bool
 	@State private var shouldGroupSuccess: Bool = false
 	@State private var createdGroup: MTGroup?
+	@State private var shouldAddTraveler: Bool = false
 
     var body: some View {
 		ZStack {
 			MTTabBarContainerView(selection: $selection) {
 				GroupListView(
 					isPopupPresented: $isPopupPresented, /*viewModel: .init(provider: GroupAPIProvider()),*/
-					shouldGroupSuccess: $shouldGroupSuccess, createdGroup: $createdGroup)
+					shouldGroupSuccess: $shouldGroupSuccess, createdGroup: $createdGroup, shouldAddTraveler: $shouldAddTraveler)
 					.tabBarItem(tab: .groups, selection: $selection)
 				CheckInView()
 					.tabBarItem(tab: .checkIn, selection: $selection)
 				SettingsView(shouldPopToRootView: $rootIsActive)
 					.tabBarItem(tab: .settings, selection: $selection)
 			}
-			CreateGroupView(isPresenting: $isPopupPresented,
-							viewModel: GroupViewModel.init(provider: GroupAPIProvider())) { group in
-				self.createdGroup = group
-				shouldGroupSuccess = true
-			}
+			CreateGroupView(
+				isPresenting: $isPopupPresented, viewModel: .init(provider: GroupAPIProvider())) { group in
+					self.createdGroup = group
+					shouldGroupSuccess = true
+				}
 		}
 		.setThemeBackButton()
 		.toolbar {

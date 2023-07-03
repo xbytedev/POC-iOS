@@ -110,7 +110,7 @@ struct GroupEditView: View {
 			ZStack {
 				NavigationLink(isActive: $shouldAddNew) {
 					ScanQRCodeView(
-						viewModel: ScanQRCodeViewModel(group: viewModel.group, provider: AddTravellerAPIProvider()))
+						viewModel: getScanQRViewModel(), shouldNavigateBack: $shouldAddNew)
 					.navigationTitle("QR Code")
 				} label: {
 					EmptyView()
@@ -175,6 +175,12 @@ struct GroupEditView: View {
 				configuration.alertPresent = true
 			}
 		}
+	}
+
+	func getScanQRViewModel() -> ScanQRCodeViewModel {
+		let viewModel = ScanQRCodeViewModel(group: viewModel.group, provider: AddTravellerAPIProvider())
+		viewModel.delegate = self.viewModel
+		return viewModel
 	}
 }
 

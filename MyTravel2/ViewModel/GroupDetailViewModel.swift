@@ -74,3 +74,11 @@ class GroupDetailViewModel: ObservableObject {
 		group.isDefault = 1
 	}
 }
+
+extension GroupDetailViewModel: AddTravelerDelegate {
+	func newTravelerAdded() {
+		Task {
+			await getPeopleList()
+		}
+	}
+}

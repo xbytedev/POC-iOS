@@ -12,6 +12,7 @@ struct CreateGroupSuccessView: View {
 	let group: MTGroup
 	@Binding var shouldPresent: Bool
 	@State private var shouldAddTraveller: Bool = false
+	var addTraveler: () -> Void
 
     var body: some View {
 		ZStack {
@@ -26,17 +27,18 @@ struct CreateGroupSuccessView: View {
 				}
 				VStack {
 					// TODO: Add Traveller navigation is not working
-					NavigationLink {
-						ScanQRCodeView(
-							viewModel: ScanQRCodeViewModel(group: group, provider: AddTravellerAPIProvider()))
-						.navigationTitle("QR Code")
-					} label: {
+//					NavigationLink {
+//						ScanQRCodeView(
+//							viewModel: ScanQRCodeViewModel(group: group, provider: AddTravellerAPIProvider()), shouldNavigateBack: .constant(true))
+//						.navigationTitle("QR Code")
+//					} label: {
 						MTButton(isLoading: .constant(false), title: R.string.localizable.addTravelers(), loadingTitle: "") {
 							dismiss()
-							shouldAddTraveller = true
+//							shouldAddTraveller = true
+							addTraveler()
 						}
 						.inverted()
-					}
+//					}
 					Button(action: dismiss) {
 						Text(R.string.localizable.cancel)
 							.foregroundColor(AppColor.Text.tertiary)
@@ -52,6 +54,6 @@ struct CreateGroupSuccessView: View {
 struct CreateGroupSuccessView_Previews: PreviewProvider {
     static var previews: some View {
 		let group = MTGroup.preview
-		CreateGroupSuccessView(group: group, shouldPresent: .constant(false))
+		CreateGroupSuccessView(group: group, shouldPresent: .constant(false), addTraveler: { })
     }
 }

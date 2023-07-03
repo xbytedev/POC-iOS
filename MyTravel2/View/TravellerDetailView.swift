@@ -14,6 +14,7 @@ struct TravellerDetailView: View {
 	@Environment(\.mtDismissable) var dismiss
 	@ObservedObject var viewModel: ScanQRCodeViewModel
 	let code: Int
+	@Binding var shouldNavigateBack: Bool
 
     var body: some View {
 		Group {
@@ -64,87 +65,94 @@ struct TravellerDetailView: View {
 					.multilineTextAlignment(.center)
 			}
 			.padding()
-			VStack(alignment: .leading) {
-				Text("Add Travelers to Group")
-					.font(AppFont.getFont(forStyle: .body, forWeight: .semibold))
-				VStack(alignment: .leading) {
-					HStack {
-						Circle()
-							.frame(width: 12)
-							.foregroundColor(addType == .all ? AppColor.theme : Color.clear)
-							.padding(2)
-							.myOverlay(overlayView: {
-								Circle()
-									.stroke(AppColor.Text.secondary)
-							})
-						Text("All Travelers")
-							.font(AppFont.getFont(forStyle: .body))
-					}
-					.onTapGesture {
-						addType = .all
-					}
-					HStack {
-						Circle()
-							.frame(width: 12)
-							.foregroundColor(addType == .single ? AppColor.theme : Color.clear)
-							.padding(2)
-							.myOverlay {
-								Circle()
-									.stroke(AppColor.Text.secondary)
-							}
-						Text("Only this traveler")
-							.font(AppFont.getFont(forStyle: .body))
-					}
-					.onTapGesture {
-						addType = .single
-					}
-				}
-				.padding(.vertical, 8)
-			}
-			.padding()
-			HStack {
-				Button {
-					viewModel.lastQRCode = ""
-					dismiss()
-				} label: {
-					HStack(spacing: 16) {
-						Text("Cancle")
-							.transition(.opacity)
-							.foregroundColor(AppColor.theme)
-					}
-					.frame(width: 120, height: 16)
-					.font(AppFont.getFont(forStyle: .headline, forWeight: .bold))
-				}
-				.padding()
-				.myOverlay(overlayView: {
-					RoundedRectangle(cornerRadius: 18)
-						.stroke(AppColor.theme)
-						.shadow(radius: 7)
-				})
-				.padding(7)
-				Button {
-					addTraveler()
-				} label: {
-					HStack(spacing: 16) {
-						Text("Submit")
-							.transition(.opacity)
-							.foregroundColor(AppColor.Text.tertiary)
-					}
-					.frame(width: 120, height: 16)
-					.font(AppFont.getFont(forStyle: .headline, forWeight: .bold))
-				}
-				.padding()
-				.background(AppColor.theme)
-				.cornerRadius(18)
-				.shadow(radius: 7)
-				.padding(7)
-
-			}
+			addTypeView.padding()
+			bottomButtonView
 			Spacer()
 		}
 		.padding(.horizontal)
 		.foregroundColor(AppColor.theme)
 		.navigationBarHidden(true)
+	}
+
+	var addTypeView: some View {
+		VStack(alignment: .leading) {
+			Text("Add Travelers to Group")
+				.font(AppFont.getFont(forStyle: .body, forWeight: .semibold))
+			VStack(alignment: .leading) {
+				HStack {
+					Circle()
+						.frame(width: 12)
+						.foregroundColor(addType == .all ? AppColor.theme : Color.clear)
+						.padding(2)
+						.myOverlay(overlayView: {
+							Circle()
+								.stroke(AppColor.Text.secondary)
+						})
+					Text("All Travelers")
+						.font(AppFont.getFont(forStyle: .body))
+				}
+				.onTapGesture {
+					addType = .all
+				}
+				HStack {
+					Circle()
+						.frame(width: 12)
+						.foregroundColor(addType == .single ? AppColor.theme : Color.clear)
+						.padding(2)
+						.myOverlay {
+							Circle()
+								.stroke(AppColor.Text.secondary)
+						}
+					Text("Only this traveler")
+						.font(AppFont.getFont(forStyle: .body))
+				}
+				.onTapGesture {
+					addType = .single
+				}
+			}
+			.padding(.vertical, 8)
+		}
+	}
+
+	var bottomButtonView: some View {
+		HStack {
+			Button {
+				viewModel.lastQRCode = ""
+				dismiss()
+			} label: {
+				HStack(spacing: 16) {
+					Text("Cancle")
+						.transition(.opacity)
+						.foregroundColor(AppColor.theme)
+				}
+				.frame(width: 120, height: 16)
+				.font(AppFont.getFont(forStyle: .headline, forWeight: .bold))
+			}
+			.padding()
+			.myOverlay(overlayView: {
+				RoundedRectangle(cornerRadius: 18)
+					.stroke(AppColor.theme)
+					.shadow(radius: 7)
+			})
+			.padding(7)
+			Button {
+				addTraveler()
+			} label: {
+				HStack(spacing: 16) {
+					Text("Submit")
+						.transition(.opacity)
+						.foregroundColor(AppColor.Text.tertiary)
+				}
+				.frame(width: 120, height: 16)
+				.font(AppFont.getFont(forStyle: .headline, forWeight: .bold))
+			}
+			.padding()
+			.background(AppColor.theme)
+			.cornerRadius(18)
+			.shadow(radius: 7)
+			.padding(7)
+
+		}
 	}
 
 	func addTraveler() {
@@ -157,9 +165,11 @@ struct TravellerDetailView: View {
 				}
 				configuration.isLoading = true
 				try await viewModel.addTraveller(with: code, type: addType)
+				viewModel.delegate?.newTravelerAdded()
 				configuration.isLoading = false
 				// TODO: navigate back to group detail screen or group list
-				dismiss()
+				shouldNavigateBack = false
+//				dismiss()
 			} catch {
 				configuration.isLoading = false
 				configuration.errorTitle = R.string.localizable.error()
@@ -172,6 +182,7 @@ struct TravellerDetailView: View {
 
 struct TravellerDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		TravellerDetailView(viewModel: ScanQRCodeViewModel(group: .preview, provider: AddTravellerSuccessProvider()), code: 0)
+		TravellerDetailView(viewModel: ScanQRCodeViewModel(
+			group: .preview, provider: AddTravellerSuccessProvider()), code: 0, shouldNavigateBack: .constant(true))
     }
 }

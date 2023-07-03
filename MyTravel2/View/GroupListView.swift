@@ -13,14 +13,17 @@ struct GroupListView: MTAsyncView {
 	@StateObject private var viewModel: GroupViewModel = .init(provider: GroupAPIProvider())
 	@Binding var shouldGroupSuccess: Bool
 	@Binding var createdGroup: MTGroup?
+	@Binding var shouldAddTraveler: Bool
 	@State private var navigationHash: [Int: Bool]
+	@State private var needToAddTraveler: Bool = false
 
 	init(
 		isPopupPresented: Binding<Bool>, shouldGroupSuccess: Binding<Bool>,
-		createdGroup: Binding<MTGroup?> = .constant(nil)) {
+		createdGroup: Binding<MTGroup?> = .constant(nil), shouldAddTraveler: Binding<Bool>) {
 			_isPopupPresented = isPopupPresented
 			_shouldGroupSuccess = shouldGroupSuccess
 			_createdGroup = createdGroup
+			_shouldAddTraveler = shouldAddTraveler
 			self.navigationHash = .init()
 		}
 
@@ -35,6 +38,14 @@ struct GroupListView: MTAsyncView {
 		}
 	}
 
+	func reload() async {
+		do {
+			try await viewModel.getGroupList()
+			viewModel.groupList.forEach { navigationHash[$0.id] = false }
+		} catch {
+		}
+	}
+
 	var loadedView: some View {
 		dataView
 			.myOverlay {
@@ -46,12 +57,33 @@ struct GroupListView: MTAsyncView {
 			}
 			.fullScreenCover(isPresented: $shouldGroupSuccess) {
 				if let group = createdGroup {
-					CreateGroupSuccessView(group: group, shouldPresent: .constant(true))
+					CreateGroupSuccessView(group: group, shouldPresent: .constant(true)) {
+						needToAddTraveler = true
+					}
 				}
 			}
 			.onChange(of: shouldGroupSuccess) { newValue in
 				guard !newValue else { return }
-				load()
+				Task {
+					await reload()
+					if needToAddTraveler {
+						shouldAddTraveler = true
+					}
+				}
+			}
+			.myBackground {
+				NavigationLink(isActive: $shouldAddTraveler) {
+					if let groupToAddTraveler = createdGroup {
+						ScanQRCodeView(
+							viewModel: ScanQRCodeViewModel(group: groupToAddTraveler, provider: AddTravellerAPIProvider()), shouldNavigateBack: $shouldAddTraveler)
+						.navigationTitle("QR Code")
+					} else {
+						EmptyView()
+					}
+				} label: {
+					EmptyView()
+				}
+				.opacity(0)
 			}
 	}
 
@@ -131,7 +163,7 @@ struct GroupList_Previews: PreviewProvider {
     static var previews: some View {
 		GroupListView(
 			isPopupPresented: .constant(false), /*viewModel: .init(provider: GroupAPIProvider()),*/
-			shouldGroupSuccess: .constant(true), createdGroup: .constant(nil))
+			shouldGroupSuccess: .constant(true), createdGroup: .constant(nil), shouldAddTraveler: .constant(true))
     }
 }
 /*
