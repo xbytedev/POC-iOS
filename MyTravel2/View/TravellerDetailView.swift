@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct TravellerDetailView: View {
+	@State private var addType: TravelerCodeType = .all
+	@State private var configuration = UIConfiguration()
+	@Environment(\.mtDismissable) var dismiss
 	@ObservedObject var viewModel: ScanQRCodeViewModel
+	let code: Int
 
     var body: some View {
 		Group {
@@ -17,6 +21,9 @@ struct TravellerDetailView: View {
 			} else {
 				EmptyView()
 			}
+		}
+		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
+			Text(configuration.errorMeessage)
 		}
     }
 
@@ -46,6 +53,7 @@ struct TravellerDetailView: View {
 					HStack {
 						Circle()
 							.frame(width: 12)
+							.foregroundColor(addType == .all ? AppColor.theme : Color.clear)
 							.padding(2)
 							.myOverlay(overlayView: {
 								Circle()
@@ -54,10 +62,13 @@ struct TravellerDetailView: View {
 						Text("All Travelers")
 							.font(AppFont.getFont(forStyle: .body))
 					}
+					.onTapGesture {
+						addType = .all
+					}
 					HStack {
 						Circle()
 							.frame(width: 12)
-							.foregroundColor(.clear)
+							.foregroundColor(addType == .single ? AppColor.theme : Color.clear)
 							.padding(2)
 							.myOverlay {
 								Circle()
@@ -66,12 +77,17 @@ struct TravellerDetailView: View {
 						Text("Only this traveler")
 							.font(AppFont.getFont(forStyle: .body))
 					}
+					.onTapGesture {
+						addType = .single
+					}
 				}
 				.padding(.vertical, 8)
 			}
 			.padding()
 			HStack {
 				Button {
+					viewModel.lastQRCode = ""
+					dismiss()
 				} label: {
 					HStack(spacing: 16) {
 						Text("Cancle")
@@ -89,6 +105,7 @@ struct TravellerDetailView: View {
 				})
 				.padding(7)
 				Button {
+					addTraveler()
 				} label: {
 					HStack(spacing: 16) {
 						Text("Submit")
@@ -110,10 +127,23 @@ struct TravellerDetailView: View {
 		.foregroundColor(AppColor.theme)
 		.navigationBarHidden(true)
 	}
+
+	func addTraveler() {
+		Task {
+			do {
+				try await viewModel.addTraveller(with: code, type: addType)
+				// TODO: navigate back to group detail screen or group list
+			} catch {
+				configuration.errorTitle = R.string.localizable.error()
+				configuration.errorMeessage = error.localizedDescription
+				configuration.alertPresent = true
+			}
+		}
+	}
 }
 
 struct TravellerDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		TravellerDetailView(viewModel: ScanQRCodeViewModel(group: .preview, provider: AddTravellerSuccessProvider()))
+		TravellerDetailView(viewModel: ScanQRCodeViewModel(group: .preview, provider: AddTravellerSuccessProvider()), code: 0)
     }
 }

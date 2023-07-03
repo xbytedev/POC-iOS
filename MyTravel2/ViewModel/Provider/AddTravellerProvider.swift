@@ -72,6 +72,7 @@ extension AddTravellerAPIProvider.AddTravellerParam: Encodable {
 		case groupId = "group_id"
 		case groupCode = "group_code"
 		case agentId = "agent_id"
+		case type
 	}
 
 	func encode(to encoder: Encoder) throws {
@@ -80,6 +81,7 @@ extension AddTravellerAPIProvider.AddTravellerParam: Encodable {
 		try container.encode(group.id, forKey: .groupId)
 		try container.encode(group.groupdCode, forKey: .groupCode)
 		try container.encode(user.id, forKey: .agentId)
+		try container.encodeIfPresent(type?.rawValue, forKey: .type)
 	}
 }
 extension TravelerCodeType: Encodable { }

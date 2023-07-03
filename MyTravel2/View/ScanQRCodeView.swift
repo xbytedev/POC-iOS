@@ -17,7 +17,7 @@ struct ScanQRCodeView: View {
     var body: some View {
 		ZStack {
 			NavigationLink(isActive: $shouldTravelDetail) {
-				TravellerDetailView(viewModel: viewModel)
+				TravellerDetailView(viewModel: viewModel, code: Int(viewModel.lastQRCode) ?? 0)
 			} label: {
 				EmptyView()
 			}
