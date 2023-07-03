@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ScanQRCodeView: View {
+	@State private var shouldTravelDetail: Bool = false
 	@State private var isPresenting: Bool = false
 	@State private var configuration = UIConfiguration()
 	@Environment(\.mtDismissable) var dismiss
@@ -15,6 +16,12 @@ struct ScanQRCodeView: View {
 
     var body: some View {
 		ZStack {
+			NavigationLink(isActive: $shouldTravelDetail) {
+				TravellerDetailView(viewModel: viewModel)
+			} label: {
+				EmptyView()
+			}
+			.opacity(0)
 			GeometryReader { geometryProxy in
 				let width = geometryProxy.size.width * 0.6
 				VStack(spacing: 48) {
@@ -50,8 +57,9 @@ struct ScanQRCodeView: View {
 			Task {
 				do {
 					try await viewModel.checkTraveler(with: code)
+					shouldTravelDetail = true
 //					try await viewModel.addTraveller(with: code, type: .single)
-					dismiss()
+//					dismiss()
 				} catch {
 					configuration.errorTitle = R.string.localizable.error()
 					configuration.errorMeessage = error.localizedDescription

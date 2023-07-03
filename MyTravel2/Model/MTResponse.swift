@@ -41,3 +41,18 @@ extension MTResponse: Decodable {
 }
 
 struct NullCodable: Codable { }
+
+struct MTTempTravelerResponse {
+	let status: Bool
+	let message: String?
+	let data: MTTempTraveler?
+	let peopleCount: Int?
+}
+
+extension MTTempTravelerResponse: Decodable {
+	enum CodingKeys: String, CodingKey {
+		case status, message
+		case data = "people_data"
+		case peopleCount = "people_count"
+	}
+}

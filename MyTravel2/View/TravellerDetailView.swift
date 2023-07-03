@@ -8,25 +8,33 @@
 import SwiftUI
 
 struct TravellerDetailView: View {
-	let traveler: MTTraveller
-	let city: String
-	let country: String
-	let otherCount: Int
+	@ObservedObject var viewModel: ScanQRCodeViewModel
 
     var body: some View {
+		Group {
+			if let traveler = viewModel.tempTraveler {
+				dataView(with: traveler)
+			} else {
+				EmptyView()
+			}
+		}
+    }
+
+	@ViewBuilder
+	func dataView(with traveler: MTTempTraveler) -> some View {
 		VStack {
 			Image(R.image.img_travel)
 			Text(traveler.name)
 				.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 			VStack {
-				Text("City: " + city)
+				Text("City: " + traveler.residenceCity)
 					.font(AppFont.getFont(forStyle: .body))
-				Text("Country: " + country)
+				Text("Country: " + traveler.residenceCountry)
 					.font(AppFont.getFont(forStyle: .body))
 			}
 			.padding()
 			VStack {
-				Text("There are \(otherCount) people travelling with \(traveler.name)")
+				Text("There are \(traveler.otherPeopleCount) people travelling with \(traveler.name)")
 					.font(AppFont.getFont(forStyle: .body))
 					.multilineTextAlignment(.center)
 			}
@@ -101,11 +109,11 @@ struct TravellerDetailView: View {
 		.padding(.horizontal)
 		.foregroundColor(AppColor.theme)
 		.navigationBarHidden(true)
-    }
+	}
 }
 
 struct TravellerDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		TravellerDetailView(traveler: .preview, city: "Cidade Juare", country: "Mexico", otherCount: 5)
+		TravellerDetailView(viewModel: ScanQRCodeViewModel(group: .preview, provider: AddTravellerSuccessProvider()))
     }
 }

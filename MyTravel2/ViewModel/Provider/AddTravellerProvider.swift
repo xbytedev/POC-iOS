@@ -12,7 +12,7 @@ enum TravelerCodeType: String {
 	case all
 }
 protocol AddTravellerProvider {
-	func checkTraveler(to group: MTGroup, with code: Int) async -> Result<Bool, Error>
+	func checkTraveler(to group: MTGroup, with code: Int) async -> Result<MTTempTraveler, Error>
 	func addTraveler(to group: MTGroup, with code: Int, type: TravelerCodeType) async -> Result<Bool, Error>
 }
 
@@ -42,17 +42,23 @@ struct AddTravellerAPIProvider: AddTravellerProvider {
 		}
 	}
 
-	func checkTraveler(to group: MTGroup, with code: Int) async -> Result<Bool, Error> {
+	func checkTraveler(to group: MTGroup, with code: Int) async -> Result<MTTempTraveler, Error> {
 		guard let currentUser = MTUserDefaults.currentUser else {
 			return .failure(CustomError.message(R.string.localizable.internalUserDataNotFound()))
 		}
-		let requester = WebRequester<MTResponse<NullCodable>>(withSession: WebRequesterSessionProvider.session)
+		let requester = WebRequester<MTTempTravelerResponse>(withSession: WebRequesterSessionProvider.session)
 		let param = AddTravellerParam(travellerCode: code, group: group, user: currentUser, type: nil)
 		let result = await requester.request(toURL: APPURL.checkTraveler, withParameters: param)
 		switch result {
 		case .success(let response):
 			if response.status {
-				return .success(true)
+				if let traveler = response.data {
+					var updatedTraveler = traveler
+					updatedTraveler.otherPeopleCount = response.peopleCount ?? traveler.otherPeopleCount
+					return .success(updatedTraveler)
+				} else {
+					return .failure(CustomError.successButNoData)
+				}
 			} else {
 				return .failure(CustomError.getError(fromMessage: response.message))
 			}
