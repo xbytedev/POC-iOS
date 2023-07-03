@@ -14,7 +14,7 @@ struct WebUser: Codable {
 	let viewPassword: String?
 	let ipAddress, lastLoginDateTime: String?
 	let role, number: String?
-	let createdBy: String?
+	let createdBy: Int? // login with swati@mrugesh.tk
 	let image, location, businessName, businessType: String?
 	let businessLogo, country, state, city: String?
 	let address, status, documentName, documentImage: String?

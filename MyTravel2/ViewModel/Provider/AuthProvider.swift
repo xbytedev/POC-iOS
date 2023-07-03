@@ -39,7 +39,7 @@ struct AuthAPIProvider: AuthProvider {
 				MTUserDefaults.lastOTPSendDate = Date()
 				if let userID = response.userID {
 					let user = WebUser(id: userID, name: "", email: email, emailVerifiedAt: "", viewPassword: password, ipAddress: "",
-									   lastLoginDateTime: "", role: "", number: "", createdBy: "", image: "", location: "",
+									   lastLoginDateTime: "", role: "", number: "", createdBy: 0, image: "", location: "",
 									   businessName: "", businessType: "", businessLogo: "", country: "", state: "", city: "",
 									   address: "", status: "", documentName: "", documentImage: "", otp: 0, createdAt: "", updatedAt: "")
 

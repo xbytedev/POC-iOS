@@ -102,7 +102,7 @@ struct GroupListView: MTAsyncView {
 						EmptyView()
 					}
 					.opacity(0)
-					GroupListRow(groupName: item.name.wrappedValue ?? "")
+					GroupListRow(group: item.wrappedValue)
 				}
 				.mtListBackgroundStyle()
 			}
