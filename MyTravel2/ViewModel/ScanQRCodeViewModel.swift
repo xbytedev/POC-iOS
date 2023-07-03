@@ -12,6 +12,7 @@ class ScanQRCodeViewModel: ObservableObject {
 	let provider: AddTravellerProvider
 	let scanInterval: Double = 1.0
 	let qrCodeCameraDelegate = QrCodeCameraDelegate()
+	var tempTraveler: MTTempTraveler?
 	@Published var isTorchOn = false
 	@Published var lastQRCode = ""
 
@@ -24,7 +25,11 @@ class ScanQRCodeViewModel: ObservableObject {
 		lastQRCode = qrCode
 	}
 
-	func addTraveller(with code: Int) async throws {
-		_ = try await provider.addTraveler(to: group, with: code).get()
+	func addTraveller(with code: Int, type: TravelerCodeType) async throws {
+		_ = try await provider.addTraveler(to: group, with: code, type: type).get()
+	}
+
+	func checkTraveler(with code: Int) async throws {
+		tempTraveler = try await provider.checkTraveler(to: group, with: code).get()
 	}
 }

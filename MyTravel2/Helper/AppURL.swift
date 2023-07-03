@@ -77,4 +77,8 @@ struct APPURL {
 	static var makeAsDefaultGroup: String {
 		apiBaseURL + "make_as_default_status"
 	}
+
+	static var checkTraveler: String {
+		apiBaseURL + "check_people"
+	}
 }
