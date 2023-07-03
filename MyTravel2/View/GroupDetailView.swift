@@ -12,6 +12,7 @@ struct GroupDetailView: MTAsyncView {
 	@State private var isMakingDefault = false
 	@State private var configuration = UIConfiguration()
 	@State private var updatingMessage = "Loading"
+	@Binding var isPopToGroupList: Bool
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -26,7 +27,7 @@ struct GroupDetailView: MTAsyncView {
 			.toolbar {
 				ToolbarItem(placement: .navigationBarTrailing) {
 					NavigationLink {
-						GroupEditView(viewModel: viewModel)
+						GroupEditView(viewModel: viewModel, isPopToGroupList: $isPopToGroupList)
 					} label: {
 						Image(R.image.ic_edit)
 							.aspectRatio(contentMode: .fit)
@@ -151,7 +152,10 @@ struct GroupDetailView: MTAsyncView {
 }
 
 struct GroupDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-		GroupDetailView(viewModel: .init(group: MTGroup.preview, groupDetailProvider: GroupDetailSuccessProvider()))
-    }
+	static var previews: some View {
+		GroupDetailView(
+			viewModel: .init(group: MTGroup.preview,
+							 groupDetailProvider: GroupDetailSuccessProvider()),
+			isPopToGroupList: .constant(false))
+	}
 }

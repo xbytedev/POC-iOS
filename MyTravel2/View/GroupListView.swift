@@ -57,29 +57,32 @@ struct GroupListView: MTAsyncView {
 
 	var dataView: some View {
 		List {
-			ForEach(viewModel.groupList) { item in
+			ForEach($viewModel.groupList) { item in
 				ZStack {
-					NavigationLink {
-						GroupDetailView(viewModel: .init(group: item, groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel))
-							.navigationTitle(R.string.localizable.groups())
-							.setThemeBackButton()
+					NavigationLink(isActive: item.navigateView) {
+						GroupDetailView(viewModel:
+								.init(group: item.wrappedValue,
+									  groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel),
+										isPopToGroupList: item.navigateView)
+						.navigationTitle(R.string.localizable.groups())
+						.setThemeBackButton()
 					} label: {
 						EmptyView()
 					}
 					.opacity(0)
-					GroupListRow(groupName: item.name ?? "")
+					GroupListRow(groupName: item.name.wrappedValue ?? "")
 				}
 				.mtListBackgroundStyle()
 			}
 		}
 		.listStyle(.plain)
 		/*.swipeActions(edge: .trailing, allowsFullSwipe: true) {
-			Button {
-				print("Delete")
-			} label: {
-				Label("Delete", systemImage: "trash")
-			}
-		}*/
+		 Button {
+		 print("Delete")
+		 } label: {
+		 Label("Delete", systemImage: "trash")
+		 }
+		 }*/
 	}
 
 	var emptyView: some View {

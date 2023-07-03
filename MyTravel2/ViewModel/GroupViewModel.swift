@@ -9,7 +9,7 @@ import Foundation
 
 class GroupViewModel: ObservableObject {
 	private let provider: GroupProvider
-	@Published @MainActor private(set) var groupList: [MTGroup] = .init()
+	@Published @MainActor var groupList: [MTGroup] = .init()
 	@Published @MainActor private(set) var state: MTLoadingState = .idle
 
 	var user: WebUser?
@@ -38,6 +38,13 @@ class GroupViewModel: ObservableObject {
 }
 
 extension GroupViewModel: GroupUpdateDelegate {
+	@MainActor
+	func deleteGroupSuccessfully() {
+		Task {
+			try await getGroupList()
+		}
+	}
+
 	@MainActor
 	func defaultGroupUpdated(group: MTGroup) {
 		while let index = groupList.firstIndex(where: { $0.isDefault == 1}) {

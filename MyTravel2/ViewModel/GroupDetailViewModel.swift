@@ -9,6 +9,7 @@ import Foundation
 
 protocol GroupUpdateDelegate: AnyObject {
 	func defaultGroupUpdated(group: MTGroup)
+	func deleteGroupSuccessfully()
 }
 
 class GroupDetailViewModel: ObservableObject {
@@ -56,6 +57,7 @@ class GroupDetailViewModel: ObservableObject {
 
 	func deleteGroup() async throws {
 		try await groupDetailProvider.delete(group: group).get()
+		groupUpdateDelegate?.deleteGroupSuccessfully()
 	}
 
 	@MainActor

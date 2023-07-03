@@ -17,6 +17,7 @@ struct GroupEditView: View {
 	@State private var deleteMemberConfirmation = false
 	@State private var deleteMember: MTTraveller?
 	@Environment(\.mtDismissable) var dismiss
+	@Binding var isPopToGroupList: Bool
 
 	var body: some View {
 		List {
@@ -149,8 +150,7 @@ struct GroupEditView: View {
 				try await viewModel.deleteGroup()
 				configuration.isLoading = false
 				isDeleting = false
-				// TODO: Navigate back to 3 screens
-				dismiss()
+				isPopToGroupList = false
 			} catch {
 				configuration.isLoading = false
 				isDeleting = false
@@ -180,6 +180,8 @@ struct GroupEditView: View {
 
 struct GroupEditView_Previews: PreviewProvider {
     static var previews: some View {
-		GroupEditView(viewModel: .init(group: .preview, groupDetailProvider: GroupDetailSuccessProvider()))
+		GroupEditView(
+			viewModel: .init(group: .preview, groupDetailProvider: GroupDetailSuccessProvider()),
+			isPopToGroupList: .constant(false))
     }
 }

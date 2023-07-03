@@ -10,10 +10,11 @@ import Foundation
 struct MTGroup: Decodable {
 	let id: Int
 	let groupdCode: Int
-	let name: String?
+	var name: String?
 	let partnerID, status: Int?
 	let createdAt, updatedAt: String?
 	var isDefault: Int
+	var navigateView: Bool = false
 
 	enum CodingKeys: String, CodingKey {
 		case id, name
