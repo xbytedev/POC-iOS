@@ -10,6 +10,7 @@ import SwiftUI
 struct TravellerDetailView: View {
 	@State private var addType: TravelerCodeType = .all
 	@State private var configuration = UIConfiguration()
+	@State private var updatingMessage = "Loading"
 	@Environment(\.mtDismissable) var dismiss
 	@ObservedObject var viewModel: ScanQRCodeViewModel
 	let code: Int
@@ -25,11 +26,28 @@ struct TravellerDetailView: View {
 		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
 			Text(configuration.errorMeessage)
 		}
+		.myOverlay {
+			Group {
+				if configuration.isLoading {
+					ZStack {
+						Color.black.opacity(0.4)
+						VStack {
+							ProgressView()
+								.modifier(ProgressViewModifier(color: AppColor.Text.tertiary))
+							Text(updatingMessage)
+								.font(AppFont.getFont(forStyle: .body))
+								.foregroundColor(AppColor.Text.tertiary)
+						}
+					}
+				}
+			}
+		}
     }
 
 	@ViewBuilder
 	func dataView(with traveler: MTTempTraveler) -> some View {
 		VStack {
+			Spacer()
 			Image(R.image.img_travel)
 			Text(traveler.name)
 				.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
@@ -122,6 +140,7 @@ struct TravellerDetailView: View {
 				.padding(7)
 
 			}
+			Spacer()
 		}
 		.padding(.horizontal)
 		.foregroundColor(AppColor.theme)
@@ -131,9 +150,18 @@ struct TravellerDetailView: View {
 	func addTraveler() {
 		Task {
 			do {
+				if addType == .single {
+					updatingMessage = "Adding \(viewModel.tempTraveler?.name ?? "Traveler") to \(viewModel.group.name ?? "Group")"
+				} else {
+					updatingMessage = "Adding All to \(viewModel.group.name ?? "Group")"
+				}
+				configuration.isLoading = true
 				try await viewModel.addTraveller(with: code, type: addType)
+				configuration.isLoading = false
 				// TODO: navigate back to group detail screen or group list
+				dismiss()
 			} catch {
+				configuration.isLoading = false
 				configuration.errorTitle = R.string.localizable.error()
 				configuration.errorMeessage = error.localizedDescription
 				configuration.alertPresent = true

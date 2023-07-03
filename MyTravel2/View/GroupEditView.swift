@@ -165,11 +165,11 @@ struct GroupEditView: View {
 		Task {
 			do {
 				updatingMessage = "Deleting " + (traveller.name)
-				isDeleting = true
+				configuration.isLoading = true
 				try await viewModel.delete(traveller: traveller)
-				isDeleting = false
+				configuration.isLoading = false
 			} catch {
-				isDeleting = false
+				configuration.isLoading = false
 				configuration.errorTitle = R.string.localizable.error()
 				configuration.errorMeessage = error.localizedDescription
 				configuration.alertPresent = true
