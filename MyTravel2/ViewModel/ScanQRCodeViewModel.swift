@@ -18,7 +18,7 @@ class ScanQRCodeViewModel: ObservableObject {
 	let qrCodeCameraDelegate = QrCodeCameraDelegate()
 	var tempTraveler: MTTempTraveler?
 	@Published var isTorchOn = false
-	@Published var lastQRCode = ""
+	var lastQRCode = ""
 	weak var delegate: AddTravelerDelegate?
 
 	init(group: MTGroup, provider: AddTravellerProvider) {
