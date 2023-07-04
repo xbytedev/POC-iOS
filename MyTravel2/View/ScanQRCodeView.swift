@@ -77,10 +77,11 @@ struct ScanQRCodeView: View {
 
     }
 }
-
+#if DEBUG
 struct ScanQRCodeView_Previews: PreviewProvider {
     static var previews: some View {
 		ScanQRCodeView(viewModel: .init(
 			group: .preview, provider: AddTravellerSuccessProvider()), shouldNavigateBack: .constant(true))
     }
 }
+#endif

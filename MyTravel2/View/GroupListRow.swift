@@ -26,9 +26,10 @@ struct GroupListRow: View {
 		}
     }
 }
-
+#if DEBUG
 struct GroupListRow_Previews: PreviewProvider {
     static var previews: some View {
 		GroupListRow(group: MTGroup.preview)
     }
 }
+#endif

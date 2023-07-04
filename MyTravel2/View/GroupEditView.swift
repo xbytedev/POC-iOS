@@ -183,7 +183,7 @@ struct GroupEditView: View {
 		return viewModel
 	}
 }
-
+#if DEBUG
 struct GroupEditView_Previews: PreviewProvider {
     static var previews: some View {
 		GroupEditView(
@@ -191,3 +191,4 @@ struct GroupEditView_Previews: PreviewProvider {
 			isPopToGroupList: .constant(false))
     }
 }
+#endif

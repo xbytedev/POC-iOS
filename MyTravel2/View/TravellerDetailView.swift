@@ -179,10 +179,11 @@ struct TravellerDetailView: View {
 		}
 	}
 }
-
+#if DEBUG
 struct TravellerDetailView_Previews: PreviewProvider {
     static var previews: some View {
 		TravellerDetailView(viewModel: ScanQRCodeViewModel(
 			group: .preview, provider: AddTravellerSuccessProvider()), code: 0, shouldNavigateBack: .constant(true))
     }
 }
+#endif
