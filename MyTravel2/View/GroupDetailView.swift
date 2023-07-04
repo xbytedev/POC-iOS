@@ -150,7 +150,7 @@ struct GroupDetailView: MTAsyncView {
 		}
 	}
 }
-
+#if DEBUG
 struct GroupDetailView_Previews: PreviewProvider {
 	static var previews: some View {
 		GroupDetailView(
@@ -159,3 +159,4 @@ struct GroupDetailView_Previews: PreviewProvider {
 			isPopToGroupList: .constant(false))
 	}
 }
+#endif

@@ -11,6 +11,7 @@ struct ScanQRCodeView: View {
 	@State private var shouldTravelDetail: Bool = false
 	@State private var isPresenting: Bool = false
 	@State private var configuration = UIConfiguration()
+	@State private var foundQR: String = ""
 	@Environment(\.mtDismissable) var dismiss
 	@ObservedObject var viewModel: ScanQRCodeViewModel
 	@Binding var shouldNavigateBack: Bool
@@ -19,7 +20,7 @@ struct ScanQRCodeView: View {
 		ZStack {
 			NavigationLink(isActive: $shouldTravelDetail) {
 				TravellerDetailView(
-					viewModel: viewModel, code: Int(viewModel.lastQRCode) ?? 0, shouldNavigateBack: $shouldNavigateBack)
+					viewModel: viewModel, code: Int(foundQR) ?? 0, shouldNavigateBack: $shouldNavigateBack)
 			} label: {
 				EmptyView()
 			}
@@ -29,7 +30,10 @@ struct ScanQRCodeView: View {
 				VStack(spacing: 48) {
 					VStack(spacing: 24) {
 						QRCodeScannerView(delegate: viewModel.qrCodeCameraDelegate)
-							.found(viewModel.onFound(qrCode:))
+							.found({ foundStr in
+								foundQR = foundStr
+							})
+//							.found(viewModel.onFound(qrCode:))
 							.tourchLight(isOn: viewModel.isTorchOn)
 							.interval(delay: viewModel.scanInterval)
 							.frame(width: width, height: width)
@@ -46,22 +50,20 @@ struct ScanQRCodeView: View {
 			}
 			EnterCodeView(isPresenting: $isPresenting) { code
 				in
-				viewModel.onFound(qrCode: code)
+				foundQR = code
 			}
 		}
 		.setThemeBackButton()
-		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
-			Text(configuration.errorMeessage)
-		}
-		.onChange(of: viewModel.lastQRCode) { newValue in
+		.onChange(of: foundQR) { newValue in
 			guard let code = Int(newValue),
 				  Validator.shared.isValid(travellerCode: newValue) else { return }
 			Task {
 				do {
 					try await viewModel.checkTraveler(with: code)
 					shouldTravelDetail = true
-//					try await viewModel.addTraveller(with: code, type: .single)
-//					dismiss()
+//					foundQR = ""
+					//					try await viewModel.addTraveller(with: code, type: .single)
+					//					dismiss()
 				} catch {
 					configuration.errorTitle = R.string.localizable.error()
 					configuration.errorMeessage = error.localizedDescription
@@ -69,13 +71,17 @@ struct ScanQRCodeView: View {
 				}
 			}
 		}
+		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
+			Text(configuration.errorMeessage)
+		}
 
     }
 }
-
+#if DEBUG
 struct ScanQRCodeView_Previews: PreviewProvider {
     static var previews: some View {
 		ScanQRCodeView(viewModel: .init(
 			group: .preview, provider: AddTravellerSuccessProvider()), shouldNavigateBack: .constant(true))
     }
 }
+#endif

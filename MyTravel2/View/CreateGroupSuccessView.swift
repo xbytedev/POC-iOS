@@ -50,10 +50,11 @@ struct CreateGroupSuccessView: View {
 		}
     }
 }
-
+#if DEBUG
 struct CreateGroupSuccessView_Previews: PreviewProvider {
     static var previews: some View {
 		let group = MTGroup.preview
 		CreateGroupSuccessView(group: group, shouldPresent: .constant(false), addTraveler: { })
     }
 }
+#endif

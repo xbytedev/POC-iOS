@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import os.log
 
 class QrCodeCameraDelegate: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 	var scanInterval: Double = 1.0
@@ -14,7 +15,6 @@ class QrCodeCameraDelegate: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 
 	var onResult: (String) -> Void = { _  in }
 	var mockData: String?
-//
 
 	func metadataOutput(
 		_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject],
@@ -22,7 +22,6 @@ class QrCodeCameraDelegate: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 			if let metadataObject = metadataObjects.first {
 				guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
 				guard let stringValue = readableObject.stringValue else { return }
-				AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
 				foundBarcode(stringValue)
 			}
 		}
@@ -34,8 +33,11 @@ class QrCodeCameraDelegate: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 	func foundBarcode(_ string: String) {
 		let now = Date()
 		if now.timeIntervalSince(lastTime) >= scanInterval {
+			os_log("Found QR code", log: .default, type: .debug)
 			lastTime = now
 			self.onResult(string)
+		} else {
+			os_log("Found QR code immediately", log: .default, type: .debug)
 		}
 	}
 }

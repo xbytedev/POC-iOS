@@ -17,9 +17,10 @@ struct TravellerListRow: View {
 		}
 	}
 }
-
+#if DEBUG
 struct TravellerListRow_Previews: PreviewProvider {
     static var previews: some View {
 		TravellerListRow(traveller: .preview)
     }
 }
+#endif
