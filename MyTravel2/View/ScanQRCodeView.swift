@@ -61,6 +61,7 @@ struct ScanQRCodeView: View {
 				do {
 					try await viewModel.checkTraveler(with: code)
 					shouldTravelDetail = true
+//					foundQR = ""
 					//					try await viewModel.addTraveller(with: code, type: .single)
 					//					dismiss()
 				} catch {
