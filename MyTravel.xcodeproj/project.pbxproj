@@ -52,6 +52,7 @@
 		897EDC672A0524CC001B652E /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 897EDC662A0524CC001B652E /* SDWebImageSwiftUI */; };
 		897EDC6E2A05272F001B652E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC6D2A05272F001B652E /* LoginView.swift */; };
 		89A1AE682A386F5D00C089E1 /* ScanQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */; };
+		89AED1B92A651D0100D7D95E /* MTSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AED1B82A651D0100D7D95E /* MTSegmentView.swift */; };
 		89BD67A02A38382E006129F2 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD679F2A38382E006129F2 /* KeychainWrapper.swift */; };
 		89BD67A22A383852006129F2 /* KeychainWrappperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD67A12A383852006129F2 /* KeychainWrappperTests.swift */; };
 		89BD67A62A3838B8006129F2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 89BD67A52A3838B8006129F2 /* Alamofire */; };
@@ -170,6 +171,7 @@
 		897EDC4E2A050E25001B652E /* MyTravel2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravel2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		897EDC6D2A05272F001B652E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeView.swift; sourceTree = "<group>"; };
+		89AED1B82A651D0100D7D95E /* MTSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSegmentView.swift; sourceTree = "<group>"; };
 		89BD679F2A38382E006129F2 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		89BD67A12A383852006129F2 /* KeychainWrappperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrappperTests.swift; sourceTree = "<group>"; };
 		89BD67AE2A38398D006129F2 /* MTKeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTKeychainWrapper.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				895DF4BE2A0BD05900899187 /* MTTabBarContainerView.swift */,
 				895DF4C12A0BD2B200899187 /* MTTabBarPreferenceKey.swift */,
 				CE5756552A1B3A5500801FD9 /* MTAsyncView.swift */,
+				89AED1B82A651D0100D7D95E /* MTSegmentView.swift */,
 				897EDC6D2A05272F001B652E /* LoginView.swift */,
 				897E61D12A0BA910008D1687 /* VerificationView.swift */,
 				8906D72D2A0F8E7400E7D60B /* OTPView.swift */,
@@ -699,6 +702,7 @@
 				8965C5A72A49A27800024001 /* TravellerDetailView.swift in Sources */,
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
 				89F942492A42B6F300410DED /* GroupEditView.swift in Sources */,
+				89AED1B92A651D0100D7D95E /* MTSegmentView.swift in Sources */,
 				89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */,
 				897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */,
 				89C1D8A32A1B8498007EB9E1 /* CreateGroupSuccessView.swift in Sources */,

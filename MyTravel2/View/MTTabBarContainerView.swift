@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct MTTabBarContainerView<V: View>: View {
+	enum ListType {
+		case places
+		case checkIn
+	}
 	@Binding var selection: TabItem
 	let content: V
 	@State private var tabs: [TabItem] = []
+	@State private var selectionPicker: ListType = .places
 
 	init(selection: Binding<TabItem>, @ViewBuilder content: () -> V) {
 		self.content = content()
@@ -25,7 +30,32 @@ struct MTTabBarContainerView<V: View>: View {
 		.onPreferenceChange(MTTabBarPreferenceKey.self) { value in
 			tabs = value
 		}
-		.navigationTitle(selection.title)
+//		.navigationTitle(selection.title)
+		.toolbar {
+			ToolbarItem(placement: .principal) {
+				if selection == .checkIn {
+					Picker("Title", selection: $selectionPicker) {
+						Text("Travel")
+							.tag(ListType.places)
+						Text("MyTravel")
+							.tag(ListType.checkIn)
+					}
+					.pickerStyle(.segmented)
+					.padding(.trailing, 44)
+				} else {
+					Text(selection.title)
+				}
+				/*GeometryReader { geometryProxy in
+					HStack {
+						Spacer()
+
+						Text(selection.title)
+						Spacer()
+					}
+					.frame(width: geometryProxy.size.width, height: 44, alignment: .center)
+				}*/
+			}
+		}
     }
 }
 
