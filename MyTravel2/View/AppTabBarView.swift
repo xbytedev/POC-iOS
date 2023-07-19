@@ -23,7 +23,7 @@ struct AppTabBarView: View {
 					isPopupPresented: $isPopupPresented, /*viewModel: .init(provider: GroupAPIProvider()),*/
 					shouldGroupSuccess: $shouldGroupSuccess, createdGroup: $createdGroup, shouldAddTraveler: $shouldAddTraveler)
 					.tabBarItem(tab: .groups, selection: $selection)
-				CheckInView()
+				CheckInView(provider: LocationAPIProvider())
 					.tabBarItem(tab: .checkIn, selection: $selection)
 				SettingsView(shouldPopToRootView: $rootIsActive)
 					.tabBarItem(tab: .settings, selection: $selection)

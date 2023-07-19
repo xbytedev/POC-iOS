@@ -7,10 +7,15 @@
 
 import SwiftUI
 
-struct CheckInView: View {
+struct CheckInView: MTAsyncView {
 	@State private var searchText: String = ""
-	let places: [String] = ["Orion Hotel Bishkek", "Hyatt Regency Bishkek", "Ala-Archa Gorge", "Attraction 4 name", "Attraction 5 name"]
-    var body: some View {
+	@StateObject private var viewModel: LocationViewModel // = LocationViewModel()
+
+	init(provider: LocationProvider) {
+		_viewModel = StateObject(wrappedValue: LocationViewModel(provider: provider))
+	}
+
+    var loadedView: some View {
 		/*VStack(alignment: .leading) {
 			Text("Places")
 			HStack {
@@ -32,24 +37,40 @@ struct CheckInView: View {
 			}*/
 			List {
 				Section {
-					ForEach(places, id: \.self) { place in
+					ForEach(viewModel.places, id: \.self) { place in
 						HStack {
-
+							Text(place.name ?? "")
+							Spacer()
+							Image(R.image.ic_arrowRight)
 						}
-						Text(place)
-
 							.mtListBackgroundStyle()
 					}
 				}
 			}
 			.listStyle(.plain)
 //		}
-		.padding()
+//		.padding()
     }
+
+	var state: MTLoadingState {
+		viewModel.state
+	}
+
+	func load() {
+		Task {
+			do {
+				try await viewModel.getPlaceList()
+			} catch {
+			}
+
+		}
+	}
 }
 
+#if DEBUG
 struct CheckInView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckInView()
+        CheckInView(provider: LocationSuccessProvider())
     }
 }
+#endif

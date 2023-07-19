@@ -81,4 +81,8 @@ struct APPURL {
 	static var checkTraveler: String {
 		apiBaseURL + "check_people"
 	}
+
+	static var agentPlaceList: String {
+		apiBaseURL + "agent_place_list"
+	}
 }

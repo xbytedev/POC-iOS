@@ -75,7 +75,8 @@ struct GroupListView: MTAsyncView {
 				NavigationLink(isActive: $shouldAddTraveler) {
 					if let groupToAddTraveler = createdGroup {
 						ScanQRCodeView(
-							viewModel: ScanQRCodeViewModel(group: groupToAddTraveler, provider: AddTravellerAPIProvider()), shouldNavigateBack: $shouldAddTraveler)
+							viewModel: ScanQRCodeViewModel(
+								group: groupToAddTraveler, provider: AddTravellerAPIProvider()), shouldNavigateBack: $shouldAddTraveler)
 						.navigationTitle("QR Code")
 					} else {
 						EmptyView()
