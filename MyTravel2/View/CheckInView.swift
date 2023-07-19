@@ -26,7 +26,7 @@ struct CheckInView: MTAsyncView {
 						.foregroundColor(AppColor.theme)
 						.padding(.top, 24)
 					HStack {
-						Image(R.image.ic_avatar)
+						Image(R.image.ic_search)
 							.resizable()
 							.renderingMode(.template)
 							.frame(width: 24.0, height: 24.0)
@@ -36,9 +36,7 @@ struct CheckInView: MTAsyncView {
 							Button {
 								searchText = ""
 							} label: {
-								Image(R.image.ic_delete)
-									.renderingMode(.template)
-									.foregroundColor(AppColor.theme)
+								Image(R.image.ic_cancel)
 							}
 
 						}
