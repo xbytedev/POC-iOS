@@ -16,10 +16,12 @@ struct MTTabBarContainerView<V: View>: View {
 	let content: V
 	@State private var tabs: [TabItem] = []
 	@State private var selectionPicker: ListType = .places
+	@Binding private var checkInSelection: SegmentItem
 
-	init(selection: Binding<TabItem>, @ViewBuilder content: () -> V) {
+	init(selection: Binding<TabItem>,checkInSelection: Binding<SegmentItem>, @ViewBuilder content: () -> V) {
 		self.content = content()
 		_selection = selection
+		_checkInSelection = checkInSelection
 	}
 
     var body: some View {
@@ -33,7 +35,12 @@ struct MTTabBarContainerView<V: View>: View {
 //		.navigationTitle(selection.title)
 		.toolbar {
 			ToolbarItem(placement: .principal) {
-				Text(selection.title)
+				if selection == .checkIn {
+					MTSegmentView(selection: $checkInSelection)
+						.padding(.trailing, 44)
+				} else {
+					Text(selection.title)
+				}
 				/*GeometryReader { geometryProxy in
 				 HStack {
 				 Spacer()
@@ -51,7 +58,7 @@ struct MTTabBarContainerView<V: View>: View {
 struct MTTabBarContainerView_Previews: PreviewProvider {
 	@State static var selection: TabItem = .groups
     static var previews: some View {
-		MTTabBarContainerView(selection: $selection) {
+		MTTabBarContainerView(selection: $selection, checkInSelection: .constant(.places)) {
 			Color.red
 				.tabBarItem(tab: .groups, selection: $selection)
 		}

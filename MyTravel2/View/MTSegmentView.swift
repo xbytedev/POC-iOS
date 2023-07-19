@@ -39,14 +39,11 @@ struct MTSegmentView: View {
 		.clipShape(Capsule())
     }
 
-	private func tabView(tab: SegmentItem) -> some View {
-		Text(tab.rawValue)
-			.foregroundColor(selection == tab ? AppColor.Text.tertiary : AppColor.theme)
-			.padding(8)
-			.frame(maxWidth: .infinity)
-			.myBackground {
-				ZStack {
-					if selection == tab {
+	@ViewBuilder private func tabView(tab: SegmentItem) -> some View {
+		if selection == tab {
+			segmentTitleView(tab: tab)
+				.myBackground {
+					ZStack {
 						GeometryReader { geometryProxy in
 							RoundedRectangle(cornerRadius: geometryProxy.size.height / 2.0)
 								.foregroundColor(AppColor.theme)
@@ -54,9 +51,16 @@ struct MTSegmentView: View {
 						}
 					}
 				}
-			}
-//			.background(selection == tab ? AppColor.theme : Color.clear)
-//			.clipShape(Capsule())
+		} else {
+			segmentTitleView(tab: tab)
+		}
+	}
+
+	private func segmentTitleView(tab: SegmentItem) -> some View {
+		Text(tab.rawValue)
+			.foregroundColor(selection == tab ? AppColor.Text.tertiary : AppColor.theme)
+			.padding(8)
+			.frame(maxWidth: .infinity)
 	}
 
 	func switchToTab(tab: SegmentItem) {

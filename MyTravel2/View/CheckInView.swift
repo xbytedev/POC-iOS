@@ -10,7 +10,8 @@ import SwiftUI
 struct CheckInView: View {
 	@State private var searchText: String = ""
 	let places: [String] = ["Orion Hotel Bishkek", "Hyatt Regency Bishkek", "Ala-Archa Gorge", "Attraction 4 name", "Attraction 5 name"]
-	@State private var selection: SegmentItem = .places
+	@Binding var selection: SegmentItem
+	
     var body: some View {
 		/*VStack(alignment: .leading) {
 			Text("Places")
@@ -31,8 +32,6 @@ struct CheckInView: View {
 
 				}
 			}*/
-		VStack {
-			MTSegmentView(selection: $selection)
 			List {
 				Section {
 					ForEach(places, id: \.self) { place in
@@ -47,13 +46,12 @@ struct CheckInView: View {
 			}
 			.listStyle(.plain)
 			//		}
-		}
 		.padding()
     }
 }
 
 struct CheckInView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckInView()
+		CheckInView(selection: .constant(.places))
     }
 }
