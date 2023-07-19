@@ -31,10 +31,10 @@ struct MTSegmentView: View {
 			}
 		}
 		.myOverlay(overlayView: {
-			GeometryReader { geometryProxy in
-				RoundedRectangle(cornerRadius: geometryProxy.size.height/2.0)
-					.stroke(AppColor.theme, lineWidth: 2)
-			}
+			Capsule()
+				.stroke(lineWidth: 2)
+				.foregroundColor(AppColor.theme)
+
 		})
 		.clipShape(Capsule())
     }
@@ -56,7 +56,7 @@ struct MTSegmentView: View {
 				}
 			}
 //			.background(selection == tab ? AppColor.theme : Color.clear)
-			.clipShape(Capsule())
+//			.clipShape(Capsule())
 	}
 
 	func switchToTab(tab: SegmentItem) {
