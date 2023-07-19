@@ -88,26 +88,29 @@ struct GroupListView: MTAsyncView {
 	}
 
 	var dataView: some View {
-		List {
-			ForEach($viewModel.groupList) { item in
-				ZStack {
-					NavigationLink(isActive: item.navigateView) {
-						GroupDetailView(viewModel:
-								.init(group: item.wrappedValue,
-									  groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel),
-										isPopToGroupList: item.navigateView)
-						.navigationTitle(R.string.localizable.groups())
-						.setThemeBackButton()
-					} label: {
-						EmptyView()
+		GeometryReader { geometryProxy in
+			List {
+				ForEach($viewModel.groupList) { item in
+					ZStack {
+						NavigationLink(isActive: item.navigateView) {
+							GroupDetailView(viewModel:
+									.init(group: item.wrappedValue,
+										  groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel),
+											isPopToGroupList: item.navigateView)
+							.navigationTitle(R.string.localizable.groups())
+							.setThemeBackButton()
+						} label: {
+							EmptyView()
+						}
+						.opacity(0)
+						GroupListRow(group: item.wrappedValue)
 					}
-					.opacity(0)
-					GroupListRow(group: item.wrappedValue)
+					.mtListBackgroundStyle()
 				}
-				.mtListBackgroundStyle()
+				Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
 			}
+			.listStyle(.plain)
 		}
-		.listStyle(.plain)
 		/*.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 		 Button {
 		 print("Delete")

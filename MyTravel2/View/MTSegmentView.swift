@@ -7,17 +7,18 @@
 
 import SwiftUI
 
-struct MTSegmentView: View {
-	enum SegmentItem: String, CaseIterable, Identifiable {
-		var id: String {
-			rawValue
-		}
-
-		case places = "Places"
-		case checkIns = "Check-ins"
+enum SegmentItem: String, CaseIterable, Identifiable {
+	var id: String {
+		rawValue
 	}
+
+	case places = "Places"
+	case checkIns = "Check-ins"
+}
+
+struct MTSegmentView: View {
 	@State private var tabs = SegmentItem.allCases
-	@State private var selection: SegmentItem = .places
+	@Binding var selection: SegmentItem
 	@Namespace var namespace
 
     var body: some View {
@@ -41,7 +42,7 @@ struct MTSegmentView: View {
 	private func tabView(tab: SegmentItem) -> some View {
 		Text(tab.rawValue)
 			.foregroundColor(selection == tab ? AppColor.Text.tertiary : AppColor.theme)
-			.padding()
+			.padding(8)
 			.frame(maxWidth: .infinity)
 			.myBackground {
 				ZStack {
@@ -67,6 +68,6 @@ struct MTSegmentView: View {
 
 struct MTSegmentView_Previews: PreviewProvider {
     static var previews: some View {
-        MTSegmentView()
+		MTSegmentView(selection: .constant(.checkIns))
     }
 }

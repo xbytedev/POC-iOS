@@ -25,7 +25,7 @@ struct MTTabBarContainerView<V: View>: View {
     var body: some View {
 		ZStack(alignment: .bottom) {
 			content.ignoresSafeArea(edges: .bottom)
-			MTTabBarView(selection: $selection)
+			MTTabBarView(selection: $selection).padding(.vertical)
 		}
 		.onPreferenceChange(MTTabBarPreferenceKey.self) { value in
 			tabs = value
@@ -33,30 +33,19 @@ struct MTTabBarContainerView<V: View>: View {
 //		.navigationTitle(selection.title)
 		.toolbar {
 			ToolbarItem(placement: .principal) {
-				if selection == .checkIn {
-					Picker("Title", selection: $selectionPicker) {
-						Text("Travel")
-							.tag(ListType.places)
-						Text("MyTravel")
-							.tag(ListType.checkIn)
-					}
-					.pickerStyle(.segmented)
-					.padding(.trailing, 44)
-				} else {
-					Text(selection.title)
-				}
+				Text(selection.title)
 				/*GeometryReader { geometryProxy in
-					HStack {
-						Spacer()
+				 HStack {
+				 Spacer()
 
-						Text(selection.title)
-						Spacer()
-					}
-					.frame(width: geometryProxy.size.width, height: 44, alignment: .center)
-				}*/
+				 Text(selection.title)
+				 Spacer()
+				 }
+				 .frame(width: geometryProxy.size.width, height: 44, alignment: .center)
+				 }*/
 			}
 		}
-    }
+	}
 }
 
 struct MTTabBarContainerView_Previews: PreviewProvider {
