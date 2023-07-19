@@ -75,10 +75,18 @@ struct CheckInView: MTAsyncView {
 			List {
 				Section {
 					ForEach(viewModel.displayPlaces) { place in
-						HStack {
-							Text(place.name ?? "")
-							Spacer()
-							Image(R.image.ic_arrowRight)
+						ZStack {
+							NavigationLink {
+								PlaceDetailsView()
+							} label: {
+								EmptyView()
+							}
+							.opacity(0)
+							HStack {
+								Text(place.name ?? "")
+								Spacer()
+								Image(R.image.ic_arrowRight)
+							}
 						}
 							.mtListBackgroundStyle()
 					}
