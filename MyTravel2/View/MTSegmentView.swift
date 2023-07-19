@@ -7,17 +7,18 @@
 
 import SwiftUI
 
-struct MTSegmentView: View {
-	enum SegmentItem: String, CaseIterable, Identifiable {
-		var id: String {
-			rawValue
-		}
-
-		case places = "Places"
-		case checkIns = "Check-ins"
+enum SegmentItem: String, CaseIterable, Identifiable {
+	var id: String {
+		rawValue
 	}
+
+	case places = "Places"
+	case checkIns = "Check-ins"
+}
+
+struct MTSegmentView: View {
 	@State private var tabs = SegmentItem.allCases
-	@State private var selection: SegmentItem = .places
+	@Binding var selection: SegmentItem
 	@Namespace var namespace
 
     var body: some View {
@@ -30,22 +31,19 @@ struct MTSegmentView: View {
 			}
 		}
 		.myOverlay(overlayView: {
-			GeometryReader { geometryProxy in
-				RoundedRectangle(cornerRadius: geometryProxy.size.height/2.0)
-					.stroke(AppColor.theme, lineWidth: 2)
-			}
+			Capsule()
+				.stroke(lineWidth: 2)
+				.foregroundColor(AppColor.theme)
+
 		})
 		.clipShape(Capsule())
     }
 
-	private func tabView(tab: SegmentItem) -> some View {
-		Text(tab.rawValue)
-			.foregroundColor(selection == tab ? AppColor.Text.tertiary : AppColor.theme)
-			.padding()
-			.frame(maxWidth: .infinity)
-			.myBackground {
-				ZStack {
-					if selection == tab {
+	@ViewBuilder private func tabView(tab: SegmentItem) -> some View {
+		if selection == tab {
+			segmentTitleView(tab: tab)
+				.myBackground {
+					ZStack {
 						GeometryReader { geometryProxy in
 							RoundedRectangle(cornerRadius: geometryProxy.size.height / 2.0)
 								.foregroundColor(AppColor.theme)
@@ -53,9 +51,16 @@ struct MTSegmentView: View {
 						}
 					}
 				}
-			}
-//			.background(selection == tab ? AppColor.theme : Color.clear)
-			.clipShape(Capsule())
+		} else {
+			segmentTitleView(tab: tab)
+		}
+	}
+
+	private func segmentTitleView(tab: SegmentItem) -> some View {
+		Text(tab.rawValue)
+			.foregroundColor(selection == tab ? AppColor.Text.tertiary : AppColor.theme)
+			.padding(8)
+			.frame(maxWidth: .infinity)
 	}
 
 	func switchToTab(tab: SegmentItem) {
@@ -67,6 +72,6 @@ struct MTSegmentView: View {
 
 struct MTSegmentView_Previews: PreviewProvider {
     static var previews: some View {
-        MTSegmentView()
+		MTSegmentView(selection: .constant(.checkIns))
     }
 }

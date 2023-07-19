@@ -13,6 +13,10 @@ struct GroupSuccessProvider: GroupProvider {
 	}
 
 	func getGroupList(user: WebUser) async -> Result<[MTGroup], Error> {
-		.success([MTGroup.preview])
+		.success([
+			MTGroup.preview, MTGroup.preview, MTGroup.preview, MTGroup.preview, MTGroup.preview, MTGroup.preview,
+			MTGroup.preview, MTGroup.preview, MTGroup.preview, MTGroup.preview, MTGroup.preview, MTGroup.preview,
+			MTGroup.preview, MTGroup.preview, MTGroup.preview, MTGroup.preview, MTGroup.preview
+		])
 	}
 }

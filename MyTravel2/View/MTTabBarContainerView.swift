@@ -16,16 +16,18 @@ struct MTTabBarContainerView<V: View>: View {
 	let content: V
 	@State private var tabs: [TabItem] = []
 	@State private var selectionPicker: ListType = .places
+	@Binding private var checkInSelection: SegmentItem
 
-	init(selection: Binding<TabItem>, @ViewBuilder content: () -> V) {
+	init(selection: Binding<TabItem>,checkInSelection: Binding<SegmentItem>, @ViewBuilder content: () -> V) {
 		self.content = content()
 		_selection = selection
+		_checkInSelection = checkInSelection
 	}
 
     var body: some View {
 		ZStack(alignment: .bottom) {
 			content.ignoresSafeArea(edges: .bottom)
-			MTTabBarView(selection: $selection)
+			MTTabBarView(selection: $selection).padding(.vertical)
 		}
 		.onPreferenceChange(MTTabBarPreferenceKey.self) { value in
 			tabs = value
@@ -34,35 +36,29 @@ struct MTTabBarContainerView<V: View>: View {
 		.toolbar {
 			ToolbarItem(placement: .principal) {
 				if selection == .checkIn {
-					Picker("Title", selection: $selectionPicker) {
-						Text("Travel")
-							.tag(ListType.places)
-						Text("MyTravel")
-							.tag(ListType.checkIn)
-					}
-					.pickerStyle(.segmented)
-					.padding(.trailing, 44)
+					MTSegmentView(selection: $checkInSelection)
+						.padding(.trailing, 44)
 				} else {
 					Text(selection.title)
 				}
 				/*GeometryReader { geometryProxy in
-					HStack {
-						Spacer()
+				 HStack {
+				 Spacer()
 
-						Text(selection.title)
-						Spacer()
-					}
-					.frame(width: geometryProxy.size.width, height: 44, alignment: .center)
-				}*/
+				 Text(selection.title)
+				 Spacer()
+				 }
+				 .frame(width: geometryProxy.size.width, height: 44, alignment: .center)
+				 }*/
 			}
 		}
-    }
+	}
 }
 
 struct MTTabBarContainerView_Previews: PreviewProvider {
 	@State static var selection: TabItem = .groups
     static var previews: some View {
-		MTTabBarContainerView(selection: $selection) {
+		MTTabBarContainerView(selection: $selection, checkInSelection: .constant(.places)) {
 			Color.red
 				.tabBarItem(tab: .groups, selection: $selection)
 		}
