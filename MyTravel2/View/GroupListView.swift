@@ -75,7 +75,8 @@ struct GroupListView: MTAsyncView {
 				NavigationLink(isActive: $shouldAddTraveler) {
 					if let groupToAddTraveler = createdGroup {
 						ScanQRCodeView(
-							viewModel: ScanQRCodeViewModel(group: groupToAddTraveler, provider: AddTravellerAPIProvider()), shouldNavigateBack: $shouldAddTraveler)
+							viewModel: ScanQRCodeViewModel(
+								group: groupToAddTraveler, provider: AddTravellerAPIProvider()), shouldNavigateBack: $shouldAddTraveler)
 						.navigationTitle("QR Code")
 					} else {
 						EmptyView()
@@ -88,26 +89,36 @@ struct GroupListView: MTAsyncView {
 	}
 
 	var dataView: some View {
-		List {
-			ForEach($viewModel.groupList) { item in
-				ZStack {
-					NavigationLink(isActive: item.navigateView) {
-						GroupDetailView(viewModel:
-								.init(group: item.wrappedValue,
-									  groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel),
-										isPopToGroupList: item.navigateView)
-						.navigationTitle(R.string.localizable.groups())
-						.setThemeBackButton()
-					} label: {
-						EmptyView()
+		GeometryReader { geometryProxy in
+			List {
+				ForEach($viewModel.groupList) { item in
+					ZStack {
+						NavigationLink(isActive: item.navigateView) {
+							GroupDetailView(viewModel:
+									.init(group: item.wrappedValue,
+										  groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel),
+											isPopToGroupList: item.navigateView)
+							.navigationTitle(R.string.localizable.groups())
+							.setThemeBackButton()
+						} label: {
+							EmptyView()
+						}
+						.opacity(0)
+						GroupListRow(group: item.wrappedValue)
 					}
-					.opacity(0)
-					GroupListRow(group: item.wrappedValue)
+					.mtListBackgroundStyle()
 				}
-				.mtListBackgroundStyle()
+				if #available(iOS 15.0, *) {
+					Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+						.listRowSeparator(.hidden)
+						.listRowBackground(Color.clear)
+				} else {
+					Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+						.listRowBackground(Color.clear)
+				}
 			}
+			.listStyle(.plain)
 		}
-		.listStyle(.plain)
 		/*.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 		 Button {
 		 print("Delete")
