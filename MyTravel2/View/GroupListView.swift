@@ -108,7 +108,14 @@ struct GroupListView: MTAsyncView {
 					}
 					.mtListBackgroundStyle()
 				}
-				Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+				if #available(iOS 15.0, *) {
+					Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+						.listRowSeparator(.hidden)
+						.listRowBackground(Color.clear)
+				} else {
+					Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+						.listRowBackground(Color.clear)
+				}
 			}
 			.listStyle(.plain)
 		}
