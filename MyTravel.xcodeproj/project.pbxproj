@@ -58,6 +58,7 @@
 		897EDC672A0524CC001B652E /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 897EDC662A0524CC001B652E /* SDWebImageSwiftUI */; };
 		897EDC6E2A05272F001B652E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC6D2A05272F001B652E /* LoginView.swift */; };
 		89A1AE682A386F5D00C089E1 /* ScanQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */; };
+		89A6FEE22A6AA14C003E77EA /* MTRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A6FEE12A6AA14C003E77EA /* MTRoundedView.swift */; };
 		89AED1B92A651D0100D7D95E /* MTSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AED1B82A651D0100D7D95E /* MTSegmentView.swift */; };
 		89BD67A02A38382E006129F2 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD679F2A38382E006129F2 /* KeychainWrapper.swift */; };
 		89BD67A22A383852006129F2 /* KeychainWrappperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD67A12A383852006129F2 /* KeychainWrappperTests.swift */; };
@@ -183,6 +184,7 @@
 		897EDC4E2A050E25001B652E /* MyTravel2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTravel2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		897EDC6D2A05272F001B652E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeView.swift; sourceTree = "<group>"; };
+		89A6FEE12A6AA14C003E77EA /* MTRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRoundedView.swift; sourceTree = "<group>"; };
 		89AED1B82A651D0100D7D95E /* MTSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSegmentView.swift; sourceTree = "<group>"; };
 		89BD679F2A38382E006129F2 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		89BD67A12A383852006129F2 /* KeychainWrappperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrappperTests.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				893A00042A6810AD00279DCE /* PlaceDetailsView.swift */,
 				89210BA22A15F7C700F268FC /* SettingsView.swift */,
 				896259332A1243CA00AAE879 /* MTShapeView.swift */,
+				89A6FEE12A6AA14C003E77EA /* MTRoundedView.swift */,
 				897DAB1B2A3984D1006CB159 /* CameraPreviewView.swift */,
 				897DAB1E2A398BFB006CB159 /* QRCodeScannerView.swift */,
 				89D2272C2A3AC65E00D6D425 /* EnterCodeView.swift */,
@@ -756,6 +759,7 @@
 				893AFFFA2A67B08900279DCE /* LocationPreviewProvider.swift in Sources */,
 				897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */,
 				CE5742CE2A1DF7F60089666A /* PreviewGroupProvider.swift in Sources */,
+				89A6FEE22A6AA14C003E77EA /* MTRoundedView.swift in Sources */,
 				CE65C7702A1790980021F7FD /* MTGroup.swift in Sources */,
 				CE65C76B2A178B300021F7FD /* GroupProvider.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
