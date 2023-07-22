@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct PlaceDetailsView: View {
+	@ObservedObject var viewModel: LocationViewModel
+	@State private var placeDetail: MTPlaceDetail?
+	let place: MTPlace
+
 	var body: some View {
 		GeometryReader { geometryProxy in
 			VStack {
@@ -23,24 +27,41 @@ struct PlaceDetailsView: View {
 		}
 		.navigationTitle("Places")
 		.setThemeBackButton()
+		.onAppear {
+			Task {
+				do {
+					placeDetail = try await viewModel.getPlaceDetail(of: place)
+				} catch {
+				}
+			}
+		}
 	}
 
 	private var detailView: some View {
-		VStack(alignment: .leading, spacing: 24) {
-			titleView
-			descriptionView
-			groupView
-			groupDetailView
-			individualView
-			Spacer()
+		Group {
+			if placeDetail != nil {
+				VStack(alignment: .leading, spacing: 24) {
+					titleView
+					descriptionView
+					groupView
+					groupDetailView
+					individualView
+					Spacer()
+				}
+				.frame(maxWidth: .infinity)
+				.padding()
+				.myBackground {
+					AppColor.theme
+				}
+				.cornerRadius(32, corners: [.topLeft, .topRight])
+				.shadow(radius: 8, y: -4)
+			} else {
+				VStack {
+					ProgressView()
+					Text("Loading " + (place.name ?? ""))
+				}
+			}
 		}
-		.frame(maxWidth: .infinity)
-		.padding()
-		.myBackground {
-			AppColor.theme
-		}
-		.cornerRadius(32, corners: [.topLeft, .topRight])
-		.shadow(radius: 8, y: -4)
 	}
 
 	private var titleView: some View {
@@ -181,10 +202,10 @@ struct PlaceDetailsView: View {
 
 struct PlaceDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-		PlaceDetailsView()
+		PlaceDetailsView(viewModel: LocationViewModel(provider: LocationSuccessProvider()), place: .preview)
 			.previewDevice("iPhone 14 Pro")
 			.previewDisplayName("iPhone 14 Pro")
-		PlaceDetailsView()
+		PlaceDetailsView(viewModel: LocationViewModel(provider: LocationSuccessProvider()), place: .preview)
 			.previewDevice("iPhone SE (3rd generation)")
 			.previewDisplayName("iPhone SE")
     }

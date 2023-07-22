@@ -9,12 +9,20 @@ import Foundation
 
 struct LocationSuccessProvider: LocationProvider {
 	func getPlaceList() async -> Result<[MTPlace], Error> {
-		return .success([MTPlace.preview])
+		.success([MTPlace.preview])
+	}
+
+	func getPlaceDetail(place: MTPlace) async -> Result<MTPlaceDetail, Error> {
+		.success(.preview)
 	}
 }
 
 struct LocationFailureProvider: LocationProvider {
 	func getPlaceList() async -> Result<[MTPlace], Error> {
-		return .failure(CustomError.message("Mock Failure"))
+		.failure(CustomError.message("Mock Failure"))
+	}
+
+	func getPlaceDetail(place: MTPlace) async -> Result<MTPlaceDetail, Error> {
+		.failure(CustomError.message("Mock Failure"))
 	}
 }

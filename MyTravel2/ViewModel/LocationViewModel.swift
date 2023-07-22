@@ -38,4 +38,8 @@ class LocationViewModel: ObservableObject {
 			displayPlaces = places.filter({$0.name?.contains(searchStr) ?? false})
 		}
 	}
+
+	func getPlaceDetail(of place: MTPlace) async throws -> MTPlaceDetail {
+		try await provider.getPlaceDetail(place: place).get()
+	}
 }

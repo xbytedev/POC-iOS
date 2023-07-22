@@ -85,4 +85,8 @@ struct APPURL {
 	static var agentPlaceList: String {
 		apiBaseURL + "agent_place_list"
 	}
+
+	static var agentPlaceDetails: String {
+		apiBaseURL + "agent_place_details"
+	}
 }

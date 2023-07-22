@@ -60,6 +60,8 @@
 		89A1AE682A386F5D00C089E1 /* ScanQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */; };
 		89A6FEE22A6AA14C003E77EA /* MTRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A6FEE12A6AA14C003E77EA /* MTRoundedView.swift */; };
 		89AED1B92A651D0100D7D95E /* MTSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AED1B82A651D0100D7D95E /* MTSegmentView.swift */; };
+		89B7C3612A6BEA840086B527 /* MTPlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B7C3602A6BEA840086B527 /* MTPlaceDetail.swift */; };
+		89B7C3642A6BEDF40086B527 /* PlaceDetailPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B7C3632A6BEDF40086B527 /* PlaceDetailPreview.swift */; };
 		89BD67A02A38382E006129F2 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD679F2A38382E006129F2 /* KeychainWrapper.swift */; };
 		89BD67A22A383852006129F2 /* KeychainWrappperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD67A12A383852006129F2 /* KeychainWrappperTests.swift */; };
 		89BD67A62A3838B8006129F2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 89BD67A52A3838B8006129F2 /* Alamofire */; };
@@ -186,6 +188,8 @@
 		89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeView.swift; sourceTree = "<group>"; };
 		89A6FEE12A6AA14C003E77EA /* MTRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRoundedView.swift; sourceTree = "<group>"; };
 		89AED1B82A651D0100D7D95E /* MTSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSegmentView.swift; sourceTree = "<group>"; };
+		89B7C3602A6BEA840086B527 /* MTPlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTPlaceDetail.swift; sourceTree = "<group>"; };
+		89B7C3632A6BEDF40086B527 /* PlaceDetailPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailPreview.swift; sourceTree = "<group>"; };
 		89BD679F2A38382E006129F2 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		89BD67A12A383852006129F2 /* KeychainWrappperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrappperTests.swift; sourceTree = "<group>"; };
 		89BD67AE2A38398D006129F2 /* MTKeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTKeychainWrapper.swift; sourceTree = "<group>"; };
@@ -332,6 +336,7 @@
 				C96F9A252A3B41C0006DE900 /* TravellerPreview.swift */,
 				89DD68702A529DC400486A49 /* TempTravelerPreview.swift */,
 				893A00012A67C4D700279DCE /* PlacePreview.swift */,
+				89B7C3632A6BEDF40086B527 /* PlaceDetailPreview.swift */,
 				897EDC332A050E24001B652E /* Preview Assets.xcassets */,
 				CE5742CD2A1DF7F60089666A /* PreviewGroupProvider.swift */,
 				89BD67BC2A3852AE006129F2 /* GroupDetailPreviewProvider.swift */,
@@ -485,6 +490,7 @@
 				C96F9A202A3B3EE4006DE900 /* MTTraveller.swift */,
 				89DD686D2A52997F00486A49 /* MTTempTraveler.swift */,
 				893AFFFE2A67BFCB00279DCE /* MTPlace.swift */,
+				89B7C3602A6BEA840086B527 /* MTPlaceDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -726,6 +732,7 @@
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
 				89F942492A42B6F300410DED /* GroupEditView.swift in Sources */,
 				89AED1B92A651D0100D7D95E /* MTSegmentView.swift in Sources */,
+				89B7C3612A6BEA840086B527 /* MTPlaceDetail.swift in Sources */,
 				89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */,
 				897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */,
 				893AFFFF2A67BFCB00279DCE /* MTPlace.swift in Sources */,
@@ -764,6 +771,7 @@
 				CE65C76B2A178B300021F7FD /* GroupProvider.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
 				8946B9B22A305126007F66F6 /* AdaptsToKeyboard.swift in Sources */,
+				89B7C3642A6BEDF40086B527 /* PlaceDetailPreview.swift in Sources */,
 				89210B9B2A15E5A000F268FC /* WelcomeView.swift in Sources */,
 				897E61D02A0BA846008D1687 /* OverlayModifier.swift in Sources */,
 				CEC19B7A2A0B7FBD006E3192 /* WebRequester.swift in Sources */,
