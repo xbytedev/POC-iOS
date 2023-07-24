@@ -6,66 +6,56 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
-struct PlaceDetailsView: View {
+struct PlaceDetailsView: MTAsyncView {
+
 	@ObservedObject var viewModel: LocationViewModel
-	@State private var placeDetail: MTPlaceDetail?
+	var state: MTLoadingState {
+		viewModel.detailState
+	}
 	let place: MTPlace
 
-	var body: some View {
-		GeometryReader { geometryProxy in
-			VStack {
-				Image(R.image.img_setupGroup)
-					.resizable()
-					.aspectRatio(16/9.0, contentMode: .fill)
-					.frame(height: 120)
-					.offset(y: 8)
-					.padding(.horizontal)
-				detailView
-			}
-			.ignoresSafeArea(edges: .bottom)
+	var loadingMessage: String? {
+		"Loading " + (place.name ?? "") + " details"
+	}
+
+	var loadedView: some View {
+		VStack(spacing: 0) {
+			WebImage(from: viewModel.placeDetail.image)
+				.resizable()
+				.indicator(.activity)
+				.cornerRadius(8)
+				.aspectRatio(16/9.0, contentMode: .fill)
+				.padding(.init(top: 32, leading: 16, bottom: 0, trailing: 16))
+			detailView
 		}
+		.ignoresSafeArea(edges: .bottom)
 		.navigationTitle("Places")
 		.setThemeBackButton()
-		.onAppear {
-			Task {
-				do {
-					placeDetail = try await viewModel.getPlaceDetail(of: place)
-				} catch {
-				}
-			}
-		}
 	}
 
 	private var detailView: some View {
-		Group {
-			if placeDetail != nil {
-				VStack(alignment: .leading, spacing: 24) {
-					titleView
-					descriptionView
-					groupView
-					groupDetailView
-					individualView
-					Spacer()
-				}
-				.frame(maxWidth: .infinity)
-				.padding()
-				.myBackground {
-					AppColor.theme
-				}
-				.cornerRadius(32, corners: [.topLeft, .topRight])
-				.shadow(radius: 8, y: -4)
-			} else {
-				VStack {
-					ProgressView()
-					Text("Loading " + (place.name ?? ""))
-				}
-			}
+		VStack(alignment: .leading, spacing: 24) {
+			titleView
+			descriptionView
+			groupView
+			groupDetailView
+			individualView
+			Spacer()
 		}
+		.frame(maxWidth: .infinity)
+		.padding()
+		.myBackground {
+			AppColor.theme
+		}
+		.cornerRadius(32, corners: [.topLeft, .topRight])
+		.shadow(radius: 8, y: -4)
+		.padding(.top, -16)
 	}
 
 	private var titleView: some View {
-		Text("Attraction, Partner Name Location, Address")
+		Text(viewModel.placeDetail.name)
 			.foregroundColor(AppColor.Text.tertiary)
 			.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 			.padding(.horizontal)
@@ -73,11 +63,11 @@ struct PlaceDetailsView: View {
 
 	private var descriptionView: some View {
 		VStack(alignment: .leading, spacing: 8) {
-			Text("Description")
+			Text("Address")
 				.foregroundColor(AppColor.Text.tertiary)
 				.font(AppFont.getFont(forStyle: .title3, forWeight: .semibold))
 				.padding(.horizontal)
-			Text("description of this attraction or partner based on information on the backoffice. if it is long... more...")
+			Text(viewModel.placeDetail.address)
 				.foregroundColor(AppColor.Text.tertiary)
 				.font(AppFont.getFont(forStyle: .body))
 				.lineLimit(3)
@@ -196,6 +186,12 @@ struct PlaceDetailsView: View {
 					.lineLimit(3)
 				Spacer()
 			}
+		}
+	}
+
+	func load() {
+		Task {
+			await viewModel.getPlaceDetail(of: place)
 		}
 	}
 }

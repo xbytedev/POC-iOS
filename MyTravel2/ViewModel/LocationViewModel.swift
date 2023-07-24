@@ -10,14 +10,16 @@ import UIKit
 class LocationViewModel: ObservableObject {
 	let provider: LocationProvider
 	@Published @MainActor private(set) var state: MTLoadingState = .idle
+	@Published @MainActor private(set) var detailState: MTLoadingState = .idle
 	@Published @MainActor private(set) var places: [MTPlace] = .init()
 	@Published @MainActor private(set) var displayPlaces: [MTPlace] = .init()
+	@Published @MainActor private(set) var placeDetail: MTPlaceDetail!
 
 	init(provider: LocationProvider) {
 		self.provider = provider
 	}
 	@MainActor
-	func getPlaceList() async throws {
+	func getPlaceList() async {
 		state = .loaded
 		let result = await provider.getPlaceList()
 		switch result {
@@ -39,7 +41,14 @@ class LocationViewModel: ObservableObject {
 		}
 	}
 
-	func getPlaceDetail(of place: MTPlace) async throws -> MTPlaceDetail {
-		try await provider.getPlaceDetail(place: place).get()
+	@MainActor
+	func getPlaceDetail(of place: MTPlace) async {
+		detailState = .loading
+		do {
+			placeDetail = try await provider.getPlaceDetail(place: place).get()
+			detailState = .loaded
+		} catch {
+			detailState = .failed(error)
+		}
 	}
 }
