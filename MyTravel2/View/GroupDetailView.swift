@@ -21,6 +21,20 @@ struct GroupDetailView: MTAsyncView {
 	var loadingMessage: String? {
 		"Loading \(viewModel.group.name ?? "group") details"
 	}
+	var body: some View {
+		VStack {
+			switch state {
+			case .idle:
+				idleView
+			case .loading:
+				loadingView
+			case .failed(let error):
+				getErrorView(with: error.localizedDescription)
+			case .loaded:
+				loadedView
+			}
+		}
+	}
 
 	var loadedView: some View {
 		dataView

@@ -16,15 +16,16 @@ struct AppTabBarView: View {
 	@State private var createdGroup: MTGroup?
 	@State private var shouldAddTraveler: Bool = false
 	@State private var checkInSelection = SegmentItem.places
+	@StateObject private var groupViewModel = GroupViewModel(provider: GroupAPIProvider())
 
     var body: some View {
 		ZStack {
 			MTTabBarContainerView(selection: $selection, checkInSelection: $checkInSelection) {
 				GroupListView(
-					isPopupPresented: $isPopupPresented, /*viewModel: .init(provider: GroupAPIProvider()),*/
+					isPopupPresented: $isPopupPresented, viewModel: groupViewModel,
 					shouldGroupSuccess: $shouldGroupSuccess, createdGroup: $createdGroup, shouldAddTraveler: $shouldAddTraveler)
 					.tabBarItem(tab: .groups, selection: $selection)
-				CheckInView(provider: LocationAPIProvider(), selection: $checkInSelection)
+				CheckInView(groupViewModel: groupViewModel, provider: LocationAPIProvider(), selection: $checkInSelection)
 					.tabBarItem(tab: .checkIn, selection: $selection)
 				SettingsView(shouldPopToRootView: $rootIsActive)
 					.tabBarItem(tab: .settings, selection: $selection)

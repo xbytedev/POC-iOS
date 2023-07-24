@@ -10,7 +10,7 @@ import SwiftUI
 struct GroupListView: MTAsyncView {
 
 	@Binding var isPopupPresented: Bool
-	@StateObject private var viewModel: GroupViewModel = .init(provider: GroupAPIProvider())
+	@ObservedObject var viewModel: GroupViewModel
 	@Binding var shouldGroupSuccess: Bool
 	@Binding var createdGroup: MTGroup?
 	@Binding var shouldAddTraveler: Bool
@@ -18,12 +18,13 @@ struct GroupListView: MTAsyncView {
 	@State private var needToAddTraveler: Bool = false
 
 	init(
-		isPopupPresented: Binding<Bool>, shouldGroupSuccess: Binding<Bool>,
+		isPopupPresented: Binding<Bool>, viewModel: GroupViewModel, shouldGroupSuccess: Binding<Bool>,
 		createdGroup: Binding<MTGroup?> = .constant(nil), shouldAddTraveler: Binding<Bool>) {
 			_isPopupPresented = isPopupPresented
 			_shouldGroupSuccess = shouldGroupSuccess
 			_createdGroup = createdGroup
 			_shouldAddTraveler = shouldAddTraveler
+			self.viewModel = viewModel
 			self.navigationHash = .init()
 		}
 
@@ -172,9 +173,10 @@ struct GroupListView: MTAsyncView {
 
 struct GroupList_Previews: PreviewProvider {
     static var previews: some View {
+		let viewModel = GroupViewModel(provider: GroupSuccessProvider())
 		GroupListView(
-			isPopupPresented: .constant(false), /*viewModel: .init(provider: GroupAPIProvider()),*/
-			shouldGroupSuccess: .constant(true), createdGroup: .constant(nil), shouldAddTraveler: .constant(true))
+			isPopupPresented: .constant(false), viewModel: viewModel, shouldGroupSuccess: .constant(true),
+			createdGroup: .constant(nil), shouldAddTraveler: .constant(true))
     }
 }
 /*

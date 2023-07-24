@@ -12,7 +12,7 @@ struct PlaceDetailsView: MTAsyncView {
 
 	@ObservedObject var viewModel: LocationViewModel
 	var state: MTLoadingState {
-		viewModel.detailState
+		viewModel.state
 	}
 	let place: MTPlace
 

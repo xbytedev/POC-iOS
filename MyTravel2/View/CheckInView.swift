@@ -10,12 +10,14 @@ import SwiftUI
 struct CheckInView: MTAsyncView {
 	@State private var searchText: String = ""
 	@State private var selectedType: String = "All"
+	@ObservedObject var groupViewModel: GroupViewModel
 	@StateObject private var viewModel: LocationViewModel // = LocationViewModel()
     @Binding var selection: SegmentItem
 
-	init(provider: LocationProvider, selection: Binding<SegmentItem>) {
+	init(groupViewModel: GroupViewModel, provider: LocationProvider, selection: Binding<SegmentItem>) {
 		_viewModel = StateObject(wrappedValue: LocationViewModel(provider: provider))
         _selection = selection
+		self.groupViewModel = groupViewModel
 	}
 
     var loadedView: some View {
@@ -106,11 +108,7 @@ struct CheckInView: MTAsyncView {
 
 	func load() {
 		Task {
-			do {
-				try await viewModel.getPlaceList()
-			} catch {
-			}
-
+			await viewModel.getPlaceList()
 		}
 	}
 }
@@ -118,7 +116,9 @@ struct CheckInView: MTAsyncView {
 #if DEBUG
 struct CheckInView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckInView(provider: LocationSuccessProvider(), selection: .constant(.places))
+		CheckInView(
+			groupViewModel: GroupViewModel(provider: GroupSuccessProvider()), provider: LocationSuccessProvider(),
+			selection: .constant(.places))
     }
 }
 #endif
