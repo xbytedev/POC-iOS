@@ -79,7 +79,7 @@ struct CheckInView: MTAsyncView {
 					ForEach(viewModel.displayPlaces) { place in
 						ZStack {
 							NavigationLink {
-								PlaceDetailsView(viewModel: viewModel, place: place)
+								PlaceDetailsView(viewModel: viewModel, groupListViewModel: groupViewModel, place: place)
 							} label: {
 								EmptyView()
 							}

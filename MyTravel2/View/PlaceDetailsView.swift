@@ -11,8 +11,11 @@ import SDWebImageSwiftUI
 struct PlaceDetailsView: MTAsyncView {
 
 	@ObservedObject var viewModel: LocationViewModel
+	@ObservedObject var groupListViewModel: GroupViewModel
+	@State private var defaultGroup: MTGroup?
+
 	var state: MTLoadingState {
-		viewModel.state
+		viewModel.detailState
 	}
 	let place: MTPlace
 
@@ -81,7 +84,7 @@ struct PlaceDetailsView: MTAsyncView {
 				.foregroundColor(AppColor.Text.tertiary)
 				.font(AppFont.getFont(forStyle: .body))
 			HStack {
-				Text("Hammintons & Friends")
+				Text(getDefaultGroup()?.name ?? "")
 					.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 					.foregroundColor(AppColor.Text.tertiary)
 				Spacer()
@@ -194,14 +197,20 @@ struct PlaceDetailsView: MTAsyncView {
 			await viewModel.getPlaceDetail(of: place)
 		}
 	}
+
+	func getDefaultGroup() -> MTGroup? {
+		defaultGroup ?? groupListViewModel.groupList.first(where: {$0.isDefault == 1})
+	}
 }
 
 struct PlaceDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-		PlaceDetailsView(viewModel: LocationViewModel(provider: LocationSuccessProvider()), place: .preview)
+		let locationViewModel = LocationViewModel(provider: LocationSuccessProvider())
+		let groupViewModel = GroupViewModel(provider: GroupSuccessProvider())
+		PlaceDetailsView(viewModel: locationViewModel, groupListViewModel: groupViewModel, place: .preview)
 			.previewDevice("iPhone 14 Pro")
 			.previewDisplayName("iPhone 14 Pro")
-		PlaceDetailsView(viewModel: LocationViewModel(provider: LocationSuccessProvider()), place: .preview)
+		PlaceDetailsView(viewModel: locationViewModel, groupListViewModel: groupViewModel, place: .preview)
 			.previewDevice("iPhone SE (3rd generation)")
 			.previewDisplayName("iPhone SE")
     }
