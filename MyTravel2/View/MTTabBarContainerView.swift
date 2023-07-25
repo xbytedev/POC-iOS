@@ -18,7 +18,7 @@ struct MTTabBarContainerView<V: View>: View {
 	@State private var selectionPicker: ListType = .places
 	@Binding private var checkInSelection: SegmentItem
 
-	init(selection: Binding<TabItem>,checkInSelection: Binding<SegmentItem>, @ViewBuilder content: () -> V) {
+	init(selection: Binding<TabItem>, checkInSelection: Binding<SegmentItem>, @ViewBuilder content: () -> V) {
 		self.content = content()
 		_selection = selection
 		_checkInSelection = checkInSelection

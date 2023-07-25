@@ -90,15 +90,13 @@ struct GroupListView: MTAsyncView {
 	}
 
 	var dataView: some View {
-		GeometryReader { geometryProxy in
 			List {
 				ForEach($viewModel.groupList) { item in
 					ZStack {
 						NavigationLink(isActive: item.navigateView) {
-							GroupDetailView(viewModel:
-									.init(group: item.wrappedValue,
-										  groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel),
-											isPopToGroupList: item.navigateView)
+							let viewModel = GroupDetailViewModel(
+								group: item.wrappedValue, groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel)
+							GroupDetailView(viewModel: viewModel, isPopToGroupList: item.navigateView)
 							.navigationTitle(R.string.localizable.groups())
 							.setThemeBackButton()
 						} label: {
@@ -109,17 +107,18 @@ struct GroupListView: MTAsyncView {
 					}
 					.mtListBackgroundStyle()
 				}
-				if #available(iOS 15.0, *) {
-					Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
-						.listRowSeparator(.hidden)
-						.listRowBackground(Color.clear)
-				} else {
-					Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
-						.listRowBackground(Color.clear)
+				GeometryReader { geometryProxy in
+					if #available(iOS 15.0, *) {
+						Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+							.listRowSeparator(.hidden)
+							.listRowBackground(Color.clear)
+					} else {
+						Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+							.listRowBackground(Color.clear)
+					}
 				}
 			}
 			.listStyle(.plain)
-		}
 		/*.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 		 Button {
 		 print("Delete")

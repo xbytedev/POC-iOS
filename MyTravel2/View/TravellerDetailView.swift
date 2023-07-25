@@ -167,7 +167,6 @@ struct TravellerDetailView: View {
 				try await viewModel.addTraveller(with: code, type: addType)
 				viewModel.delegate?.newTravelerAdded()
 				configuration.isLoading = false
-				// TODO: navigate back to group detail screen or group list
 				shouldNavigateBack = false
 //				dismiss()
 			} catch {

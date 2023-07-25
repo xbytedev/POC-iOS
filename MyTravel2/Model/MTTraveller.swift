@@ -32,7 +32,7 @@ extension MTTraveller: Decodable {
 	}
 
 	init(from decoder: Decoder) throws {
-		var container = try decoder.container(keyedBy: CodingKeys.self)
+		let container = try decoder.container(keyedBy: CodingKeys.self)
 		id = try container.decode(Int.self, forKey: .id)
 		groupId = try container.decode(Int.self, forKey: .groupId)
 		groupCode = try container.decode(String.self, forKey: .groupCode)
