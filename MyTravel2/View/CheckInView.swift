@@ -99,6 +99,9 @@ struct CheckInView: MTAsyncView {
 		.onChange(of: searchText) { newValue in
 			viewModel.searchPlace(with: newValue)
 		}
+		.onAppear {
+			viewModel.resetPlaceDetail()
+		}
 //		.padding()
     }
 

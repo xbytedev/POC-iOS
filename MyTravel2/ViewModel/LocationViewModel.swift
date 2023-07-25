@@ -43,6 +43,7 @@ class LocationViewModel: ObservableObject {
 
 	@MainActor
 	func getPlaceDetail(of place: MTPlace) async {
+		// FIXME: Is being called when getting back from place detail to place list view
 		detailState = .loading
 		do {
 			placeDetail = try await provider.getPlaceDetail(place: place).get()
@@ -50,5 +51,11 @@ class LocationViewModel: ObservableObject {
 		} catch {
 			detailState = .failed(error)
 		}
+	}
+
+	@MainActor
+	func resetPlaceDetail() {
+		detailState = .idle
+//		placeDetail = nil
 	}
 }

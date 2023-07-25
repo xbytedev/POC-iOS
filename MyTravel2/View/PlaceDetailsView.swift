@@ -74,15 +74,19 @@ struct PlaceDetailsView: MTAsyncView {
 
 	private var descriptionView: some View {
 		VStack(alignment: .leading, spacing: 8) {
-			Text("Address")
-				.foregroundColor(AppColor.Text.tertiary)
-				.font(AppFont.getFont(forStyle: .title3, forWeight: .semibold))
-				.padding(.horizontal)
-			Text(viewModel.placeDetail.address)
-				.foregroundColor(AppColor.Text.tertiary)
-				.font(AppFont.getFont(forStyle: .body))
-				.lineLimit(3)
-				.padding(.horizontal)
+			if viewModel.placeDetail.address == nil {
+				EmptyView()
+			} else {
+				Text("Address")
+					.foregroundColor(AppColor.Text.tertiary)
+					.font(AppFont.getFont(forStyle: .title3, forWeight: .semibold))
+					.padding(.horizontal)
+				Text(viewModel.placeDetail.address ?? "")
+					.foregroundColor(AppColor.Text.tertiary)
+					.font(AppFont.getFont(forStyle: .body))
+					.lineLimit(3)
+					.padding(.horizontal)
+			}
 		}
 	}
 
