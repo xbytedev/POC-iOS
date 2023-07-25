@@ -13,6 +13,8 @@ struct PlaceDetailsView: MTAsyncView {
 	@ObservedObject var viewModel: LocationViewModel
 	@ObservedObject var groupListViewModel: GroupViewModel
 	@State private var defaultGroup: MTGroup?
+	@State private var selectedGroup: MTGroup?
+	@State private var shouldPresentGroupSelection: Bool = false
 
 	var state: MTLoadingState {
 		viewModel.detailState
@@ -36,6 +38,12 @@ struct PlaceDetailsView: MTAsyncView {
 		.ignoresSafeArea(edges: .bottom)
 		.navigationTitle("Places")
 		.setThemeBackButton()
+		.sheet(isPresented: $shouldPresentGroupSelection) {
+			GroupListView(withCurrentSelectedGroup: getSelectedGroup(), and: groupListViewModel) { selectedGroup in
+				self.selectedGroup = selectedGroup
+				self.shouldPresentGroupSelection = false
+			}
+		}
 	}
 
 	private var detailView: some View {
@@ -84,12 +92,11 @@ struct PlaceDetailsView: MTAsyncView {
 				.foregroundColor(AppColor.Text.tertiary)
 				.font(AppFont.getFont(forStyle: .body))
 			HStack {
-				Text(getDefaultGroup()?.name ?? "")
+				Text(selectedGroup?.name ?? "")
 					.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 					.foregroundColor(AppColor.Text.tertiary)
 				Spacer()
-				Button {
-				} label: {
+				Button(action: presentGroupSelection) {
 					Text("Change")
 						.foregroundColor(AppColor.theme)
 						.font(AppFont.getFont(forStyle: .footnote))
@@ -196,10 +203,29 @@ struct PlaceDetailsView: MTAsyncView {
 		Task {
 			await viewModel.getPlaceDetail(of: place)
 		}
+		_ = getSelectedGroup()
 	}
 
 	func getDefaultGroup() -> MTGroup? {
-		defaultGroup ?? groupListViewModel.groupList.first(where: {$0.isDefault == 1})
+		if _defaultGroup.wrappedValue == nil {
+			defaultGroup = groupListViewModel.groupList.first(where: {$0.isDefault == 1})
+			return defaultGroup
+		} else {
+			return defaultGroup
+		}
+	}
+
+	func getSelectedGroup() -> MTGroup? {
+		if _selectedGroup.wrappedValue == nil {
+			selectedGroup = getDefaultGroup()
+			return selectedGroup
+		} else {
+			return selectedGroup
+		}
+	}
+
+	func presentGroupSelection() {
+		shouldPresentGroupSelection = true
 	}
 }
 

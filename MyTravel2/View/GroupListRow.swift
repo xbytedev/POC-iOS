@@ -9,10 +9,11 @@ import SwiftUI
 
 struct GroupListRow: View {
 	let group: MTGroup
+	let selectedGroup: MTGroup?
 
     var body: some View {
 		HStack {
-			if group.isDefault == 1 {
+			if (group.isDefault == 1 && selectedGroup == nil) || (selectedGroup == group) {
 				Image(R.image.ic_right)
 					.resizable()
 					.renderingMode(.template)
@@ -21,7 +22,7 @@ struct GroupListRow: View {
 					.foregroundColor(AppColor.theme)
 			}
 			Text(group.name ?? "")
-			Spacer()
+				.frame(maxWidth: .infinity, alignment: .leading)
 			Image(R.image.ic_arrowRight)
 		}
     }
@@ -29,7 +30,7 @@ struct GroupListRow: View {
 #if DEBUG
 struct GroupListRow_Previews: PreviewProvider {
     static var previews: some View {
-		GroupListRow(group: MTGroup.preview)
+		GroupListRow(group: MTGroup.preview, selectedGroup: nil)
     }
 }
 #endif

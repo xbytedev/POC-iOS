@@ -16,6 +16,8 @@ struct GroupListView: MTAsyncView {
 	@Binding var shouldAddTraveler: Bool
 	@State private var navigationHash: [Int: Bool]
 	@State private var needToAddTraveler: Bool = false
+	private var selectedGroup: MTGroup?
+	private var groupSelectionBlock: ((MTGroup) -> Void)?
 
 	init(
 		isPopupPresented: Binding<Bool>, viewModel: GroupViewModel, shouldGroupSuccess: Binding<Bool>,
@@ -24,6 +26,19 @@ struct GroupListView: MTAsyncView {
 			_shouldGroupSuccess = shouldGroupSuccess
 			_createdGroup = createdGroup
 			_shouldAddTraveler = shouldAddTraveler
+			self.viewModel = viewModel
+			self.navigationHash = .init()
+		}
+
+	init(
+		withCurrentSelectedGroup selectedGroup: MTGroup?, and viewModel: GroupViewModel,
+		groupSelection: @escaping (MTGroup) -> Void) {
+			_isPopupPresented = .constant(false)
+			_shouldGroupSuccess = .constant(false)
+			_createdGroup = .constant(nil)
+			_shouldAddTraveler = .constant(false)
+			groupSelectionBlock = groupSelection
+			self.selectedGroup = selectedGroup
 			self.viewModel = viewModel
 			self.navigationHash = .init()
 		}
@@ -92,30 +107,40 @@ struct GroupListView: MTAsyncView {
 	var dataView: some View {
 			List {
 				ForEach($viewModel.groupList) { item in
-					ZStack {
-						NavigationLink(isActive: item.navigateView) {
-							let viewModel = GroupDetailViewModel(
-								group: item.wrappedValue, groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel)
-							GroupDetailView(viewModel: viewModel, isPopToGroupList: item.navigateView)
-							.navigationTitle(R.string.localizable.groups())
-							.setThemeBackButton()
-						} label: {
-							EmptyView()
+					if groupSelectionBlock == nil {
+						ZStack {
+							NavigationLink(isActive: item.navigateView) {
+								let viewModel = GroupDetailViewModel(
+									group: item.wrappedValue, groupDetailProvider: GroupDetailAPIProvider(), groupUpdateDelegate: viewModel)
+								GroupDetailView(viewModel: viewModel, isPopToGroupList: item.navigateView)
+									.navigationTitle(R.string.localizable.groups())
+									.setThemeBackButton()
+							} label: {
+								EmptyView()
+							}
+							.opacity(0)
+							GroupListRow(group: item.wrappedValue, selectedGroup: nil)
 						}
-						.opacity(0)
-						GroupListRow(group: item.wrappedValue)
-					}
-					.mtListBackgroundStyle()
-				}
-				GeometryReader { geometryProxy in
-					if #available(iOS 15.0, *) {
-						Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
-							.listRowSeparator(.hidden)
-							.listRowBackground(Color.clear)
+						.mtListBackgroundStyle()
 					} else {
-						Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
-							.listRowBackground(Color.clear)
+						GroupListRow(group: item.wrappedValue, selectedGroup: selectedGroup)
+							.mtListBackgroundStyle()
+							.onTapGesture {
+								groupSelectionBlock?(item.wrappedValue)
+							}
 					}
+				}
+				if #available(iOS 15.0, *) {
+					GeometryReader { geometryProxy in
+						Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+					}
+					.listRowSeparator(.hidden)
+					.listRowBackground(Color.clear)
+				} else {
+					GeometryReader { geometryProxy in
+						Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+					}
+					.listRowBackground(Color.clear)
 				}
 			}
 			.listStyle(.plain)
