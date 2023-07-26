@@ -79,6 +79,7 @@ struct CheckInView: MTAsyncView {
 					ForEach(viewModel.displayPlaces) { place in
 						ZStack {
 							NavigationLink {
+								let viewModel = PlaceDetailViewModel(with: place, and: PlaceDetailAPIProvider())
 								PlaceDetailsView(viewModel: viewModel, groupListViewModel: groupViewModel, place: place)
 							} label: {
 								EmptyView()
@@ -98,9 +99,6 @@ struct CheckInView: MTAsyncView {
 		}
 		.onChange(of: searchText) { newValue in
 			viewModel.searchPlace(with: newValue)
-		}
-		.onAppear {
-			viewModel.resetPlaceDetail()
 		}
 //		.padding()
     }

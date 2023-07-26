@@ -10,14 +10,14 @@ import SDWebImageSwiftUI
 
 struct PlaceDetailsView: MTAsyncView {
 
-	@ObservedObject var viewModel: LocationViewModel
+	@ObservedObject var viewModel: PlaceDetailViewModel
 	@ObservedObject var groupListViewModel: GroupViewModel
 	@State private var defaultGroup: MTGroup?
 	@State private var selectedGroup: MTGroup?
 	@State private var shouldPresentGroupSelection: Bool = false
 
 	var state: MTLoadingState {
-		viewModel.detailState
+		viewModel.state
 	}
 	let place: MTPlace
 
@@ -30,10 +30,11 @@ struct PlaceDetailsView: MTAsyncView {
 			WebImage(from: viewModel.placeDetail.image)
 				.resizable()
 				.indicator(.activity)
+				.aspectRatio(16/9.0, contentMode: .fit)
+				.clipped()
 				.cornerRadius(8)
-				.aspectRatio(16/9.0, contentMode: .fill)
-				.padding(.init(top: 32, leading: 16, bottom: 0, trailing: 16))
-			detailView
+				.padding(.init(top: 0, leading: 16, bottom: 0, trailing: 16))
+			 detailView
 		}
 		.ignoresSafeArea(edges: .bottom)
 		.navigationTitle("Places")
@@ -47,13 +48,15 @@ struct PlaceDetailsView: MTAsyncView {
 	}
 
 	private var detailView: some View {
-		VStack(alignment: .leading, spacing: 24) {
-			titleView
-			descriptionView
-			groupView
-			groupDetailView
-			individualView
-			Spacer()
+		ScrollView {
+			VStack(alignment: .leading, spacing: 24) {
+				titleView
+				descriptionView
+				groupView
+				groupDetailView
+				individualView
+				Spacer()
+			}
 		}
 		.frame(maxWidth: .infinity)
 		.padding()
@@ -235,12 +238,12 @@ struct PlaceDetailsView: MTAsyncView {
 
 struct PlaceDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-		let locationViewModel = LocationViewModel(provider: LocationSuccessProvider())
+		let placeDetailViewModel = PlaceDetailViewModel(with: .preview, and: PlaceDetailSuccessProvider())
 		let groupViewModel = GroupViewModel(provider: GroupSuccessProvider())
-		PlaceDetailsView(viewModel: locationViewModel, groupListViewModel: groupViewModel, place: .preview)
+		PlaceDetailsView(viewModel: placeDetailViewModel, groupListViewModel: groupViewModel, place: .preview)
 			.previewDevice("iPhone 14 Pro")
 			.previewDisplayName("iPhone 14 Pro")
-		PlaceDetailsView(viewModel: locationViewModel, groupListViewModel: groupViewModel, place: .preview)
+		PlaceDetailsView(viewModel: placeDetailViewModel, groupListViewModel: groupViewModel, place: .preview)
 			.previewDevice("iPhone SE (3rd generation)")
 			.previewDisplayName("iPhone SE")
     }

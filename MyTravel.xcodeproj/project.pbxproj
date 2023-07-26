@@ -16,6 +16,9 @@
 		89210BA32A15F7C700F268FC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89210BA22A15F7C700F268FC /* SettingsView.swift */; };
 		89210BA72A162C6400F268FC /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89210BA62A162C6400F268FC /* CreateGroupView.swift */; };
 		89210BAA2A16487700F268FC /* Extension+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89210BA92A16487700F268FC /* Extension+SwiftUI.swift */; };
+		89278D142A70DFFC00995648 /* PlaceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89278D132A70DFFC00995648 /* PlaceDetailViewModel.swift */; };
+		89278D172A70E00A00995648 /* PlaceDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89278D162A70E00A00995648 /* PlaceDetailProvider.swift */; };
+		89278D192A70E18700995648 /* PlaceDetailPreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89278D182A70E18700995648 /* PlaceDetailPreviewProvider.swift */; };
 		892FFE702A6E53B900607FB0 /* Extension+SDWebImageSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892FFE6F2A6E53B900607FB0 /* Extension+SDWebImageSwiftUI.swift */; };
 		8938FE5A2A418B2A008FE28A /* MTToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8938FE592A418B2A008FE28A /* MTToggleStyle.swift */; };
 		893A00022A67C4D700279DCE /* PlacePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893A00012A67C4D700279DCE /* PlacePreview.swift */; };
@@ -145,6 +148,9 @@
 		89210BA62A162C6400F268FC /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
 		89210BA92A16487700F268FC /* Extension+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+SwiftUI.swift"; sourceTree = "<group>"; };
 		8924967B2A4056AD00767E19 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		89278D132A70DFFC00995648 /* PlaceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewModel.swift; sourceTree = "<group>"; };
+		89278D162A70E00A00995648 /* PlaceDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailProvider.swift; sourceTree = "<group>"; };
+		89278D182A70E18700995648 /* PlaceDetailPreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailPreviewProvider.swift; sourceTree = "<group>"; };
 		892FFE6F2A6E53B900607FB0 /* Extension+SDWebImageSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+SDWebImageSwiftUI.swift"; sourceTree = "<group>"; };
 		8938FE592A418B2A008FE28A /* MTToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTToggleStyle.swift; sourceTree = "<group>"; };
 		893A00012A67C4D700279DCE /* PlacePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePreview.swift; sourceTree = "<group>"; };
@@ -344,6 +350,7 @@
 				89BD67BC2A3852AE006129F2 /* GroupDetailPreviewProvider.swift */,
 				C96F9A1E2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift */,
 				893AFFF92A67B08900279DCE /* LocationPreviewProvider.swift */,
+				89278D182A70E18700995648 /* PlaceDetailPreviewProvider.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -478,6 +485,7 @@
 				89BD67BA2A385129006129F2 /* GroupDetailViewModel.swift */,
 				897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */,
 				893AFFF32A67A43700279DCE /* LocationViewModel.swift */,
+				89278D132A70DFFC00995648 /* PlaceDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -506,6 +514,7 @@
 				89BD67B72A384940006129F2 /* GroupDetailProvider.swift */,
 				C96F9A1C2A3B3A43006DE900 /* AddTravellerProvider.swift */,
 				893AFFF62A67A46D00279DCE /* LocationProvider.swift */,
+				89278D162A70E00A00995648 /* PlaceDetailProvider.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -694,6 +703,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				897E61D22A0BA910008D1687 /* VerificationView.swift in Sources */,
+				89278D172A70E00A00995648 /* PlaceDetailProvider.swift in Sources */,
 				C96F9A1D2A3B3A43006DE900 /* AddTravellerProvider.swift in Sources */,
 				8938FE5A2A418B2A008FE28A /* MTToggleStyle.swift in Sources */,
 				892FFE702A6E53B900607FB0 /* Extension+SDWebImageSwiftUI.swift in Sources */,
@@ -746,10 +756,12 @@
 				CEC19B962A0B982D006E3192 /* AuthProvider.swift in Sources */,
 				C96F9A242A3B40F3006DE900 /* TravellerListRow.swift in Sources */,
 				C96F9A212A3B3EE4006DE900 /* MTTraveller.swift in Sources */,
+				89278D192A70E18700995648 /* PlaceDetailPreviewProvider.swift in Sources */,
 				CEC19B9B2A0B9FBC006E3192 /* CustomError.swift in Sources */,
 				C96F9A1F2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift in Sources */,
 				897EDC6E2A05272F001B652E /* LoginView.swift in Sources */,
 				89BD67BB2A385129006129F2 /* GroupDetailViewModel.swift in Sources */,
+				89278D142A70DFFC00995648 /* PlaceDetailViewModel.swift in Sources */,
 				CE36DE872A134D8E009790A5 /* MTUserDefaults.swift in Sources */,
 				CEC19B9E2A0BA423006E3192 /* Validator.swift in Sources */,
 				8906D72E2A0F8E7400E7D60B /* OTPView.swift in Sources */,
@@ -958,11 +970,12 @@
 				INFOPLIST_FILE = "MyTravel2/Resources/MyTravel-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "Montserrat-VariableFont_wght.ttf";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow $(PRODUCT_NAME) to use camera to let you scan QR code for traveller or group";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1001,11 +1014,12 @@
 				INFOPLIST_FILE = "MyTravel2/Resources/MyTravel-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "Montserrat-VariableFont_wght.ttf";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow $(PRODUCT_NAME) to use camera to let you scan QR code for traveller or group";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (

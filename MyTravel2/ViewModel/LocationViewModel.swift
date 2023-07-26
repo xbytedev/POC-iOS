@@ -10,10 +10,8 @@ import UIKit
 class LocationViewModel: ObservableObject {
 	let provider: LocationProvider
 	@Published @MainActor private(set) var state: MTLoadingState = .idle
-	@Published @MainActor private(set) var detailState: MTLoadingState = .idle
 	@Published @MainActor private(set) var places: [MTPlace] = .init()
 	@Published @MainActor private(set) var displayPlaces: [MTPlace] = .init()
-	@Published @MainActor private(set) var placeDetail: MTPlaceDetail!
 
 	init(provider: LocationProvider) {
 		self.provider = provider
@@ -39,23 +37,5 @@ class LocationViewModel: ObservableObject {
 		} else {
 			displayPlaces = places.filter({$0.name?.contains(searchStr) ?? false})
 		}
-	}
-
-	@MainActor
-	func getPlaceDetail(of place: MTPlace) async {
-		// FIXME: Is being called when getting back from place detail to place list view
-		detailState = .loading
-		do {
-			placeDetail = try await provider.getPlaceDetail(place: place).get()
-			detailState = .loaded
-		} catch {
-			detailState = .failed(error)
-		}
-	}
-
-	@MainActor
-	func resetPlaceDetail() {
-		detailState = .idle
-//		placeDetail = nil
 	}
 }
