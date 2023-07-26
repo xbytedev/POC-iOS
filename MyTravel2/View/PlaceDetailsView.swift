@@ -9,12 +9,14 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct PlaceDetailsView: MTAsyncView {
-
+	@Environment(\.mtDismissable) var dismiss
 	@ObservedObject var viewModel: PlaceDetailViewModel
 	@ObservedObject var groupListViewModel: GroupViewModel
-	@State private var defaultGroup: MTGroup?
 	@State private var selectedGroup: MTGroup?
 	@State private var shouldPresentGroupSelection: Bool = false
+	@State private var groupCheckingIn: Bool = false
+	@State private var configuration = UIConfiguration()
+	@State private var showSuccessAlert: Bool = false
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -35,6 +37,9 @@ struct PlaceDetailsView: MTAsyncView {
 				.cornerRadius(8)
 				.padding(.init(top: 0, leading: 16, bottom: 0, trailing: 16))
 			 detailView
+				.showAlert(title: configuration.errorTitle, isPresented: $showSuccessAlert, action: dismiss) {
+					Text(configuration.errorMeessage)
+				}
 		}
 		.ignoresSafeArea(edges: .bottom)
 		.navigationTitle("Places")
@@ -44,6 +49,12 @@ struct PlaceDetailsView: MTAsyncView {
 				self.selectedGroup = selectedGroup
 				self.shouldPresentGroupSelection = false
 			}
+		}
+		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
+			Text(configuration.errorMeessage)
+		}
+		.onAppear {
+			_ = getSelectedGroup()
 		}
 	}
 
@@ -140,19 +151,27 @@ struct PlaceDetailsView: MTAsyncView {
 			VStack(spacing: 0) {
 				HStack {
 					Spacer()
-					VStack {
-						Text("Check-in Group")
-							.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
-							.foregroundColor(AppColor.theme)
-						Text("6 travelers")
-							.font(AppFont.getFont(forStyle: .callout))
-							.foregroundColor(AppColor.theme)
+					Button(action: groupCheckIn) {
+						VStack {
+							HStack {
+								if groupCheckingIn {
+									ProgressView()
+										.foregroundColor(AppColor.theme)
+								}
+								Text(groupCheckingIn ? "Checking-in Group" : "Check-in Group")
+									.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
+									.foregroundColor(AppColor.theme)
+							}
+							Text(R.string.localizable.countTraveller(traveller: selectedGroup?.travellerCount ?? 0))
+								.font(AppFont.getFont(forStyle: .callout))
+								.foregroundColor(AppColor.theme)
+						}
+						.padding(8)
+						.padding(.horizontal, 40)
+						.background(AppColor.Background.white)
+						.cornerRadius(16)
+						.shadow(radius: 8, y: 4)
 					}
-					.padding(8)
-					.padding(.horizontal, 40)
-					.background(AppColor.Background.white)
-					.cornerRadius(16)
-					.shadow(radius: 8, y: 4)
 					Spacer()
 				}
 				.zIndex(2)
@@ -210,21 +229,11 @@ struct PlaceDetailsView: MTAsyncView {
 		Task {
 			await viewModel.getPlaceDetail(of: place)
 		}
-		_ = getSelectedGroup()
-	}
-
-	func getDefaultGroup() -> MTGroup? {
-		if _defaultGroup.wrappedValue == nil {
-			defaultGroup = groupListViewModel.groupList.first(where: {$0.isDefault == 1})
-			return defaultGroup
-		} else {
-			return defaultGroup
-		}
 	}
 
 	func getSelectedGroup() -> MTGroup? {
 		if _selectedGroup.wrappedValue == nil {
-			selectedGroup = getDefaultGroup()
+			selectedGroup = groupListViewModel.groupList.first(where: {$0.isDefault == 1})
 			return selectedGroup
 		} else {
 			return selectedGroup
@@ -233,6 +242,25 @@ struct PlaceDetailsView: MTAsyncView {
 
 	func presentGroupSelection() {
 		shouldPresentGroupSelection = true
+	}
+
+	func groupCheckIn() {
+		guard let selectedGroup else { return }
+		Task {
+			do {
+				groupCheckingIn = true
+				try await viewModel.checkIn(group: selectedGroup)
+				groupCheckingIn = false
+				configuration.errorTitle = "Success"
+				configuration.errorMeessage = "Group check-in successfully"
+				showSuccessAlert = true
+			} catch {
+				groupCheckingIn = false
+				configuration.errorTitle = R.string.localizable.error()
+				configuration.errorMeessage = error.localizedDescription
+				configuration.alertPresent = true
+			}
+		}
 	}
 }
 

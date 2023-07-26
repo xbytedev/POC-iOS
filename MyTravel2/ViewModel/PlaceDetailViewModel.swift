@@ -28,5 +28,8 @@ class PlaceDetailViewModel: ObservableObject {
 			state = .failed(error)
 		}
 	}
-	
+
+	func checkIn(group: MTGroup) async throws {
+		try await provider.checkIn(group: group, to: place).get()
+	}
 }
