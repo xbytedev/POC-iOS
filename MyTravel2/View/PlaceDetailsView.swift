@@ -65,7 +65,11 @@ struct PlaceDetailsView: MTAsyncView {
 				titleView
 				descriptionView
 				groupView
-				groupDetailView
+				if selectedGroup == nil {
+					setupGroupView
+				} else {
+					groupDetailView
+				}
 				individualView
 				Spacer()
 			}
@@ -108,22 +112,30 @@ struct PlaceDetailsView: MTAsyncView {
 
 	private var groupView: some View {
 		VStack(alignment: .leading) {
-			Text(R.string.localizable.currentGroup)
-				.foregroundColor(AppColor.Text.tertiary)
-				.font(AppFont.getFont(forStyle: .body))
-			HStack {
-				Text(selectedGroup?.name ?? "")
-					.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
+			if selectedGroup == nil {
+				Text(R.string.localizable.setupGroupAndCheckinTravelers)
+					.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
 					.foregroundColor(AppColor.Text.tertiary)
-				Spacer()
-				Button(action: presentGroupSelection) {
-					Text(R.string.localizable.change)
-						.foregroundColor(AppColor.theme)
-						.font(AppFont.getFont(forStyle: .footnote))
+					.multilineTextAlignment(.center)
+					.lineLimit(3)
+			} else {
+				Text(R.string.localizable.currentGroup)
+					.foregroundColor(AppColor.Text.tertiary)
+					.font(AppFont.getFont(forStyle: .body))
+				HStack {
+					Text(selectedGroup?.name ?? "")
+						.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
+						.foregroundColor(AppColor.Text.tertiary)
+					Spacer()
+					Button(action: presentGroupSelection) {
+						Text(R.string.localizable.change)
+							.foregroundColor(AppColor.theme)
+							.font(AppFont.getFont(forStyle: .footnote))
+					}
+					.padding(8)
+					.background(AppColor.Background.white)
+					.clipShape(Capsule())
 				}
-				.padding(8)
-				.background(AppColor.Background.white)
-				.clipShape(Capsule())
 			}
 		}
 		.padding()
@@ -210,6 +222,25 @@ struct PlaceDetailsView: MTAsyncView {
 		}
 	}
 
+	private var setupGroupView: some View {
+		HStack {
+			Spacer()
+			Button(action: doSetupGroup) {
+					HStack {
+						Text(R.string.localizable.setupGroup)
+							.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
+							.foregroundColor(AppColor.theme)
+					}
+				.padding()
+				.padding(.horizontal, 40)
+				.background(AppColor.Background.white)
+				.cornerRadius(12)
+				.shadow(radius: 8, y: 4)
+			}
+			Spacer()
+		}
+	}
+
 	private var individualView: some View {
 		VStack {
 			HStack {
@@ -256,8 +287,13 @@ struct PlaceDetailsView: MTAsyncView {
 	}
 
 	func getSelectedGroup() -> MTGroup? {
-		if _selectedGroup.wrappedValue == nil {
+		if selectedGroup == nil {
 			selectedGroup = groupListViewModel.groupList.first(where: {$0.isDefault == 1})
+
+			// If no group is default then select first group
+			if selectedGroup == nil {
+				selectedGroup = groupListViewModel.groupList.first
+			}
 			return selectedGroup
 		} else {
 			return selectedGroup
@@ -300,6 +336,10 @@ extension PlaceDetailsView {
 			//		viewModel.delegate = self.viewModel
 			return viewModel
 		}
+	}
+
+	func doSetupGroup() {
+
 	}
 }
 
