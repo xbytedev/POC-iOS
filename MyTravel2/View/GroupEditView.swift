@@ -47,6 +47,13 @@ struct GroupEditView: View {
 		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
 			Text(configuration.errorMeessage)
 		}
+		.onAppear {
+			if viewModel.state == .idle {
+				Task {
+					await viewModel.getPeopleList()
+				}
+			}
+		}
 		.myOverlay {
 			Group {
 				if configuration.isLoading {
@@ -110,7 +117,7 @@ struct GroupEditView: View {
 			ZStack {
 				NavigationLink(isActive: $shouldAddNew) {
 					ScanQRCodeView(
-						viewModel: getScanQRViewModel(), shouldNavigateBack: $shouldAddNew)
+						viewModel: getScanQRViewModel(), shouldNavigateBack: $shouldAddNew, scanFor: .addTraveler, place: nil)
 					.navigationTitle("QR Code")
 				} label: {
 					EmptyView()
@@ -127,8 +134,10 @@ struct GroupEditView: View {
 	var deleteGroupButton: some View {
 		HStack {
 			Spacer()
-			MTButton(isLoading: $isDeleting, title: "Delete Group", loadingTitle: "Deleting group") {
-				deleteGroupConfirmation = true
+			if viewModel.groupUpdateDelegate != nil {
+				MTButton(isLoading: $isDeleting, title: "Delete Group", loadingTitle: "Deleting group") {
+					deleteGroupConfirmation = true
+				}
 			}
 			Spacer()
 		}
@@ -178,7 +187,8 @@ struct GroupEditView: View {
 	}
 
 	func getScanQRViewModel() -> ScanQRCodeViewModel {
-		let viewModel = ScanQRCodeViewModel(group: viewModel.group, provider: AddTravellerAPIProvider())
+		let viewModel = ScanQRCodeViewModel(
+			group: viewModel.group, provider: AddTravellerAPIProvider(), placeDetailProvider: PlaceDetailAPIProvider())
 		viewModel.delegate = self.viewModel
 		return viewModel
 	}

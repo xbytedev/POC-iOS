@@ -93,4 +93,12 @@ struct APPURL {
 	static var groupCheckIn: String {
 		apiBaseURL + "people_group_check_in"
 	}
+
+	static var checkPeopleCheckIn: String {
+		apiBaseURL + "check_people_check_in"
+	}
+
+	static var individualCheckIn: String {
+		apiBaseURL + "people_individual_check_in"
+	}
 }

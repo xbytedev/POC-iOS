@@ -15,6 +15,14 @@ struct PlaceDetailSuccessProvider: PlaceDetailProvider {
 	func checkIn(group: MTGroup, to place: MTPlace) async -> Result<Void, Error> {
 		.success(())
 	}
+
+	func checkIndividual(with code: Int) async -> Result<MTTempTraveler, Error> {
+		.success(.preview)
+	}
+
+	func checkIn(code: Int, to place: MTPlace) async -> Result<Void, Error> {
+		.success(())
+	}
 }
 
 struct PlaceDetailFailureProvider: PlaceDetailProvider {
@@ -23,6 +31,14 @@ struct PlaceDetailFailureProvider: PlaceDetailProvider {
 	}
 
 	func checkIn(group: MTGroup, to place: MTPlace) async -> Result<Void, Error> {
+		.failure(CustomError.message("Mock Failure"))
+	}
+
+	func checkIndividual(with code: Int) async -> Result<MTTempTraveler, Error> {
+		.failure(CustomError.message("Mock Failure"))
+	}
+
+	func checkIn(code: Int, to place: MTPlace) async -> Result<Void, Error> {
 		.failure(CustomError.message("Mock Failure"))
 	}
 }

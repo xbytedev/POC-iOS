@@ -17,6 +17,7 @@ struct PlaceDetailsView: MTAsyncView {
 	@State private var groupCheckingIn: Bool = false
 	@State private var configuration = UIConfiguration()
 	@State private var showSuccessAlert: Bool = false
+	@State private var individualCheckIn: Bool = false
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -24,7 +25,7 @@ struct PlaceDetailsView: MTAsyncView {
 	let place: MTPlace
 
 	var loadingMessage: String? {
-		"Loading " + (place.name ?? "") + " details"
+		"Loading " + (place.name ?? "") + "'s details"
 	}
 
 	var loadedView: some View {
@@ -84,6 +85,7 @@ struct PlaceDetailsView: MTAsyncView {
 			.foregroundColor(AppColor.Text.tertiary)
 			.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 			.padding(.horizontal)
+			.lineLimit(2)
 	}
 
 	private var descriptionView: some View {
@@ -177,18 +179,29 @@ struct PlaceDetailsView: MTAsyncView {
 				.zIndex(2)
 				HStack {
 					Spacer()
-					VStack {
-						Text("")
-							.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
-							.foregroundColor(AppColor.theme)
-						Text("Edit Group (6/10)")
-							.font(AppFont.getFont(forStyle: .callout, forWeight: .semibold))
-							.foregroundColor(AppColor.theme)
+					NavigationLink {
+						if selectedGroup == nil {
+							EmptyView()
+						} else {
+							let groupEditViewModel = GroupDetailViewModel(
+								group: selectedGroup!, groupDetailProvider: GroupDetailAPIProvider())
+							GroupEditView(viewModel: groupEditViewModel, isPopToGroupList: .constant(false))
+						}
+					} label: {
+						VStack {
+							Text("")
+								.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
+								.foregroundColor(AppColor.theme)
+							Text("Edit Group")
+								.font(AppFont.getFont(forStyle: .callout, forWeight: .semibold))
+								.foregroundColor(AppColor.theme)
+						}
+						.padding(8)
+						.padding(.horizontal, 16)
+						.background(AppColor.Background.white)
+						.cornerRadius(12)
 					}
-					.padding(8)
-					.padding(.horizontal, 16)
-					.background(AppColor.Background.white)
-					.cornerRadius(12)
+
 					Spacer()
 				}
 				.zIndex(1)
@@ -201,11 +214,22 @@ struct PlaceDetailsView: MTAsyncView {
 		VStack {
 			HStack {
 				Spacer()
-				Button {
-				} label: {
-					Text("Individual Check-in")
-						.foregroundColor(AppColor.Text.tertiary)
-						.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
+				ZStack {
+					NavigationLink(isActive: $individualCheckIn) {
+						ScanQRCodeView(
+							viewModel: getScanQRViewModel(), shouldNavigateBack: $individualCheckIn, scanFor: .checkIn, place: place)
+						.navigationTitle("QR Code")
+					} label: {
+						EmptyView()
+					}
+					.opacity(0)
+					Button {
+						individualCheckIn = true
+					} label: {
+						Text("Individual Check-in")
+							.foregroundColor(AppColor.Text.tertiary)
+							.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
+					}
 				}
 				.padding()
 				.myOverlay {
@@ -260,6 +284,20 @@ struct PlaceDetailsView: MTAsyncView {
 				configuration.errorMeessage = error.localizedDescription
 				configuration.alertPresent = true
 			}
+		}
+	}
+
+	func getScanQRViewModel() -> ScanQRCodeViewModel {
+		if let selectedGroup {
+			let viewModel = ScanQRCodeViewModel(
+				group: selectedGroup, provider: AddTravellerAPIProvider(), placeDetailProvider: PlaceDetailAPIProvider())
+			//		viewModel.delegate = self.viewModel
+			return viewModel
+		} else {
+			let viewModel = ScanQRCodeViewModel(
+				group: .preview, provider: AddTravellerAPIProvider(), placeDetailProvider: PlaceDetailAPIProvider())
+			//		viewModel.delegate = self.viewModel
+			return viewModel
 		}
 	}
 }

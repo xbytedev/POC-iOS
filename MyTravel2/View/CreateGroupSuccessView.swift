@@ -29,7 +29,8 @@ struct CreateGroupSuccessView: View {
 					// TODO: Add Traveller navigation is not working
 //					NavigationLink {
 //						ScanQRCodeView(
-//							viewModel: ScanQRCodeViewModel(group: group, provider: AddTravellerAPIProvider()), shouldNavigateBack: .constant(true))
+//							viewModel: ScanQRCodeViewModel(
+//				group: group, provider: AddTravellerAPIProvider()), shouldNavigateBack: .constant(true))
 //						.navigationTitle("QR Code")
 //					} label: {
 						MTButton(isLoading: .constant(false), title: R.string.localizable.addTravelers(), loadingTitle: "") {

@@ -15,6 +15,9 @@ struct TravellerDetailView: View {
 	@ObservedObject var viewModel: ScanQRCodeViewModel
 	let code: Int
 	@Binding var shouldNavigateBack: Bool
+	let scanFor: ScanFor
+	@State private var isCheckingIn: Bool = false
+	let place: MTPlace?
 
     var body: some View {
 		Group {
@@ -59,14 +62,18 @@ struct TravellerDetailView: View {
 					.font(AppFont.getFont(forStyle: .body))
 			}
 			.padding()
-			VStack {
-				Text("There are \(traveler.otherPeopleCount) people travelling with \(traveler.name)")
-					.font(AppFont.getFont(forStyle: .body))
-					.multilineTextAlignment(.center)
+			if scanFor == .addTraveler {
+				VStack {
+					Text("There are \(traveler.otherPeopleCount) people travelling with \(traveler.name)")
+						.font(AppFont.getFont(forStyle: .body))
+						.multilineTextAlignment(.center)
+				}
+				.padding()
+				addTypeView.padding()
+				addButtonView
+			} else {
+				checkInButtonView
 			}
-			.padding()
-			addTypeView.padding()
-			bottomButtonView
 			Spacer()
 		}
 		.padding(.horizontal)
@@ -114,7 +121,7 @@ struct TravellerDetailView: View {
 		}
 	}
 
-	var bottomButtonView: some View {
+	var addButtonView: some View {
 		HStack {
 			Button {
 				viewModel.lastQRCode = ""
@@ -155,6 +162,17 @@ struct TravellerDetailView: View {
 		}
 	}
 
+	var checkInButtonView: some View {
+		HStack {
+			Spacer()
+			VStack {
+				MTButton(isLoading: $isCheckingIn, title: "Confirm Check-In", loadingTitle: "Checking in", action: checkIn)
+				MTButton(isLoading: .constant(false), title: R.string.localizable.cancel(), loadingTitle: "", action: dismiss)
+			}
+			Spacer()
+		}
+	}
+
 	func addTraveler() {
 		Task {
 			do {
@@ -177,12 +195,31 @@ struct TravellerDetailView: View {
 			}
 		}
 	}
+
+	func checkIn() {
+		guard let place else { return }
+		Task {
+			do {
+				isCheckingIn = true
+				try await viewModel.checkIn(with: code, to: place)
+				isCheckingIn = false
+shouldNavigateBack = false
+			} catch {
+				isCheckingIn = false
+				configuration.errorTitle = R.string.localizable.error()
+				configuration.errorMeessage = error.localizedDescription
+				configuration.alertPresent = true
+			}
+		}
+	}
 }
 #if DEBUG
 struct TravellerDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-		TravellerDetailView(viewModel: ScanQRCodeViewModel(
-			group: .preview, provider: AddTravellerSuccessProvider()), code: 0, shouldNavigateBack: .constant(true))
-    }
+	static var previews: some View {
+		TravellerDetailView(
+			viewModel: ScanQRCodeViewModel(
+				group: .preview, provider: AddTravellerSuccessProvider(), placeDetailProvider: PlaceDetailSuccessProvider()),
+			code: 0, shouldNavigateBack: .constant(true), scanFor: .addTraveler, place: .preview)
+	}
 }
 #endif
