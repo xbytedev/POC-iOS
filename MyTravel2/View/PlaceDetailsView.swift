@@ -25,7 +25,7 @@ struct PlaceDetailsView: MTAsyncView {
 	let place: MTPlace
 
 	var loadingMessage: String? {
-		"Loading " + (place.name ?? "") + "'s details"
+		R.string.localizable.loadingContentDetails(place.name ?? "")
 	}
 
 	var loadedView: some View {
@@ -43,7 +43,7 @@ struct PlaceDetailsView: MTAsyncView {
 				}
 		}
 		.ignoresSafeArea(edges: .bottom)
-		.navigationTitle("Places")
+		.navigationTitle(R.string.localizable.places())
 		.setThemeBackButton()
 		.sheet(isPresented: $shouldPresentGroupSelection) {
 			GroupListView(withCurrentSelectedGroup: getSelectedGroup(), and: groupListViewModel) { selectedGroup in
@@ -93,7 +93,7 @@ struct PlaceDetailsView: MTAsyncView {
 			if viewModel.placeDetail.address == nil {
 				EmptyView()
 			} else {
-				Text("Address")
+				Text(R.string.localizable.address)
 					.foregroundColor(AppColor.Text.tertiary)
 					.font(AppFont.getFont(forStyle: .title3, forWeight: .semibold))
 					.padding(.horizontal)
@@ -108,7 +108,7 @@ struct PlaceDetailsView: MTAsyncView {
 
 	private var groupView: some View {
 		VStack(alignment: .leading) {
-			Text("Current Group")
+			Text(R.string.localizable.currentGroup)
 				.foregroundColor(AppColor.Text.tertiary)
 				.font(AppFont.getFont(forStyle: .body))
 			HStack {
@@ -117,7 +117,7 @@ struct PlaceDetailsView: MTAsyncView {
 					.foregroundColor(AppColor.Text.tertiary)
 				Spacer()
 				Button(action: presentGroupSelection) {
-					Text("Change")
+					Text(R.string.localizable.change)
 						.foregroundColor(AppColor.theme)
 						.font(AppFont.getFont(forStyle: .footnote))
 				}
@@ -160,7 +160,7 @@ struct PlaceDetailsView: MTAsyncView {
 									ProgressView()
 										.foregroundColor(AppColor.theme)
 								}
-								Text(groupCheckingIn ? "Checking-in Group" : "Check-in Group")
+								Text(groupCheckingIn ? R.string.localizable.checkingInGroup : R.string.localizable.checkInGroup)
 									.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
 									.foregroundColor(AppColor.theme)
 							}
@@ -192,7 +192,7 @@ struct PlaceDetailsView: MTAsyncView {
 							Text("")
 								.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
 								.foregroundColor(AppColor.theme)
-							Text("Edit Group")
+							Text(R.string.localizable.editGroup)
 								.font(AppFont.getFont(forStyle: .callout, forWeight: .semibold))
 								.foregroundColor(AppColor.theme)
 						}
@@ -218,7 +218,7 @@ struct PlaceDetailsView: MTAsyncView {
 					NavigationLink(isActive: $individualCheckIn) {
 						ScanQRCodeView(
 							viewModel: getScanQRViewModel(), shouldNavigateBack: $individualCheckIn, scanFor: .checkIn, place: place)
-						.navigationTitle("QR Code")
+						.navigationTitle(R.string.localizable.qrCode())
 					} label: {
 						EmptyView()
 					}
@@ -226,7 +226,7 @@ struct PlaceDetailsView: MTAsyncView {
 					Button {
 						individualCheckIn = true
 					} label: {
-						Text("Individual Check-in")
+						Text(R.string.localizable.individualCheckIn)
 							.foregroundColor(AppColor.Text.tertiary)
 							.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
 					}
@@ -240,7 +240,7 @@ struct PlaceDetailsView: MTAsyncView {
 			}
 			HStack {
 				Spacer()
-				Text("Check-in travelers not in a group.")
+				Text(R.string.localizable.checkinTravellersNotInGroup)
 					.foregroundColor(AppColor.Text.tertiary)
 					.font(AppFont.getFont(forStyle: .body))
 					.lineLimit(3)
@@ -267,7 +267,8 @@ struct PlaceDetailsView: MTAsyncView {
 	func presentGroupSelection() {
 		shouldPresentGroupSelection = true
 	}
-
+}
+extension PlaceDetailsView {
 	func groupCheckIn() {
 		guard let selectedGroup else { return }
 		Task {
@@ -275,8 +276,8 @@ struct PlaceDetailsView: MTAsyncView {
 				groupCheckingIn = true
 				try await viewModel.checkIn(group: selectedGroup)
 				groupCheckingIn = false
-				configuration.errorTitle = "Success"
-				configuration.errorMeessage = "Group check-in successfully"
+				configuration.errorTitle = R.string.localizable.success()
+				configuration.errorMeessage = R.string.localizable.groupCheckinSuccessfully()
 				showSuccessAlert = true
 			} catch {
 				groupCheckingIn = false

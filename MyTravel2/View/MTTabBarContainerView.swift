@@ -32,7 +32,6 @@ struct MTTabBarContainerView<V: View>: View {
 		.onPreferenceChange(MTTabBarPreferenceKey.self) { value in
 			tabs = value
 		}
-//		.navigationTitle(selection.title)
 		.toolbar {
 			ToolbarItem(placement: .principal) {
 				if selection == .checkIn {
@@ -41,15 +40,6 @@ struct MTTabBarContainerView<V: View>: View {
 				} else {
 					Text(selection.title)
 				}
-				/*GeometryReader { geometryProxy in
-				 HStack {
-				 Spacer()
-
-				 Text(selection.title)
-				 Spacer()
-				 }
-				 .frame(width: geometryProxy.size.width, height: 44, alignment: .center)
-				 }*/
 			}
 		}
 	}

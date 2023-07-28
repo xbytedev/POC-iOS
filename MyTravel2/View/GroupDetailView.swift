@@ -11,7 +11,7 @@ struct GroupDetailView: MTAsyncView {
 	@ObservedObject var viewModel: GroupDetailViewModel
 	@State private var isMakingDefault = false
 	@State private var configuration = UIConfiguration()
-	@State private var updatingMessage = "Loading"
+	@State private var updatingMessage = R.string.localizable.loading()
 	@Binding var isPopToGroupList: Bool
 
 	var state: MTLoadingState {
@@ -19,7 +19,7 @@ struct GroupDetailView: MTAsyncView {
 	}
 
 	var loadingMessage: String? {
-		"Loading \(viewModel.group.name ?? "group") details"
+		R.string.localizable.loadingContentDetails(viewModel.group.name ?? "group")
 	}
 
 	var loadedView: some View {
@@ -122,7 +122,9 @@ struct GroupDetailView: MTAsyncView {
 	func changeStatus(of traveller: MTTraveller) {
 		Task {
 			do {
-				updatingMessage = (traveller.status ? "Activating " : "Deactivating ") + traveller.name
+				updatingMessage = traveller.status ?
+				R.string.localizable.activatingTraveller(traveller.name) :
+				R.string.localizable.deactivatingTraveller(traveller.name)
 				configuration.isLoading = true
 				try await viewModel.changeStatus(ofTraveller: traveller)
 				configuration.isLoading = false

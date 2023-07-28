@@ -23,7 +23,7 @@ struct CheckInView: MTAsyncView {
     var loadedView: some View {
 		VStack(alignment: .leading, spacing: 0) {
 			VStack(alignment: .leading) {
-				Text(selection == .places ? "Places" : "Check-ins")
+				Text(selection == .places ? R.string.localizable.places() : R.string.localizable.checkIns())
 						.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 						.foregroundColor(AppColor.theme)
 						.padding(.top, 24)
@@ -33,7 +33,7 @@ struct CheckInView: MTAsyncView {
 							.renderingMode(.template)
 							.frame(width: 24.0, height: 24.0)
 							.foregroundColor(AppColor.theme)
-						TextField("Search", text: $searchText)
+						TextField(R.string.localizable.search(), text: $searchText)
 						if !searchText.isEmpty {
 							Button {
 								searchText = ""
@@ -51,12 +51,12 @@ struct CheckInView: MTAsyncView {
 							.shadow(radius: 8, y: 4)
 					}
 				HStack {
-					Text("Place Type")
+					Text(R.string.localizable.placeType)
 						.font(AppFont.getFont(forStyle: .title3))
 						.foregroundColor(AppColor.theme)
 					Spacer()
 					Picker(selection: $selectedType) {
-						Text("All")
+						Text(R.string.localizable.all)
 							.tag("all")
 						Text("None")
 							.tag("None")
@@ -100,7 +100,6 @@ struct CheckInView: MTAsyncView {
 		.onChange(of: searchText) { newValue in
 			viewModel.searchPlace(with: newValue)
 		}
-//		.padding()
     }
 
 	var state: MTLoadingState {

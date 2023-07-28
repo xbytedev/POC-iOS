@@ -53,7 +53,7 @@ struct LoginView: View {
 					if #available(iOS 15.0, *) {
 						Text(getAttrStr())
 					} else {
-						Text("Don't have an account? Register")
+						Text(R.string.localizable.doNotHaveAnAccount() + " " + R.string.localizable.register())
 							.onTapGesture {
 								// TODO: handle tap on register
 							}
@@ -108,7 +108,7 @@ struct LoginView: View {
 
 	private var forgotPasswordView: some View {
 		NavigationLink {
-			Text("Forgot password")
+			Text(R.string.localizable.forgotPassword())
 		} label: {
 			Text(R.string.localizable.forgotPassword)
 				.font(AppFont.getFont(forStyle: .subheadline, forWeight: .medium))

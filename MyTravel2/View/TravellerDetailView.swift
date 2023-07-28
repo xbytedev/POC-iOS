@@ -10,7 +10,7 @@ import SwiftUI
 struct TravellerDetailView: View {
 	@State private var addType: TravelerCodeType = .all
 	@State private var configuration = UIConfiguration()
-	@State private var updatingMessage = "Loading"
+	@State private var updatingMessage = R.string.localizable.loading()
 	@Environment(\.mtDismissable) var dismiss
 	@ObservedObject var viewModel: ScanQRCodeViewModel
 	let code: Int
@@ -56,15 +56,15 @@ struct TravellerDetailView: View {
 			Text(traveler.name)
 				.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 			VStack {
-				Text("City: " + traveler.residenceCity)
+				Text(R.string.localizable.cityValue(traveler.residenceCity))
 					.font(AppFont.getFont(forStyle: .body))
-				Text("Country: " + traveler.residenceCountry)
+				Text(R.string.localizable.countryValue(traveler.residenceCountry))
 					.font(AppFont.getFont(forStyle: .body))
 			}
 			.padding()
 			if scanFor == .addTraveler {
 				VStack {
-					Text("There are \(traveler.otherPeopleCount) people travelling with \(traveler.name)")
+					Text(R.string.localizable.thereAreNumberOfPeopleTravellingWithTraveller(traveler.otherPeopleCount, traveler.name))
 						.font(AppFont.getFont(forStyle: .body))
 						.multilineTextAlignment(.center)
 				}
@@ -83,7 +83,7 @@ struct TravellerDetailView: View {
 
 	var addTypeView: some View {
 		VStack(alignment: .leading) {
-			Text("Add Travelers to Group")
+			Text(R.string.localizable.addTravellersToGroup())
 				.font(AppFont.getFont(forStyle: .body, forWeight: .semibold))
 			VStack(alignment: .leading) {
 				HStack {
@@ -95,7 +95,7 @@ struct TravellerDetailView: View {
 							Circle()
 								.stroke(AppColor.Text.secondary)
 						})
-					Text("All Travelers")
+					Text(R.string.localizable.allTravellers())
 						.font(AppFont.getFont(forStyle: .body))
 				}
 				.onTapGesture {
@@ -110,7 +110,7 @@ struct TravellerDetailView: View {
 							Circle()
 								.stroke(AppColor.Text.secondary)
 						}
-					Text("Only this traveler")
+					Text(R.string.localizable.onlyThisTraveller())
 						.font(AppFont.getFont(forStyle: .body))
 				}
 				.onTapGesture {
@@ -128,7 +128,7 @@ struct TravellerDetailView: View {
 				dismiss()
 			} label: {
 				HStack(spacing: 16) {
-					Text("Cancle")
+					Text(R.string.localizable.cancel())
 						.transition(.opacity)
 						.foregroundColor(AppColor.theme)
 				}
@@ -146,7 +146,7 @@ struct TravellerDetailView: View {
 				addTraveler()
 			} label: {
 				HStack(spacing: 16) {
-					Text("Submit")
+					Text(R.string.localizable.submit())
 						.transition(.opacity)
 						.foregroundColor(AppColor.Text.tertiary)
 				}
@@ -166,7 +166,9 @@ struct TravellerDetailView: View {
 		HStack {
 			Spacer()
 			VStack {
-				MTButton(isLoading: $isCheckingIn, title: "Confirm Check-In", loadingTitle: "Checking in", action: checkIn)
+				MTButton(
+					isLoading: $isCheckingIn, title: R.string.localizable.confirmCheckIn(),
+					loadingTitle: R.string.localizable.checkingIn(), action: checkIn)
 				MTButton(isLoading: .constant(false), title: R.string.localizable.cancel(), loadingTitle: "", action: dismiss)
 			}
 			Spacer()
@@ -177,16 +179,17 @@ struct TravellerDetailView: View {
 		Task {
 			do {
 				if addType == .single {
-					updatingMessage = "Adding \(viewModel.tempTraveler?.name ?? "Traveler") to \(viewModel.group.name ?? "Group")"
+					let travellerName = viewModel.tempTraveler?.name ?? "Traveler"
+					let groupName = viewModel.group.name ?? "Group"
+					updatingMessage = R.string.localizable.addingTravellerToGroup(travellerName, groupName)
 				} else {
-					updatingMessage = "Adding All to \(viewModel.group.name ?? "Group")"
+					updatingMessage = R.string.localizable.addingAllToGroup(viewModel.group.name ?? "Group")
 				}
 				configuration.isLoading = true
 				try await viewModel.addTraveller(with: code, type: addType)
 				viewModel.delegate?.newTravelerAdded()
 				configuration.isLoading = false
 				shouldNavigateBack = false
-//				dismiss()
 			} catch {
 				configuration.isLoading = false
 				configuration.errorTitle = R.string.localizable.error()
@@ -203,7 +206,7 @@ struct TravellerDetailView: View {
 				isCheckingIn = true
 				try await viewModel.checkIn(with: code, to: place)
 				isCheckingIn = false
-shouldNavigateBack = false
+				shouldNavigateBack = false
 			} catch {
 				isCheckingIn = false
 				configuration.errorTitle = R.string.localizable.error()

@@ -13,7 +13,6 @@ struct TravellerListRow: View {
 		HStack {
 			Text(traveller.name)
 			Spacer()
-//			Toggle("", isOn: $(traveller.status == 1))
 		}
 	}
 }

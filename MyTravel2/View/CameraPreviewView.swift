@@ -28,7 +28,7 @@ class CameraPreviewView: UIView {
 		self.delegate = delegate
 		backgroundColor = .black
 		label = UILabel(frame: bounds)
-		label?.text = "Click here to simulate scan"
+		label?.text = R.string.localizable.clickHereToSimulate()
 		label?.textColor = .white
 		label?.textAlignment = .center
 		if let label {

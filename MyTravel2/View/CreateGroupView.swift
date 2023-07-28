@@ -32,7 +32,7 @@ struct CreateGroupView: View {
 
 	private var headerView: some View {
 		HStack {
-			Text("New Group")
+			Text(R.string.localizable.newGroup())
 				.font(AppFont.getFont(forStyle: .title1, forWeight: .bold))
 				.foregroundColor(AppColor.theme)
 			Spacer()
@@ -52,16 +52,18 @@ struct CreateGroupView: View {
 	private var popupView: some View {
 		VStack {
 			headerView
-			MTTextField(label: "Group Name", valueStr: $groupName)
+			MTTextField(label: R.string.localizable.groupName(), valueStr: $groupName)
 				.padding(.bottom, 24)
 		}
 		.modifier(FormModifier())
 		.myOverlay(alignment: .bottom) {
-			MTButton(isLoading: .constant(false), title: "Done", loadingTitle: "Creating group") {
-				handleCreateGroupAction()
-			}
-			.padding(.horizontal, 64)
-			.offset(x: 0, y: 20)
+			MTButton(
+				isLoading: .constant(false), title: R.string.localizable.done(),
+				loadingTitle: R.string.localizable.creatingGroup()) {
+					handleCreateGroupAction()
+				}
+				.padding(.horizontal, 64)
+				.offset(x: 0, y: 20)
 		}
 	}
 
