@@ -19,10 +19,6 @@ struct PlaceDetailsView: MTAsyncView {
 	@State private var showSuccessAlert: Bool = false
 	@State private var individualCheckIn: Bool = false
 	@State private var isPopupPresented: Bool = false
-//	@State private var shouldGroupSuccess: Bool = false
-//	@State private var shouldAddTraveler: Bool = false
-//	@State private var needToAddTraveler: Bool = false
-//	@State private var createdGroup: MTGroup?
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -37,11 +33,8 @@ struct PlaceDetailsView: MTAsyncView {
 		ZStack {
 			VStack(spacing: 0) {
 				WebImage(from: viewModel.placeDetail.image)
-					.resizable()
-					.indicator(.activity)
-					.aspectRatio(16/9.0, contentMode: .fit)
-					.clipped()
-					.cornerRadius(8)
+					.resizable().indicator(.activity)
+					.aspectRatio(16/9.0, contentMode: .fit).clipped().cornerRadius(8)
 					.padding(.init(top: 0, leading: 16, bottom: 0, trailing: 16))
 				detailView
 					.showAlert(title: configuration.errorTitle, isPresented: $showSuccessAlert, action: dismiss) {
@@ -51,9 +44,7 @@ struct PlaceDetailsView: MTAsyncView {
 			.ignoresSafeArea(edges: .bottom)
 			CreateGroupView(
 				isPresenting: $isPopupPresented, viewModel: groupListViewModel) { group in
-//					self.createdGroup = group
 					selectedGroup = group
-//					shouldGroupSuccess = true
 				}
 		}
 		.navigationTitle(R.string.localizable.places())
@@ -70,38 +61,6 @@ struct PlaceDetailsView: MTAsyncView {
 		.onAppear {
 			_ = getSelectedGroup()
 		}
-		/*.fullScreenCover(isPresented: $shouldGroupSuccess) {
-			if let group = createdGroup {
-				CreateGroupSuccessView(group: group, shouldPresent: .constant(true)) {
-					needToAddTraveler = true
-				}
-			}
-		}
-		.onChange(of: shouldGroupSuccess) { newValue in
-			guard !newValue else { return }
-			Task {
-				await reload()
-				if needToAddTraveler {
-					shouldAddTraveler = true
-				}
-			}
-		}
-		.myBackground {
-			NavigationLink(isActive: $shouldAddTraveler) {
-				if let groupToAddTraveler = createdGroup {
-					ScanQRCodeView(
-						viewModel: ScanQRCodeViewModel(
-							group: groupToAddTraveler, provider: AddTravellerAPIProvider(), placeDetailProvider: PlaceDetailAPIProvider()),
-						shouldNavigateBack: $shouldAddTraveler, scanFor: .addTraveler, place: nil)
-					.navigationTitle(R.string.localizable.qrCode())
-				} else {
-					EmptyView()
-				}
-			} label: {
-				EmptyView()
-			}
-			.opacity(0)
-		}*/
 	}
 
 	private var detailView: some View {
@@ -142,13 +101,10 @@ struct PlaceDetailsView: MTAsyncView {
 			if viewModel.placeDetail.address != nil {
 				Text(R.string.localizable.address)
 					.foregroundColor(AppColor.Text.tertiary)
-					.font(AppFont.getFont(forStyle: .title3, forWeight: .semibold))
-					.padding(.horizontal)
+					.font(AppFont.getFont(forStyle: .title3, forWeight: .semibold)).padding(.horizontal)
 				Text(viewModel.placeDetail.address ?? "")
 					.foregroundColor(AppColor.Text.tertiary)
-					.font(AppFont.getFont(forStyle: .body))
-					.lineLimit(3)
-					.padding(.horizontal)
+					.font(AppFont.getFont(forStyle: .body)).lineLimit(3).padding(.horizontal)
 			}
 		}
 	}
@@ -159,8 +115,7 @@ struct PlaceDetailsView: MTAsyncView {
 				Text(R.string.localizable.setupGroupAndCheckinTravelers)
 					.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
 					.foregroundColor(AppColor.Text.tertiary)
-					.multilineTextAlignment(.center)
-					.lineLimit(3)
+					.multilineTextAlignment(.center).lineLimit(3)
 			} else {
 				Text(R.string.localizable.currentGroup)
 					.foregroundColor(AppColor.Text.tertiary)
@@ -175,9 +130,7 @@ struct PlaceDetailsView: MTAsyncView {
 							.foregroundColor(AppColor.theme)
 							.font(AppFont.getFont(forStyle: .footnote))
 					}
-					.padding(8)
-					.background(AppColor.Background.white)
-					.clipShape(Capsule())
+					.padding(8).background(AppColor.Background.white).clipShape(Capsule())
 				}
 			}
 		}
@@ -223,11 +176,8 @@ struct PlaceDetailsView: MTAsyncView {
 								.font(AppFont.getFont(forStyle: .callout))
 								.foregroundColor(AppColor.theme)
 						}
-						.padding(8)
-						.padding(.horizontal, 40)
-						.background(AppColor.Background.white)
-						.cornerRadius(16)
-						.shadow(radius: 8, y: 4)
+						.padding(8).padding(.horizontal, 40)
+						.background(AppColor.Background.white).cornerRadius(16).shadow(radius: 8, y: 4)
 					}
 					Spacer()
 				}
@@ -251,10 +201,8 @@ struct PlaceDetailsView: MTAsyncView {
 								.font(AppFont.getFont(forStyle: .callout, forWeight: .semibold))
 								.foregroundColor(AppColor.theme)
 						}
-						.padding(8)
-						.padding(.horizontal, 16)
-						.background(AppColor.Background.white)
-						.cornerRadius(12)
+						.padding(8).padding(.horizontal, 16)
+						.background(AppColor.Background.white).cornerRadius(12)
 					}
 					Spacer()
 				}
@@ -273,11 +221,8 @@ struct PlaceDetailsView: MTAsyncView {
 							.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
 							.foregroundColor(AppColor.theme)
 					}
-				.padding()
-				.padding(.horizontal, 40)
-				.background(AppColor.Background.white)
-				.cornerRadius(12)
-				.shadow(radius: 8, y: 4)
+				.padding().padding(.horizontal, 40)
+				.background(AppColor.Background.white).cornerRadius(12).shadow(radius: 8, y: 4)
 			}
 			Spacer()
 		}
@@ -315,13 +260,13 @@ struct PlaceDetailsView: MTAsyncView {
 				Spacer()
 				Text(R.string.localizable.checkinTravellersNotInGroup)
 					.foregroundColor(AppColor.Text.tertiary)
-					.font(AppFont.getFont(forStyle: .body))
-					.lineLimit(3)
+					.font(AppFont.getFont(forStyle: .body)).lineLimit(3)
 				Spacer()
 			}
 		}
 	}
-
+}
+extension PlaceDetailsView {
 	func load() {
 		Task {
 			await viewModel.getPlaceDetail(of: place)
@@ -343,8 +288,6 @@ struct PlaceDetailsView: MTAsyncView {
 	func presentGroupSelection() {
 		shouldPresentGroupSelection = true
 	}
-}
-extension PlaceDetailsView {
 	func groupCheckIn() {
 		guard let selectedGroup else { return }
 		Task {
@@ -381,14 +324,6 @@ extension PlaceDetailsView {
 	func doSetupGroup() {
 		isPopupPresented = true
 	}
-
-	/*func reload() async {
-		do {
-			try await groupListViewModel.getGroupList()
-
-		} catch {
-		}
-	}*/
 }
 
 #if DEBUG
