@@ -18,6 +18,11 @@ struct PlaceDetailsView: MTAsyncView {
 	@State private var configuration = UIConfiguration()
 	@State private var showSuccessAlert: Bool = false
 	@State private var individualCheckIn: Bool = false
+	@State private var isPopupPresented: Bool = false
+//	@State private var shouldGroupSuccess: Bool = false
+//	@State private var shouldAddTraveler: Bool = false
+//	@State private var needToAddTraveler: Bool = false
+//	@State private var createdGroup: MTGroup?
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -29,20 +34,28 @@ struct PlaceDetailsView: MTAsyncView {
 	}
 
 	var loadedView: some View {
-		VStack(spacing: 0) {
-			WebImage(from: viewModel.placeDetail.image)
-				.resizable()
-				.indicator(.activity)
-				.aspectRatio(16/9.0, contentMode: .fit)
-				.clipped()
-				.cornerRadius(8)
-				.padding(.init(top: 0, leading: 16, bottom: 0, trailing: 16))
-			 detailView
-				.showAlert(title: configuration.errorTitle, isPresented: $showSuccessAlert, action: dismiss) {
-					Text(configuration.errorMeessage)
+		ZStack {
+			VStack(spacing: 0) {
+				WebImage(from: viewModel.placeDetail.image)
+					.resizable()
+					.indicator(.activity)
+					.aspectRatio(16/9.0, contentMode: .fit)
+					.clipped()
+					.cornerRadius(8)
+					.padding(.init(top: 0, leading: 16, bottom: 0, trailing: 16))
+				detailView
+					.showAlert(title: configuration.errorTitle, isPresented: $showSuccessAlert, action: dismiss) {
+						Text(configuration.errorMeessage)
+					}
+			}
+			.ignoresSafeArea(edges: .bottom)
+			CreateGroupView(
+				isPresenting: $isPopupPresented, viewModel: groupListViewModel) { group in
+//					self.createdGroup = group
+					selectedGroup = group
+//					shouldGroupSuccess = true
 				}
 		}
-		.ignoresSafeArea(edges: .bottom)
 		.navigationTitle(R.string.localizable.places())
 		.setThemeBackButton()
 		.sheet(isPresented: $shouldPresentGroupSelection) {
@@ -57,6 +70,38 @@ struct PlaceDetailsView: MTAsyncView {
 		.onAppear {
 			_ = getSelectedGroup()
 		}
+		/*.fullScreenCover(isPresented: $shouldGroupSuccess) {
+			if let group = createdGroup {
+				CreateGroupSuccessView(group: group, shouldPresent: .constant(true)) {
+					needToAddTraveler = true
+				}
+			}
+		}
+		.onChange(of: shouldGroupSuccess) { newValue in
+			guard !newValue else { return }
+			Task {
+				await reload()
+				if needToAddTraveler {
+					shouldAddTraveler = true
+				}
+			}
+		}
+		.myBackground {
+			NavigationLink(isActive: $shouldAddTraveler) {
+				if let groupToAddTraveler = createdGroup {
+					ScanQRCodeView(
+						viewModel: ScanQRCodeViewModel(
+							group: groupToAddTraveler, provider: AddTravellerAPIProvider(), placeDetailProvider: PlaceDetailAPIProvider()),
+						shouldNavigateBack: $shouldAddTraveler, scanFor: .addTraveler, place: nil)
+					.navigationTitle(R.string.localizable.qrCode())
+				} else {
+					EmptyView()
+				}
+			} label: {
+				EmptyView()
+			}
+			.opacity(0)
+		}*/
 	}
 
 	private var detailView: some View {
@@ -94,9 +139,7 @@ struct PlaceDetailsView: MTAsyncView {
 
 	private var descriptionView: some View {
 		VStack(alignment: .leading, spacing: 8) {
-			if viewModel.placeDetail.address == nil {
-				EmptyView()
-			} else {
+			if viewModel.placeDetail.address != nil {
 				Text(R.string.localizable.address)
 					.foregroundColor(AppColor.Text.tertiary)
 					.font(AppFont.getFont(forStyle: .title3, forWeight: .semibold))
@@ -213,7 +256,6 @@ struct PlaceDetailsView: MTAsyncView {
 						.background(AppColor.Background.white)
 						.cornerRadius(12)
 					}
-
 					Spacer()
 				}
 				.zIndex(1)
@@ -289,9 +331,7 @@ struct PlaceDetailsView: MTAsyncView {
 	func getSelectedGroup() -> MTGroup? {
 		if selectedGroup == nil {
 			selectedGroup = groupListViewModel.groupList.first(where: {$0.isDefault == 1})
-
-			// If no group is default then select first group
-			if selectedGroup == nil {
+			if selectedGroup == nil { // If no group is default then select first group
 				selectedGroup = groupListViewModel.groupList.first
 			}
 			return selectedGroup
@@ -339,10 +379,19 @@ extension PlaceDetailsView {
 	}
 
 	func doSetupGroup() {
-
+		isPopupPresented = true
 	}
+
+	/*func reload() async {
+		do {
+			try await groupListViewModel.getGroupList()
+
+		} catch {
+		}
+	}*/
 }
 
+#if DEBUG
 struct PlaceDetailsView_Previews: PreviewProvider {
     static var previews: some View {
 		let placeDetailViewModel = PlaceDetailViewModel(with: .preview, and: PlaceDetailSuccessProvider())
@@ -355,3 +404,4 @@ struct PlaceDetailsView_Previews: PreviewProvider {
 			.previewDisplayName("iPhone SE")
     }
 }
+#endif

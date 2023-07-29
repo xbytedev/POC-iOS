@@ -31,7 +31,7 @@ struct AppTabBarView: View {
 					.tabBarItem(tab: .settings, selection: $selection)
 			}
 			CreateGroupView(
-				isPresenting: $isPopupPresented, viewModel: .init(provider: GroupAPIProvider())) { group in
+				isPresenting: $isPopupPresented, viewModel: groupViewModel) { group in
 					self.createdGroup = group
 					shouldGroupSuccess = true
 				}
