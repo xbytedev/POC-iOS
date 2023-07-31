@@ -56,10 +56,10 @@ struct CheckInView: MTAsyncView {
 						.foregroundColor(AppColor.theme)
 					Spacer()
 					Picker(selection: $selectedType) {
-						Text(R.string.localizable.all)
-							.tag("all")
-						Text("None")
-							.tag("None")
+						ForEach(viewModel.types, id: \.self) { type in
+							Text(type)
+								.tag(type)
+						}
 					} label: {
 						HStack {
 							Text("Allfgf")
@@ -98,7 +98,10 @@ struct CheckInView: MTAsyncView {
 			.listStyle(.plain)
 		}
 		.onChange(of: searchText) { newValue in
-			viewModel.searchPlace(with: newValue)
+			viewModel.searchPlace(with: newValue, withFilter: selectedType)
+		}
+		.onChange(of: selectedType) { newValue in
+			viewModel.searchPlace(with: searchText, withFilter: newValue)
 		}
     }
 
