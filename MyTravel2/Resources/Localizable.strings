@@ -9,6 +9,9 @@
 "Cancel" = "Cancel";
 "Error" = "Error";
 "customErrorCode" = "Custom error code %.2f";
+"Retry" = "Retry";
+"submit" = "Submit";
+"success" = "Success";
 "request.inProgressOrNoMoreData" = "Request is already in progress or no more data";
 "request.succeed.noData" = "Request succeed, but no expected data found";
 "request.failed.noMessageFound" = "Request failed, no error message found";
@@ -62,6 +65,7 @@
 "Do you want to logout" = "Do you want to logout?";
 
 // QR Code scanning
+"qr code" = "QR Code";
 "point the camera at the qr code" = "Point the Camera at the QR Code";
 "Enter code manually" = "Enter code manually";
 
@@ -71,3 +75,58 @@
 "adding to group" = "Adding to group";
 "please enter code" = "Please enter code";
 "Please enter valid code" = "Please enter valid code";
+
+// Group list
+"setup group and checkin travelers" = "Setup a Group to save time and check-in several travelers at the same time.";
+"setup group" = "Setup Group";
+
+// Group details
+"loading content details" = "Loading %@'s details";
+"loading" = "Loading";
+"activating traveller" = "Activating %@";
+"deactivating traveller" = "Deactivating %@";
+
+// Group Edit
+"do you want to delete travelelr" = "Do you want to delete %@";
+"delete" = "Delete";
+"delete group" = "Delete Group";
+"deleting group" = "Deleting group";
+"do you want to delete group" = "Do you want to delete group?";
+"deleting gorup name" = "Deleting %@";
+"Deleting traveller" = "Deleting %@";
+
+// Traveler Detail
+"city value" = "City: %@";
+"country value" = "Country: %@";
+"there are number of people travelling with traveller" = "There are %d people travelling with %@";
+"add travellers to group" = "Add Travellers to Group";
+"all travellers" = "All Travellers";
+"only this traveller" = "Only this traveller";
+"confirm check in" = "Confirm Check-In";
+"checking in" = "Checking In";
+"Adding traveller to group" = "Adding %@ to %@";
+"adding all to group" = "Adding All to %@";
+
+// Create Group
+"New Group" = "New Group";
+"group name" = "Group Name";
+"creating group" = "Creating group";
+
+// Check-In
+"places" = "Places";
+"checkIns" = "Check-Ins";
+"search" = "Search";
+"place type" = "Place Type";
+"all" = "All";
+"address" = "Address";
+"current group" = "Current Group";
+"change" = "Change";
+"checking-in group" = "Checking-in Group";
+"check-in group" = "Check-in Group";
+"edit group" = "Edit Group";
+"individual check-in" = "Individual Check-In";
+"checkin travellers not in group" = "Check-in travellers not in a group";
+"group checkin successfully" = "Group check-in successfully";
+
+// Camera preview
+"click here to simulate" = "Click here to simulate scan";

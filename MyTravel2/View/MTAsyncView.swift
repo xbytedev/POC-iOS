@@ -99,7 +99,7 @@ struct SMErrorView: View {
 					.font(AppFont.getFont(forStyle: .body))
 			}
 			if let retryAction {
-				MTButton(isLoading: .constant(false), title: "Retry", loadingTitle: "") {
+				MTButton(isLoading: .constant(false), title: R.string.localizable.retry(), loadingTitle: "") {
 					retryAction()
 				}
 			}

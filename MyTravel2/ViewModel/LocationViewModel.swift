@@ -17,7 +17,7 @@ class LocationViewModel: ObservableObject {
 		self.provider = provider
 	}
 	@MainActor
-	func getPlaceList() async throws {
+	func getPlaceList() async {
 		state = .loaded
 		let result = await provider.getPlaceList()
 		switch result {

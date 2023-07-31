@@ -12,7 +12,7 @@ struct GroupEditView: View {
 	@State private var isDeleting = false
 	@State private var shouldAddNew = false
 	@State private var configuration = UIConfiguration()
-	@State private var updatingMessage = "Loading"
+	@State private var updatingMessage = R.string.localizable.loading()
 	@State private var deleteGroupConfirmation = false
 	@State private var deleteMemberConfirmation = false
 	@State private var deleteMember: MTTraveller?
@@ -35,8 +35,9 @@ struct GroupEditView: View {
 		.alert(isPresented: $deleteMemberConfirmation, content: {
 				if let deleteMember {
 					return Alert(
-						title: Text("Are you sure?"), message: Text("Do you want to delete \(deleteMember.name)?"),
-						primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
+						title: Text(R.string.localizable.areYouSure()),
+						message: Text(R.string.localizable.doYouWantToDeleteTravelelr(deleteMember.name)),
+						primaryButton: .cancel(), secondaryButton: .destructive(Text(R.string.localizable.delete()), action: {
 							deleteTraveller(deleteMember)
 						}))
 				} else {
@@ -46,6 +47,13 @@ struct GroupEditView: View {
 		.setThemeBackButton()
 		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
 			Text(configuration.errorMeessage)
+		}
+		.onAppear {
+			if viewModel.state == .idle {
+				Task {
+					await viewModel.getPeopleList()
+				}
+			}
 		}
 		.myOverlay {
 			Group {
@@ -110,13 +118,13 @@ struct GroupEditView: View {
 			ZStack {
 				NavigationLink(isActive: $shouldAddNew) {
 					ScanQRCodeView(
-						viewModel: getScanQRViewModel(), shouldNavigateBack: $shouldAddNew)
-					.navigationTitle("QR Code")
+						viewModel: getScanQRViewModel(), shouldNavigateBack: $shouldAddNew, scanFor: .addTraveler, place: nil)
+					.navigationTitle(R.string.localizable.qrCode())
 				} label: {
 					EmptyView()
 				}
 				.opacity(0)
-				MTButton(isLoading: .constant(false), title: "Add Travellers", loadingTitle: "") {
+				MTButton(isLoading: .constant(false), title: R.string.localizable.addTravelers(), loadingTitle: "") {
 					shouldAddNew = true
 				}
 			}
@@ -127,15 +135,19 @@ struct GroupEditView: View {
 	var deleteGroupButton: some View {
 		HStack {
 			Spacer()
-			MTButton(isLoading: $isDeleting, title: "Delete Group", loadingTitle: "Deleting group") {
-				deleteGroupConfirmation = true
+			if viewModel.groupUpdateDelegate != nil {
+				MTButton(
+					isLoading: $isDeleting, title: R.string.localizable.deleteGroup(),
+					loadingTitle: R.string.localizable.deletingGroup()) {
+						deleteGroupConfirmation = true
+					}
 			}
 			Spacer()
 		}
 		.alert(isPresented: $deleteGroupConfirmation, content: {
 			Alert(
-				title: Text("Are you sure?"), message: Text("Do you want to delete group?"),
-				primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete"), action: {
+				title: Text(R.string.localizable.areYouSure()), message: Text(R.string.localizable.doYouWantToDeleteGroup()),
+				primaryButton: .cancel(), secondaryButton: .destructive(Text(R.string.localizable.delete()), action: {
 					deleteGroup()
 				}))
 		})
@@ -144,7 +156,7 @@ struct GroupEditView: View {
 	private func deleteGroup() {
 		Task {
 			do {
-				updatingMessage = "Deleting " + (viewModel.group.name ?? "Group")
+				updatingMessage = R.string.localizable.deletingGorupName(viewModel.group.name ?? "Group")
 				isDeleting = true
 				configuration.isLoading = true
 				try await viewModel.deleteGroup()
@@ -164,7 +176,7 @@ struct GroupEditView: View {
 	private func deleteTraveller(_ traveller: MTTraveller) {
 		Task {
 			do {
-				updatingMessage = "Deleting " + (traveller.name)
+				updatingMessage = R.string.localizable.deletingTraveller(traveller.name)
 				configuration.isLoading = true
 				try await viewModel.delete(traveller: traveller)
 				configuration.isLoading = false
@@ -178,7 +190,8 @@ struct GroupEditView: View {
 	}
 
 	func getScanQRViewModel() -> ScanQRCodeViewModel {
-		let viewModel = ScanQRCodeViewModel(group: viewModel.group, provider: AddTravellerAPIProvider())
+		let viewModel = ScanQRCodeViewModel(
+			group: viewModel.group, provider: AddTravellerAPIProvider(), placeDetailProvider: PlaceDetailAPIProvider())
 		viewModel.delegate = self.viewModel
 		return viewModel
 	}

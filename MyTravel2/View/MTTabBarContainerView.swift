@@ -18,7 +18,7 @@ struct MTTabBarContainerView<V: View>: View {
 	@State private var selectionPicker: ListType = .places
 	@Binding private var checkInSelection: SegmentItem
 
-	init(selection: Binding<TabItem>,checkInSelection: Binding<SegmentItem>, @ViewBuilder content: () -> V) {
+	init(selection: Binding<TabItem>, checkInSelection: Binding<SegmentItem>, @ViewBuilder content: () -> V) {
 		self.content = content()
 		_selection = selection
 		_checkInSelection = checkInSelection
@@ -32,7 +32,6 @@ struct MTTabBarContainerView<V: View>: View {
 		.onPreferenceChange(MTTabBarPreferenceKey.self) { value in
 			tabs = value
 		}
-//		.navigationTitle(selection.title)
 		.toolbar {
 			ToolbarItem(placement: .principal) {
 				if selection == .checkIn {
@@ -41,15 +40,6 @@ struct MTTabBarContainerView<V: View>: View {
 				} else {
 					Text(selection.title)
 				}
-				/*GeometryReader { geometryProxy in
-				 HStack {
-				 Spacer()
-
-				 Text(selection.title)
-				 Spacer()
-				 }
-				 .frame(width: geometryProxy.size.width, height: 44, alignment: .center)
-				 }*/
 			}
 		}
 	}

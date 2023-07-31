@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum ScanFor {
+	case addTraveler
+	case checkIn
+}
+
 struct ScanQRCodeView: View {
 	@State private var shouldTravelDetail: Bool = false
 	@State private var isPresenting: Bool = false
@@ -15,12 +20,15 @@ struct ScanQRCodeView: View {
 	@Environment(\.mtDismissable) var dismiss
 	@ObservedObject var viewModel: ScanQRCodeViewModel
 	@Binding var shouldNavigateBack: Bool
+	let scanFor: ScanFor
+	let place: MTPlace?
 
     var body: some View {
 		ZStack {
 			NavigationLink(isActive: $shouldTravelDetail) {
 				TravellerDetailView(
-					viewModel: viewModel, code: Int(foundQR) ?? 0, shouldNavigateBack: $shouldNavigateBack)
+					viewModel: viewModel, code: Int(foundQR) ?? 0, shouldNavigateBack: $shouldNavigateBack, scanFor: scanFor,
+					place: place)
 			} label: {
 				EmptyView()
 			}
@@ -59,7 +67,12 @@ struct ScanQRCodeView: View {
 				  Validator.shared.isValid(travellerCode: newValue) else { return }
 			Task {
 				do {
-					try await viewModel.checkTraveler(with: code)
+					switch scanFor {
+					case .addTraveler:
+						try await viewModel.checkTraveler(with: code)
+					case .checkIn:
+						try await viewModel.checkIndividualCheckIn(with: code)
+					}
 					shouldTravelDetail = true
 //					foundQR = ""
 					//					try await viewModel.addTraveller(with: code, type: .single)
@@ -80,8 +93,10 @@ struct ScanQRCodeView: View {
 #if DEBUG
 struct ScanQRCodeView_Previews: PreviewProvider {
     static var previews: some View {
-		ScanQRCodeView(viewModel: .init(
-			group: .preview, provider: AddTravellerSuccessProvider()), shouldNavigateBack: .constant(true))
-    }
+		ScanQRCodeView(
+			viewModel: .init(
+				group: .preview, provider: AddTravellerSuccessProvider(), placeDetailProvider: PlaceDetailSuccessProvider()),
+			shouldNavigateBack: .constant(true), scanFor: .addTraveler, place: .preview)
+	}
 }
 #endif

@@ -26,9 +26,23 @@ func MTJSONDecoder() -> JSONDecoder {
 	return decoder
 }
 
-enum MTLoadingState {
+enum MTLoadingState: ReflectiveEquatable {
 	case idle
 	case loading
 	case failed(Error)
 	case loaded
+}
+
+// Conform this protocol to Equatable
+protocol ReflectiveEquatable: Equatable {}
+
+extension ReflectiveEquatable {
+
+	var reflectedValue: String { String(reflecting: self) }
+
+	// Explicitly implement the required `==` function
+	// (The compiler will synthesize `!=` for us implicitly)
+	static func ==(lhs: Self, rhs: Self) -> Bool { // swiftlint:disable:this operator_whitespace
+		return lhs.reflectedValue == rhs.reflectedValue
+	}
 }

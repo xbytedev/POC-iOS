@@ -10,11 +10,14 @@ import SwiftUI
 struct TravellerDetailView: View {
 	@State private var addType: TravelerCodeType = .all
 	@State private var configuration = UIConfiguration()
-	@State private var updatingMessage = "Loading"
+	@State private var updatingMessage = R.string.localizable.loading()
 	@Environment(\.mtDismissable) var dismiss
 	@ObservedObject var viewModel: ScanQRCodeViewModel
 	let code: Int
 	@Binding var shouldNavigateBack: Bool
+	let scanFor: ScanFor
+	@State private var isCheckingIn: Bool = false
+	let place: MTPlace?
 
     var body: some View {
 		Group {
@@ -53,20 +56,24 @@ struct TravellerDetailView: View {
 			Text(traveler.name)
 				.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 			VStack {
-				Text("City: " + traveler.residenceCity)
+				Text(R.string.localizable.cityValue(traveler.residenceCity))
 					.font(AppFont.getFont(forStyle: .body))
-				Text("Country: " + traveler.residenceCountry)
+				Text(R.string.localizable.countryValue(traveler.residenceCountry))
 					.font(AppFont.getFont(forStyle: .body))
 			}
 			.padding()
-			VStack {
-				Text("There are \(traveler.otherPeopleCount) people travelling with \(traveler.name)")
-					.font(AppFont.getFont(forStyle: .body))
-					.multilineTextAlignment(.center)
+			if scanFor == .addTraveler {
+				VStack {
+					Text(R.string.localizable.thereAreNumberOfPeopleTravellingWithTraveller(traveler.otherPeopleCount, traveler.name))
+						.font(AppFont.getFont(forStyle: .body))
+						.multilineTextAlignment(.center)
+				}
+				.padding()
+				addTypeView.padding()
+				addButtonView
+			} else {
+				checkInButtonView
 			}
-			.padding()
-			addTypeView.padding()
-			bottomButtonView
 			Spacer()
 		}
 		.padding(.horizontal)
@@ -76,7 +83,7 @@ struct TravellerDetailView: View {
 
 	var addTypeView: some View {
 		VStack(alignment: .leading) {
-			Text("Add Travelers to Group")
+			Text(R.string.localizable.addTravellersToGroup())
 				.font(AppFont.getFont(forStyle: .body, forWeight: .semibold))
 			VStack(alignment: .leading) {
 				HStack {
@@ -88,7 +95,7 @@ struct TravellerDetailView: View {
 							Circle()
 								.stroke(AppColor.Text.secondary)
 						})
-					Text("All Travelers")
+					Text(R.string.localizable.allTravellers())
 						.font(AppFont.getFont(forStyle: .body))
 				}
 				.onTapGesture {
@@ -103,7 +110,7 @@ struct TravellerDetailView: View {
 							Circle()
 								.stroke(AppColor.Text.secondary)
 						}
-					Text("Only this traveler")
+					Text(R.string.localizable.onlyThisTraveller())
 						.font(AppFont.getFont(forStyle: .body))
 				}
 				.onTapGesture {
@@ -114,14 +121,14 @@ struct TravellerDetailView: View {
 		}
 	}
 
-	var bottomButtonView: some View {
+	var addButtonView: some View {
 		HStack {
 			Button {
 				viewModel.lastQRCode = ""
 				dismiss()
 			} label: {
 				HStack(spacing: 16) {
-					Text("Cancle")
+					Text(R.string.localizable.cancel())
 						.transition(.opacity)
 						.foregroundColor(AppColor.theme)
 				}
@@ -139,7 +146,7 @@ struct TravellerDetailView: View {
 				addTraveler()
 			} label: {
 				HStack(spacing: 16) {
-					Text("Submit")
+					Text(R.string.localizable.submit())
 						.transition(.opacity)
 						.foregroundColor(AppColor.Text.tertiary)
 				}
@@ -155,23 +162,53 @@ struct TravellerDetailView: View {
 		}
 	}
 
+	var checkInButtonView: some View {
+		HStack {
+			Spacer()
+			VStack {
+				MTButton(
+					isLoading: $isCheckingIn, title: R.string.localizable.confirmCheckIn(),
+					loadingTitle: R.string.localizable.checkingIn(), action: checkIn)
+				MTButton(isLoading: .constant(false), title: R.string.localizable.cancel(), loadingTitle: "", action: dismiss)
+			}
+			Spacer()
+		}
+	}
+
 	func addTraveler() {
 		Task {
 			do {
 				if addType == .single {
-					updatingMessage = "Adding \(viewModel.tempTraveler?.name ?? "Traveler") to \(viewModel.group.name ?? "Group")"
+					let travellerName = viewModel.tempTraveler?.name ?? "Traveler"
+					let groupName = viewModel.group.name ?? "Group"
+					updatingMessage = R.string.localizable.addingTravellerToGroup(travellerName, groupName)
 				} else {
-					updatingMessage = "Adding All to \(viewModel.group.name ?? "Group")"
+					updatingMessage = R.string.localizable.addingAllToGroup(viewModel.group.name ?? "Group")
 				}
 				configuration.isLoading = true
 				try await viewModel.addTraveller(with: code, type: addType)
 				viewModel.delegate?.newTravelerAdded()
 				configuration.isLoading = false
-				// TODO: navigate back to group detail screen or group list
 				shouldNavigateBack = false
-//				dismiss()
 			} catch {
 				configuration.isLoading = false
+				configuration.errorTitle = R.string.localizable.error()
+				configuration.errorMeessage = error.localizedDescription
+				configuration.alertPresent = true
+			}
+		}
+	}
+
+	func checkIn() {
+		guard let place else { return }
+		Task {
+			do {
+				isCheckingIn = true
+				try await viewModel.checkIn(with: code, to: place)
+				isCheckingIn = false
+				shouldNavigateBack = false
+			} catch {
+				isCheckingIn = false
 				configuration.errorTitle = R.string.localizable.error()
 				configuration.errorMeessage = error.localizedDescription
 				configuration.alertPresent = true
@@ -181,9 +218,11 @@ struct TravellerDetailView: View {
 }
 #if DEBUG
 struct TravellerDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-		TravellerDetailView(viewModel: ScanQRCodeViewModel(
-			group: .preview, provider: AddTravellerSuccessProvider()), code: 0, shouldNavigateBack: .constant(true))
-    }
+	static var previews: some View {
+		TravellerDetailView(
+			viewModel: ScanQRCodeViewModel(
+				group: .preview, provider: AddTravellerSuccessProvider(), placeDetailProvider: PlaceDetailSuccessProvider()),
+			code: 0, shouldNavigateBack: .constant(true), scanFor: .addTraveler, place: .preview)
+	}
 }
 #endif

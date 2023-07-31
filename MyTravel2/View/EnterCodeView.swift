@@ -80,21 +80,6 @@ struct EnterCodeView: View {
 		} else {
 			addedToGroupSuccessfull(code)
 			dismiss()
-			/*Task {
-				do {
-					configuration.isLoading = true
-					configuration.alertPresent = false
-					let group = try await viewModel.doCreateGroup(groupName: groupName)
-					self.configuration.isLoading = false
-					isPresenting = false
-					addedToGroupSuccessfull(group)
-					code = ""
-				} catch {
-					self.configuration.errorMeessage = error.localizedDescription
-					self.configuration.alertPresent = true
-					self.configuration.isLoading = false
-				}
-			}*/
 		}
 	}
 
