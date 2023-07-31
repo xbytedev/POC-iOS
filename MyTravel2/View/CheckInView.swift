@@ -20,6 +20,10 @@ struct CheckInView: MTAsyncView {
 		self.groupViewModel = groupViewModel
 	}
 
+	var state: MTLoadingState {
+		viewModel.state
+	}
+
     var loadedView: some View {
 		VStack(alignment: .leading, spacing: 0) {
 			VStack(alignment: .leading) {
@@ -74,28 +78,7 @@ struct CheckInView: MTAsyncView {
 			}
 			.padding(.horizontal)
 			.padding(.horizontal)
-			List {
-				Section {
-					ForEach(viewModel.displayPlaces) { place in
-						ZStack {
-							NavigationLink {
-								let viewModel = PlaceDetailViewModel(with: place, and: PlaceDetailAPIProvider())
-								PlaceDetailsView(viewModel: viewModel, groupListViewModel: groupViewModel, place: place)
-							} label: {
-								EmptyView()
-							}
-							.opacity(0)
-							HStack {
-								Text(place.name ?? "")
-								Spacer()
-								Image(R.image.ic_arrowRight)
-							}
-						}
-							.mtListBackgroundStyle()
-					}
-				}
-			}
-			.listStyle(.plain)
+			refreshableListView
 		}
 		.onChange(of: searchText) { newValue in
 			viewModel.searchPlace(with: newValue, withFilter: selectedType)
@@ -105,8 +88,39 @@ struct CheckInView: MTAsyncView {
 		}
     }
 
-	var state: MTLoadingState {
-		viewModel.state
+	private var listView: some View {
+		List {
+			Section {
+				ForEach(viewModel.displayPlaces) { place in
+					ZStack {
+						NavigationLink {
+							let viewModel = PlaceDetailViewModel(with: place, and: PlaceDetailAPIProvider())
+							PlaceDetailsView(viewModel: viewModel, groupListViewModel: groupViewModel, place: place)
+						} label: {
+							EmptyView()
+						}
+						.opacity(0)
+						HStack {
+							Text(place.name ?? "")
+							Spacer()
+							Image(R.image.ic_arrowRight)
+						}
+					}
+					.mtListBackgroundStyle()
+				}
+			}
+		}
+		.listStyle(.plain)
+	}
+
+	@ViewBuilder
+	private var refreshableListView: some View {
+		if #available(iOS 15.0, *) {
+			listView
+				.refreshable(action: viewModel.refreshPlaceList)
+		} else {
+			listView
+		}
 	}
 
 	func load() {

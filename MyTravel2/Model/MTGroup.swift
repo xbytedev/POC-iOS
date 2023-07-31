@@ -28,6 +28,12 @@ struct MTGroup: Decodable {
 	}
 }
 
+extension MTGroup {
+	static let dummy = MTGroup(
+		id: 20, groupdCode: 124657, name: "Create by iOS", partnerID: 1, status: 1,
+		createdAt: "2023-05-22T12:53:58.000000Z", updatedAt: "2023-05-22T12:53:58.000000Z", travellerCount: 2, isDefault: 1)
+}
+
 extension MTGroup: Identifiable { }
 extension MTGroup: Equatable { }
 extension MTGroup: Hashable { }

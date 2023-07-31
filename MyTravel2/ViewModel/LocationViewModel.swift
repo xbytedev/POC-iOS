@@ -32,12 +32,26 @@ class LocationViewModel: ObservableObject {
 		}
 	}
 
+	@MainActor @Sendable
+	func refreshPlaceList() async {
+		let result = await provider.getPlaceList()
+		switch result {
+		case .success(let places):
+			self.places = places
+			self.displayPlaces = places
+			updateTypes()
+			state = .loaded
+		case .failure(let error):
+			state = .failed(error)
+		}
+	}
+
 	@MainActor
 	func searchPlace(with searchStr: String, withFilter type: String) {
 		if searchStr.isEmpty {
 			displayPlaces = places
 		} else {
-			displayPlaces = places.filter({$0.name?.contains(searchStr) ?? false})
+			displayPlaces = places.filter({$0.name?.lowercased().contains(searchStr.lowercased()) ?? false})
 		}
 		filterPlace(with: type)
 		updateTypes()
