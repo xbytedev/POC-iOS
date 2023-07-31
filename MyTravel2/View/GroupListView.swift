@@ -54,6 +54,7 @@ struct GroupListView: MTAsyncView {
 		}
 	}
 
+	@Sendable
 	func reload() async {
 		do {
 			try await viewModel.getGroupList()
@@ -63,7 +64,7 @@ struct GroupListView: MTAsyncView {
 	}
 
 	var loadedView: some View {
-		dataView
+		refreshableDataView
 			.myOverlay {
 				Group {
 					if viewModel.groupList.isEmpty {
@@ -152,6 +153,15 @@ struct GroupListView: MTAsyncView {
 		 Label("Delete", systemImage: "trash")
 		 }
 		 }*/
+	}
+
+	@ViewBuilder
+	var refreshableDataView: some View {
+		if #available(iOS 15.0, *) {
+			dataView.refreshable(action: reload)
+		} else {
+			dataView
+		}
 	}
 
 	var emptyView: some View {
