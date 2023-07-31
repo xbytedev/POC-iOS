@@ -19,6 +19,7 @@ struct PlaceDetailsView: MTAsyncView {
 	@State private var showSuccessAlert: Bool = false
 	@State private var individualCheckIn: Bool = false
 	@State private var isPopupPresented: Bool = false
+	@State private var shouldEditGroup = false
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -59,7 +60,15 @@ struct PlaceDetailsView: MTAsyncView {
 			Text(configuration.errorMeessage)
 		}
 		.onAppear {
-			_ = getSelectedGroup()
+			if shouldEditGroup {
+				Task {
+					try await groupListViewModel.getGroupList()
+					_ = getSelectedGroup()
+					shouldEditGroup = false
+				}
+			} else {
+				_ = getSelectedGroup()
+			}
 		}
 	}
 
@@ -190,7 +199,10 @@ struct PlaceDetailsView: MTAsyncView {
 						} else {
 							let groupEditViewModel = GroupDetailViewModel(
 								group: selectedGroup!, groupDetailProvider: GroupDetailAPIProvider())
-							GroupEditView(viewModel: groupEditViewModel, isPopToGroupList: .constant(false))
+							GroupEditView(viewModel: groupEditViewModel, isPopToGroupList: .constant(false)) {
+								_ = getSelectedGroup()
+								shouldEditGroup = true
+							}
 						}
 					} label: {
 						VStack {
@@ -204,6 +216,7 @@ struct PlaceDetailsView: MTAsyncView {
 						.padding(8).padding(.horizontal, 16)
 						.background(AppColor.Background.white).cornerRadius(12)
 					}
+					.isDetailLink(false)
 					Spacer()
 				}
 				.zIndex(1)
@@ -281,6 +294,7 @@ extension PlaceDetailsView {
 			}
 			return selectedGroup
 		} else {
+			selectedGroup = groupListViewModel.groupList.first(where: {$0.id == selectedGroup?.id})
 			return selectedGroup
 		}
 	}

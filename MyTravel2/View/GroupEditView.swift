@@ -18,6 +18,7 @@ struct GroupEditView: MTAsyncView {
 	@State private var deleteMember: MTTraveller?
 	@Environment(\.mtDismissable) var dismiss
 	@Binding var isPopToGroupList: Bool
+	var successfullEditGroup: () -> Void = { }
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -73,6 +74,9 @@ struct GroupEditView: MTAsyncView {
 					}
 				}
 			}
+		}
+		.onChange(of: viewModel.travellers) { _ in
+			successfullEditGroup()
 		}
 	}
 
