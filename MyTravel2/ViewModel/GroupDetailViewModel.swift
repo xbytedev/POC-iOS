@@ -10,6 +10,7 @@ import Foundation
 protocol GroupUpdateDelegate: AnyObject {
 	func defaultGroupUpdated(group: MTGroup)
 	func deleteGroupSuccessfully()
+	func editGroupSuccessfully()
 }
 
 class GroupDetailViewModel: ObservableObject {

@@ -39,6 +39,13 @@ class GroupViewModel: ObservableObject {
 
 extension GroupViewModel: GroupUpdateDelegate {
 	@MainActor
+	func editGroupSuccessfully() {
+		Task {
+			try await getGroupList()
+		}
+	}
+
+	@MainActor
 	func deleteGroupSuccessfully() {
 		Task {
 			try await getGroupList()
