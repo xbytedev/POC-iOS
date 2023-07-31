@@ -132,7 +132,6 @@ struct VerificationView: View {
 					self.configuration.isLoading = false
 					viewModel.cancellable?.cancel()
 					isVerified = true
-
 				}
 				/*catch DecodingError.keyNotFound(let key, let context) {
 				 print("could not find key \(key) in JSON: \(context.debugDescription)")

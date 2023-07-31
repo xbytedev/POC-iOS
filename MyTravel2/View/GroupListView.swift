@@ -206,6 +206,7 @@ struct GroupListView: MTAsyncView {
 	}
 }
 
+#if DEBUG
 struct GroupList_Previews: PreviewProvider {
     static var previews: some View {
 		let viewModel = GroupViewModel(provider: GroupSuccessProvider())
@@ -214,3 +215,4 @@ struct GroupList_Previews: PreviewProvider {
 			createdGroup: .constant(nil), shouldAddTraveler: .constant(true))
     }
 }
+#endif

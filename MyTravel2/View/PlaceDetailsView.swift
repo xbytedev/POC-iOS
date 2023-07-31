@@ -315,7 +315,7 @@ extension PlaceDetailsView {
 			return viewModel
 		} else {
 			let viewModel = ScanQRCodeViewModel(
-				group: .preview, provider: AddTravellerAPIProvider(), placeDetailProvider: PlaceDetailAPIProvider())
+				group: .dummy, provider: AddTravellerAPIProvider(), placeDetailProvider: PlaceDetailAPIProvider())
 			//		viewModel.delegate = self.viewModel
 			return viewModel
 		}
