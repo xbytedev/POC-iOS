@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct GroupEditView: View {
-	@ObservedObject var viewModel: GroupDetailViewModel
+struct GroupEditView: MTAsyncView {
+	@StateObject var viewModel: GroupDetailViewModel
 	@State private var isDeleting = false
 	@State private var shouldAddNew = false
 	@State private var configuration = UIConfiguration()
@@ -19,7 +19,17 @@ struct GroupEditView: View {
 	@Environment(\.mtDismissable) var dismiss
 	@Binding var isPopToGroupList: Bool
 
-	var body: some View {
+	var state: MTLoadingState {
+		viewModel.state
+	}
+
+	func load() {
+		Task {
+			await viewModel.getPeopleList()
+		}
+	}
+
+	var loadedView: some View {
 		List {
 			if #available(iOS 15.0, *) {
 				sectionView1
@@ -47,13 +57,6 @@ struct GroupEditView: View {
 		.setThemeBackButton()
 		.showAlert(title: configuration.errorTitle, isPresented: $configuration.alertPresent) {
 			Text(configuration.errorMeessage)
-		}
-		.onAppear {
-			if viewModel.state == .idle {
-				Task {
-					await viewModel.getPeopleList()
-				}
-			}
 		}
 		.myOverlay {
 			Group {
