@@ -63,7 +63,7 @@ struct PlaceDetailsView: MTAsyncView {
 			if shouldEditGroup {
 				Task {
 					try await groupListViewModel.getGroupList()
-					_ = getSelectedGroup()
+					selectedGroup = groupListViewModel.groupList.first(where: {$0.id == selectedGroup?.id})
 					shouldEditGroup = false
 				}
 			} else {
@@ -87,22 +87,19 @@ struct PlaceDetailsView: MTAsyncView {
 				Spacer()
 			}
 		}
-		.frame(maxWidth: .infinity)
-		.padding()
+		.frame(maxWidth: .infinity).padding()
 		.myBackground {
 			AppColor.theme
 		}
 		.cornerRadius(32, corners: [.topLeft, .topRight])
-		.shadow(radius: 8, y: -4)
-		.padding(.top, -16)
+		.shadow(radius: 8, y: -4).padding(.top, -16)
 	}
 
 	private var titleView: some View {
 		Text(viewModel.placeDetail.name)
 			.foregroundColor(AppColor.Text.tertiary)
 			.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
-			.padding(.horizontal)
-			.lineLimit(2)
+			.padding(.horizontal).lineLimit(2)
 	}
 
 	private var descriptionView: some View {
@@ -156,12 +153,9 @@ struct PlaceDetailsView: MTAsyncView {
 	private var topBorder: some View {
 		ZStack {
 			MTBorderShape(type: .outbound)
-				.fill(AppColor.Text.tertiary)
-				.frame(height: 50)
-				.offset(y: 0.75)
+				.fill(AppColor.Text.tertiary).frame(height: 50).offset(y: 0.75)
 			MTBorderShape(type: .inbound)
-				.fill(AppColor.theme)
-				.frame(height: 50)
+				.fill(AppColor.theme).frame(height: 50)
 		}
 	}
 
@@ -294,7 +288,6 @@ extension PlaceDetailsView {
 			}
 			return selectedGroup
 		} else {
-			selectedGroup = groupListViewModel.groupList.first(where: {$0.id == selectedGroup?.id})
 			return selectedGroup
 		}
 	}
