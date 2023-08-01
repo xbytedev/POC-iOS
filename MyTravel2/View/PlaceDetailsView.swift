@@ -19,6 +19,7 @@ struct PlaceDetailsView: MTAsyncView {
 	@State private var showSuccessAlert: Bool = false
 	@State private var individualCheckIn: Bool = false
 	@State private var isPopupPresented: Bool = false
+	@State private var shouldEditGroup = false
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -59,7 +60,15 @@ struct PlaceDetailsView: MTAsyncView {
 			Text(configuration.errorMeessage)
 		}
 		.onAppear {
-			_ = getSelectedGroup()
+			if shouldEditGroup {
+				Task {
+					try await groupListViewModel.getGroupList()
+					selectedGroup = groupListViewModel.groupList.first(where: {$0.id == selectedGroup?.id})
+					shouldEditGroup = false
+				}
+			} else {
+				_ = getSelectedGroup()
+			}
 		}
 	}
 
@@ -78,22 +87,19 @@ struct PlaceDetailsView: MTAsyncView {
 				Spacer()
 			}
 		}
-		.frame(maxWidth: .infinity)
-		.padding()
+		.frame(maxWidth: .infinity).padding()
 		.myBackground {
 			AppColor.theme
 		}
 		.cornerRadius(32, corners: [.topLeft, .topRight])
-		.shadow(radius: 8, y: -4)
-		.padding(.top, -16)
+		.shadow(radius: 8, y: -4).padding(.top, -16)
 	}
 
 	private var titleView: some View {
 		Text(viewModel.placeDetail.name)
 			.foregroundColor(AppColor.Text.tertiary)
 			.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
-			.padding(.horizontal)
-			.lineLimit(2)
+			.padding(.horizontal).lineLimit(2)
 	}
 
 	private var descriptionView: some View {
@@ -147,12 +153,9 @@ struct PlaceDetailsView: MTAsyncView {
 	private var topBorder: some View {
 		ZStack {
 			MTBorderShape(type: .outbound)
-				.fill(AppColor.Text.tertiary)
-				.frame(height: 50)
-				.offset(y: 0.75)
+				.fill(AppColor.Text.tertiary).frame(height: 50).offset(y: 0.75)
 			MTBorderShape(type: .inbound)
-				.fill(AppColor.theme)
-				.frame(height: 50)
+				.fill(AppColor.theme).frame(height: 50)
 		}
 	}
 
@@ -190,7 +193,10 @@ struct PlaceDetailsView: MTAsyncView {
 						} else {
 							let groupEditViewModel = GroupDetailViewModel(
 								group: selectedGroup!, groupDetailProvider: GroupDetailAPIProvider())
-							GroupEditView(viewModel: groupEditViewModel, isPopToGroupList: .constant(false))
+							GroupEditView(viewModel: groupEditViewModel, isPopToGroupList: .constant(false)) {
+								_ = getSelectedGroup()
+								shouldEditGroup = true
+							}
 						}
 					} label: {
 						VStack {
@@ -204,6 +210,7 @@ struct PlaceDetailsView: MTAsyncView {
 						.padding(8).padding(.horizontal, 16)
 						.background(AppColor.Background.white).cornerRadius(12)
 					}
+					.isDetailLink(false)
 					Spacer()
 				}
 				.zIndex(1)
@@ -315,7 +322,7 @@ extension PlaceDetailsView {
 			return viewModel
 		} else {
 			let viewModel = ScanQRCodeViewModel(
-				group: .preview, provider: AddTravellerAPIProvider(), placeDetailProvider: PlaceDetailAPIProvider())
+				group: .dummy, provider: AddTravellerAPIProvider(), placeDetailProvider: PlaceDetailAPIProvider())
 			//		viewModel.delegate = self.viewModel
 			return viewModel
 		}

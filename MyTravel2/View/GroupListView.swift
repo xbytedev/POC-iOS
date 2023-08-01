@@ -54,6 +54,7 @@ struct GroupListView: MTAsyncView {
 		}
 	}
 
+	@Sendable
 	func reload() async {
 		do {
 			try await viewModel.getGroupList()
@@ -63,7 +64,7 @@ struct GroupListView: MTAsyncView {
 	}
 
 	var loadedView: some View {
-		dataView
+		refreshableDataView
 			.myOverlay {
 				Group {
 					if viewModel.groupList.isEmpty {
@@ -154,6 +155,15 @@ struct GroupListView: MTAsyncView {
 		 }*/
 	}
 
+	@ViewBuilder
+	var refreshableDataView: some View {
+		if #available(iOS 15.0, *) {
+			dataView.refreshable(action: reload)
+		} else {
+			dataView
+		}
+	}
+
 	var emptyView: some View {
 		GeometryReader { geometryProxy in
 			VStack {
@@ -196,6 +206,7 @@ struct GroupListView: MTAsyncView {
 	}
 }
 
+#if DEBUG
 struct GroupList_Previews: PreviewProvider {
     static var previews: some View {
 		let viewModel = GroupViewModel(provider: GroupSuccessProvider())
@@ -204,3 +215,4 @@ struct GroupList_Previews: PreviewProvider {
 			createdGroup: .constant(nil), shouldAddTraveler: .constant(true))
     }
 }
+#endif

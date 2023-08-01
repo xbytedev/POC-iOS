@@ -13,6 +13,7 @@ struct GroupDetailView: MTAsyncView {
 	@State private var configuration = UIConfiguration()
 	@State private var updatingMessage = R.string.localizable.loading()
 	@Binding var isPopToGroupList: Bool
+	@State private var shouldEditGroup = false
 
 	var state: MTLoadingState {
 		viewModel.state
@@ -27,7 +28,9 @@ struct GroupDetailView: MTAsyncView {
 			.toolbar {
 				ToolbarItem(placement: .navigationBarTrailing) {
 					NavigationLink {
-						GroupEditView(viewModel: viewModel, isPopToGroupList: $isPopToGroupList)
+						GroupEditView(viewModel: viewModel, isPopToGroupList: $isPopToGroupList) {
+							shouldEditGroup = true
+						}
 					} label: {
 						Image(R.image.ic_edit)
 							.aspectRatio(contentMode: .fit)
@@ -58,6 +61,12 @@ struct GroupDetailView: MTAsyncView {
 							}
 						}
 					}
+				}
+			}
+			.onDisappear {
+				if shouldEditGroup {
+					viewModel.groupUpdateDelegate?.editGroupSuccessfully()
+					shouldEditGroup = false
 				}
 			}
     }
