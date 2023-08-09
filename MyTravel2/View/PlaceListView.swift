@@ -1,22 +1,20 @@
 //
-//  CheckInView.swift
+//  PlaceListView.swift
 //  MyTravel
 //
-//  Created by Mrugesh Tank on 18/05/23.
+//  Created by Mrugesh Tank on 09/08/23.
 //
 
 import SwiftUI
 
-struct CheckInView: MTAsyncView {
-	@State private var searchText: String = ""
-	@State private var selectedType: String = "All"
+struct PlaceListView: MTAsyncView {
 	@ObservedObject var groupViewModel: GroupViewModel
 	@StateObject private var viewModel: LocationViewModel // = LocationViewModel()
-    @Binding var selection: SegmentItem
+	@State private var searchText: String = ""
+	@State private var selectedType: String = "All"
 
-	init(groupViewModel: GroupViewModel, provider: LocationProvider, selection: Binding<SegmentItem>) {
+	init(groupViewModel: GroupViewModel, provider: PlaceProvider) {
 		_viewModel = StateObject(wrappedValue: LocationViewModel(provider: provider))
-        _selection = selection
 		self.groupViewModel = groupViewModel
 	}
 
@@ -24,36 +22,36 @@ struct CheckInView: MTAsyncView {
 		viewModel.state
 	}
 
-    var loadedView: some View {
+	var loadedView: some View {
 		VStack(alignment: .leading, spacing: 0) {
 			VStack(alignment: .leading) {
-				Text(selection == .places ? R.string.localizable.places() : R.string.localizable.checkIns())
-						.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
+				Text(R.string.localizable.places())
+					.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
+					.foregroundColor(AppColor.theme)
+					.padding(.top, 24)
+				HStack {
+					Image(R.image.ic_search)
+						.resizable()
+						.renderingMode(.template)
+						.frame(width: 24.0, height: 24.0)
 						.foregroundColor(AppColor.theme)
-						.padding(.top, 24)
-					HStack {
-						Image(R.image.ic_search)
-							.resizable()
-							.renderingMode(.template)
-							.frame(width: 24.0, height: 24.0)
-							.foregroundColor(AppColor.theme)
-						TextField(R.string.localizable.search(), text: $searchText)
-						if !searchText.isEmpty {
-							Button {
-								searchText = ""
-							} label: {
-								Image(R.image.ic_cancel)
-							}
-
+					TextField(R.string.localizable.search(), text: $searchText)
+					if !searchText.isEmpty {
+						Button {
+							searchText = ""
+						} label: {
+							Image(R.image.ic_cancel)
 						}
+
 					}
-					.padding(.vertical, 8)
-					.padding(.horizontal, 12)
-					.myBackground {
-						RoundedRectangle(cornerRadius: 12)
-							.foregroundColor(AppColor.Background.white)
-							.shadow(radius: 8, y: 4)
-					}
+				}
+				.padding(.vertical, 8)
+				.padding(.horizontal, 12)
+				.myBackground {
+					RoundedRectangle(cornerRadius: 12)
+						.foregroundColor(AppColor.Background.white)
+						.shadow(radius: 8, y: 4)
+				}
 				HStack {
 					Text(R.string.localizable.placeType)
 						.font(AppFont.getFont(forStyle: .title3))
@@ -86,7 +84,7 @@ struct CheckInView: MTAsyncView {
 		.onChange(of: selectedType) { newValue in
 			viewModel.searchPlace(with: searchText, withFilter: newValue)
 		}
-    }
+	}
 
 	private var listView: some View {
 		List {
@@ -130,12 +128,10 @@ struct CheckInView: MTAsyncView {
 	}
 }
 
-#if DEBUG
-struct CheckInView_Previews: PreviewProvider {
+struct PlaceListView_Previews: PreviewProvider {
     static var previews: some View {
-		CheckInView(
-			groupViewModel: GroupViewModel(provider: GroupSuccessProvider()), provider: LocationSuccessProvider(),
-			selection: .constant(.places))
+		PlaceListView(
+			groupViewModel: .init(provider: GroupSuccessProvider()),
+			provider: PlaceSuccessProvider())
     }
 }
-#endif

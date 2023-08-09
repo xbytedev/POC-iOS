@@ -1,5 +1,5 @@
 //
-//  LocationProvider.swift
+//  PlaceProvider.swift
 //  MyTravel
 //
 //  Created by Mrugesh Tank on 19/07/23.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol LocationProvider {
+protocol PlaceProvider {
 	func getPlaceList() async -> Result<[MTPlace], Error>
 }
 
-struct LocationAPIProvider: LocationProvider {
+struct PlaceAPIProvider: PlaceProvider {
 	func getPlaceList() async -> Result<[MTPlace], Error> {
 		let requester = WebRequester<MTResponse<[MTPlace]>>(withSession: WebRequesterSessionProvider.session)
 		let result = await requester.request(toURL: APPURL.agentPlaceList, withParameters: NullCodable())
