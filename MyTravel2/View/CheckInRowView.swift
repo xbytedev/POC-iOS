@@ -13,15 +13,15 @@ struct CheckInRowView: View {
 			VStack(alignment: .leading) {
 				HStack {
 					Text("Name of traveller 1")
-						.font(AppFont.getFont(forStyle: .headline))
-						.foregroundColor(AppColor.theme)
+						.font(AppFont.getFont(forStyle: .headline, forWeight: .medium))
+						.foregroundColor(AppColor.Text.primary)
 					Spacer()
 					Text("12/03/2023")
 						.font(AppFont.getFont(forStyle: .body))
 						.foregroundColor(AppColor.Text.primary)
 				}
 				Text("Attraction 1 name or partner")
-					.font(AppFont.getFont(forStyle: .subheadline))
+					.font(AppFont.getFont(forStyle: .callout))
 					.foregroundColor(AppColor.Text.secondary)
 			}
 			Image(R.image.ic_arrowRight)

@@ -29,8 +29,10 @@ struct CheckInListView: View {
 		HStack {
 			Button(action: handleFilterAction) {
 				HStack {
-					Image(systemName: "gear").setAsThemeIcon()
+					Image(R.image.ic_filter).setAsThemeIcon()
 					Text("Filter")
+						.font(AppFont.getFont(forStyle: .headline))
+						.foregroundColor(AppColor.Text.primary)
 				}
 			}
 			.applyRoundRectShadowBackground()
@@ -38,6 +40,8 @@ struct CheckInListView: View {
 				HStack {
 					Spacer()
 					Text("Reset all Filters")
+						.font(AppFont.getFont(forStyle: .headline))
+						.foregroundColor(AppColor.Text.primary)
 					Spacer()
 				}
 			}
