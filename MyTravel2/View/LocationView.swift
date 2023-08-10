@@ -17,7 +17,14 @@ struct LocationView: View {
 	}
 
 	var body: some View {
-		PlaceListView(groupViewModel: groupViewModel, provider: PlaceAPIProvider())
+		ZStack {
+			PlaceListView(groupViewModel: groupViewModel, provider: PlaceAPIProvider())
+				.opacity(selection == .places ? 1.0 : 0.0)
+				.transition(.move(edge: .trailing))
+			CheckInListView()
+				.opacity(selection == .checkIns ? 1.0 : 0.0)
+				.transition(.move(edge: .leading))
+		}
 	}
 }
 

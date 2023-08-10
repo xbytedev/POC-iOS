@@ -29,29 +29,7 @@ struct PlaceListView: MTAsyncView {
 					.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
 					.foregroundColor(AppColor.theme)
 					.padding(.top, 24)
-				HStack {
-					Image(R.image.ic_search)
-						.resizable()
-						.renderingMode(.template)
-						.frame(width: 24.0, height: 24.0)
-						.foregroundColor(AppColor.theme)
-					TextField(R.string.localizable.search(), text: $searchText)
-					if !searchText.isEmpty {
-						Button {
-							searchText = ""
-						} label: {
-							Image(R.image.ic_cancel)
-						}
-
-					}
-				}
-				.padding(.vertical, 8)
-				.padding(.horizontal, 12)
-				.myBackground {
-					RoundedRectangle(cornerRadius: 12)
-						.foregroundColor(AppColor.Background.white)
-						.shadow(radius: 8, y: 4)
-				}
+				MTSearchView(searchText: $searchText)
 				HStack {
 					Text(R.string.localizable.placeType)
 						.font(AppFont.getFont(forStyle: .title3))

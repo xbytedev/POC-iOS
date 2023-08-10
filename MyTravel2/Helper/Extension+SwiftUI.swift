@@ -44,10 +44,22 @@ extension View {
 				}
 			}
 		}
-}
 
-extension View {
 	func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
 		clipShape( RoundedCorner(radius: radius, corners: corners) )
+	}
+
+	func applyRoundRectShadowBackground() -> some View {
+		modifier(RoundRectShadowBackgroundModifier())
+	}
+}
+
+extension Image {
+	func setAsThemeIcon() -> some View {
+		self
+			.resizable()
+			.renderingMode(.template)
+			.frame(width: 24.0, height: 24.0)
+			.foregroundColor(AppColor.theme)
 	}
 }
