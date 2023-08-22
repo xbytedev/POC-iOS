@@ -44,6 +44,7 @@
 		896E8FC42A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 896E8FC32A08B95E002AA4D3 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		896E8FC62A08B9CD002AA4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */; };
 		896E8FC82A08BAA6002AA4D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */; };
+		8976204C2A94C4170027F767 /* CheckInDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8976204B2A94C4170027F767 /* CheckInDetailView.swift */; };
 		897DAB142A397501006CB159 /* ScanQRCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */; };
 		897DAB192A39812D006CB159 /* QrCodeCameraDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB182A39812D006CB159 /* QrCodeCameraDelegate.swift */; };
 		897DAB1C2A3984D1006CB159 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DAB1B2A3984D1006CB159 /* CameraPreviewView.swift */; };
@@ -85,6 +86,7 @@
 		89C1D8A32A1B8498007EB9E1 /* CreateGroupSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C1D8A22A1B8498007EB9E1 /* CreateGroupSuccessView.swift */; };
 		89C62F792A0CB1AF00E2FD05 /* AppTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C62F782A0CB1AF00E2FD05 /* AppTabBarView.swift */; };
 		89C62F7E2A0CBB2200E2FD05 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */; };
+		89C7DF442A94E4EF009C3E43 /* CheckInDetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C7DF432A94E4EF009C3E43 /* CheckInDetailRowView.swift */; };
 		89D12C8C2A1DE7F60024F3DF /* MTRoundButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D12C8B2A1DE7F60024F3DF /* MTRoundButtonModifier.swift */; };
 		89D12C8F2A1E2BA60024F3DF /* MTLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D12C8E2A1E2BA60024F3DF /* MTLazyView.swift */; };
 		89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D2272C2A3AC65E00D6D425 /* EnterCodeView.swift */; };
@@ -180,6 +182,7 @@
 		8965C5A62A49A27800024001 /* TravellerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerDetailView.swift; sourceTree = "<group>"; };
 		896E8FC52A08B9CD002AA4D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		896E8FC72A08BAA6002AA4D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8976204B2A94C4170027F767 /* CheckInDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInDetailView.swift; sourceTree = "<group>"; };
 		897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeViewModel.swift; sourceTree = "<group>"; };
 		897DAB182A39812D006CB159 /* QrCodeCameraDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeCameraDelegate.swift; sourceTree = "<group>"; };
 		897DAB1B2A3984D1006CB159 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
@@ -218,6 +221,7 @@
 		89C1D8A22A1B8498007EB9E1 /* CreateGroupSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupSuccessView.swift; sourceTree = "<group>"; };
 		89C62F782A0CB1AF00E2FD05 /* AppTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarView.swift; sourceTree = "<group>"; };
 		89C62F7D2A0CBB2200E2FD05 /* TabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		89C7DF432A94E4EF009C3E43 /* CheckInDetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInDetailRowView.swift; sourceTree = "<group>"; };
 		89D12C8B2A1DE7F60024F3DF /* MTRoundButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRoundButtonModifier.swift; sourceTree = "<group>"; };
 		89D12C8E2A1E2BA60024F3DF /* MTLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLazyView.swift; sourceTree = "<group>"; };
 		89D2272C2A3AC65E00D6D425 /* EnterCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeView.swift; sourceTree = "<group>"; };
@@ -431,6 +435,8 @@
 				893A00042A6810AD00279DCE /* PlaceDetailsView.swift */,
 				89479CD72A83C70A00C2BF43 /* CheckInListView.swift */,
 				89C1D3962A84C8D4003A82B9 /* CheckInRowView.swift */,
+				8976204B2A94C4170027F767 /* CheckInDetailView.swift */,
+				89C7DF432A94E4EF009C3E43 /* CheckInDetailRowView.swift */,
 				89210BA22A15F7C700F268FC /* SettingsView.swift */,
 				896259332A1243CA00AAE879 /* MTShapeView.swift */,
 				89A6FEE12A6AA14C003E77EA /* MTRoundedView.swift */,
@@ -744,6 +750,7 @@
 				CE36DE8D2A136249009790A5 /* WebUser.swift in Sources */,
 				893AFFF72A67A46D00279DCE /* PlaceProvider.swift in Sources */,
 				CE3E83E52A08CD1100C4AE43 /* AppFont.swift in Sources */,
+				8976204C2A94C4170027F767 /* CheckInDetailView.swift in Sources */,
 				89A1AE682A386F5D00C089E1 /* ScanQRCodeView.swift in Sources */,
 				CE65C76E2A178B3F0021F7FD /* GroupViewModel.swift in Sources */,
 				CEC19B932A0B97F6006E3192 /* AuthViewModel.swift in Sources */,
@@ -781,6 +788,7 @@
 				89278D142A70DFFC00995648 /* PlaceDetailViewModel.swift in Sources */,
 				89479CD82A83C70A00C2BF43 /* CheckInListView.swift in Sources */,
 				CE36DE872A134D8E009790A5 /* MTUserDefaults.swift in Sources */,
+				89C7DF442A94E4EF009C3E43 /* CheckInDetailRowView.swift in Sources */,
 				CEC19B9E2A0BA423006E3192 /* Validator.swift in Sources */,
 				8906D72E2A0F8E7400E7D60B /* OTPView.swift in Sources */,
 				893E10572A1B467500DBD46C /* BackButtonModifier.swift in Sources */,
