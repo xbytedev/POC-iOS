@@ -10,7 +10,11 @@
 		89032F6F2A134F4F005FFC29 /* GroupListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89032F6E2A134F4F005FFC29 /* GroupListRow.swift */; };
 		8904787E2A0A00A7005CC921 /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8904787D2A0A00A7005CC921 /* MTTextField.swift */; };
 		8906D72E2A0F8E7400E7D60B /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8906D72D2A0F8E7400E7D60B /* OTPView.swift */; };
+		890979482A96219E00185B77 /* CheckInProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890979472A96219E00185B77 /* CheckInProvider.swift */; };
 		8909BF852A3830F900ACFFF7 /* MTRequestIntercepter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8909BF842A3830F900ACFFF7 /* MTRequestIntercepter.swift */; };
+		890EDA822A9866E500DC8FC5 /* CheckInPreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890EDA812A9866E500DC8FC5 /* CheckInPreviewProvider.swift */; };
+		890EDA852A98994C00DC8FC5 /* MTCheckInTravller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890EDA842A98994C00DC8FC5 /* MTCheckInTravller.swift */; };
+		890EDA882A98AEFC00DC8FC5 /* MTFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890EDA872A98AEFC00DC8FC5 /* MTFormatter.swift */; };
 		89210B9B2A15E5A000F268FC /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89210B9A2A15E5A000F268FC /* WelcomeView.swift */; };
 		89210BA02A15F7AD00F268FC /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89210B9F2A15F7AD00F268FC /* LocationView.swift */; };
 		89210BA32A15F7C700F268FC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89210BA22A15F7C700F268FC /* SettingsView.swift */; };
@@ -90,8 +94,10 @@
 		89D12C8C2A1DE7F60024F3DF /* MTRoundButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D12C8B2A1DE7F60024F3DF /* MTRoundButtonModifier.swift */; };
 		89D12C8F2A1E2BA60024F3DF /* MTLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D12C8E2A1E2BA60024F3DF /* MTLazyView.swift */; };
 		89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D2272C2A3AC65E00D6D425 /* EnterCodeView.swift */; };
+		89DA5F642A9C627C0098D776 /* MTCheckInTravellerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA5F632A9C627C0098D776 /* MTCheckInTravellerPreview.swift */; };
 		89DD686E2A52997F00486A49 /* MTTempTraveler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DD686D2A52997F00486A49 /* MTTempTraveler.swift */; };
 		89DD68712A529DC400486A49 /* TempTravelerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DD68702A529DC400486A49 /* TempTravelerPreview.swift */; };
+		89E5C28F2A97782900CAB1BE /* CheckInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E5C28E2A97782900CAB1BE /* CheckInViewModel.swift */; };
 		89F8AFB32A3070EA008D00BC /* GroupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F8AFB22A3070EA008D00BC /* GroupDetailView.swift */; };
 		89F942492A42B6F300410DED /* GroupEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F942482A42B6F300410DED /* GroupEditView.swift */; };
 		C96F9A1D2A3B3A43006DE900 /* AddTravellerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F9A1C2A3B3A43006DE900 /* AddTravellerProvider.swift */; };
@@ -148,7 +154,11 @@
 		89032F6E2A134F4F005FFC29 /* GroupListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListRow.swift; sourceTree = "<group>"; };
 		8904787D2A0A00A7005CC921 /* MTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTextField.swift; sourceTree = "<group>"; };
 		8906D72D2A0F8E7400E7D60B /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
+		890979472A96219E00185B77 /* CheckInProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInProvider.swift; sourceTree = "<group>"; };
 		8909BF842A3830F900ACFFF7 /* MTRequestIntercepter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRequestIntercepter.swift; sourceTree = "<group>"; };
+		890EDA812A9866E500DC8FC5 /* CheckInPreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInPreviewProvider.swift; sourceTree = "<group>"; };
+		890EDA842A98994C00DC8FC5 /* MTCheckInTravller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTCheckInTravller.swift; sourceTree = "<group>"; };
+		890EDA872A98AEFC00DC8FC5 /* MTFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTFormatter.swift; sourceTree = "<group>"; };
 		89210B9A2A15E5A000F268FC /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		89210B9F2A15F7AD00F268FC /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		89210BA22A15F7C700F268FC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -225,8 +235,10 @@
 		89D12C8B2A1DE7F60024F3DF /* MTRoundButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRoundButtonModifier.swift; sourceTree = "<group>"; };
 		89D12C8E2A1E2BA60024F3DF /* MTLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLazyView.swift; sourceTree = "<group>"; };
 		89D2272C2A3AC65E00D6D425 /* EnterCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeView.swift; sourceTree = "<group>"; };
+		89DA5F632A9C627C0098D776 /* MTCheckInTravellerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTCheckInTravellerPreview.swift; sourceTree = "<group>"; };
 		89DD686D2A52997F00486A49 /* MTTempTraveler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTempTraveler.swift; sourceTree = "<group>"; };
 		89DD68702A529DC400486A49 /* TempTravelerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTravelerPreview.swift; sourceTree = "<group>"; };
+		89E5C28E2A97782900CAB1BE /* CheckInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewModel.swift; sourceTree = "<group>"; };
 		89F8AFB22A3070EA008D00BC /* GroupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailView.swift; sourceTree = "<group>"; };
 		89F942482A42B6F300410DED /* GroupEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditView.swift; sourceTree = "<group>"; };
 		C96F9A1C2A3B3A43006DE900 /* AddTravellerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTravellerProvider.swift; sourceTree = "<group>"; };
@@ -359,12 +371,14 @@
 				89DD68702A529DC400486A49 /* TempTravelerPreview.swift */,
 				893A00012A67C4D700279DCE /* PlacePreview.swift */,
 				89B7C3632A6BEDF40086B527 /* PlaceDetailPreview.swift */,
+				89DA5F632A9C627C0098D776 /* MTCheckInTravellerPreview.swift */,
 				897EDC332A050E24001B652E /* Preview Assets.xcassets */,
 				CE5742CD2A1DF7F60089666A /* PreviewGroupProvider.swift */,
 				89BD67BC2A3852AE006129F2 /* GroupDetailPreviewProvider.swift */,
 				C96F9A1E2A3B3B6A006DE900 /* AddTravellerPreviewProvider.swift */,
 				893AFFF92A67B08900279DCE /* LocationPreviewProvider.swift */,
 				89278D182A70E18700995648 /* PlaceDetailPreviewProvider.swift */,
+				890EDA812A9866E500DC8FC5 /* CheckInPreviewProvider.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -476,6 +490,7 @@
 				CEC19B882A0B8543006E3192 /* Keys.swift */,
 				89BD679F2A38382E006129F2 /* KeychainWrapper.swift */,
 				CEC19B862A0B84F7006E3192 /* MTConfiguration.swift */,
+				890EDA872A98AEFC00DC8FC5 /* MTFormatter.swift */,
 				89BD67AE2A38398D006129F2 /* MTKeychainWrapper.swift */,
 				8909BF842A3830F900ACFFF7 /* MTRequestIntercepter.swift */,
 				CEC19B7B2A0B80D8006E3192 /* MTNetworkLogger.swift */,
@@ -507,6 +522,7 @@
 				897DAB132A397501006CB159 /* ScanQRCodeViewModel.swift */,
 				893AFFF32A67A43700279DCE /* LocationViewModel.swift */,
 				89278D132A70DFFC00995648 /* PlaceDetailViewModel.swift */,
+				89E5C28E2A97782900CAB1BE /* CheckInViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -523,6 +539,7 @@
 				89DD686D2A52997F00486A49 /* MTTempTraveler.swift */,
 				893AFFFE2A67BFCB00279DCE /* MTPlace.swift */,
 				89B7C3602A6BEA840086B527 /* MTPlaceDetail.swift */,
+				890EDA842A98994C00DC8FC5 /* MTCheckInTravller.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -536,6 +553,7 @@
 				C96F9A1C2A3B3A43006DE900 /* AddTravellerProvider.swift */,
 				893AFFF62A67A46D00279DCE /* PlaceProvider.swift */,
 				89278D162A70E00A00995648 /* PlaceDetailProvider.swift */,
+				890979472A96219E00185B77 /* CheckInProvider.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -753,6 +771,7 @@
 				8976204C2A94C4170027F767 /* CheckInDetailView.swift in Sources */,
 				89A1AE682A386F5D00C089E1 /* ScanQRCodeView.swift in Sources */,
 				CE65C76E2A178B3F0021F7FD /* GroupViewModel.swift in Sources */,
+				890EDA822A9866E500DC8FC5 /* CheckInPreviewProvider.swift in Sources */,
 				CEC19B932A0B97F6006E3192 /* AuthViewModel.swift in Sources */,
 				89210BA02A15F7AD00F268FC /* LocationView.swift in Sources */,
 				897DAB1C2A3984D1006CB159 /* CameraPreviewView.swift in Sources */,
@@ -762,7 +781,9 @@
 				CEC19B7E2A0B8108006E3192 /* Constant.swift in Sources */,
 				893A00052A6810AD00279DCE /* PlaceDetailsView.swift in Sources */,
 				897EDC362A050E24001B652E /* Persistence.swift in Sources */,
+				89E5C28F2A97782900CAB1BE /* CheckInViewModel.swift in Sources */,
 				89C62F7E2A0CBB2200E2FD05 /* TabItem.swift in Sources */,
+				89DA5F642A9C627C0098D776 /* MTCheckInTravellerPreview.swift in Sources */,
 				89C62F792A0CB1AF00E2FD05 /* AppTabBarView.swift in Sources */,
 				CEC19B872A0B84F7006E3192 /* MTConfiguration.swift in Sources */,
 				8965C5A72A49A27800024001 /* TravellerDetailView.swift in Sources */,
@@ -772,6 +793,7 @@
 				89B7C3612A6BEA840086B527 /* MTPlaceDetail.swift in Sources */,
 				89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */,
 				897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */,
+				890EDA882A98AEFC00DC8FC5 /* MTFormatter.swift in Sources */,
 				89C1D3972A84C8D4003A82B9 /* CheckInRowView.swift in Sources */,
 				893AFFFF2A67BFCB00279DCE /* MTPlace.swift in Sources */,
 				89C1D8A32A1B8498007EB9E1 /* CreateGroupSuccessView.swift in Sources */,
@@ -806,12 +828,14 @@
 				897DAB142A397501006CB159 /* ScanQRCodeViewModel.swift in Sources */,
 				CE36DE8A2A135DD3009790A5 /* Extension.swift in Sources */,
 				893AFFFA2A67B08900279DCE /* LocationPreviewProvider.swift in Sources */,
+				890EDA852A98994C00DC8FC5 /* MTCheckInTravller.swift in Sources */,
 				897E61CE2A0BA821008D1687 /* BackgroundModifier.swift in Sources */,
 				CE5742CE2A1DF7F60089666A /* PreviewGroupProvider.swift in Sources */,
 				89A6FEE22A6AA14C003E77EA /* MTRoundedView.swift in Sources */,
 				CE65C7702A1790980021F7FD /* MTGroup.swift in Sources */,
 				89479CD52A83B7E100C2BF43 /* PlaceListView.swift in Sources */,
 				CE65C76B2A178B300021F7FD /* GroupProvider.swift in Sources */,
+				890979482A96219E00185B77 /* CheckInProvider.swift in Sources */,
 				897EDC2D2A050E22001B652E /* MyTravel2App.swift in Sources */,
 				89C1D3942A8494E6003A82B9 /* MTSearchView.swift in Sources */,
 				8946B9B22A305126007F66F6 /* AdaptsToKeyboard.swift in Sources */,

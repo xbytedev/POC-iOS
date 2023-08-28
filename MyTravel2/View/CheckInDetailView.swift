@@ -21,6 +21,8 @@ struct CheckInDetailView: View {
 					CheckInDetailRowView(key: "Country", icon: R.image.ic_tab_checkIn, value: "Mexico")
 				}
 				Text("Attraction 5 name or partner")
+					.font(AppFont.getFont(forStyle: .title2, forWeight: .semibold))
+					.foregroundColor(AppColor.Text.tertiary)
 				VStack(spacing: 4) {
 					CheckInDetailRowView(key: "Partner ID", icon: R.image.ic_identity, value: "123456789")
 					CheckInDetailRowView(key: "Check-In", icon: R.image.ic_locationCheckIn, value: "12/03/2023 12:45:12")
@@ -34,6 +36,9 @@ struct CheckInDetailView: View {
 
 struct CheckInDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckInDetailView()
+		NavigationView {
+			CheckInDetailView()
+		}
+		.previewDevice("iPhone 8 Plus")
     }
 }

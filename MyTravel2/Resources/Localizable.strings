@@ -114,6 +114,7 @@
 
 // Check-In
 "places" = "Places";
+"checkIn" = "Check In";
 "checkIns" = "Check-Ins";
 "search" = "Search";
 "place type" = "Place Type";

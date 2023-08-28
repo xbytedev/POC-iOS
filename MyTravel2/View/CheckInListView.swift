@@ -7,9 +7,19 @@
 
 import SwiftUI
 
-struct CheckInListView: View {
+struct CheckInListView: MTAsyncView {
 	@State private var strSearch: String = ""
-    var body: some View {
+	@StateObject private var viewModel: CheckInViewModel
+
+	init(provider: CheckInProvider) {
+		_viewModel = StateObject(wrappedValue: CheckInViewModel(withProvider: provider))
+	}
+
+	var state: MTLoadingState {
+		viewModel.state
+	}
+
+    var loadedView: some View {
 		VStack(alignment: .leading, spacing: 20) {
 			VStack(alignment: .leading) {
 				Text(R.string.localizable.checkIns())
@@ -61,13 +71,33 @@ struct CheckInListView: View {
 	}
 
 	private var listView: some View {
-		List {
-			CheckInRowView()
-			CheckInRowView()
-			CheckInRowView()
-			CheckInRowView()
+		List(viewModel.checkInTravellers) { checkInTraveller in
+			ZStack {
+				NavigationLink {
+					CheckInDetailView()
+						.setThemeBackButton()
+//						.navigationTitle(R.string.localizable.checkIn())
+						.toolbar {
+							ToolbarItem(placement: .principal) {
+								Text(R.string.localizable.checkIn)
+									.foregroundColor(AppColor.Text.tertiary)
+							}
+						}
+				} label: {
+					EmptyView()
+				}
+				.opacity(0)
+				CheckInRowView(checkInTraveller: checkInTraveller)
+			}
+			.mtListBackgroundStyle()
 		}
 		.listStyle(.plain)
+	}
+
+	func load() {
+		Task {
+			await viewModel.getCheckInTravellers()
+		}
 	}
 
 	private func handleFilterAction() {
@@ -79,8 +109,10 @@ struct CheckInListView: View {
 	}
 }
 
+#if DEBUG
 struct CheckInListView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckInListView()
+		CheckInListView(provider: CheckInSuccessProvider())
     }
 }
+#endif

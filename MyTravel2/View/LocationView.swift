@@ -21,7 +21,7 @@ struct LocationView: View {
 			PlaceListView(groupViewModel: groupViewModel, provider: PlaceAPIProvider())
 				.opacity(selection == .places ? 1.0 : 0.0)
 				.transition(.move(edge: .trailing))
-			CheckInListView()
+			CheckInListView(provider: CheckInAPIProvider())
 				.opacity(selection == .checkIns ? 1.0 : 0.0)
 				.transition(.move(edge: .leading))
 		}
