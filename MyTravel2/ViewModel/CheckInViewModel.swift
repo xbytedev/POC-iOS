@@ -26,4 +26,9 @@ class CheckInViewModel: ObservableObject {
 			state = .failed(error)
 		}
 	}
+
+	@MainActor
+	func getCheckInTravellerDetail(from checkInTraveler: MTCheckInTraveller) async throws -> MTCheckInTravellerDetail {
+		try await provider.getCheckInPeopleDetails(from: checkInTraveler).get()
+	}
 }

@@ -30,8 +30,10 @@ struct CheckInRowView: View {
     }
 }
 
+#if DEBUG
 struct CheckInRowView_Previews: PreviewProvider {
     static var previews: some View {
 		CheckInRowView(checkInTraveller: .preview)
     }
 }
+#endif

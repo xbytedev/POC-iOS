@@ -40,7 +40,7 @@ struct CheckInListView: MTAsyncView {
 			Button(action: handleFilterAction) {
 				HStack {
 					Image(R.image.ic_filter).setAsThemeIcon()
-					Text("Filter")
+					Text(R.string.localizable.filter)
 						.font(AppFont.getFont(forStyle: .headline))
 						.foregroundColor(AppColor.Text.primary)
 				}
@@ -49,7 +49,7 @@ struct CheckInListView: MTAsyncView {
 			Button(action: handleResetFilterAction) {
 				HStack {
 					Spacer()
-					Text("Reset all Filters")
+					Text(R.string.localizable.resetAllFilters)
 						.font(AppFont.getFont(forStyle: .headline))
 						.foregroundColor(AppColor.Text.primary)
 					Spacer()
@@ -74,7 +74,7 @@ struct CheckInListView: MTAsyncView {
 		List(viewModel.checkInTravellers) { checkInTraveller in
 			ZStack {
 				NavigationLink {
-					CheckInDetailView()
+					CheckInDetailView(viewModel: viewModel, checkInTraveller: checkInTraveller)
 						.setThemeBackButton()
 //						.navigationTitle(R.string.localizable.checkIn())
 						.toolbar {

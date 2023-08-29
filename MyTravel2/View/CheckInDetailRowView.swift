@@ -38,7 +38,7 @@ struct CheckInDetailRowView: View {
 		.frame(height: 32)
 	}
 }
-
+#if DEBUG
 struct CheckInDetailRowView_Previews: PreviewProvider {
     static var previews: some View {
 		VStack {
@@ -50,3 +50,4 @@ struct CheckInDetailRowView_Previews: PreviewProvider {
 		}
     }
 }
+#endif

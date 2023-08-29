@@ -23,6 +23,8 @@
 		89278D142A70DFFC00995648 /* PlaceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89278D132A70DFFC00995648 /* PlaceDetailViewModel.swift */; };
 		89278D172A70E00A00995648 /* PlaceDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89278D162A70E00A00995648 /* PlaceDetailProvider.swift */; };
 		89278D192A70E18700995648 /* PlaceDetailPreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89278D182A70E18700995648 /* PlaceDetailPreviewProvider.swift */; };
+		8927ECA52A9DC50500455F7B /* MTCheckInTravellerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8927ECA42A9DC50500455F7B /* MTCheckInTravellerDetail.swift */; };
+		8927ECA82A9DCDBF00455F7B /* MTCheckInTravellerDetailPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8927ECA72A9DCDBF00455F7B /* MTCheckInTravellerDetailPreview.swift */; };
 		892FFE702A6E53B900607FB0 /* Extension+SDWebImageSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892FFE6F2A6E53B900607FB0 /* Extension+SDWebImageSwiftUI.swift */; };
 		8938FE5A2A418B2A008FE28A /* MTToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8938FE592A418B2A008FE28A /* MTToggleStyle.swift */; };
 		893A00022A67C4D700279DCE /* PlacePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893A00012A67C4D700279DCE /* PlacePreview.swift */; };
@@ -168,6 +170,8 @@
 		89278D132A70DFFC00995648 /* PlaceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewModel.swift; sourceTree = "<group>"; };
 		89278D162A70E00A00995648 /* PlaceDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailProvider.swift; sourceTree = "<group>"; };
 		89278D182A70E18700995648 /* PlaceDetailPreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailPreviewProvider.swift; sourceTree = "<group>"; };
+		8927ECA42A9DC50500455F7B /* MTCheckInTravellerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTCheckInTravellerDetail.swift; sourceTree = "<group>"; };
+		8927ECA72A9DCDBF00455F7B /* MTCheckInTravellerDetailPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTCheckInTravellerDetailPreview.swift; sourceTree = "<group>"; };
 		892FFE6F2A6E53B900607FB0 /* Extension+SDWebImageSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+SDWebImageSwiftUI.swift"; sourceTree = "<group>"; };
 		8938FE592A418B2A008FE28A /* MTToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTToggleStyle.swift; sourceTree = "<group>"; };
 		893A00012A67C4D700279DCE /* PlacePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePreview.swift; sourceTree = "<group>"; };
@@ -372,6 +376,7 @@
 				893A00012A67C4D700279DCE /* PlacePreview.swift */,
 				89B7C3632A6BEDF40086B527 /* PlaceDetailPreview.swift */,
 				89DA5F632A9C627C0098D776 /* MTCheckInTravellerPreview.swift */,
+				8927ECA72A9DCDBF00455F7B /* MTCheckInTravellerDetailPreview.swift */,
 				897EDC332A050E24001B652E /* Preview Assets.xcassets */,
 				CE5742CD2A1DF7F60089666A /* PreviewGroupProvider.swift */,
 				89BD67BC2A3852AE006129F2 /* GroupDetailPreviewProvider.swift */,
@@ -540,6 +545,7 @@
 				893AFFFE2A67BFCB00279DCE /* MTPlace.swift */,
 				89B7C3602A6BEA840086B527 /* MTPlaceDetail.swift */,
 				890EDA842A98994C00DC8FC5 /* MTCheckInTravller.swift */,
+				8927ECA42A9DC50500455F7B /* MTCheckInTravellerDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -789,6 +795,7 @@
 				8965C5A72A49A27800024001 /* TravellerDetailView.swift in Sources */,
 				897EDC2F2A050E22001B652E /* ContentView.swift in Sources */,
 				89F942492A42B6F300410DED /* GroupEditView.swift in Sources */,
+				8927ECA52A9DC50500455F7B /* MTCheckInTravellerDetail.swift in Sources */,
 				89AED1B92A651D0100D7D95E /* MTSegmentView.swift in Sources */,
 				89B7C3612A6BEA840086B527 /* MTPlaceDetail.swift in Sources */,
 				89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */,
@@ -800,6 +807,7 @@
 				893AFFF42A67A43700279DCE /* LocationViewModel.swift in Sources */,
 				89210BAA2A16487700F268FC /* Extension+SwiftUI.swift in Sources */,
 				CEC19B962A0B982D006E3192 /* AuthProvider.swift in Sources */,
+				8927ECA82A9DCDBF00455F7B /* MTCheckInTravellerDetailPreview.swift in Sources */,
 				C96F9A242A3B40F3006DE900 /* TravellerListRow.swift in Sources */,
 				C96F9A212A3B3EE4006DE900 /* MTTraveller.swift in Sources */,
 				89278D192A70E18700995648 /* PlaceDetailPreviewProvider.swift in Sources */,
