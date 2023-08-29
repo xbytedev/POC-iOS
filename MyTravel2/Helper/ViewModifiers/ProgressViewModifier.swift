@@ -18,3 +18,16 @@ struct ProgressViewModifier: ViewModifier {
 		}
 	}
 }
+
+struct RoundRectShadowBackgroundModifier: ViewModifier {
+	func body(content: Content) -> some View {
+		content
+			.padding(.vertical, 8)
+			.padding(.horizontal, 12)
+			.myBackground {
+				RoundedRectangle(cornerRadius: 12)
+					.foregroundColor(AppColor.Background.white)
+					.shadow(radius: 8, y: 4)
+			}
+	}
+}

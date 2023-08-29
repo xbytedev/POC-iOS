@@ -8,13 +8,13 @@
 import UIKit
 
 class LocationViewModel: ObservableObject {
-	let provider: LocationProvider
+	let provider: PlaceProvider
 	@Published @MainActor private(set) var state: MTLoadingState = .idle
 	@Published @MainActor private(set) var places: [MTPlace] = .init()
 	@Published @MainActor private(set) var types = ["All"]
 	@Published @MainActor private(set) var displayPlaces: [MTPlace] = .init()
 
-	init(provider: LocationProvider) {
+	init(provider: PlaceProvider) {
 		self.provider = provider
 	}
 	@MainActor

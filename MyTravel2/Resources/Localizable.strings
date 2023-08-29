@@ -114,6 +114,7 @@
 
 // Check-In
 "places" = "Places";
+"checkIn" = "Check In";
 "checkIns" = "Check-Ins";
 "search" = "Search";
 "place type" = "Place Type";
@@ -130,3 +131,14 @@
 
 // Camera preview
 "click here to simulate" = "Click here to simulate scan";
+
+// Check-In list
+"filter" = "Filter";
+"Reset all Filters" = "Reset all Filters";
+
+// Check-In Detail
+"QR" = "QR";
+"City" = "City";
+"Country" = "Country";
+"Partner id" = "Partner ID";
+

@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct LocationSuccessProvider: LocationProvider {
+struct PlaceSuccessProvider: PlaceProvider {
 	func getPlaceList() async -> Result<[MTPlace], Error> {
 		.success([MTPlace.preview])
 	}
 }
 
-struct LocationFailureProvider: LocationProvider {
+struct PlaceFailureProvider: PlaceProvider {
 	func getPlaceList() async -> Result<[MTPlace], Error> {
 		.failure(CustomError.message("Mock Failure"))
 	}
