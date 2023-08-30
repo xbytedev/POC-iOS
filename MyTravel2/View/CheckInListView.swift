@@ -11,6 +11,8 @@ struct CheckInListView: MTAsyncView {
 	@State private var strSearch: String = ""
 	@State private var shouldDisplayFilterView = false
 	@StateObject private var viewModel: CheckInViewModel
+	@State private var dateFilter: ClosedRange<Date>?
+	@State private var selectedPartner: String?
 
 	init(provider: CheckInProvider) {
 		_viewModel = StateObject(wrappedValue: CheckInViewModel(withProvider: provider))
@@ -35,9 +37,21 @@ struct CheckInListView: MTAsyncView {
 				.padding(.horizontal)
 				refreshableListView
 			}
-			CheckInFilterView(isPresenting: $shouldDisplayFilterView) { (dateFilter, selecterdPartner) in
-				
-			}
+			CheckInFilterView(
+				dateFilter: dateFilter, partners: Array(Set(viewModel.displayCheckInTravellers.compactMap({$0.partnerName}))),
+				selectedPartner: selectedPartner, isPresenting: $shouldDisplayFilterView) { dateFilter, selectedPartner in
+					self.dateFilter = dateFilter
+					self.selectedPartner = selectedPartner
+				}
+		}
+		.onChange(of: dateFilter) { newValue in
+			viewModel.searchAndFilterTravellers(withSearchText: strSearch, dateFilter: newValue, partnerFilter: selectedPartner)
+		}
+		.onChange(of: selectedPartner) { newValue in
+			viewModel.searchAndFilterTravellers(withSearchText: strSearch, dateFilter: dateFilter, partnerFilter: newValue)
+		}
+		.onChange(of: strSearch) { newValue in
+			viewModel.searchAndFilterTravellers(withSearchText: newValue, dateFilter: dateFilter, partnerFilter: selectedPartner)
 		}
     }
 
@@ -77,27 +91,48 @@ struct CheckInListView: MTAsyncView {
 	}
 
 	private var listView: some View {
-		List(viewModel.checkInTravellers) { checkInTraveller in
-			ZStack {
-				NavigationLink {
-					CheckInDetailView(viewModel: viewModel, checkInTraveller: checkInTraveller)
-						.setThemeBackButton()
-//						.navigationTitle(R.string.localizable.checkIn())
-						.toolbar {
-							ToolbarItem(placement: .principal) {
-								Text(R.string.localizable.checkIn)
-									.foregroundColor(AppColor.Text.tertiary)
+		List {
+			ForEach(viewModel.displayCheckInTravellers) { checkInTraveller in
+				ZStack {
+					NavigationLink {
+						CheckInDetailView(viewModel: viewModel, checkInTraveller: checkInTraveller)
+							.setThemeBackButton()
+						//						.navigationTitle(R.string.localizable.checkIn())
+							.toolbar {
+								ToolbarItem(placement: .principal) {
+									Text(R.string.localizable.checkIn)
+										.foregroundColor(AppColor.Text.tertiary)
+								}
 							}
-						}
-				} label: {
-					EmptyView()
+					} label: {
+						EmptyView()
+					}
+					.opacity(0)
+					CheckInRowView(checkInTraveller: checkInTraveller)
 				}
-				.opacity(0)
-				CheckInRowView(checkInTraveller: checkInTraveller)
+				.mtListBackgroundStyle()
 			}
-			.mtListBackgroundStyle()
+			if #available(iOS 15.0, *) {
+				GeometryReader { geometryProxy in
+					Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+				}
+				.listRowSeparator(.hidden)
+				.listRowBackground(Color.clear)
+			} else {
+				GeometryReader { geometryProxy in
+					Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+				}
+				.listRowBackground(Color.clear)
+			}
 		}
 		.listStyle(.plain)
+		.myOverlay(alignment: .center) {
+			VStack {
+				if viewModel.displayCheckInTravellers.isEmpty {
+					SMErrorView(title: nil, message: R.string.localizable.noCheckInTravellersFound(), retryAction: nil)
+				}
+			}
+		}
 	}
 
 	func load() {
@@ -111,7 +146,8 @@ struct CheckInListView: MTAsyncView {
 	}
 
 	private func handleResetFilterAction() {
-
+		dateFilter = nil
+		selectedPartner = nil
 	}
 }
 

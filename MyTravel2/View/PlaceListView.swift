@@ -85,8 +85,27 @@ struct PlaceListView: MTAsyncView {
 					.mtListBackgroundStyle()
 				}
 			}
+			if #available(iOS 15.0, *) {
+				GeometryReader { geometryProxy in
+					Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+				}
+				.listRowSeparator(.hidden)
+				.listRowBackground(Color.clear)
+			} else {
+				GeometryReader { geometryProxy in
+					Spacer(minLength: geometryProxy.safeAreaInsets.magnitude)
+				}
+				.listRowBackground(Color.clear)
+			}
 		}
 		.listStyle(.plain)
+		.myOverlay(alignment: .center) {
+			VStack {
+				if viewModel.displayPlaces.isEmpty {
+					SMErrorView(title: nil, message: R.string.localizable.noPlacesFound(), retryAction: nil)
+				}
+			}
+		}
 	}
 
 	@ViewBuilder
@@ -106,6 +125,7 @@ struct PlaceListView: MTAsyncView {
 	}
 }
 
+#if DEBUG
 struct PlaceListView_Previews: PreviewProvider {
     static var previews: some View {
 		PlaceListView(
@@ -113,3 +133,4 @@ struct PlaceListView_Previews: PreviewProvider {
 			provider: PlaceSuccessProvider())
     }
 }
+#endif

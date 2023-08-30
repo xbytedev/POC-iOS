@@ -1025,7 +1025,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "MyTravel2/Preview\\ Content/GroupPreview.swift MyTravel2/Preview\\ Content MyTravel2/Preview\\ Content/UserPreview.swift MyTravel2/Preview\\ Content/PreviewGroupProvider.swift";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3NHW5R384Z;
@@ -1069,7 +1069,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "MyTravel2/Preview\\ Content/GroupPreview.swift MyTravel2/Preview\\ Content MyTravel2/Preview\\ Content/UserPreview.swift MyTravel2/Preview\\ Content/PreviewGroupProvider.swift";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3NHW5R384Z;

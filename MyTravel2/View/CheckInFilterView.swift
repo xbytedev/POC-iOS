@@ -9,14 +9,26 @@ import SwiftUI
 
 struct CheckInFilterView: View {
 	private let minimumDate = Calendar.current.date(byAdding: .month, value: -6, to: Date()) ?? Date()
-	@State private var startDate: Date = Date()
-	@State private var isDateFilterApplied = false
-	@State private var isPartnerFilterApplied = false
-	private let maximumDate = Date()
-	@State private var endDate: Date = Date()
+	@State private var startDate: Date
+	@State private var isDateFilterApplied: Bool
+	@State private var isPartnerFilterApplied: Bool
+	private let maximumDate = Calendar.current.endOfDay(for: Date())
+	private let partners: [String]
+	@State private var endDate: Date
 	@State private var selectedPartner = ""
 	@Binding var isPresenting: Bool
-	var completionBlock: ((Date, Date)?, _ selectedPartner: String?) -> Void
+	var completionBlock: (ClosedRange<Date>?, _ selectedPartner: String?) -> Void
+
+	init(dateFilter: ClosedRange<Date>?, partners: [String], selectedPartner: String?, isPresenting: Binding<Bool>, completionBlock: @escaping (ClosedRange<Date>?, _: String?) -> Void) {
+		_startDate = State(initialValue: dateFilter?.lowerBound ?? Calendar.current.startOfDay(for: Date()))
+		_endDate = State(initialValue: dateFilter?.upperBound ?? Calendar.current.endOfDay(for: Date()))
+		_selectedPartner = State(initialValue: selectedPartner ?? "")
+		_isDateFilterApplied = State(initialValue: dateFilter != nil)
+		_isPartnerFilterApplied = State(initialValue: selectedPartner != nil)
+		_isPresenting = isPresenting
+		self.completionBlock = completionBlock
+		self.partners = partners
+	}
 
 	var body: some View {
 		ZStack {
@@ -29,9 +41,6 @@ struct CheckInFilterView: View {
 				.animation(.spring(), value: isPresenting)
 				.opacity(isPresenting ? 1 : 0)
 		}
-		/*.showAlert(isPresented: $configuration.alertPresent) {
-			Text(configuration.errorMeessage)
-		}*/
 	}
 
     var popupView: some View {
@@ -63,6 +72,7 @@ struct CheckInFilterView: View {
 						DatePicker(
 							"End Date", selection: $endDate, in: max(minimumDate, startDate)...maximumDate, displayedComponents: [.date])
 					}
+					.opacity(isPresenting ? 1 : 0)
 				}
 				HStack(spacing: 16) {
 					Button(action: partnerFilterToggle) {
@@ -78,7 +88,9 @@ struct CheckInFilterView: View {
 			MTButton(
 				isLoading: .constant(false), title: R.string.localizable.done(),
 				loadingTitle: R.string.localizable.creatingGroup()) {
-					completionBlock(isDateFilterApplied ? (startDate, endDate) : nil, isPartnerFilterApplied ? selectedPartner : nil)
+					let dateFilter = isDateFilterApplied ? startDate...Calendar.current.endOfDay(for: endDate) : nil
+					let partnerFilter = isPartnerFilterApplied ? selectedPartner : nil
+					completionBlock(dateFilter, partnerFilter)
 					isPresenting = false
 				}
 				.padding(.horizontal, 64)
@@ -106,9 +118,9 @@ struct CheckInFilterView: View {
 
 	private var picker: some View {
 		Picker(selection: $selectedPartner) {
-			Text("Chocolate").tag("Chocolate")
-			Text("Vanilla").tag("Vanilla")
-			Text("Strawberry").tag("Strawberry")
+			ForEach(partners, id: \.self) { partner in
+				Text(partner).tag(partner)
+			}
 		} label: {
 			Text("Partner")
 				.font(AppFont.getFont(forStyle: .headline, forWeight: .semibold))
@@ -128,7 +140,7 @@ struct CheckInFilterView: View {
 struct CheckInFilterView_Previews: PreviewProvider {
     static var previews: some View {
 		NavigationView {
-			CheckInFilterView(isPresenting: .constant(true), completionBlock: { (_, _) in })
+			CheckInFilterView(dateFilter: nil, partners: [""], selectedPartner: nil, isPresenting: .constant(true), completionBlock: { _, _ in })
 		}
     }
 }
