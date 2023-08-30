@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CheckInListView: MTAsyncView {
 	@State private var strSearch: String = ""
+	@State private var shouldDisplayFilterView = false
 	@StateObject private var viewModel: CheckInViewModel
 
 	init(provider: CheckInProvider) {
@@ -20,18 +21,23 @@ struct CheckInListView: MTAsyncView {
 	}
 
     var loadedView: some View {
-		VStack(alignment: .leading, spacing: 20) {
-			VStack(alignment: .leading) {
-				Text(R.string.localizable.checkIns())
-					.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
-					.foregroundColor(AppColor.theme)
-					.padding(.top, 24)
-				MTSearchView(searchText: $strSearch)
-				filterButton
+		ZStack {
+			VStack(alignment: .leading, spacing: 20) {
+				VStack(alignment: .leading) {
+					Text(R.string.localizable.checkIns())
+						.font(AppFont.getFont(forStyle: .title1, forWeight: .semibold))
+						.foregroundColor(AppColor.theme)
+						.padding(.top, 24)
+					MTSearchView(searchText: $strSearch)
+					filterButton
+				}
+				.padding(.horizontal)
+				.padding(.horizontal)
+				refreshableListView
 			}
-			.padding(.horizontal)
-			.padding(.horizontal)
-			refreshableListView
+			CheckInFilterView(isPresenting: $shouldDisplayFilterView) { (dateFilter, selecterdPartner) in
+				
+			}
 		}
     }
 
@@ -101,7 +107,7 @@ struct CheckInListView: MTAsyncView {
 	}
 
 	private func handleFilterAction() {
-
+		shouldDisplayFilterView = true
 	}
 
 	private func handleResetFilterAction() {

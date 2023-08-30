@@ -73,6 +73,7 @@
 		897EDC6E2A05272F001B652E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EDC6D2A05272F001B652E /* LoginView.swift */; };
 		89A1AE682A386F5D00C089E1 /* ScanQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */; };
 		89A6FEE22A6AA14C003E77EA /* MTRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A6FEE12A6AA14C003E77EA /* MTRoundedView.swift */; };
+		89A8F4562A9DEFDB0064A1D4 /* CheckInFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A8F4552A9DEFDB0064A1D4 /* CheckInFilterView.swift */; };
 		89AED1B92A651D0100D7D95E /* MTSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AED1B82A651D0100D7D95E /* MTSegmentView.swift */; };
 		89B7C3612A6BEA840086B527 /* MTPlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B7C3602A6BEA840086B527 /* MTPlaceDetail.swift */; };
 		89B7C3642A6BEDF40086B527 /* PlaceDetailPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B7C3632A6BEDF40086B527 /* PlaceDetailPreview.swift */; };
@@ -220,6 +221,7 @@
 		897EDC6D2A05272F001B652E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		89A1AE672A386F5D00C089E1 /* ScanQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeView.swift; sourceTree = "<group>"; };
 		89A6FEE12A6AA14C003E77EA /* MTRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRoundedView.swift; sourceTree = "<group>"; };
+		89A8F4552A9DEFDB0064A1D4 /* CheckInFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInFilterView.swift; sourceTree = "<group>"; };
 		89AED1B82A651D0100D7D95E /* MTSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTSegmentView.swift; sourceTree = "<group>"; };
 		89B7C3602A6BEA840086B527 /* MTPlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTPlaceDetail.swift; sourceTree = "<group>"; };
 		89B7C3632A6BEDF40086B527 /* PlaceDetailPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailPreview.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				89C1D3962A84C8D4003A82B9 /* CheckInRowView.swift */,
 				8976204B2A94C4170027F767 /* CheckInDetailView.swift */,
 				89C7DF432A94E4EF009C3E43 /* CheckInDetailRowView.swift */,
+				89A8F4552A9DEFDB0064A1D4 /* CheckInFilterView.swift */,
 				89210BA22A15F7C700F268FC /* SettingsView.swift */,
 				896259332A1243CA00AAE879 /* MTShapeView.swift */,
 				89A6FEE12A6AA14C003E77EA /* MTRoundedView.swift */,
@@ -799,6 +802,7 @@
 				89AED1B92A651D0100D7D95E /* MTSegmentView.swift in Sources */,
 				89B7C3612A6BEA840086B527 /* MTPlaceDetail.swift in Sources */,
 				89D2272D2A3AC65F00D6D425 /* EnterCodeView.swift in Sources */,
+				89A8F4562A9DEFDB0064A1D4 /* CheckInFilterView.swift in Sources */,
 				897E61CB2A0BA7FA008D1687 /* ProgressViewModifier.swift in Sources */,
 				890EDA882A98AEFC00DC8FC5 /* MTFormatter.swift in Sources */,
 				89C1D3972A84C8D4003A82B9 /* CheckInRowView.swift in Sources */,
