@@ -17,6 +17,7 @@
 "request.failed.noMessageFound" = "Request failed, no error message found";
 "internal.user data not found" = "User data not found";
 "Something Went Wrong" = "Something went wrong";
+"no data found" = "No data found";
 
 //login
 "Please enter your email" = "Please enter your email";
@@ -112,6 +113,9 @@
 "group name" = "Group Name";
 "creating group" = "Creating group";
 
+// Places list
+"No places found" = "No places found";
+
 // Check-In
 "places" = "Places";
 "checkIn" = "Check In";
@@ -135,6 +139,7 @@
 // Check-In list
 "filter" = "Filter";
 "Reset all Filters" = "Reset all Filters";
+"no check-in travellers found" = "No check-in travellers found";
 
 // Check-In Detail
 "QR" = "QR";

@@ -44,3 +44,12 @@ extension Data {
 		return try decoder.decode(T.self, from: self)
 	}
 }
+
+extension Calendar {
+	func endOfDay(for date: Date) -> Date {
+		var components = DateComponents()
+		components.day = 1
+		components.second = -1
+		return self.date(byAdding: components, to: date)!
+	}
+}
