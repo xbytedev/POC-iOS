@@ -19,16 +19,18 @@ struct CheckInFilterView: View {
 	@Binding var isPresenting: Bool
 	var completionBlock: (ClosedRange<Date>?, _ selectedPartner: String?) -> Void
 
-	init(dateFilter: ClosedRange<Date>?, partners: [String], selectedPartner: String?, isPresenting: Binding<Bool>, completionBlock: @escaping (ClosedRange<Date>?, _: String?) -> Void) {
-		_startDate = State(initialValue: dateFilter?.lowerBound ?? Calendar.current.startOfDay(for: Date()))
-		_endDate = State(initialValue: dateFilter?.upperBound ?? Calendar.current.endOfDay(for: Date()))
-		_selectedPartner = State(initialValue: selectedPartner ?? "")
-		_isDateFilterApplied = State(initialValue: dateFilter != nil)
-		_isPartnerFilterApplied = State(initialValue: selectedPartner != nil)
-		_isPresenting = isPresenting
-		self.completionBlock = completionBlock
-		self.partners = partners
-	}
+	init(
+		dateFilter: ClosedRange<Date>?, partners: [String], selectedPartner: String?, isPresenting: Binding<Bool>,
+		completionBlock: @escaping (ClosedRange<Date>?, _: String?) -> Void) {
+			_startDate = State(initialValue: dateFilter?.lowerBound ?? Calendar.current.startOfDay(for: Date()))
+			_endDate = State(initialValue: dateFilter?.upperBound ?? Calendar.current.endOfDay(for: Date()))
+			_selectedPartner = State(initialValue: selectedPartner ?? "")
+			_isDateFilterApplied = State(initialValue: dateFilter != nil)
+			_isPartnerFilterApplied = State(initialValue: selectedPartner != nil)
+			_isPresenting = isPresenting
+			self.completionBlock = completionBlock
+			self.partners = partners
+		}
 
 	var body: some View {
 		ZStack {
@@ -138,9 +140,11 @@ struct CheckInFilterView: View {
 }
 
 struct CheckInFilterView_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		NavigationView {
-			CheckInFilterView(dateFilter: nil, partners: [""], selectedPartner: nil, isPresenting: .constant(true), completionBlock: { _, _ in })
+			CheckInFilterView(
+				dateFilter: nil, partners: [""], selectedPartner: nil, isPresenting: .constant(true),
+				completionBlock: { _, _ in })
 		}
-    }
+	}
 }
