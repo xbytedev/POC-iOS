@@ -10,13 +10,19 @@ import SwiftUI
 struct AppTabBarView: View {
 
 	@State private var isPopupPresented: Bool = false
-	@State var selection: TabItem = .groups
+	@State var selection: TabItem
 	@Binding var rootIsActive: Bool
 	@State private var shouldGroupSuccess: Bool = false
 	@State private var createdGroup: MTGroup?
 	@State private var shouldAddTraveler: Bool = false
-	@State private var checkInSelection = SegmentItem.places
+	@State private var checkInSelection: SegmentItem
 	@StateObject private var groupViewModel = GroupViewModel(provider: GroupAPIProvider())
+
+	init(selection: TabItem, rootIsActive: Binding<Bool>, checkInSelection: SegmentItem = SegmentItem.places) {
+		self.selection = selection
+		self.checkInSelection = checkInSelection
+		_rootIsActive = rootIsActive
+	}
 
     var body: some View {
 		ZStack {
@@ -55,7 +61,7 @@ struct AppTabBarView: View {
 struct AppTabBarView_Previews: PreviewProvider {
     static var previews: some View {
 		NavigationView {
-			AppTabBarView(rootIsActive: .constant(false))
+			AppTabBarView(selection: .groups, rootIsActive: .constant(false), checkInSelection: .checkIns)
 		}
     }
 }

@@ -24,14 +24,20 @@ struct WelcomeView: View {
 				.frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
 				VStack {
 					NavigationLink {
-						AppTabBarView(rootIsActive: $rootIsActive)
+						AppTabBarView(selection: .groups, rootIsActive: $rootIsActive, checkInSelection: .places)
 					} label: {
 						MTButton(isLoading: .constant(false), title: R.string.localizable.manageGroups(), loadingTitle: "") {
 						}
 						.disabled(true)
 					}
-					MTButton(isLoading: .constant(false), title: R.string.localizable.checkinTravlers(), loadingTitle: "") {
+					NavigationLink {
+						AppTabBarView(selection: .checkIn, rootIsActive: $rootIsActive, checkInSelection: .checkIns)
+					} label: {
+						MTButton(isLoading: .constant(false), title: R.string.localizable.checkinTravlers(), loadingTitle: "") {
+						}
+						.disabled(true)
 					}
+
 				}
 			}
 			.padding()

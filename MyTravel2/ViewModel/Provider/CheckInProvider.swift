@@ -37,7 +37,7 @@ struct CheckInAPIProvider: CheckInProvider {
 			return .failure(getOriginalErrorIfAny(error))
 		}
 	}
-	
+
 	func getCheckInPeopleDetails(
 		from checkInTraveller: MTCheckInTraveller) async -> Result<MTCheckInTravellerDetail, Error> {
 			let requester = WebRequester<MTResponse<MTCheckInTravellerDetail>>(withSession: WebRequesterSessionProvider.session)
